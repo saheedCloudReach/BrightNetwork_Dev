@@ -1,11 +1,11 @@
 public class AccountTriggerHandler extends Reach.TriggerHandlerFactory {
     
     public override void afterUpdate() {
-        updateFieldsInDotmailer(false); 
+        updateMassFieldsInDotmailer(false); 
     }
     
     public override void afterInsert() {
-        updateFieldsInDotmailer(true); 
+        updateMassFieldsInDotmailer(true); 
     }
         
     private void updateMassFieldsInDotmailer(boolean isInsert) {
