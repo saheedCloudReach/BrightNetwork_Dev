@@ -4,19 +4,21 @@ public class DotMailerService {
     //'https://cloudreach-connect-shared.herokuapp.com/ccsvc/bn/test';
  //   private final static String AUTH_KEY = [SELECT Value__c FROM Dotmailer_Properties__c WHERE Name = 'DM_INT_AUTH_KEY'].Value__c;
         //'77579a68-503b-422e-8e9e-865cc98d8717';
-    
-    
+        
     @Future(callout = true)
     public static void submitPreference(Id accountId, String email) {      
         submit('/preference/update', new SubscriptionPreferencesMessageBuilder(accountId, email));  
-        System.debug('Test');   
-        
-        
     }
     
     @Future(callout = true)
     public static void submitAccount(Id accountId, String email) {
 		submit('/preference/update', new ObjectMessageBuilder(accountId, email, Account.SObjectType, DotMailerAccountMapping.getAccountMapping()));
+    }
+    
+     @Future(callout = true)
+    public static void submitAccounts(Map<Id, String> accountIdEmailMap) {
+    	
+		submitMass('/preference/update', new ObjectMessageBuilder(accountIdEmailMap, Account.SObjectType, DotMailerAccountMapping.getAccountMapping()));
     }
 
     @Future(callout = true)
@@ -59,6 +61,13 @@ public class DotMailerService {
 
          if (request != null && request.email != null)
             postJson(endpoint, JSON.serializePretty(request));
+    }
+    
+    private static void submitMass(String endpoint, DotMailerMessagesBuilder builder) {
+    	List<DotMailerAttributeChangeRequest> requests = builder.buildAll();
+
+         if (requests != null || !requests.isEmpty())
+            postJson(endpoint, JSON.serializePretty(requests));
     }
     
     private static String getEndpoint() {

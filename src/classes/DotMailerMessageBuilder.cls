@@ -1,5 +1,5 @@
 public interface DotMailerMessageBuilder {
     
-    DotMailerAttributeChangeRequest build();
+    DotMailerAttributeChangeRequest build();    
 
 }
