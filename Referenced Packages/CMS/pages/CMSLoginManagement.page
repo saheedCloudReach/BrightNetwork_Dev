@@ -1,0 +1,20 @@
+<apex:page controller="FCMS.CMSLoginManagementController" standardstylesheets="false" showHeader="false" sideBar="false" action="{!init}" >
+    <ul>
+        <li>
+            <span id="welcome">
+                {!$Label.fcms__Welcome} {!userName},
+            </span>
+            <apex:outputLink value="/apex/FCMS__CMSLayout" rendered="{!contact.Id == null}">
+                    <apex:param name="page" value="CMSSiteLogin"/>
+                    <apex:param name="jobSite" value="{!$CurrentPage.parameters.jobSite}" />
+                    <apex:param name="p" value="{!$CurrentPage.parameters.p}" />
+                <span id="signup">
+                    {!$Label.fcms__Login_or_Register}
+                </span>
+            </apex:outputLink>
+            <apex:form >
+                <apex:commandLink action="{!logout}" value="{!$Label.fcms__Logout}" rendered="{!contact.Id != null}"/>
+            </apex:form>
+        </li>
+    </ul>
+</apex:page>

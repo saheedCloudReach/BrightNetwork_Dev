@@ -1,0 +1,22 @@
+<apex:page controller="ddm.IEHeaderController" tabStyle="ddm__dmsfc_Email_Account__c">
+    <c:CommonJS />
+    <apex:includeScript value="{!$Resource.ddm__Configuration}" />
+        
+    <iframe id="frConfig" frameBorder="0" name="frConfig" style="border:0px; width:100%; height:650px;" src=""></iframe>           
+
+         
+    <script type="text/javascript">   
+        var encOrgId = xor_str('{!$Organization.Id}',"FAF02EE5-0D0B-4DC5-B7D8-999DEC10D0BD");
+
+        var qs = '';        
+        qs += 'OrganisationId={!$Organization.Id}';
+        qs += '&ServerUrl={!$Api.Enterprise_Server_URL_180}';           
+        qs += '&SessionId={!$Api.Session_ID}';
+        qs += '&PartnerUrl={!$API.Partner_Server_URL_140}';
+
+        for (var p in config) qs += "&" + p + "=" + config[p];   
+           
+        var frame = document.getElementById("frConfig");
+        frame.src = "https://sf.crmconnector.net/v2/admin/?qs=" + EncryptParams(qs);        
+    </script>
+</apex:page>

@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+ <html> <head> <script src="/soap/ajax/9.0/connection.js" type="text/javascript"></script> 
+ <script> 
+var Candidate_Id ='{!Interview__c.Contact_CandidateId__c}';
+
+   str1 = "Select Name,Email From Contact Where Id = '" + AVTRRT__Candidate_Id+ "'"
+   queryResult = sforce.connection.query(str1);
+   if (queryResult.size >0)
+   {
+     records = queryResult.getArray("records");
+     var Candidate_Name = records[0].Name;
+     var Candidate_Email = records[0].Email;
+    // document.getElementById('to_address').value = Contact_Email;
+    }
+ </script> 
+  
+ </head> 
+<body >
+ <table width="600" border="0" cellspacing="1" cellpadding="1">
+   <tr>
+     <td>
+<script>
+var id ='{!Interview__c.Contact_CandidateId__c}';
+var tabId = id.substring(0,3);
+var candName = "{!Interview__c.Contact_Candidate__c}";
+
+this.location.href="/email/author/emailauthor.jsp?retURL=%2F{!Interview__c.Id}&p3_mlktp="+tabId+"&p3_lkid="+candName+"&p3_lkid="+AVTRRT__Candidate_Id+"&p3_lktp=a01&p2_mlktp="+tabId+"&p2_lkid="+candName+"&p2_lkid="+Candidate_Id+"&p2_lktp=a01&p2_mod=a01&p6=Candidate for Job:";
+
+</script>
+</td>
+   </tr>
+ </table>
+
+ </body> 
+  </html>

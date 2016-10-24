@@ -1,0 +1,25 @@
+<apex:page standardController="AVTRRT__Job_Applicant__c"  extensions="AVTRRT.LogCall" recordSetVar="Job Applicants" sidebar="false">
+    <apex:pagemessages ></apex:pagemessages>
+    <apex:form > 
+   <!-- page Block to show fields in this Page -->
+        <apex:pageBlock rendered="{!if(jobApplicantList.size > 0, true, false)}">
+             <apex:pageblocksection title="{!$Label.avtrrt__Task_Information}">
+                 <apex:inputfield value="{!task.Status}"/>
+                 <apex:inputfield value="{!task.Subject}"/> 
+                 <apex:inputfield value="{!task.ActivityDate}"/>
+                 <apex:inputfield value="{!task.Priority}"/>
+                 <apex:inputfield value="{!task.OwnerId}"/>
+             </apex:pageblocksection>
+             
+             <apex:pageblocksection title="{!$Label.avtrrt__Description_Information}">
+                 <apex:inputfield value="{!task.Description}" style="width:400px; height:100px"/>
+             </apex:pageblocksection>  
+             
+       <!-- Save method to create the task record job Applicants -->    
+             <center>
+             	<apex:commandbutton value="{!$Label.avtrrt__Save}" action="{!save}"/>
+             	<apex:commandbutton value="{!$Label.avtrrt__Cancel}" action="{!back}"/>
+             </center>
+         </apex:pageBlock>
+    </apex:form> 
+</apex:page>

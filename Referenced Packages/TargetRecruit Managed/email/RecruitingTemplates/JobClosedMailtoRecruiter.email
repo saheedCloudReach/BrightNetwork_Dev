@@ -1,0 +1,13 @@
+<table cellpadding="5" width="550" height="400" cellspacing="5" border="0" >
+<tr height="400" valign="top" >
+<td locked="0" style=" font-family:arial; bLabel:main; color:#000000; font-size:12pt; bEditID:r3st1; background-color:#FFFFFF;" aEditID="c1r1" tEditID="c1r1" >
+<![CDATA[<P class=MsoNormal>Dear {!Job__c.Recruiter__c}, <?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p></o:p></P>
+<P class=MsoNormal><o:p>&nbsp;</o:p></P>
+<P class=MsoNormal>This position is now closed as a {!Job__c.Stage__c}.&nbsp; Please notify your candidates at your earliest opportunity.<o:p></o:p></P>
+<P class=MsoNormal><o:p>&nbsp;</o:p></P>
+<P class=MsoNormal>Click <A href="http://na2.salesforce.com/{!Job__c.Id}">here</A> to view the job record details.</P>
+<P class=MsoNormal>&nbsp;</P>
+<P class=MsoNormal>Thanks, <o:p></o:p></P>
+<P class=MsoNormal><o:p>&nbsp;</o:p></P>]]></td>
+</tr>
+</table>

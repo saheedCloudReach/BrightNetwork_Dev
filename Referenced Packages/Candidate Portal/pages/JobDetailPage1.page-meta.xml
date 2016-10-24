@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>30.0</apiVersion>
+    <availableInTouch>false</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <label>JobDetailPage1</label>
+    <packageVersions>
+        <majorNumber>1</majorNumber>
+        <minorNumber>36</minorNumber>
+        <namespace>AVTRRT</namespace>
+    </packageVersions>
+    <packageVersions>
+        <majorNumber>1</majorNumber>
+        <minorNumber>44</minorNumber>
+        <namespace>FCMS</namespace>
+    </packageVersions>
+</ApexPage>

@@ -1,0 +1,10 @@
+Dear  {!Contact.Name}
+
+You have successfully registered yourself on this Portal.
+Below is your login information.
+
+Username :  {!Contact.UserName__c}
+Password :  {!Contact.Password__c}
+
+Thanks for showing interest.
+{!Organization.Name}   Support Team.

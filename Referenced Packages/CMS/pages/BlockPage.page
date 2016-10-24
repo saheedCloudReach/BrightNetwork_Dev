@@ -1,0 +1,83 @@
+<apex:page controller="FCMS.BlockController" tabStyle="FCMS__Block__c" id="blockPage">
+    <apex:includeScript value="{!URLFOR($Resource.FCMS__ckeditor,'ckeditor/ckeditor.js')}"/>
+    <apex:form id="Block_form">
+    <apex:actionFunction name="changeBlockType1" action="{!changeBlockType}" />
+    <!--<script>
+    function setName()
+        {
+            if(document.getElementById('{!$Component.Block_form.block1.pageBlockSection.Name}').value ==''){
+                document.getElementById('{!$Component.Block_form.block1.pageBlockSection.Name}').value = '.';
+                }
+        }
+    </script>  -->
+    <apex:pageBlock title="{!$Label.fcms__Block_Edit}" mode="edit" id="block1">
+        <apex:pageMessages id="error"/>
+        <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="{!$Label.fcms__SaveCMS}" onclick="javascript: return confirm('Are you sure?');"/>
+                <apex:commandButton action="{!saveAndNew}" value="{!$Label.fcms__Save_New}" onclick="javascript: return confirm('Are you sure?');"/>
+                <apex:commandButton action="{!cancel}" value="{!$Label.fcms__CancelCMS}" immediate="true"/>
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection title="{!$Label.fcms__Information}" id="pageBlockSection">
+            <apex:inputField value="{!block.Name}" id="Name" required="true"/>
+            <apex:outputText value="" />
+            <apex:inputField value="{!block.FCMS__Name__c}" id="Name__c" required="true"/>
+            <apex:inputField value="{!block.FCMS__Active__c}" id="Active__c" />
+            <apex:inputField value="{!block.FCMS__Page__c}" id="Page__c" />
+            <apex:inputField value="{!block.FCMS__Authentication_Required__c}" id="Authentication_Required__c" />
+            <apex:inputField value="{!block.FCMS__Height__c}" id="Height__c" rendered="{!if(showHideExistingBlock==true,false,true)}"/>
+            <apex:inputField value="{!block.FCMS__Section__c}" id="Section__c" required="true"/>
+            <apex:inputField value="{!block.FCMS__Width__c}" id="Width__c" rendered="{!if(showHideExistingBlock==true,false,true)}"/>
+            <apex:inputField value="{!block.FCMS__Override_Class__c}" id="Override_Class__c" rendered="{!if(showHideExistingBlock==true,false,true)}"/>
+            <apex:inputField value="{!block.FCMS__Weight__c}" id="Weight__c" required="true"/>
+            <apex:outputText value="" rendered="{!if(showHideExistingBlock==true,false,true)}"/>
+            <!--<apex:inputField value="{!block.FCMS__Type__c}" id="Type__c"  onChange="javascript:setName();changeBlockType1();"/>  -->
+            <apex:inputField value="{!block.FCMS__Type__c}" id="Type__c"  onChange="javascript:changeBlockType1();"/>
+            <apex:inputField value="{!block.FCMS__IFrame_URL__c}" id="IFrame_URL__c" rendered="{!if((showHideFlash == true || showHideIFRAME == true),true,false)}"/>
+            <apex:inputField value="{!block.FCMS__Add_Parameters_From_Parent_Window__c}" id="Add_Parameters_From_Parent_Window__c" rendered="{!if(showHideIFRAME == true || showHideAutoHeightIFRAME == true,true,false)}"/>
+            <apex:inputField value="{!block.FCMS__Flash_Play__c}" id="Flash_Play__c" rendered="{!showHideFlash}"/>
+            <apex:inputField value="{!block.FCMS__Flash_Loop__c}" id="Flash_Loop__c" rendered="{!showHideFlash}"/>
+            <apex:inputField value="{!block.FCMS__FlashVars__c}" id="FlashVars__c" rendered="{!showHideFlash}"/>
+            <!--<apex:inputField value="{!block.Module_Name__c}" id="Module_Name__c" />-->
+            <apex:pageBlockSectionItem rendered="{!showHideMODULE}">
+                <apex:outputLabel for="Module" title="{!$Label.fcms__Visualforce_Page_Name}" value="{!$Label.fcms__Module_Name}"></apex:outputLabel>
+                <apex:selectList value="{!moduleName}" id="Module" size="1" title="{!$Label.fcms__Visualforce_Page_Name}">
+                    <apex:selectOptions value="{!moduleItems}"/>
+                </apex:selectList>      
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem rendered="{!showHideMenuComponent}">
+                <apex:outputLabel title="{!$Label.fcms__Menu_Component_Name}" for="MenuComponent" >{!$Label.fcms__Menu_Component_Name}</apex:outputLabel>
+                <apex:selectList value="{!menuComponentName}" id="MenuComponent" size="1" title="{!$Label.fcms__Menu_Component_Name}">
+                    <apex:selectOptions value="{!items}"/>
+                </apex:selectList>      
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem rendered="{!showHideExistingBlock}">
+                <apex:outputLabel for="ExistingBlock" >{!$Label.fcms__Existing_Block_Name}</apex:outputLabel>
+                <apex:selectList value="{!existingBlockName}" id="ExistingBlock" size="1">
+                    <apex:selectOptions value="{!existingBlockItems}"/>
+                </apex:selectList>      
+            </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection title="{!$Label.fcms__Content}" columns="1" rendered="{!showHideContent}">
+            <!--<apex:inputField value="{!block.Content__c}" id="Content__c" />  -->
+            <textarea class="ckeditor" cols="80" id="editor1" name="editor1" rows="10">
+                {!block.FCMS__Content__c}
+            </textarea>
+        </apex:pageBlockSection>  
+        <apex:pageBlockSection title="{!$Label.fcms__Text_Content}" columns="1" rendered="{!showHideTextContent}">
+            <!-- <apex:inputField value="{!block.TextContent__c}" id="TextContent__c" style="width:600px;height:300px;"/>-->
+            <textarea cols="80" id="textContent" name="textContent" rows="10">
+                {!block.FCMS__TextContent__c}
+            </textarea>
+        </apex:pageBlockSection> 
+        
+        <apex:pageBlockSection title="{!$Label.fcms__Auto_Height_Iframe_Code}" columns="1" rendered="{!showHideAutoHeightIFRAME}">
+            <!-- <apex:inputField value="{!block.TextContent__c}" id="TextContent__c" style="width:600px;height:300px;"/>-->
+            <textarea cols="80" id="autoHeightIframeCode" name="autoHeightIframeCode" rows="10">
+                {!block.FCMS__Auto_Height_Iframe_Code__c}
+            </textarea>
+        </apex:pageBlockSection>
+    
+    </apex:pageBlock>
+    </apex:form>
+    
+</apex:page>

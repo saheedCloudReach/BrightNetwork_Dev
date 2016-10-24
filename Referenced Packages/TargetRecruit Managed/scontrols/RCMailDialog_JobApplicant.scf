@@ -1,0 +1,1591 @@
+<!-- !!! We do not use it any more -->
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head> 
+
+<!-- common styles -->
+<link href="/sCSS/13.0/Theme2/common.css" type="text/css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet">
+<!-- custom styles -->
+<link href="/sCSS/13.0/Theme2/allCustom.css" type="text/css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet">
+<!-- standard styles -->
+<link href="/sCSS/13.0/Theme2/dStandard.css" type="text/css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet">
+<!-- elements styles -->
+<link href="/sCSS/13.0/Theme2/elements.css" type="text/css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet"> 
+
+
+    <script type="text/javascript" src="/js/functions.js"></script>
+    <script src="/soap/ajax/11.0/connection.js"></script>
+    <script src="/soap/ajax/11.0/apex.js"></script>
+    <script  src="/dJS/en/1199917680000/library.js" type="text/javascript"></script>
+    <script  src="/js/ClientHash.js" type="text/javascript"></script>
+
+    <script language="javascript">
+
+    //sunil fixed data
+    var objectId = '{!Job_Applicant__c.Id}';
+    var objectName = "AVTRRT__Job_Applicant__c";
+    var accountId='{!Job_Applicant__c.Account_JobId__c}';
+
+
+    var targetObjectId=accountId;
+    var templateId="";
+    
+    function hideEmailtemplate(){
+    	document.getElementById("emailtemplate").innerHTML = '';
+    }
+    function hideEmailtemplate1(){
+    	document.getElementById("emailtemplate1").innerHTML = '';
+    }
+    
+  	function upload(){
+  		//alert("upload()");
+  		var to = getBoxValue(document.getElementById('to'));
+	    var cc = getBoxValue(document.getElementById('cc'));
+	    var bcc = getBoxValue(document.getElementById('bcc'));			
+  		
+  		document.uploadPage.cancelURL.value = urlQueryString + "&templateId="+ templateId + "&toRecipients=" + to + "&ccRecipients=" + cc + "&bccRecipients=" + bcc;
+		document.uploadPage.retURL.value =  urlQueryString + "&templateId="+ templateId+ "&toRecipients=" + to + "&ccRecipients=" + cc + "&bccRecipients=" + bcc;
+  		
+		//document.uploadPage.cancelURL.value = document.referrer;
+		//document.uploadPage.retURL.value =  document.referrer;
+		document.uploadPage.pid.value = objectId;
+  		document.forms.uploadPage.submit();
+  	}
+  	function doCancel(){
+  			//edit_single_on('bodyEditor');
+			window.parent.location.href = "/"+objectId;				
+  	}
+  	var urlQueryString='';
+  	function init(){
+  	
+  		populateContacts();
+  		//populateAttachments();
+  		
+  		//sunil fixed data
+  		populateAttachmentsForObjects();
+  		
+  		edit_single_on('bodyEditor');
+		initializeRichTextArea();
+
+
+  		var queryString =document.URL;
+  		var queryStringAttr = queryString.split("\&");
+  		
+  		if(queryStringAttr.length>0){
+  			for(var i=0;i<queryStringAttr.length;i++){
+  				var fieldName = queryStringAttr[i].split("=");
+
+  				if(fieldName[0]=='toRecipients'){
+  					moveAddrById('to',fieldName[1],accountId);
+  				}else if(fieldName[0]=='ccRecipients'){
+  					moveAddrById('cc',fieldName[1],accountId);
+  				}else if(fieldName[0]=='bccRecipients'){
+  					moveAddrById('bcc',fieldName[1],accountId);
+  				}else if(fieldName[0]=='templateId'){
+  					mergetemplateById(fieldName[1]);
+  				}else {
+  					urlQueryString = urlQueryString + queryStringAttr[i] + "\&";
+  				}
+  			}
+  		}	  
+		
+
+		//document.URL = urlQueryString;
+
+		setFocusOnLoad();
+  	}
+  	
+    function populateAttachments(){
+    	//alert("populating attachments");
+	    
+		try{
+			var queryResult = sforce.connection.query("Select Name, Id from Attachment where ParentId='"+objectId+"'");
+			var records = queryResult.getArray("records");
+			var attachmentHTML = "<table>";
+			if (records.length != 0){
+					
+				for(var j=0;j<records.length;j++){
+				   //baseSkill = records[j].Value__c;
+				   //alert(records[j].Name);
+				   
+				   attachmentHTML +="<tr><td>"+records[j].Name+"</td><td><input type='checkbox' name='attachmentId' value='"+records[j].Id+"'/></td></tr>";
+				   
+				}
+				attachmentHTML+="</table>";
+			}
+			document.getElementById("attachments").innerHTML = attachmentHTML;
+		}catch(error){
+			alert(error);
+		}
+	}
+    function populateAttachmentsForObjects(){
+    	//alert("populating attachments");
+	    
+		try{
+			var attachmentHTML = "<table>";
+			attachmentHTML += populateAttachments(objectId,"Job Applicants");
+			attachmentHTML += populateAttachments('{!Job_Applicant__c.Contact_CandidateId__c}',"Candidates Profiles");	
+			attachmentHTML+="</table>";
+			document.getElementById("attachments").innerHTML = attachmentHTML;
+		}catch(error){
+			alert(error);
+		}
+	}
+    function populateAttachments(ids,objectName){
+		try{
+			var attachmentHTML ='';
+			var queryResult = sforce.connection.query("Select Name, Id from Attachment where ParentId='"+ids+"'");
+			var records = queryResult.getArray("records");
+			if (records.length != 0){
+				for(var j=0;j<records.length;j++){
+				   attachmentHTML +="<tr><td>"+records[j].Name +" ["+objectName+"]"+"</td><td><input type='checkbox' name='attachmentId' value='"+records[j].Id+"'/></td></tr>";
+				}
+			}
+			return attachmentHTML;
+		}catch(error){
+			alert(error);
+		}
+	}
+
+	
+	var _attachmentIds = [];
+	function sendmail(){
+		//alert('sendmail' + document.rcmailform.attachmentId.length);
+		attachmentCount=0;
+		if(document.rcmailform.attachmentId!=null ){//&& document.rcmailform.attachmentId.length>0){
+		// if only one attachment is there then it will not return array
+			if(document.rcmailform.attachmentId.length == undefined){
+				if (document.rcmailform.attachmentId.checked==true){
+					_attachmentIds[attachmentCount++]=document.rcmailform.attachmentId.value;
+				}
+			}else{
+				for (i=0;i<document.rcmailform.attachmentId.length;i++){
+					if (document.rcmailform.attachmentId[i].checked==true){
+						_attachmentIds[attachmentCount++]=document.rcmailform.attachmentId[i].value;
+					}
+				}
+			}
+				
+			
+			
+		}
+		sendmail1();
+	}
+	
+	function sendmail1(){
+		try {
+			if(
+				(document.getElementById('to').options.length ==0) &&
+				(document.getElementById('cc').options.length==0) &&
+				(document.getElementById('bcc').options.length==0)			   
+			){
+			   		alert("Please specify either 'To Recipients' or 'CC Recipients' or 'BCC Recipients'");
+			   		return;
+			   }
+			   
+			   
+		    var to = getBoxValue(document.getElementById('to'));
+		    var cc = getBoxValue(document.getElementById('cc'));
+		    var bcc = getBoxValue(document.getElementById('bcc'));			
+			
+			var subject = document.getElementById('Subject').value;
+			if(trim(subject)==''){
+				alert("Invalid Data. Please specify Subject.");
+				document.getElementById('Subject').focus();
+				return;
+			}
+			
+			var body=getDoc().body.innerHTML;
+			var contentType="";
+
+			/*
+			subject = mergeFieldsValue(subject);
+			body = mergeFieldsValue(body);
+*/
+
+  	//alert(sforce.connection.getUserInfo().userFullName);
+  	//alert(sforce.connection.getUserInfo().userEmail);
+  	var users1 = [];//new Array(sforce.connection.getUserInfo().userFullName,sforce.connection.getUserInfo().userEmail);
+  	users1[0] = sforce.connection.getUserInfo().userFullName;
+  	users1[1] = sforce.connection.getUserInfo().userEmail;
+  	//alert(to);
+	//alert(_attachmentIds);
+	var refreshReq = 'true';
+			var activityId = sforce.apex.execute('AVTRRT.RCMailDialog','sendMail',
+								{to:to,
+								cc:cc,
+								bcc:bcc,
+								infos:users1,
+								subject:subject,
+								body:body,
+								objectRefId:objectId,
+								whatIdReq:true,
+								accountId:accountId,
+								templateId:templateId,
+								attachmentId:_attachmentIds
+								});
+				//alert(activityId);	
+				//return;			
+			if(activityId[0].indexOf("Confirmation:")> -1){
+			
+				 var r=confirm(activityId);
+	  			if (r==true)
+	    		{
+	    			activityId = sforce.apex.execute('AVTRRT.RCMailDialog','sendMail',
+								{to:to,
+								cc:cc,
+								bcc:bcc,
+								infos:users1,
+								subject:subject,
+								body:body,
+								objectRefId:objectId,
+								whatIdReq:false,
+								accountId:accountId,
+								templateId:templateId,
+								attachmentId:_attachmentIds
+								});
+	   			 }
+	 			 else
+	  			  {
+	  					//alert("You pressed Cancel!");
+	  					refreshReq = 'false';
+	   			  }
+			
+				//window.parent.location.href = "/"+objectId;	
+			}
+			
+			if(activityId[0].indexOf("RCMailError") > -1){
+				alert(activityId);
+			}else{
+				//window.parent.location.href = "/{!Account.Id}";
+				
+				//var statuschanged = sforce.apex.execute('CandidateSearchInJob','updateHiringManagerEmailStatus',{jobApplicantId:objectId});
+				if(refreshReq == 'true')
+					window.parent.location.href = "/"+objectId;				
+			}
+
+
+		} catch (e){
+			alert('Error:'+e);
+		}
+	}
+
+	function getBoxValue(box){
+		var returnVal = [];
+		if (box.options.length > 0){
+			for (i=0;i<box.options.length;i++)
+		    {
+		    	returnVal[i] = box.options[i].value;	
+		    }
+		}else{
+			returnVal=null;
+		} 
+		return returnVal;   	
+	}
+	
+
+	function mergeUserFieldsValue(str){
+		var fields = getUserFields(str);
+		var returnString = str;
+		if(fields.length>0){
+		
+			var userid = sforce.connection.getUserInfo().userId;
+			var query = "Select " + fields + " from User where id ='" + userid + "'";
+			var queryResult = sforce.connection.query(query);
+			var records = queryResult.getArray("records");
+			if (records.length > 0){
+				for(var t=0;t<fields.length;t++){
+					var fldVal = records[0].get(fields[t]);
+					if(fldVal=='' || fldVal == null){
+						fldVal = '';
+					}
+					str = str.replace('{\!User.'+ fields[t] +'}',fldVal);
+				}
+			}
+		}
+		return str;
+	}
+		
+	function mergeFieldsValue(str){
+		var fields = getFields(str);
+
+		var returnString = str;
+		//alert(fields[0].indexOf((objectName+"."))==0);
+		if(fields.length>0 && fields[0].indexOf((objectName+"."))>-1){
+			var query = "Select " + fields + " from "+ objectName+" where id ='" + objectId + "'";
+
+			var queryResult = sforce.connection.query(query);
+			var records = queryResult.getArray("records");
+			if (records.length > 0){
+				for(var t=0;t<fields.length;t++){
+					var fld = fields[t].substring(fields[t].indexOf('.')+1);
+					if(fld.indexOf("__r")>0){
+						var objName = fld.substring(0,fld.indexOf('.'));
+						var fldName = fld.substring(fld.indexOf('.')+1);
+					 	var st = records[0].get(objName);
+						//var	value = st.get(fldName);
+						
+						var value = "";
+					 	if(st==null || st == ''){
+					 		value = "N/A";
+					 	}else{
+							value = st.get(fldName);
+						}
+						
+						var tex = fields[t].substring(0,fields[t].indexOf("__r")+3);
+						tex = tex.replace("__r","__c");
+						returnString = returnString.replace('{\!'+ tex +'}',value);
+					 	
+					}else{
+						var value = records[0].get(fld);
+						if(value==null || value ==''){
+							value = 'N/A';
+						}
+						returnString = returnString.replace('{\!'+ fields[t] +'}',value);
+					}	
+					//returnString = returnString.replace('{\!'+objectName+'.'+fld +'}',value);
+					returnString = returnString.replace('{\!'+ fields[t] +'}',value);
+					//alert(fields[t] + ":" + returnString);
+				}
+			}
+		}
+		return returnString;
+	}
+	
+	var accountAddr="";
+/*	
+	function populateContacts(addrField)
+	{
+	//Select c.Name, c.Email, c.AccountId From Contact c
+		//alert("h:"+accountAddr+"--");
+		try {
+			if (accountId!=null && accountId.length>1)
+			{
+				var queryResult = sforce.connection.query("Select Name, Email from Contact Where AccountId = '"+accountId + "'");
+				if (queryResult.size > 0)
+				{
+					records = queryResult.getArray("records");
+					accountAddr="<select multiple='multiple' size='20' name='selectEmail' >";
+					for (i=0;i<queryResult.size;i++){
+						accountAddr+="<option value='"+records[i].Email+"'>"+records[i].Name+"</option>";
+					}
+					accountAddr+='</select>';
+				}
+				//alert(accountAddr);
+				document.getElementById("lkupaddr_div").innerHTML = accountAddr;
+			}
+		} catch (e){
+			alert(e);
+		}
+	}
+*/
+	function populateContacts()
+	{
+		try {
+			if(document.getElementById("selectContactType").value == "coworker"){
+					accountAddr = '';			
+					var queryResult = sforce.connection.query("Select Id, Name, Email from User where IsActive = true and UserType='Standard' order by Name");
+					if (queryResult.size > 0)
+					{
+						records = queryResult.getArray("records");
+						accountAddr="<select multiple='multiple' style='{width: 190px}' size='20' name='selectEmail' id='selectEmail'>";
+						for (i=0;i<queryResult.size;i++){
+							//accountAddr+="<option value='"+records[i].Email+"'>"+records[i].Name+"</option>";
+							accountAddr+="<option value='"+records[i].Id+"'>"+records[i].Name+"</option>";
+						}
+						accountAddr+='</select>';
+					}
+					//alert(accountAddr);
+					document.getElementById("lkupaddr_div").innerHTML = accountAddr;
+			
+			}else{
+				if (accountId!=null && accountId.length>1)
+				{
+					accountAddr = '';
+					var queryResult = sforce.connection.query("Select Id, Name, Email from Contact Where AccountId = '"+accountId + "'  order by Name");
+					if (queryResult.size > 0)
+					{
+						records = queryResult.getArray("records");
+						accountAddr="<select multiple='multiple' style='{width: 190px}' size='20' name='selectEmail' >";
+						for (i=0;i<queryResult.size;i++){
+							//accountAddr+="<option value='"+records[i].Email+"'>"+records[i].Name+"</option>";
+							accountAddr+="<option value='"+records[i].Id+"'>"+records[i].Name+"</option>";
+						}
+						accountAddr+='</select>';
+					}
+					//alert(accountAddr);
+					document.getElementById("lkupaddr_div").innerHTML = accountAddr;
+				}else{
+					document.getElementById("lkupaddr_div").innerHTML = '';
+				}
+			}	
+		} catch (e){
+			alert(e);
+		}
+	}
+
+	var to_array = new Array(); 
+	var cc_array = new Array();
+	var bcc_array = new Array();
+	function moveAddr(box){
+		//var selectEmails = document.getElementById('selectEmail');;
+		var boxElement = document.getElementById(box);
+		if(document.rcmailform.selectEmail != null){
+		    for (i=0;i<document.rcmailform.selectEmail.options.length;i++)
+		    {
+		    	if (document.rcmailform.selectEmail.options[i].selected==true)
+		    	{
+			    	var opt=document.createElement('option');
+					//opt.text=document.rcmailform.selectEmail.options[i].value;
+					opt.value=document.rcmailform.selectEmail.options[i].value;
+					opt.text=document.rcmailform.selectEmail.options[i].text;
+					try{
+						boxElement.add(opt,null);
+					}
+					catch(ex)
+					{
+						boxElement.add(opt);
+					}
+	
+		    	}
+		    }
+	    }
+	}
+
+	function removeAddr(box){
+		var boxElement = document.getElementById(box);
+	    for (i=0;i<boxElement.options.length;i++){
+	    	if (boxElement.options[i].selected==true){
+				boxElement.remove(i);
+				i--;
+	    	}
+	    }
+	}
+	function moveAddrById(box,recipientIds,accountId){
+		if(recipientIds!=null && recipientIds.length>0){
+			var recipientIdsValue = recipientIds.split(",");
+			var boxElement = document.getElementById(box);
+			
+			
+			if (accountId!=null && accountId.length>1){
+				var queryResult = sforce.connection.query("Select Id, Name, Email from Contact Where AccountId = '"+accountId + "'");
+				if (queryResult.size > 0)
+				{
+					records = queryResult.getArray("records");
+					for (i=0;i<queryResult.size;i++){
+						for(j=0;j<recipientIdsValue.length;j++){
+							if(records[i].Id == recipientIdsValue[j]){
+						    	var opt=document.createElement('option');
+								opt.value=records[i].Id;
+								opt.text=records[i].Name;
+								try{
+									boxElement.add(opt,null);
+								}
+								catch(ex)
+								{
+									boxElement.add(opt);
+								}
+							}
+						}	
+				    }
+
+				}
+			}
+			
+			var queryResult = sforce.connection.query("Select Id, Name, Email from User where IsActive = true and UserType='Standard'");
+			if (queryResult.size > 0)
+			{
+				records = queryResult.getArray("records");
+				for (i=0;i<queryResult.size;i++){
+					for(j=0;j<recipientIdsValue.length;j++){
+						if(records[i].Id == recipientIdsValue[j]){
+					    	var opt=document.createElement('option');
+							opt.value=records[i].Id;
+							opt.text=records[i].Name;
+							try{
+								boxElement.add(opt,null);
+							}
+							catch(ex)
+							{
+								boxElement.add(opt);
+							}
+						}
+					}	
+			    }
+		    }
+
+		}    
+	}
+	
+	
+/*
+function openTemplateSelector(e) {
+    setLastMousePosition(e);
+   openPopup('/email/author/templateselector.jsp', 'template', 600, 300, 'width=600,height=300,scrollbars=yes,toolbar=no,status=no,directories=no,menubar=no,resizable=yes', true);
+}
+*/
+
+	
+	function moveAddrTo(box){
+		var arSelected = new Array();
+	    for (i=0;i<document.rcmailform.selectEmail.options.length;i++)
+	    {
+	    	if (document.rcmailform.selectEmail.options[i].selected==true)
+	    	{
+	    		arSelected.push(document.rcmailform.selectEmail.options[i].value)
+	    	}
+	    }
+	    
+		document.getElementById(box).value=arSelected.toString();
+	}
+	
+	function mergetemplateById(tempId){
+		templateId= tempId;
+		try {
+			var queryResult = sforce.connection.query("Select HtmlValue, Subject from EmailTemplate where Id='"+templateId+"'");
+			var records = queryResult.getArray("records");
+			if (records.length != 0){
+				document.getElementById('Subject').value = mergeFieldsValue(records[0].Subject);
+				var bodytxt = records[0].HtmlValue;
+				bodytxt=bodytxt.replace(/]]>/g,"");
+				bodytxt = mergeUserFieldsValue(bodytxt);
+				var iHTML = mergeFieldsValue(bodytxt);
+	            getDoc().body.innerHTML = iHTML;
+			}
+		} catch (error){
+			alert("Invalid fields contains in this template.");
+			//alert(error);
+		}
+	}
+	function mergetemplate(){
+		//alert(getContentWindow().document.body);
+		index = document.getElementById('template').selectedIndex;
+		//alert(index);
+		templateId = document.getElementById('template').options[index].value;
+		try {
+			//var queryResult = sforce.connection.query("Select Body, Subject from EmailTemplate where Id='"+templateId+"'");
+			var queryResult = sforce.connection.query("Select HtmlValue, Subject,BrandTemplateId from EmailTemplate where Id='"+templateId+"'");
+			var records = queryResult.getArray("records");
+			
+			if (records.length != 0){
+				// sunil changed		
+				document.getElementById('Subject').value = mergeFieldsValue(records[0].Subject);
+				var bodytxt = records[0].HtmlValue;
+				//alert(bodytxt);
+				
+				
+				bodytxt=bodytxt.replace(/]]>/g,"");
+				
+				bodytxt=bodytxt.replace(/\<\!\[CDATA\[/g,"");
+				
+				
+//org				
+				bodytxt = mergeUserFieldsValue(bodytxt);
+				var iHTML =mergeFieldsValue(bodytxt)
+				//alert(iHTML);
+	            getDoc().body.innerHTML = iHTML;
+
+
+
+
+
+				//var queryResult1 = sforce.connection.query("Select Value from BrandTemplate where Id='"+records[0].BrandTemplateId+"'");
+//			var queryResult1 = sforce.connection.query("Select Value from BrandTemplate");
+				//var records1 = queryResult1.getArray("records");
+				
+				//alert(bodytxt);
+				//alert(records1[0]);
+				//var val = records1[0].Value;// + "<br/>sunil" + records1[1].Value+ "<br/>sunil" +records1[2].Value+ "<br/>sunil" + records1[3].Value+ "<br/>sunil" +records1[4].Value;
+				//val = val.replace(/]]>/g,"");
+				//val = val.replace("/servlet/","https://na4.salesforce.com/servlet/");
+				//alert(val);
+				//bodytxt = mergeUserFieldsValue(bodytxt);
+				//var iHTML =mergeFieldsValue(bodytxt)
+	            //getDoc().body.innerHTML = bodytxt;
+//				var iHTML = "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>"+" <HTML> <body>" + mergeFieldsValue(bodytxt) + "</body></HTML>";
+	            //getDoc().body.innerH = bodytxt;
+			}
+		} catch (error){
+			alert("Invalid fields contains in this template.");
+			alert(error);
+		}
+	}
+	function selectTemplateDialog(){
+		//alert("in template");
+		try{
+			var queryResult = sforce.connection.query("Select Name, Id, folderId, Folder.Name from EmailTemplate where IsActive = true order by folderId,Name");
+			var records = queryResult.getArray("records");
+			
+			var html = "Select Template Name:  <select name='template' id='template' onchange='javascript:mergetemplate();'>";
+			html +="<option value=''>None</option>";
+			//sunil 
+			if (records.length != 0){
+				var folderName = 'Default';
+				for(var j=0;j<records.length;j++){
+					if(records[j].Folder!=null){
+						folderName = records[j].Folder.Name;
+					}
+				   html +="<option value='"+records[j].Id+"'>"+records[j].Name+ " [ " + folderName +" ]" +"</option>";
+				}
+				html+="</select> <a href='javascript:hideEmailtemplate()'>Hide</a>";
+			}
+			document.getElementById("emailtemplate").innerHTML = html;
+		}catch(error){
+			alert("Error: Error During Template loading.");
+		}
+	}
+	function mergetemplate1(){
+		index = document.getElementById('template1').selectedIndex;
+		templateId = document.getElementById('template1').options[index].value;
+		try {
+			var queryResult = sforce.connection.query("Select HtmlValue, Subject from EmailTemplate where Id='"+templateId+"'");
+			var records = queryResult.getArray("records");
+			if (records.length != 0){
+
+			// sunil changed			
+			document.getElementById('Subject').value = mergeFieldsValue(records[0].Subject);
+			var bodytxt = records[0].HtmlValue;
+			//bodytxt=bodytxt.replace(/]]>/g,"");
+			
+			
+			bodytxt=bodytxt.replace(/]]>/g,"");
+				
+		    bodytxt=bodytxt.replace(/\<\!\[CDATA\[/g,"");
+				
+				
+			bodytxt = mergeUserFieldsValue(bodytxt);
+			var iHTML = mergeFieldsValue(bodytxt);
+						//var iHTML = mergeFieldsValue(records[0].Body)
+            getDoc().body.innerHTML = iHTML;
+			
+			}
+		} catch (error){
+			alert("Invalid fields contains in this template.");
+			//alert(error);
+		}
+	}
+	function selectTemplateDialog1(){
+		//alert("in template");
+		try{
+//			var queryResult = sforce.connection.query("Select Name, Id, folderId, Folder.Name from EmailTemplate where IsActive = true order by folderId, Name");
+			var queryResult = sforce.connection.query("Select Name, Id, folderId, Folder.Name from EmailTemplate where IsActive = true order by folderId,Name");
+			var records = queryResult.getArray("records");
+			
+			var html = "Select Template Name:  <select name='template1' id='template1' onchange='javascript:mergetemplate1();'>";
+			html +="<option value=''>None</option>";
+			if (records.length != 0){
+				var folderName = 'Default';
+				for(var j=0;j<records.length;j++){
+					if(records[j].Folder!=null){
+						folderName = records[j].Folder.Name;
+					}
+
+				   html +="<option value='"+records[j].Id+"'>"+records[j].Name+ " [ " + folderName +" ]" +"</option>";
+				}
+				html+="</select>  <a href='javascript:hideEmailtemplate1()'>Hide</a>";
+			}
+			document.getElementById("emailtemplate1").innerHTML = html;
+		}catch(error){
+			alert("Error: Error During Template loading.");
+		}
+	}
+	/*
+	function mergeit(){
+		//alert('matching');
+		var s = getDoc().body.innerHTML;
+		//var s = "this is \{\!Account.Name\} and \{\!Contact.Id\} and thats all";
+		//alert(s);
+		sp = s.split("\{");
+		//alert(sp+":"+sp.length);
+		var variables = [];
+		count=0;
+		for (i=0;i<sp.length;i++){
+			//alert(sp[i].substring(0,1));
+			
+			if (sp[i].substring(0,1) == '!'){
+				//alert(sp[i]);
+				variables[count++] = sp[i].substring(1,sp[i].indexOf('}'));
+			}
+		}
+		alert(variables);
+		return variables;
+	}
+	*/
+	function getFields(str){
+		var s = str;
+		var sp = s.split("\{");
+		var variables = [];
+		var count=0;
+		for (i=0;i<sp.length;i++){
+			if (sp[i].substring(0,1) == '!'){
+				
+				fieldName = sp[i].substring(1,sp[i].indexOf('}'));
+				//alert("fieldName:"+fieldName);
+				//alert(sp[i]);
+				if (fieldName!=null){
+					//if(fieldName.indexOf("User")!=0){
+					//}else
+					 if ((fieldName.indexOf("User")!=0) && (fieldName.indexOf('.AVTRRT__Job__c')>0) || 
+						(fieldName.indexOf('.AVTRRT__Job_Applicant__c') >0) ||
+						(fieldName.indexOf('.AVTRRT__Candidate__c') >0) ||
+                                                (fieldName.indexOf('.AVTRRT__Contact_Candidate__c') >0) ||
+						(fieldName.indexOf('.Contact') >0) ||
+						(fieldName.indexOf('.AVTRRT__Interview__c') >0) ||
+						(fieldName.indexOf('.AVTRRT__Account_Job__c') >0) ||
+						(fieldName.indexOf('.AVTRRT__Hiring_Manager__c') >0) ||
+						(fieldName.indexOf('.AVTRRT__Account_Manager__c') >0) ||
+						(fieldName.indexOf('.AVTRRT__Recruiter__c') >0)
+						)
+					{
+						var firstVal = fieldName.substring(0,fieldName.lastIndexOf('__c'));
+						fieldName = firstVal + "__r.Name";
+						variables[count++] = fieldName; //sp[i].substring(1,sp[i].indexOf('}'));
+					}else if(fieldName.indexOf("User")!=0){
+						variables[count++] = fieldName; //sp[i].substring(1,sp[i].indexOf('}'));
+					}
+				}
+			}
+		}
+		return variables;
+	}
+	function getUserFields(str){
+		var s = str;
+		var sp = s.split("\{");
+		var variables = [];
+		var count=0;
+		for (i=0;i<sp.length;i++){
+			if (sp[i].substring(0,1) == '!'){
+				
+				fieldName = sp[i].substring(1,sp[i].indexOf('}'));
+				//alert("fieldName:"+fieldName);
+				//alert(sp[i]);
+				if (fieldName!=null){
+					if(fieldName.indexOf("User")==0){
+						var fld = fieldName.substring(fieldName.indexOf('.')+1);
+						/*
+						var userid = sforce.connection.getUserInfo().userId;
+						var fld = fieldName.substring(fieldName.indexOf('.')+1);
+						var query = "Select " + fld + " from User where id ='" + userid + "'";
+						var queryResult = sforce.connection.query(query);
+						var records = queryResult.getArray("records");
+						if (records.length > 0){
+							//alert(records[0].get(fld));
+							var str = str.replace('{\!'+ fieldName +'}',records[0].get(fld));
+							//alert(str);
+						}
+						*/
+						variables[count++] = fld; //sp[i].substring(1,sp[i].indexOf('}'))
+					}
+				}
+			}
+		}			
+		return variables;	
+	}
+	function getUserFields111(str){
+		var s = str;
+		var sp = s.split("\{");
+		var variables = [];
+		var count=0;
+		for (i=0;i<sp.length;i++){
+			if (sp[i].substring(0,1) == '!'){
+				
+				fieldName = sp[i].substring(1,sp[i].indexOf('}'));
+				//alert("fieldName:"+fieldName);
+				//alert(sp[i]);
+				if (fieldName!=null){
+					if(fieldName.indexOf("User")==0){
+						var userid = sforce.connection.getUserInfo().userId;
+						var fld = fieldName.substring(fieldName.indexOf('.')+1);
+						var query = "Select " + fld + " from User where id ='" + userid + "'";
+						var queryResult = sforce.connection.query(query);
+						var records = queryResult.getArray("records");
+						if (records.length > 0){
+							//alert(records[0].get(fld));
+							var str = str.replace('{\!'+ fieldName +'}',records[0].get(fld));
+							//alert(str);
+						}
+					}else if ((fieldName.indexOf('.AVTRRT__Job__c')>0) || 
+						(fieldName.indexOf('.AVTRRT__Job_Applicant__c') >0) ||
+						(fieldName.indexOf('.AVTRRT__Candidate__c') >0) ||
+						(fieldName.indexOf('.Contact') >0) ||
+						(fieldName.indexOf('.AVTRRT__Interview__c') >0) ||
+						(fieldName.indexOf('.AVTRRT__Account_Job__c') >0) ||
+						(fieldName.indexOf('.AVTRRT__Hiring_Manager__c') >0) ||
+						(fieldName.indexOf('.AVTRRT__Account_Manager__c') >0) ||
+						(fieldName.indexOf('.AVTRRT__Recruiter__c') >0)
+						)
+					{
+						var firstVal = fieldName.substring(0,fieldName.lastIndexOf('__c'));
+						fieldName = firstVal + "__r.Name";
+						variables[count++] = fieldName; //sp[i].substring(1,sp[i].indexOf('}'));
+					}else{
+						variables[count++] = fieldName; //sp[i].substring(1,sp[i].indexOf('}'));
+					}
+				}
+			}
+		}
+		//alert(str);
+		variables[count++] = str;
+		return variables;
+	}
+	function mergeit(){
+		//alert('matching');
+		var s = getDoc().body.innerHTML;
+		//var s = "this is \{\!Account.Name\} and \{\!Contact.Id\} and thats all";
+		alert(s);
+		sp = s.split("\{");
+		//alert(sp+":"+sp.length);
+		
+		var variables = [];
+		count=0;
+		for (i=0;i<sp.length;i++){
+			//alert(sp[i].substring(0,1));
+			
+			if (sp[i].substring(0,1) == '!'){
+				//alert(sp[i]);
+				variables[count++] = sp[i].substring(1,sp[i].indexOf('}'));
+			}
+		}
+			alert(variables);
+	}
+	
+	
+	function validate(){
+		if(document.uploadPage.file.value==''){
+			alert("Please select the file name.");
+			return false;
+		}
+		//alert('1' + document.uploadPage.file.value);
+		return true;
+	}
+    </script>
+ <script  src="/static/022509/js/spch.js" type="text/javascript"></script>   
+<script>
+
+	function handleSpellWindowOnLoad(objectToChange){}
+	function handleSpellcheckerTextConversion(objectToChange){
+	   document.rcmailform.spellCheckValue.value = objectToChange;
+	   dospellchange();
+	   return objectToChange;
+	}
+	function doRichTextSpell() {
+        var htmlBody = getInnerHTMLContainer('bodyEditor');
+        document.SpellForm.spellCheckValue.value = htmlBody.innerHTML;
+        document.SpellForm.currentValue.value = htmlBody.innerHTML;
+        doSpell({ctrl:'iframe_bodyEditor',lang:'en',title:'Check Spelling',intLang:'en'}, '/servlet/SProxyWrapper', document.location.protocol + '//' + 'spell-sjl.salesforce.com/spellcheck', 'There is nothing to check', 'We are sorry,our spellchecker currently does not support the browser you are using. Please upgrade your browser.');
+	}
+	function dospellchange() {
+		//alert("2");
+        var htmlBody = getInnerHTMLContainer('bodyEditor');
+        closePopup();
+        if (document.rcmailform.spellCheckValue.value != document.rcmailform.currentValue.value) {
+            document.rcmailform.currentValue.value = document.rcmailform.spellCheckValue.value;
+            htmlBody.innerHTML = document.rcmailform.spellCheckValue.value;
+        }
+	}
+
+    function getInnerHTMLContainer(parameterName) {
+           var theParameter = document.getElementById(parameterName);
+           if (theParameter) {
+               var iframeName = getIframeName(parameterName);
+               var theIframe = document.getElementById(iframeName);
+               if (theIframe) {
+                    return theIframe.contentWindow.document.body;
+               }
+           }
+           return null;
+    }
+    
+	function getRichTextValue() {
+        var htmlBody = getInnerHTMLContainer('bodyEditor');
+        getDoc().body.innerHTML = htmlBody.innerHTML;
+	}
+	
+	function trim (str){ 
+    	return  str.replace(/&nbsp;/g,''); 
+  	} 
+	
+	function openRichTextPreview() {
+		var text = trim(getDoc().body.innerHTML);
+		if(text==''){
+			alert('No data found in Body.');
+			//alert('Body of mail does not contains any data.');
+		}else{
+	        getRichTextValue();
+	        currPreviewWindow = window.open('Preview.jsp', 'cpw', 'width=450,height=400,scrollbars=yes,toolbar=no,status=no,directories=no,menubar=no,resizable=yes');
+	        currPreviewWindow.document.open();
+	        currPreviewWindow.document.write('<html><style>p{margin-top:0px; margin-bottom:0px;}</style><body bgcolor="#FFFFFF" marginwidth="2" marginheight="2" style="font-family:Arial;font-size:10pt;color:000000">');
+	        currPreviewWindow.document.write(text);
+	        currPreviewWindow.document.write('</body></html>');
+	        currPreviewWindow.document.close();
+	   }    
+	}
+	
+        function format(strCommand, strOption) {
+            setSelectionRange();
+            //if (!isModeHtml()) return;
+            if (strOption == 'removeFormat') {
+                strCommand = strOption;
+                strOption = null;
+            }
+            if (strCommand == 'BackColor' && !isIE) {
+                strCommand = 'hilitecolor';
+            }
+            getDoc().execCommand(strCommand,'',strOption);
+            resetSelectionRange();
+            getContentWindow().focus();
+            
+        }
+	
+	
+        var currentParamName = null;
+        function setCurrentParamName(paramName) {
+        	//alert('b');
+            currentParamName = paramName;
+        }
+		
+   		 function hideFrame(obj) {
+            obj.style.visibility = 'hidden';
+        }
+        var command = '';
+        function askForColor(buttonObj, commandIdent) {
+      	  //alert(commandIdent);
+ 			/*       
+            if (!isEditable()) {
+                if (notEditablePrompt) alert(notEditablePrompt);
+                return;
+            }
+            if (!isModeHtml()) return;
+            */
+            if (frameVisible()) return;
+            setSelectionRange();
+
+            document.getElementById('colorPicker').style.left = getObjX(buttonObj) + "px";
+            document.getElementById('colorPicker').style.top = (getObjY(buttonObj) - 150) + "px" ;
+            document.getElementById('colorPicker').style.visibility = "visible";
+
+            command = commandIdent;
+        }
+        
+ 		function formatColor(color) {
+            if (!isEditable()) return;
+            hideFrame(document.getElementById('colorPicker'));
+            getContentWindow().focus();
+            if (isIE) currentRange.select();
+            format(command, color);
+            resetSelectionRange();
+        }
+        
+ 		var selectLinkTextPrompt = "Please select the text that you would like to transform into a link.";
+
+        function createLink(question, prefix) {
+        /*
+            if (!isEditable()) {
+                if (notEditablePrompt) alert(notEditablePrompt);
+                return;
+            }
+            if (!isModeHtml()) return;
+            */
+            setSelectionRange();
+            if (isIE) {
+                if (currentRange.htmlText) {
+                    var h = currentRange.htmlText.toLowerCase();
+                    var s = h.indexOf('<a href="');
+                    var e = h.indexOf('">');
+                    if (s > -1 && e > -1 && e > s) {
+                        prefix = currentRange.htmlText.substring(s + 9, e);
+                    }
+                }
+            }
+
+            if (currentSelection == 0 || (isIE && currentRange.boundingWidth == 0)) {
+              //alert(selectLinkTextPrompt);
+              return;
+     		}
+
+            var strLink = prompt(question, prefix);
+            if ((strLink != null) && (strLink != "http://")) {
+                format("CreateLink", strLink);
+            }
+            resetSelectionRange();
+            getContentWindow().focus();
+            
+        }
+
+        var editorParamNames = new Array();
+
+   function getRichTextValues() {
+            for (var i = 0; i < editorParamNames.length; i++) {
+                var parameterName = editorParamNames[i];
+                var theParameter = document.getElementById(parameterName);
+                if (theParameter) {
+                    setCurrentParamName(parameterName);
+                    /*
+                    if (!isModeHtml()) {
+                        switchMode();
+                    }
+                    */
+                    var iframeName = getIframeName(parameterName);
+                    var theIframe = document.getElementById(iframeName);
+                    if (theIframe) {
+                        var innerVal = theIframe.contentWindow.document.body.innerHTML;
+                        theParameter.value = innerVal;
+                    }
+                }
+            }
+        }
+ 		function getIframeName(parameterName) {
+            return 'iframe_' + parameterName;
+        }
+		function getContainerName(parameterName) {
+            return 'container_' + parameterName;
+        }
+           var modes = new Array();
+        
+        function edit_single_on(parameterName) {
+            var containerName = getContainerName(parameterName);
+            var iframeName = getIframeName(parameterName);
+
+            if (!document.getElementById(containerName)) {
+                return;
+            }
+
+            if (!document.getElementById(parameterName)) {
+                return;
+            }
+            var container = document.getElementById(containerName);
+            container.innerHTML = '<iframe title="HTML Body" src="/email/wysiwyg/richtextbody.jsp" id="' + iframeName + '" width="100%" height="100%" frameborder="0" marginwidth="2" marginheight="2"></iframe>';
+
+            timedEditorOpen(parameterName, iframeName);
+
+            editorParamNames[editorParamNames.length] = parameterName;
+            modes[parameterName] = 'html';
+        }
+        
+		function initializeRichTextArea() {
+			setCurrentParamName('bodyEditor');
+		} 
+
+
+ 	function timedEditorOpen(parameterName, iframeName) {
+            if(!isIE)
+                var editorDoc = document.getElementById(iframeName).contentDocument;
+            else
+                var editorDoc = document.getElementById(iframeName).contentWindow.document;
+
+            if(!editorDoc) {
+            	setTimeout(function () {timedEditorOpen(parameterName, iframeName)}, 10);
+            	return;
+            }
+
+            if(!isIE && !isSafari) {
+                editorDoc.designMode = 'on';
+            }
+            editorDoc.open();
+            editorDoc.write('<html><style>p{margin-top:0px; margin-bottom:0px;}</style><body bgcolor="#FFFFFF" marginwidth="2" marginheight="2" style="font-family:Arial;font-size:10pt;color:000000">');
+            editorDoc.write(document.getElementById(parameterName).value);
+            editorDoc.write('</body></html>');
+            editorDoc.close();
+            editorDoc.body.contentEditable = 'true';
+        }  
+             
+   		var currentSelection = null;
+        var currentRange = null;
+        function setSelectionRange() {
+            if (isIE) {
+                getContentWindow().focus();
+                currentSelection = getDoc().selection;
+
+                if (currentSelection.type != 'Text' && currentSelection.type != 'None') return;
+
+                currentRange = currentSelection.createRange();
+
+                if (currentRange.parentElement() == window.document.body) {
+                    getContentWindow().focus();
+                    currentSelection = getDoc().selection;
+                    currentRange = currentSelection.createRange();
+                }
+
+            } else {
+                currentSelection = getContentWindow().getSelection();
+
+                if ( currentSelection.rangeCount > 0 ) {
+                    currentRange = currentSelection.getRangeAt(0);
+                } else { //Safari doesn't give an empty selection a range
+                    currentRange = getContentWindow().document.createRange();
+                    currentRange.setStart(getContentWindow().document.body,currentSelection.anchorOffset);
+                    currentRange.setEnd(getContentWindow().document.body,currentSelection.focusOffset);
+                    currentSelection.addRange(currentRange);
+                }
+            }
+        }
+
+        function initSelectionRange() {
+            setSelectionRange();
+        }
+
+        function resetSelectionRange() {
+            currentSelection = null;
+            currentRange = null;
+        }   
+        
+                         var contentWindow = null;
+
+        function getContentWindow() {
+            if (!currentParamName && !contentWindow) return null;
+
+            if (contentWindow)
+                return contentWindow;
+            else
+                return document.getElementById(getIframeName(currentParamName)).contentWindow;
+        }
+
+        function setContentWindow(newContentWindow) {
+            contentWindow = newContentWindow;
+        }
+
+        function isEditable() {
+            return getDoc() != null;
+        }
+	  function getDoc() {
+            var currentContentWindow = getContentWindow();
+            return ((currentContentWindow) ? currentContentWindow.document : null);
+        }
+        var tableFrame = null;
+		function frameVisible() {
+            var color = document.getElementById('colorPicker') != null && document.getElementById('colorPicker').style.visibility == 'visible';
+            var table = tableFrame != null && tableFrame.style.visibility == 'visible';
+            return (color || table);
+        }
+
+        
+</script>
+    
+    
+</head>
+<!--default color: #F3F3EC -->
+
+<body onload="javascript:init()" class="Custom37Tab  detailPage"  style="background-color: transparent"  onfocus=dospellchange()>
+
+<form name="rcmailform" >
+<input type="hidden" name="body1" id="body1" value="" />
+
+<input type="hidden" name="currentValue" id="currentValue" value="" />
+<input type="hidden" name="spellCheckValue" id="spellCheckValue" value="" />
+
+<input type="hidden" name="cancelURL" id="cancelURL" value="" />
+<input type="hidden" name="pid" id="pid" value="" />
+<input type="hidden" name="retURL" id="retURL" value="" />
+
+<input type="hidden" name="template_id" id="template_id" value="" />
+<input type="hidden" name="new_template" id="new_template" value="" />
+
+<table align="center" border="0" width="100%"  cellpadding="0" cellspacing="0">
+	<tr >
+		<td valign="top" align="center" class="pbButton" >
+			<input type="button" class="btn" name="sendmainbtn" value="Send"  onclick="sendmail()" />
+		
+			<input type="button"  class="btn"  name="selectTemplatebtn" value="Select Template" onclick="javascript:selectTemplateDialog()"/>
+			
+		
+			<input value="Preview"   class="btn" name="preview" onclick="openRichTextPreview()" title="Preview (New Window)" type="button" />
+		
+			<input value="Check Spelling"  class="btn" name="spell" onclick="doRichTextSpell()" title="Check Spelling (New Window)" type="button" />
+		
+			 <input type="button"  class="btn"  name="cancelbtn" value="Cancel"  onclick="doCancel()" />
+		</td>
+		<!-- 
+		<td valign="top" width="15%">
+			<input type="button" class="btn"  name="regexbtn" value="RegEx" onclick="javascript:mergeit()"/>
+		</td>
+		 -->
+	</tr>
+	<tr><td></td></tr>
+	<tr><td></td></tr>
+</table>
+<table align=center border="0"  cellpadding="0" cellspacing="0">
+	<tr><td><div id="emailtemplate"></div></td></tr>
+	<tr><td></td></tr>
+	<tr><td></td></tr>
+</table>
+<table align="center" width="80%" border="0">
+<tr>
+	<td width="40%" align="right" valign="top">
+		<table>
+			<tr><td>
+				<select name='selectContactType' id='selectContactType' onchange="javascript:populateContacts()">
+					<option value='coworker'>All Co-Workers in Company</option>
+					<option value='contact' selected="selected">Contacts: (Account {!Job_Applicant__c.Account_Job__c})</option>
+				</select>
+			
+			</td></tr>
+			<tr align="right"><td>
+				<div id="lkupaddr_div"></div>&nbsp;
+			</td></tr>
+		</table>
+	</td>
+	<td>&nbsp;&nbsp;</td>
+	<td valign="top">
+		<table  border="0" cellpadding="0" cellspacing="0" width="100%" border="0">
+			<tr>
+				<td  valign="center">
+					<table border="0">
+						<tr>
+							<td  class="pbButton" >
+								<input type="button"  class="btn"  name="tobtn" value=" >> " onclick="javascript:moveAddr('to')"/>
+							</td>
+						</tr>
+						<tr>
+							<td  class="pbButton" >
+								<input type="button"  class="btn"  name="leftTobtn" value=" << " onclick="javascript:removeAddr('to')"/> 
+							</td>
+						</tr>
+				
+					</table> 
+				</td>
+				<td >
+					<table align="center">
+						<tr align="center">
+							<td><b>To Recipients:</b></td>
+						</tr>
+						<tr>
+							<td>
+								<select id='to' multiple size=5 style="width:200;">
+									<script language=javascript>
+										if(to_array!=null){
+											for(var j=0;j<to_array.length;j++)
+											{
+												document.write('<option>'+to_array[j]+'</option>');
+											}
+										}
+									</script>
+							
+								<!-- <textarea name="to" cols="25" rows="5"></textarea>  -->
+							</td>
+						</tr>
+					</table>
+				</td>
+				
+				
+				<!-- 
+				<td >
+					<input size="25" type="text" name="to" value=""/>
+				</td>
+				-->
+			</tr>
+
+
+			<tr>
+				<td valign="center">
+					<table border="0">
+					<tr><td  class="pbButton" >
+						<input type="button"  class="btn"  name="ccbtn" value=" >> " onclick="javascript:moveAddr('cc')"/>
+					</td></tr>
+					<tr>
+						<td  class="pbButton" >
+							<input type="button"  class="btn"  name="leftCcbtn" value=" << " onclick="javascript:removeAddr('cc')"/>
+						</td>
+					</tr>
+					</table>
+				</td>
+				<td align="center">
+					<table border="0"  align="center">
+						<tr align="center">
+							<td><b>CC Recipients:</b></td>
+						</tr>
+						<tr>
+							<td>
+							
+									<select id='cc' multiple size=5 style="width:200;">
+										<script language=javascript>
+											if(cc_array!=null){
+												for(var j=0;j<cc_array.length;j++)
+												{
+													document.write('<option>'+cc_array[j]+'</option>');
+												}
+											}
+										</script>
+									</script>
+							
+								<!-- <textarea name="cc" cols="25" rows="5"></textarea> -->
+							</td>
+						</tr>
+					</table>
+				</td>	
+			</tr>
+			<tr>
+				<td>
+					<table border="0" valign="center">
+					<tr>
+						<td  class="pbButton" >
+							<input type="button"  class="btn"  name="bccbtn" value=" >> " onclick="javascript:moveAddr('bcc')"/>
+						</td>
+					</tr>
+					<tr>
+						<td  class="pbButton" >
+							<input type="button"  class="btn"  name="leftBccbtn" value=" << " onclick="javascript:removeAddr('bcc')"/>
+						</td>
+					</tr>
+					</table>
+				</td>
+				<td>
+					<table align="center">
+					<tr align="center">
+						<td><b>BCC Recipients:</b></td>
+					</tr>
+					<tr>
+						<td>
+						
+								<select id='bcc' multiple size=5 style="width:200;">
+									<script language=javascript>
+										if(bcc_array!=null){
+											for(var j=0;j<bcc_array.length;j++)
+											{
+												document.write('<option>'+bcc_array[j]+'</option>');
+											}
+										}
+									</script>
+								</script>
+						
+							<!-- <textarea name="bcc" cols="25" rows="5"></textarea> -->
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			
+		</table>
+	</td>
+	</tr>
+</table>
+<table border="0">
+	<tr>
+		<td valign="top" style="color:red"><b>
+		Subject:</b>
+		</td>
+		<td>
+		<input type="text" id="Subject" name="Subject" value="" size="100"/>
+		</td>
+	</tr>
+	<tr >
+		<td valign="top"><b>
+		Body:</b>
+		</td>
+		<td>
+		
+<iframe onmouseout="hideFrame(this)" scrolling="no" width="250"
+  height="180" id="colorPicker"
+  title="Color Picker"
+  src="/email/wysiwyg/color.html"
+  style="visibility:hidden; position: absolute; z-index: 50"></iframe>
+
+			<div ><div >
+			
+			<TABLE bgColor="#CCCCCC" BORDER=0 CELLSPACING=0 CELLPADDING=1 width=100%>
+			    <TR>
+			        <TD style="font-family:arial;font-size:8pt;font-weight:bold;" NOWRAP colspan=4>
+			Formatting Controls
+			&nbsp;&nbsp;&nbsp;<span style="font-weight:normal;">[
+			
+					<a href="#" onclick="setLastMousePosition(event);openPopup('/setup/sserv/controlguide.jsp', 'styleGuide', 235, 470, 'width=470,height=235,scrollbars=yes,toolbar=no,status=no,directories=no,menubar=no,resizable=yes', true);return false;" title="How to use this (New Window)">How to use this</a> ]</span>
+			        </TD>
+			
+			
+			    <TD  align=RIGHT style="font-size:9px;">
+			    </TD>
+			    </TR>
+			    <TR id="bodyEditor_controls">
+			         <TD style="font-family:arial;font-size:8pt;">
+			<select  id="phfont" name="phfont" onchange="format('fontname',this[this.selectedIndex].value);this.selectedIndex=0;" onclick="setCurrentParamName('bodyEditor');" style="CURSOR:POINTER" title="Font Family"><option value="Font" selected="selected">Font</option>
+			
+			<option value="Geneva,Arial,Sans-Serif">Arial</option>
+			<option value="Verdana,Geneva,Arial,Helvetica,Sans-Serif">Verdana</option>
+			<option value="Times New Roman,Times,Serif">Times</option>
+			<option value="Courier, Monospace">Courier</option>
+			</select>        </TD>
+			         <TD style="font-family:arial;font-size:8pt;">
+			<select  id="phsize" name="phsize" onchange="format('fontSize',this[this.selectedIndex].value);this.selectedIndex=0;" onclick="setCurrentParamName('bodyEditor');" style="CURSOR:POINTER" title="Font Size"><option value="Size" selected="selected">Size</option>
+			<option value="1">8px</option>
+			<option value="2">9px</option>
+		
+			<option value="3">10px</option>
+			<option value="4">11px</option>
+			<option value="5">12px</option>
+			<option value="6">14px</option>
+			<option value="7">16px</option>
+			</select>        </TD>
+			         <TD style="font-family:arial;font-size:8pt;">
+			&nbsp;<img src="/email/wysiwyg/images/ed_color_bg.gif" border="1" alt="Set background color" 
+			height="18" onclick="setCurrentParamName('bodyEditor');askForColor(this, 'BackColor');" 
+			style="CURSOR:POINTER" title="Set background color" width="18" />&nbsp;
+			
+			<img src="/email/wysiwyg/images/ed_color_fg.gif" border="1" alt="Set text color" height="18" 
+			onclick="setCurrentParamName('bodyEditor');askForColor(this, 'ForeColor');" 
+			style="CURSOR:POINTER" title="Set text color" width="18" />&nbsp;
+			
+			<img src="/email/wysiwyg/images/ed_format_bold.gif" border="1" alt="Bold selected text" height="18"
+			 onclick="setCurrentParamName('bodyEditor');format('bold');" 
+			 style="CURSOR:POINTER" title="Bold selected text" width="18" />&nbsp;
+			 
+			 <img src="/email/wysiwyg/images/ed_format_italic.gif" border="1" alt="Italic selected text" 
+			 height="18" onclick="setCurrentParamName('bodyEditor');format('italic');" 
+			 style="CURSOR:POINTER" title="Italic selected text" width="18" />&nbsp;
+			 
+			 <img src="/email/wysiwyg/images/ed_format_underline.gif" border="1" alt="Underline selected text" 
+			 height="18" onclick="setCurrentParamName('bodyEditor');format('underline');" 
+			 style="CURSOR:POINTER" title="Underline selected text" width="18" />&nbsp;        
+			 </TD>
+			         <TD style="font-family:arial;font-size:8pt;">&nbsp;
+			         	<img src="/email/wysiwyg/images/ed_link.gif" border="1" alt="Insert a link" height="18" 
+			         	onclick="setCurrentParamName('bodyEditor');
+			         	createLink('Please enter the URL for the link you want to create.', 'http:\/\/');" 
+			         	style="CURSOR:POINTER" title="Insert a link" width="18" />&nbsp;
+			         	
+			         	<img src="/email/wysiwyg/images/ed_align_left.gif" border="1" alt="Left justify" 
+			         	height="18" onclick="setCurrentParamName('bodyEditor');format('justifyleft');" 
+			         	style="CURSOR:POINTER" title="Left justify" width="18" />&nbsp;
+			         	
+			         	<img src="/email/wysiwyg/images/ed_align_center.gif" border="1" alt="Center justify" 
+			         	height="18" onclick="setCurrentParamName('bodyEditor');format('justifycenter');" 
+			         	style="CURSOR:POINTER" title="Center justify" width="18" />&nbsp;
+			         	
+			         	<img src="/email/wysiwyg/images/ed_align_right.gif" border="1" alt="Right justify" 
+			         	height="18" onclick="setCurrentParamName('bodyEditor');format('justifyright');" 
+			         	style="CURSOR:POINTER" title="Right justify" width="18" />&nbsp;        
+			         </TD>
+			
+			         <TD style="font-family:arial;font-size:8pt;">&nbsp;
+			         	<img src="/email/wysiwyg/images/ed_list_bullet.gif" border="1" alt="Create bulleted list" height="18" onclick="setCurrentParamName('bodyEditor');format('insertunorderedlist');" style="CURSOR:POINTER" title="Create bulleted list" width="18" />&nbsp;<img src="/email/wysiwyg/images/ed_list_num.gif"border="1" alt="Create numbered list" height="18" onclick="setCurrentParamName('bodyEditor');format('insertorderedlist');" style="CURSOR:POINTER" title="Create numbered list" width="18" />&nbsp;<img src="/email/wysiwyg/images/ed_indent_more.gif"border="1" alt="Indent" height="18" onclick="setCurrentParamName('bodyEditor');format('indent');" style="CURSOR:POINTER" title="Indent" width="18" />&nbsp;<img src="/email/wysiwyg/images/ed_indent_less.gif"border="1" alt="Outdent" height="18" onclick="setCurrentParamName('bodyEditor');format('outdent');" style="CURSOR:POINTER" title="Outdent" width="18" />&nbsp;        
+			         </TD>
+			    </tr>
+			</TABLE>
+			</div>
+
+
+<div  style="position: relative; height: 220px;">
+<table id="single" width='100%' border='1' cellspacing='0' cellpadding='0'>
+  <tr>
+    <td  id="container_bodyEditor" height='220'></td>
+  </tr>
+</table>
+
+</div></div><input type="hidden"  id="bodyEditor" name="bodyEditor" value="" /><script  type="text/javascript">var fValue = document.getElementById('bodyEditor');fValue.form.onsubmit = getRichTextValues;</script></td></tr>
+<tr  ><td colspan='4'><input type="hidden"  id="textmode" name="textmode" value="r" /></td></tr>
+<tr  ><td colspan='4'><input type="hidden"  id="save" name="save" value="1" />
+<input type="hidden"  id="deleter" name="deleter" value="" />
+<input type="hidden"  id="deleter_type" name="deleter_type" value="" />
+</td></tr>
+	</tr>
+	
+	<tr>
+		<td><b>
+		Attachment:</b>
+		</td>
+		<td>
+		<div id="attachments">
+		</div>
+		</td>
+	</tr>
+	<tr><td></td></tr>
+	<!-- 
+	<tr>
+		<td colspan="2">
+		<input type="button"  class="btn"  onclick="sendmail()" name="Send Mail" value="Send Mail"/>
+		</td>
+	</tr>
+	 -->
+</table>
+<!-- 
+
+<div class="pbBottomButtons"><table  border="0" cellpadding="0" cellspacing="0"><tr><td class="pbTitle"><img src="/s.gif" alt="" width="1" height="1" class="minWidth" title="" />&nbsp;</td><td class="pbButtonb" id="bottomButtonRow"><input value=" Send "  class="btn" name="send" onclick="sendEmail();" title="Send" type="button" /> <input value="Select Template1"  class="btn" name="template" onclick="javascript:selectTemplateDialog()" title="Select Template (New Window)" type="button" /> <input value="Attach File"  class="btn" name="attach" onclick="openDocumentUpload(event)" title="Attach File (New Window)" type="button" /> <input value="Preview"  class="btn" name="preview" onclick="openRichTextPreview()" title="Preview (New Window)" type="button" /> <input value="Check Spelling"  class="btn" name="spell" onclick="doRichTextSpell()" title="Check Spelling (New Window)" type="button" /> <input value="Cancel"  class="btn" name="cancel" onclick="cancelForm();" title="Cancel" type="button" /></td></tr>
+</table></div><div class="pbFooter secondaryPalette"><div class="bg"></div></div></div><script  type="text/javascript">if (window.sfdcPage && window.sfdcPage.initButtons) { window.sfdcPage.initButtons([]); }</script>
+ -->
+ </form>
+ <form  id="SpellForm" method="post" name="SpellForm" onsubmit="if (window.ffInAlert) { return false; }" ><input type="hidden" name="currentValue" id="currentValue" value="" /><input type="hidden" name="spellCheckValue" id="spellCheckValue" value="" /></form>
+<!-- 
+
+<table align=center border="0"  cellpadding="0" cellspacing="0">
+	<tr>
+		<td valign="top" align="center"  class="pbButton" >
+			<input type="button"  class="btn"  name="sendmainbtn" value="Send"  onclick="sendmail()" />
+		
+			<input type="button"  class="btn" name="selectTemplatebtn" value="Select Template" onclick="javascript:selectTemplateDialog1()"/>
+			
+		
+			<input value="Preview"   class="btn" name="preview" onclick="openRichTextPreview()" title="Preview (New Window)" type="button" />
+		
+			<input value="Check Spelling"   class="btn"  name="spell" onclick="doRichTextSpell()" title="Check Spelling (New Window)" type="button" />
+		
+			 <input type="button"  class="btn" name="cancelbtn" value="Cancel"  onclick="doCancel()" />
+		</td>
+	</tr>
+	<tr><td></td></tr>
+	<tr><td></td></tr>
+</table>
+<table align=center border="0"  cellpadding="0" cellspacing="0">
+	<tr><td><div id="emailtemplate1"></div></td></tr>
+	<tr><td></td></tr>
+	<tr><td></td></tr>
+</table>
+
+ -->
+
+</form>
+
+
+<form    action="/p/attach/NoteAttach"  enctype="multipart/form-data" id="uploadPage" method="post" name="uploadPage" onsubmit="upload();if (window.ffInAlert) { return false; }" >
+<input type="hidden" name="cancelURL" id="cancelURL" value="" />
+<input type="hidden" name="pid" id="pid" value="" />
+<input type="hidden" name="retURL" id="retURL" value="" />
+<input type="hidden" name="body2" id="body2" value="" />
+
+
+<table ><tr><td>&nbsp;</td><td class="labelcol">Type the path of the file or click the Browse button to find the file.</td></tr>
+<tr><td>&nbsp;</td><td style="padding-bottom: 1em" >
+
+<input   id="file" name="file" size="20" title="Type the path of the file or click the Browse button to find the file." type="file" /></td></tr>
+<tr><td>&nbsp;</td><td style="padding-bottom: 1em" class="pbButton" >
+<input value="Attach File"   name="Attach"  class="btn" 
+	title="Attach File (New Window)" type="submit" onclick="return validate()"/></td></tr>
+</table>
+
+</form>
+
+ <form name="rcmailform1"  >
+<table align=center border="0"  width="100%" cellpadding="0" cellspacing="0" >
+	<tr>
+		<td valign="top" align="center" class="pbButton" >
+			<input type="button" name="sendmainbtn"  class="btn" value="Send"  onclick="sendmail()" />
+		
+			<input type="button" name="selectTemplatebtn" class="btn"  value="Select Template" onclick="javascript:selectTemplateDialog1()"/>
+			
+		
+			<input value="Preview"  name="preview" class="btn"  onclick="openRichTextPreview()" title="Preview (New Window)" type="button" />
+		
+			<input value="Check Spelling"  class="btn"  name="spell" onclick="doRichTextSpell()" title="Check Spelling (New Window)" type="button" />
+		
+			 <input type="button"  class="btn" name="cancelbtn" value="Cancel"  onclick="doCancel()" />
+		</td>
+		<!-- 
+		<td valign="top" width="15%">
+			<input type="button" name="regexbtn"  class="btn" value="RegEx" onclick="javascript:mergeit()"/>
+		</td>
+		 -->
+	</tr>
+	<tr><td></td></tr>
+	<tr><td></td></tr>
+</table>
+<table align=center border="0"  cellpadding="0" cellspacing="0">
+	<tr><td><div id="emailtemplate1"></div></td></tr>
+	<tr><td></td></tr>
+	<tr><td></td></tr>
+</table>
+
+</form>
+
+
+
+</body>
+</html>

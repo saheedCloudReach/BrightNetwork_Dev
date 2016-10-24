@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <label>TargetRecruit</label>
+    <logo>TargetRecruit/TargetRecruitLogo.jpg</logo>
+    <tab>standard-Console</tab>
+    <tab>standard-Account</tab>
+    <tab>standard-Contact</tab>
+    <tab>Job__c</tab>
+    <tab>Search__c</tab>
+    <tab>Job_Applicant__c</tab>
+    <tab>Interview__c</tab>
+    <tab>Placement__c</tab>
+    <tab>standard-report</tab>
+    <tab>standard-Dashboard</tab>
+    <tab>standard-Document</tab>
+    <tab>Config__c</tab>
+    <tab>ETCObject__c</tab>
+    <tab>Checklist__c</tab>
+    <tab>Account_Search__c</tab>
+    <tab>Contact_Search__c</tab>
+    <tab>Geocode__c</tab>
+    <tab>Society_Link__c</tab>
+    <tab>Sector_Event_Application__c</tab>
+    <tab>RPO_application__c</tab>
+    <tab>NPS_survey__c</tab>
+    <tab>Subscription_preference__c</tab>
+    <tab>CHP_Consulting_Event_Application__c</tab>
+    <tab>Website_redirect_click__c</tab>
+</CustomApplication>

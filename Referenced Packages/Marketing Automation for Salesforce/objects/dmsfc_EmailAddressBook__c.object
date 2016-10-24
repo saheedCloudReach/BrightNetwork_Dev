@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>Edit_Email_Address_Book</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <content>EmailAddressBooks</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Email Address Book</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AccountId__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>AccountId</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AddressBookID__c</fullName>
+        <deprecated>false</deprecated>
+        <description>dmId</description>
+        <externalId>false</externalId>
+        <label>Addressbook ID</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AddressbookCount__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Members in Linked Campaign(s)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CampaignSubscription__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Campaign</label>
+        <referenceTo>dmsfc_CampaignSubscription__c</referenceTo>
+        <relationshipLabel>Email Address Books</relationshipLabel>
+        <relationshipName>EmailAddressBooks</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>DestinationAddressBookCount__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Members in Destination Address book</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email_Account__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Email Account</label>
+        <referenceTo>dmsfc_Email_Account__c</referenceTo>
+        <relationshipLabel>Email Address Books</relationshipLabel>
+        <relationshipName>Email_Address_Books</relationshipName>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>LastSync__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Synchronised</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>LastUpdated__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Updated</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ManualSync__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Manual Synchronisation Only</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>RecordID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>RecordID__c</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReportSubscription__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Report Subscription</label>
+        <referenceTo>dmsfc_ReportSubscription__c</referenceTo>
+        <relationshipLabel>Email Address Books</relationshipLabel>
+        <relationshipName>Email_Address_Books</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SingleAdd__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Join Trigger Enabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SourceList__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Source List</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to populate an Email Address book not linked to an Email Campaign, such as one used by an Email Program. Inactivity monitoring does not apply to Source lists - automated synchronisations will continue.</inlineHelpText>
+        <label>Source List</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Email Address Book</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Email_Account__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LastSync__c</columns>
+        <columns>AddressbookCount__c</columns>
+        <columns>DestinationAddressBookCount__c</columns>
+        <columns>ManualSync__c</columns>
+        <columns>SingleAdd__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Address Book Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Email Address Books</pluralLabel>
+    <searchLayouts>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <listViewButtons>Synchronise_Many</listViewButtons>
+        <listViewButtons>Add_Address_Book</listViewButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <webLinks>
+        <fullName>Add_Address_Book</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Add Address Book</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/v2/Scripts/EmailMarketing_v3.js&apos;)}
+
+var model = {
+    SessionId : &quot;{!$Api.Session_ID}&quot;,
+    PartnerUrl:&quot;{!$Api.Partner_Server_URL_140}&quot;
+}
+
+AddAddressBook(model);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Add_to_Campaign</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Add Link to Campaign</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/v2/Scripts/EmailMarketing_v3.js&apos;)}
+
+var model = {
+    SessionId : &quot;{!$Api.Session_ID}&quot;,
+    PartnerUrl:&quot;{!$Api.Partner_Server_URL_140}&quot;,
+    ParentId : &quot;{!dmsfc_EmailAddressBook__c.Id}&quot;,
+    RequiredType : &quot;Campaign&quot;,
+    EmailAccountId : &quot;{!dmsfc_EmailAddressBook__c.Email_AccountId__c}&quot;,
+    ParentObjectName : &quot;{! JSENCODE(dmsfc_EmailAddressBook__c.Name)}&quot;,
+    ReferringUrl : document.location.href,
+    DmAccountId : &quot;{!dmsfc_EmailAddressBook__c.AccountId__c}&quot;,
+    ManualSync : {!dmsfc_EmailAddressBook__c.ManualSync__c} === 1,
+    SingleAdd : {!dmsfc_EmailAddressBook__c.SingleAdd__c} === 1,
+    SourceList : {!dmsfc_EmailAddressBook__c.SourceList__c} === 1
+};
+
+CreateSubscriptionGroup(model);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Advanced_Settings</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Advanced</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!requireScript(&quot;/soap/ajax/26.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/resources/scripts/emailmarketing_v3.js&apos;)}
+
+
+var model = {
+  SessionId : &quot;{!JSENCODE($Api.Session_ID)}&quot;,
+  PartnerUrl:&quot;{!JSENCODE($Api.Partner_Server_URL_140)}&quot;,
+  OrganisationId: &quot;{!JSENCODE($Organization.Id)}&quot;,
+  SfAddressBookId : &apos;{!JSENCODE(dmsfc_EmailAddressBook__c.Id)}&apos;,
+  SfEmailAccountId : &apos;{!JSENCODE(dmsfc_EmailAddressBook__c.Email_Account__c)}&apos;,
+  AddressBookName : &apos;{!JSENCODE(dmsfc_EmailAddressBook__c.Name)}&apos;,
+  DmAccountId : &quot;{!dmsfc_EmailAddressBook__c.AccountId__c}&quot;,
+  PageUrl : document.location.href,
+  ManualSync : {!dmsfc_EmailAddressBook__c.ManualSync__c} === 1,
+  SingleAdd : {!dmsfc_EmailAddressBook__c.SingleAdd__c} === 1,
+  SourceList : {!dmsfc_EmailAddressBook__c.SourceList__c} === 1
+};
+
+OpenAddressbookAdvancedSettings(model);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Synchronise_AddressBook</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Synchronise Address Book</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/v2/Scripts/EmailMarketing_v3.js&apos;)}
+
+var model = {
+    SessionId : &quot;{!$Api.Session_ID}&quot;,
+    PartnerUrl:&quot;{!$Api.Partner_Server_URL_140}&quot;,
+    AddressBookIds : [&quot;{!dmsfc_EmailAddressBook__c.Id}&quot;]
+}
+
+SyncAddressBooks(model);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Synchronise_Many</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Synchronise Address Books</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/v2/Scripts/EmailMarketing_v3.js&apos;)}
+
+var addressBookIds = [];
+j$(&apos;input[type=&quot;checkbox&quot;]:checked&apos;).each(function () {
+    addressBookIds.push(this.value);
+});
+
+var model = {
+    SessionId : &quot;{!$Api.Session_ID}&quot;,
+    PartnerUrl:&quot;{!$Api.Partner_Server_URL_140}&quot;,
+    AddressBookIds : addressBookIds 
+}
+
+SyncAddressBooks(model);</url>
+    </webLinks>
+</CustomObject>

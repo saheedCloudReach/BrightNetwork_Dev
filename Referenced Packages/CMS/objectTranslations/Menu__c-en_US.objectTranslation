@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Menu</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Menus</value>
+    </caseValues>
+    <fields>
+        <help><!-- This check box value specify whether this menu is ready to use or not. --></help>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- This Link can be a visualfor page link or ouside salesforce link. if you put value in this field then your CMS page will be override by this value. --></help>
+        <label><!-- Other Link --></label>
+        <name>Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Display order for this menu. --></help>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the CMS page which will be shown on the click event of this menu. --></help>
+        <label><!-- CMS Page --></label>
+        <name>Page__c</name>
+        <relationshipLabel><!-- Menus --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Enter parameters in this field which you want to add with URL. --></help>
+        <label><!-- Parameters --></label>
+        <name>Parameters__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Menu --></label>
+        <name>Parent_Menu__c</name>
+        <relationshipLabel><!-- Menus (Parent Menu) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- If you do not want to show this menu without login then check this check box. --></help>
+        <label><!-- Visiblity Authentication --></label>
+        <name>Visiblity_Authentication__c</name>
+    </fields>
+    <layouts>
+        <layout>Menu Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

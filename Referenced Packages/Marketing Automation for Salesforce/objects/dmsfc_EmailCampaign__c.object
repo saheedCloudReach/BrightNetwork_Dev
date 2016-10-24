@@ -1,0 +1,1266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>Edit_Email_Campaign</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <content>EmailCampaigns</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Email Campaign</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AccountId__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Account Id</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CampaignId__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CampaignId</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Data_Usage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Amount of data the campaign and related records use in Kb</description>
+        <externalId>false</externalId>
+        <label>Data Usage (Kb)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DateSent__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Date Sent</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>DisplayName__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Email Campaign Display Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Email Account</label>
+        <referenceTo>dmsfc_Email_Account__c</referenceTo>
+        <relationshipLabel>Email Campaigns</relationshipLabel>
+        <relationshipName>Email_Campaigns</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FromName__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>From Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LastBookmarksActivity__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Bookmarks Activity</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>LastClickActivity__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Click Activity</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>LastEmailActivity__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Email Activity</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>LastPageViewActivity__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last PageView Activity</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>LastROIActivity__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last ROI Activity</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>LastSendActivity__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Send Activity</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>LastSync_Bookmarks__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Sync Bookmarks</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>LastSync_Clicks__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Sync Clicks</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>LastSync_PageView__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Sync PageView</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>LastSync_ROI__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Sync ROI</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>LastSync_Sends__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Last Sync Sends</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>LastSynced__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Synchronised</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>NumClicks__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>No. of Clicks</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumDelivered__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>No. Delivered</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumEstimatedForwards__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Estimated Forwards</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumForwards__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>No. of Forwards</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumHardBounces__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumHardBounces</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumIspComplaints__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumIspComplaints</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumMailBlocks__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumMailBlocks</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumOpens__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumOpens</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumPageViews__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumPageViews</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumRecipientsClicked__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumRecipientsClicked</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumRelatedBookmarks__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumRelatedBookmarks</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumRelatedClicks__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumRelatedClicks</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumRelatedPageviews__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumRelatedPageviews</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumRelatedRoi__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumRelatedRoi</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumRelatedSends__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumRelatedSends</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumReplies__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumReplies</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumSent__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumSent</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumSoftBounces__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumSoftBounces</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTextClicks__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumTextClicks</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTextDelivered__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumTextDelivered</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTextEstimatedForwards__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumTextEstimatedForwards</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTextForwards__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumTextForwards</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTextHardBounces__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumTextHardBounces</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTextIspComplaints__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumTextIspComplaints</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTextMailBlocks__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumTextMailBlocks</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTextOpens__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumTextOpens</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTextPageViews__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumTextPageViews</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTextReplies__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumTextReplies</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTextSent__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumTextSent</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTextSoftBounces__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumTextSoftBounces</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTextUnsubscribes__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumTextUnsubscribes</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTotalClicks__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Clicks</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTotalDelivered__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Total Delivered</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTotalEstimatedForwards__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Total Estimated Forwards</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTotalHardBounces__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Total Hard Bounces</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTotalIspComplaints__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Total ISP Complaints</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTotalMailBlocks__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Total Mail Blocks</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTotalOpens__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Opens</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTotalPageViews__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Total Page Views</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTotalReplies__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Total Replies</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTotalSent__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sent</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTotalSoftBounces__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Total Soft Bounces</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTotalUniqueOpens__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Unique Opens</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumTotalUnsubscribes__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Unsubscribes</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumUniqueOpens__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumUniqueOpens</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumUniqueTextOpens__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumUniqueTextOpens</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumUnsubscribes__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NumUnsubscribes</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PercentageClicksToOpens__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Percentage Clicks/Opens</label>
+        <precision>9</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>PercentageDelivered__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Percentage Delivered</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>PercentageHardBounces__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>% Hard Bounces</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>PercentageOpens__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Percentage Opens</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>PercentageReplies__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>PercentageReplies</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>PercentageSoftBounces__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>PercentageSoftBounces</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>PercentageUniqueOpens__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Percentage Unique Opens</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>PercentageUnsubscribes__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Percentage Unsubscribes</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>PercentageUsersClicked__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>PercentageUsersClicked</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>RecordID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>RecordID__c</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReplyToEmailAddress__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Reply To Email Address</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SplitTest__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Split Test</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <length>15</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Subject__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>Subject</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SyncBookmarks__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sync Bookmarks</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SyncCampaign__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sync Campaign</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SyncPageViews__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sync Page Views</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SyncROI__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sync ROI</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SyncSends__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sync Sends</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SynchClicks__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sync Clicks</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>UpdateMembershipResponses__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Allow Campaign Membership Update</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Email Campaign</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>DateSent__c</columns>
+        <columns>Email_Account__c</columns>
+        <columns>NumTotalSent__c</columns>
+        <columns>NumTotalUniqueOpens__c</columns>
+        <columns>NumTotalClicks__c</columns>
+        <columns>NumTotalUnsubscribes__c</columns>
+        <columns>PercentageHardBounces__c</columns>
+        <columns>LastSynced__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Campaigns_with_more_than_1_click</fullName>
+        <columns>NAME</columns>
+        <columns>NumTotalClicks__c</columns>
+        <columns>DateSent__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NumClicks__c</field>
+            <operation>greaterThan</operation>
+            <value>1</value>
+        </filters>
+        <label>Campaigns with more than 1 click</label>
+    </listViews>
+    <listViews>
+        <fullName>Salesforce_Demo</fullName>
+        <columns>NAME</columns>
+        <columns>DateSent__c</columns>
+        <columns>NumTotalSent__c</columns>
+        <columns>NumTotalDelivered__c</columns>
+        <columns>NumTotalUniqueOpens__c</columns>
+        <columns>NumTotalClicks__c</columns>
+        <columns>NumTotalPageViews__c</columns>
+        <columns>NumTotalReplies__c</columns>
+        <columns>NumTotalHardBounces__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Email_Account__c</field>
+            <operation>contains</operation>
+            <value>Salesforce</value>
+        </filters>
+        <label>Salesforce Demo</label>
+    </listViews>
+    <listViews>
+        <fullName>Split_Test_Campaigns</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>SplitTest__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Split Test Campaigns</label>
+    </listViews>
+    <nameField>
+        <label>Email Campaign Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Email Campaigns</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>DateSent__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>NumTotalUniqueOpens__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>NumTotalSent__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>NumTotalClicks__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>NumTotalDelivered__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>NumTotalHardBounces__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>NumTotalPageViews__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>NumTotalUnsubscribes__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>PercentageOpens__c</customTabListAdditionalFields>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <listViewButtons>Synchronise_Many</listViewButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Advanced_Setup</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Advanced</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/resources/scripts/emailmarketing_v3.js&apos;)}
+
+var model = {
+    SessionId : &quot;{!$Api.Session_ID}&quot;,
+    PartnerUrl:&quot;{!$Api.Partner_Server_URL_140}&quot;,
+    CampaignName : &quot;{!dmsfc_EmailCampaign__c.Name}&quot;,
+    CrmCampaignId : &quot;{!dmsfc_EmailCampaign__c.Id}&quot;,
+    DmCampaignId : &quot;{!dmsfc_EmailCampaign__c.CampaignId__c}&quot;,
+    DmAccountId : &quot;{!dmsfc_EmailCampaign__c.AccountId__c}&quot;,
+    PageUrl : document.location.href
+};
+
+OpenAdvancedSettings(model);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>CampaignDashboard</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Dashboard</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/v2/Scripts/EmailMarketing_v3.js&apos;)}
+
+var model = {
+    EmailCampaignName : &quot;{!dmsfc_EmailCampaign__c.Name}&quot;,
+
+    PercentageDelivered : &quot;{!dmsfc_EmailCampaign__c.PercentageDelivered__c}&quot;,
+    PercentageUniqueOpens : &quot;{!dmsfc_EmailCampaign__c.PercentageUniqueOpens__c}&quot;,	 
+    PercentageClicksOpens : &quot;{!dmsfc_EmailCampaign__c.PercentageClicksToOpens__c}&quot;,	 
+    PercentageHardBounces : &quot;{!dmsfc_EmailCampaign__c.PercentageHardBounces__c}&quot;,
+
+    PercentageOpens : &quot;{!dmsfc_EmailCampaign__c.PercentageOpens__c}&quot;, 
+    PercentageUnsubscribes : &quot;{!dmsfc_EmailCampaign__c.PercentageUnsubscribes__c}&quot;,
+    PercentageReplies : &quot;{!dmsfc_EmailCampaign__c.PercentageReplies__c}&quot;,
+    PercentageSoftBounces : &quot;{!dmsfc_EmailCampaign__c.PercentageSoftBounces__c}&quot;,
+    PercentageUsersClicked : &quot;{!dmsfc_EmailCampaign__c.PercentageUsersClicked__c}&quot;,
+
+    Status : &quot;{!dmsfc_EmailCampaign__c.Status__c}&quot;,
+    DateSent : &quot;{!dmsfc_EmailCampaign__c.DateSent__c}&quot;,
+    TotalSent : &quot;{!dmsfc_EmailCampaign__c.NumTotalSent__c}&quot;,
+    TotalDelivered : &quot;{!dmsfc_EmailCampaign__c.NumTotalDelivered__c}&quot;,
+    TotalUniqueOpens : &quot;{!dmsfc_EmailCampaign__c.NumTotalUniqueOpens__c}&quot;,
+    TotalOpens : &quot;{!dmsfc_EmailCampaign__c.NumTotalOpens__c}&quot;,
+    TotalClicks : &quot;{!dmsfc_EmailCampaign__c.NumTotalClicks__c}&quot;,
+    TotalUnsubscribes : &quot;{!dmsfc_EmailCampaign__c.NumTotalUnsubscribes__c}&quot;,
+    TotalHardBounces : &quot;{!dmsfc_EmailCampaign__c.NumTotalHardBounces__c}&quot;,
+    TotalPageViews : &quot;{!dmsfc_EmailCampaign__c.NumTotalPageViews__c}&quot;,
+    TotalIspComplaints : &quot;{!dmsfc_EmailCampaign__c.NumTotalIspComplaints__c}&quot;,
+    TotalSoftBounces : &quot;{!dmsfc_EmailCampaign__c.NumTotalSoftBounces__c}&quot;,
+    TotalMailBlocks : &quot;{!dmsfc_EmailCampaign__c.NumTotalMailBlocks__c}&quot;,
+    TotalReplies : &quot;{!dmsfc_EmailCampaign__c.NumTotalReplies__c}&quot;,
+    TotalEstimatedForwards : &quot;{!dmsfc_EmailCampaign__c.NumTotalEstimatedForwards__c}&quot;,
+    SessionId : &quot;{!$Api.Session_ID}&quot;,
+    PartnerUrl:&quot;{!$Api.Partner_Server_URL_140}&quot;,    
+};
+
+
+OpenCampaignDashboard(model);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Send_Campaign_Wizard</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send Campaign Wizard</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/v2/Scripts/EmailMarketing_v3.js&apos;)}
+
+
+var model = {
+    SessionId : &quot;{!$Api.Session_ID}&quot;,
+    PartnerUrl:&quot;{!$Api.Partner_Server_URL_140}&quot;,
+    DmAccountId : &quot;{!dmsfc_EmailCampaign__c.AccountId__c}&quot;,
+    CrmCampaignId : &quot;{!dmsfc_EmailCampaign__c.Id}&quot;,
+    DmCampaignId : &quot;{!dmsfc_EmailCampaign__c.CampaignId__c}&quot;,
+    SfEmailAccountId : &quot;{!dmsfc_EmailCampaign__c.Email_AccountId__c}&quot;
+};
+
+
+OpenCampaignSendWizard(model);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Synchronise_Campaign</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Synchronise</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/v2/Scripts/EmailMarketing_v3.js&apos;)}
+
+var model = {
+    SessionId : &quot;{!$Api.Session_ID}&quot;,
+    PartnerUrl:&quot;{!$Api.Partner_Server_URL_140}&quot;,
+    CampaignIds : [&quot;{!dmsfc_EmailCampaign__c.Id}&quot;],
+    CanSync : &quot;{!dmsfc_EmailCampaign__c.SyncCampaign__c}&quot;,
+    DmAccountId : &quot;{!dmsfc_EmailCampaign__c.AccountId__c}&quot;
+};
+
+SyncCampaigns(model);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Synchronise_Many</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Synchronise Email Campaigns</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/v2/Scripts/EmailMarketing_v3.js&apos;)}
+
+var campaignIds = [];
+j$(&apos;input[type=&quot;checkbox&quot;]:checked&apos;).each(function () {
+    campaignIds.push(this.value);
+});
+
+var model = {
+    SessionId : &quot;{!$Api.Session_ID}&quot;,
+    PartnerUrl:&quot;{!$Api.Partner_Server_URL_140}&quot;,
+    CampaignIds : campaignIds 
+}
+
+SyncCampaigns(model);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>btn_Preview_Email_Campaign</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Preview</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/resources/scripts/emailmarketing_v3.js&apos;)}
+
+var model = {
+    SessionId : &quot;{!$Api.Session_ID}&quot;,
+    PartnerUrl:&quot;{!$Api.Partner_Server_URL_140}&quot;,
+    CrmCampaignId : &quot;{!dmsfc_EmailCampaign__c.Id}&quot;,
+    CampaignName : &quot;{!dmsfc_EmailCampaign__c.Name}&quot;,
+    PageUrl : document.location.href,
+    DmAccountId : &quot;{!dmsfc_EmailCampaign__c.AccountId__c}&quot;,
+    DmCampaignId : &quot;{!dmsfc_EmailCampaign__c.CampaignId__c}&quot;,
+};
+
+PreviewEmailCampaign(model);</url>
+    </webLinks>
+</CustomObject>

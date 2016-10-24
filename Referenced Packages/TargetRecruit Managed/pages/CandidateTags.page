@@ -1,0 +1,54 @@
+<apex:page Controller="AVTRRT.CandidateTagsController" sidebar="false" showHeader="false" tabStyle="AVTRRT__Search__c">
+
+<apex:outputPanel rendered="{!afterAdd}">
+<script>
+    window.parent.CloseTagsWindow();
+</script>
+</apex:outputPanel>
+
+<apex:form >
+
+<apex:pageBlock >
+
+<apex:pageBlockButtons >
+    <apex:commandButton action="{!addTags}" value="{!$Label.avtrrt__Add_Tags}" />
+    <apex:commandButton value="{!$Label.avtrrt__Cancel}" onclick="window.parent.CloseTagsWindow()" />
+</apex:pageBlockButtons>
+
+<div>{!$Label.Adding_text}</div>
+
+<div style="font-weight:bold;padding:10px 0">{!$Label.Tags_already_in_use_double_dot}</div>
+
+<div style="float:left">
+    {!$label.Personal_Tags_double_dot}<br />
+    <apex:selectList value="{!personalTagSelected}" size="1">
+        <apex:selectOptions value="{!personalTags}" />
+    </apex:selectList>
+</div>
+<div style="float:right;width:50%">
+    {!$Label.Public_Tags_double_dot}<br />
+    <apex:selectList value="{!publicTagSelected}" size="1">
+        <apex:selectOptions value="{!publicTags}" />
+    </apex:selectList>
+</div>
+<div style="clear:both"></div>
+
+<div style="font-weight:bold;padding:10px 0">{!$Label.New_tag_double_dot}</div>
+
+<div style="padding-bottom:10px">{!$Label.Tags_can_only_contain}</div>
+
+<div style="float:left">
+    {!$label.Personal_Tags_double_dot}<br />
+    <apex:inputText value="{!newPersonalTags}" />
+</div>
+<div style="float:right;width:50%">
+    {!$Label.Public_Tags_double_dot}<br />
+    <apex:inputText value="{!newPublicTags}" />
+</div>
+<div style="clear:both"></div>
+
+</apex:pageBlock>
+
+</apex:form>
+
+</apex:page>

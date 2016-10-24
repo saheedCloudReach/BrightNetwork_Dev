@@ -1,0 +1,69 @@
+<apex:page title="Mass Update" controller="AVTRRT.MassUpdateController" action="{!init}" standardStylesheets="false">
+
+<style type="text/css">
+    .labelCol.first.last {
+        text-align:left;
+        border: none;
+        width: auto;
+    }
+
+    .dataCol.first.last {
+        border: none;
+        padding-right: 30px;
+    }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+    var j$ = jQuery.noConflict();
+
+    function fixId(myid) {
+        return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+    }
+
+    function reverseUpdateCheckBoxes() {
+        var v_isUpdateChecked = j$('.isUpdate:checked');
+        var v_isEachUpdateCheckboxes = j$('.isEachUpdate');
+
+        if (v_isUpdateChecked.length != 0) {
+            j$.each(v_isEachUpdateCheckboxes, function(i) {
+                j$(v_isEachUpdateCheckboxes[i]).attr('checked', 'checked');
+            });
+        } else {
+            j$.each(v_isEachUpdateCheckboxes, function(i) {
+                j$(v_isEachUpdateCheckboxes[i]).removeAttr('checked');
+            });
+        }
+    }
+</script>
+
+<apex:form >
+    <apex:pageBlock title="Mass Update">
+        <apex:pageMessages />
+
+        <apex:pageBlockButtons >
+            <apex:commandButton action="{!save}" value="{!$Label.avtrrt__Save}" />
+        </apex:pageBlockButtons>
+
+        <span>Please check the select boxes for the fields you want to save the updated values.</span>
+        <apex:pageBlockTable value="{!contactFieldWrapperList}" var="contactFieldWrapper">
+            <apex:column width="20">
+                <apex:facet name="header">
+                    <input type="checkbox" class="isUpdate" onclick="reverseUpdateCheckBoxes();" />
+                </apex:facet>
+                <apex:inputCheckbox value="{!contactFieldWrapper.isUpdate}" styleClass="isEachUpdate" />
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">
+                    Field Name
+                </apex:facet>
+                <apex:pageblockSection >
+                    <apex:inputField value="{!fakeContact[contactFieldWrapper.fieldName]}" />
+                </apex:pageblockSection>
+            </apex:column>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:form>
+
+</apex:page>

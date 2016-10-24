@@ -1,0 +1,24 @@
+<apex:page Controller="JOBBS.JobBoardSearchProfile" title="Candidate Profile" action="{!init}" >
+	<apex:form >
+		<apex:actionFunction name="getDaxtraResume" action="{!getResume}" />
+
+		<apex:outputPanel rendered="{!htmlOutput == null}">
+			<script>
+				setTimeout("getDaxtraResume()", 3000);
+			</script>
+			<div style="border: 1px solid #b7caff; background: #e9eefd; font-family: Calibri;">
+				<div style="padding: 10px 10px 10px 10px;">
+					<apex:image url="{!$Resource.JOBBS__loading}" style="float: left;"/>
+					<apex:outputText value="Please, wait" style="font-size: 18px; color: #aa000c; padding-left: 10px;" />
+					<br />
+					<apex:outputText value="Resume is loading ..." style="font-size: 18px; padding-left: 10px;" />
+				</div>
+			</div>
+		</apex:outputPanel>
+		<apex:outputPanel rendered="{!htmlOutput != null}">
+			<script type="text/javascript">
+				location.href = '{!htmlOutput}';
+			</script>
+		</apex:outputPanel>
+	</apex:form>
+</apex:page>

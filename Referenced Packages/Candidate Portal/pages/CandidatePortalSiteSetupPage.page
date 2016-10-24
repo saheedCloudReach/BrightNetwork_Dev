@@ -1,0 +1,12 @@
+<apex:page title="{!$Label.trgtfcms__Site_Setup_Page}" controller="TRGTFCMS.CandidatePortalSiteSetupController">
+<apex:form >
+    <apex:pageBlock title="{!$Label.trgtfcms__Candidate_Portal_Site_Setup}" mode="edit" id="pageBlock">
+        <apex:pageMessages />
+        <apex:commandButton id="SetupButton" action="{!setSiteSetupProfileCandidate}"
+                rerender="pageBlock" value="Setup" />
+                
+        <apex:commandButton id="SetupButtonVendor" action="{!setSiteSetupProfileVendor}"
+                rerender="pageBlock" value="Vendor Setup" />        
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

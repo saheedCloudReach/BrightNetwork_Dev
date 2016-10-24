@@ -1,0 +1,65 @@
+<apex:page standardController="FCMS__CMSProfile__c" extensions="FCMS.CMSProfileExtension">
+    <apex:form >
+    <apex:actionFunction name="approvalPage1" action="{!approvalPage}" reRender="pageBlock" />
+    <apex:pageBlock title="{!$Label.fcms__CMSProfile_Edit}" mode="edit" id="pageBlock">
+        <apex:pageMessages id="error"/>
+        <apex:pageBlockButtons >
+                <apex:commandButton action="{!save1}" value="{!$Label.fcms__SaveCMS}" onclick="return checkValidation()"/>
+                <apex:commandButton action="{!saveAndNew1}" value="{!$Label.fcms__Save_New}" onclick="return checkValidation()"/>
+                <apex:commandButton action="{!cancel}" value="{!$Label.fcms__CancelCMS}"/>
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection id="pageBlockSection">
+            <apex:inputField value="{!FCMS__CMSProfile__c.Name}" id="Name" required="true"/>
+            <apex:inputField value="{!FCMS__CMSProfile__c.FCMS__Name__c}" id="Name__c" required="true"/>
+            <apex:inputField value="{!FCMS__CMSProfile__c.FCMS__CMSCss__c}" id="CMSCss__c"/>
+
+            <apex:inputField value="{!FCMS__CMSProfile__c.FCMS__Profile_Account__c}" id="Profile_Account__c" required="true"/>
+            <apex:inputField value="{!FCMS__CMSProfile__c.FCMS__Default_Home_Page__c}" id="Default_Home_Page__c" required="true"/>
+
+            <apex:inputField value="{!FCMS__CMSProfile__c.FCMS__User_Record_Type__c}" id="User_Record_Type__c" rendered="false"/>
+            <apex:pageBlockSectionItem rendered="{!showHideRecordType}">
+                <apex:outputLabel title="{!$Label.fcms__User_Record_Type}" for="UserRecordType" >{!$Label.fcms__User_Record_Type}</apex:outputLabel>
+                <apex:selectList value="{!recordType}" id="UserRecordType" size="1" title="{!$Label.fcms__User_Record_Type}" required="true">
+                    <apex:selectOptions value="{!items}"/>
+                </apex:selectList>
+            </apex:pageBlockSectionItem>
+            <apex:inputField value="{!FCMS__CMSProfile__c.FCMS__User_Registration__c}" id="User_Registration__c"/>
+            <apex:inputField value="{!FCMS__CMSProfile__c.FCMS__Portal_Enabled__c}" id="Portal_Enabled__c"/>
+            <apex:inputField value="{!FCMS__CMSProfile__c.FCMS__Need_Registration_Approval__c}" id="Need_Registration_Approval__c" onchange="approvalPage1()"/>
+            <apex:outputLabel ></apex:outputLabel>
+            <apex:inputField value="{!FCMS__CMSProfile__c.FCMS__Force_com_Authorization_and_Registration__c}" id="Force_com_Authorization_and_Registration" />
+
+            <apex:inputField value="{!FCMS__CMSProfile__c.FCMS__Approval_Message_Page__c}" id="Approval_Message_Page__c" rendered="{!approvalMessagePage}"/>
+            <apex:inputField value="{!FCMS__CMSProfile__c.FCMS__Profile_Manager__c}" id="Profile_Manager__c" required="true"/>
+            <apex:inputField value="{!FCMS__CMSProfile__c.FCMS__LinkedInLogin__c}" id="LinkedInLogin__c" />
+            <apex:inputField value="{!FCMS__CMSProfile__c.FCMS__Order__c}" id="Order__c" required="true"/>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+    </apex:form>
+    <script>
+            function checkRecordType(){
+                //alert(document.getElementById('j_id0:j_id1:j_id2:j_id7:j_id8:UserRecordType1'));
+                if(document.getElementById('j_id0:j_id1:j_id2:j_id7:j_id8:UserRecordType')!=null && document.getElementById('j_id0:j_id1:j_id2:j_id7:j_id8:UserRecordType').value=='None'){
+                    alert('{!$Label.fcms__Please_select}');
+                    return false;
+
+                }
+                else {
+                    return true;
+                }
+            }
+            function checkValidation(){
+                if(document.getElementById('j_id0:j_id1:j_id3:pageBlockSection:Need_Registration_Approval__c').checked){
+                    //alert('checked');
+                    if(document.getElementById('j_id0:j_id1:j_id3:pageBlockSection:Approval_Message_Page__c').value == ''){
+                        alert('{!$Label.fcms__You_can_not}');
+                        return false;
+                    }
+
+                }
+                return true;
+                //return false;
+            }
+
+    </script>
+</apex:page>

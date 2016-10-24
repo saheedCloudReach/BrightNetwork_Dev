@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Page</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Pages</value>
+    </caseValues>
+    <fields>
+        <help><!-- This field value specify whether this page is ready to use or not --></help>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check true if this page required authentication. --></help>
+        <label><!-- Authentication Required --></label>
+        <name>Authentication_Required__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is used for adding meta information for this page. --></help>
+        <label><!-- Meta Text --></label>
+        <name>Meta_Text__c</name>
+    </fields>
+    <fields>
+        <help><!-- CMS Page Name. --></help>
+        <label><!-- Name --></label>
+        <name>Name__c</name>
+    </fields>
+    <layouts>
+        <layout>Page Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

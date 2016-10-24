@@ -1,0 +1,213 @@
+<apex:page standardController="Contact" extensions="AVTRRT.NotesAttachmentsSectionController">
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" />
+
+
+	<style type="text/css">
+		.actionLink {
+			color: #015BA7 !important;
+		}
+
+		.titleLink, .ownerLink {
+			text-decoration: underline;
+		}
+
+		.actionLink, .titleLink, .ownerLink {
+			cursor: pointer;
+		}
+
+		.tt_header {
+			font-family: Verdana;
+			font-size: 9px;
+			font-weight: bold;
+		}
+
+		.tt_text {
+			font-family: Tahoma;
+			font-size: 11px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		var j$ = jQuery.noConflict();
+
+		function fixId(myid) {
+			return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+		}
+
+
+		function getId() {
+			var id18 = '{!contact.Id}';
+
+			return id18.substring(0, 15);
+		}
+
+
+		function getName() {
+			return '{!contact.FirstName}+{!contact.LastName}';
+		}
+
+
+		j$(document).ready(function() {
+			initHeader();
+
+
+			j$(".preview").tooltip({
+				content: function() {
+					var content = j$(this).siblings('.tooltip_content')[0];
+					return j$(content).html();
+				}
+			});
+		});
+		
+		
+		function initHeader() {
+			var header = j$(pbSection.find('.pbTitle').siblings('td')[0]);
+			header.attr('class', 'pbButton');
+
+			var url = '';
+
+			var newNote = j$('<input></input>');
+			newNote.attr("type", "button");
+			newNote.attr("name", "newNote");
+			newNote.attr("value", "{!$Label.New_Note}");
+			newNote.attr("class", "btn");
+			newNote.attr("title", "{!$Label.New_Note}");
+
+			url = '/002/e?parent_id=' + getId() + '&retURL=/' + getId();
+			newNote.attr("onclick", "window.parent.location='" + url + "'");
+			newNote.css('height', '18px');
+			newNote.css('padding-top', '1px');
+
+			header.append(newNote);
+
+
+			var newAttachment = j$('<input></input>');
+			newAttachment.attr("type", "button");
+			newAttachment.attr("name", "attachFile");
+			newAttachment.attr("value", "{!$Label.Attach_File}");
+			newAttachment.attr("class", "btn");
+			newAttachment.attr("title", "{!$Label.Attach_File}");
+
+			url = '/p/attach/NoteAttach?pid=' + getId() + '&parentname=' + getName() + '&retURL=/' + getId();
+			newAttachment.attr("onclick", "window.parent.location='" + url + "'");
+			newAttachment.css('height', '18px');
+			newAttachment.css('padding-top', '1px');
+
+			header.append(newAttachment);
+
+
+			var viewAll = j$('<input></input>');
+			viewAll.attr("type", "button");
+			viewAll.attr("name", "viewAll");
+			viewAll.attr("value", "{!$Label.View_All}");
+			viewAll.attr("class", "btn");
+			viewAll.attr("title", "{!$Label.View_All_Notes_Attachments}");
+
+			url = '/ui/content/ViewAllNotesPage?id=' + getId() + '&retURL=/' + getId();
+			viewAll.attr("onclick", "window.parent.location='" + url + "'");
+			viewAll.css('height', '18px');
+			viewAll.css('padding-top', '1px');
+
+			header.append(viewAll);
+
+
+			var trParent = j$(header.parent());
+			var pbHelp = trParent.append('<td class="pbHelp"><span class="help" title="Notes &amp; ' +
+					'Attachments Help (New Window)"><a href="javascript:openPopupFocusEscapePounds' +
+					'(%27https://login.salesforce.com/services/auth/sso/00D30000000XsfGEAS/' +
+					'HTAuthProvider?startURL=%252Fapex%252Fhtdoor%253Floc%253Dhelp%2526target%253D' +
+					'notes.htm%2526section%253DNotes_Attachments%2526language%253Den_US%2526' +
+					'release%253D190.11.4%2526instance%253DNA2&amp;site=https%3A%2F%2F' +
+					'help.salesforce.com&amp;showSplash=true%27, %27Help%27, 1024, 768, %27' +
+					'width=1024,height=768,resizable=yes,toolbar=yes,status=yes,scrollbars=yes,' +
+					'menubar=yes,directories=no,location=yes,dependant=no%27, false, false);" ' +
+					'class="linkCol"><span class="linkSpan">Notes &amp; Attachments Help</span> ' +
+					'<img src="/s.gif" alt="Notes &amp; Attachments Help (New Window)" class="helpIcon" ' +
+					'title="Notes &amp; Attachments Help (New Window)"></a></span></td>');
+		}
+
+
+		function del(url) {
+			var result = confirmDelete();
+
+			if (result) {
+				window.parent.location = url;
+			}
+		}
+	</script>
+
+	<apex:form >
+		<apex:pageBlock title="{!$Label.avtrrt__Notes_Attachments}" id="pbSection">
+			<apex:pageBlockTable value="{!entityList}" var="entity">
+				<apex:column styleClass="actionColumn" style="padding-top: 3px">
+					<apex:facet name="header">{!$Label.avtrrt__Action}</apex:facet>
+					<apex:outputPanel rendered="{!entity.type == $Label.avtrrt__Note}">
+						<a onclick="window.parent.location='{!entity.editUrl}'; return false;" href="{!entity.editUrl}" class="actionLink">{!$Label.Edit}</a>&nbsp;|
+						<a onclick="del('{!entity.delUrl}'); return false;" href="{!entity.delUrl}" class="actionLink">{!$Label.Del}</a>
+					</apex:outputPanel>
+					<apex:outputPanel rendered="{!entity.type == $Label.avtrrt__Attachment}">
+						<a onclick="window.parent.location='{!entity.editUrl}'; return false;" href="{!entity.editUrl}" class="actionLink">{!$Label.Edit}</a>&nbsp;|
+						<a onclick="window.open('{!entity.viewUrl}', '_blank'); return false;" href="{!entity.viewUrl}" class="actionLink">{!$Label.View}</a>&nbsp;|
+						<a onclick="del('{!entity.delUrl}'); return false;" href="{!entity.delUrl}" class="actionLink">{!$Label.Del}</a>
+					</apex:outputPanel>
+				</apex:column>
+				<apex:column >
+					<apex:facet name="header">
+						<apex:commandLink action="{!sort}" value="{!$Label.avtrrt__Type} {!IF(sortExp == 'Type', IF(sortDir='asc','▲','▼'),'')}" reRender="pbSection" status="sorting">
+							<apex:param value="Type" name="column" assignTo="{!sortExp}" ></apex:param>
+						</apex:commandLink>
+					</apex:facet>
+					
+					{!entity.type}
+				</apex:column>
+				<apex:column >
+					<apex:facet name="header">
+						<apex:commandLink action="{!sort}" value="{!$Label.avtrrt__Title} {!IF(sortExp == 'Title', IF(sortDir='asc','▲','▼'),'')}" reRender="pbSection" status="sorting">
+							<apex:param value="Title" name="column" assignTo="{!sortExp}" ></apex:param>
+						</apex:commandLink>
+					</apex:facet>
+
+					<apex:outputPanel rendered="{!entity.type == $Label.avtrrt__Note}">
+						<a onclick="window.parent.location='/{!entity.id}'" href="/{!entity.id}" class="titleLink preview" title="preview">{!entity.title}</a>
+						<div class="tooltip_content" style="display: none;">
+							<span class="tt_text">{!entity.body}</span>
+						</div>
+					</apex:outputPanel>
+					<apex:outputPanel rendered="{!entity.type == $Label.avtrrt__Attachment}">
+						<a onclick="window.parent.location='/{!entity.id}'" href="/{!entity.id}" class="titleLink">{!entity.title}</a>
+					</apex:outputPanel>
+				</apex:column>
+				<apex:column >
+					<apex:facet name="header">
+						<apex:commandLink action="{!sort}" value="{!$Label.avtrrt__Last_Modified} {!IF(sortExp == 'LastModified', IF(sortDir='asc','▲','▼'),'')}" reRender="pbSection" status="sorting">
+							<apex:param value="LastModified" name="column" assignTo="{!sortExp}" ></apex:param>
+						</apex:commandLink>
+					</apex:facet>
+					
+					{!entity.lastModifiedFmt}
+				</apex:column>
+				<apex:column >
+					<apex:facet name="header">
+						<apex:commandLink action="{!sort}" value="{!$Label.avtrrt__Created_By} {!IF(sortExp == 'CreatedBy', IF(sortDir='asc','▲','▼'),'')}" reRender="pbSection" status="sorting">
+							<apex:param value="CreatedBy" name="column" assignTo="{!sortExp}" ></apex:param>
+						</apex:commandLink>
+					</apex:facet>
+					
+					<a onclick="window.parent.location='/_ui/core/userprofile/UserProfilePage?u={!entity.ownerId}&tab=sfdc.ProfilePlatformFeed'" href="/_ui/core/userprofile/UserProfilePage?u={!entity.ownerId}&tab=sfdc.ProfilePlatformFeed" class="ownerLink">{!entity.createdBy}</a>
+				</apex:column>
+			</apex:pageBlockTable>
+			
+			<script type="text/javascript">
+				var pbSection = j$(fixId('{!$Component.pbSection}'));
+			</script>
+		</apex:pageBlock>
+
+		<apex:actionStatus id="sorting"
+				onstart=""
+				onstop="initHeader();" />
+	</apex:form>
+</apex:page>

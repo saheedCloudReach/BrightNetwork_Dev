@@ -1,0 +1,22 @@
+<apex:page standardController="AVTRRT__Job_Applicant__c" extensions="AVTRRT.CopyJobApplicantsController" recordSetVar="applicants">
+	<style type="text/css">
+		.messageCell, .message li {
+			font-family: Tahoma !important;
+		}
+	</style>
+
+	<apex:form >
+		<apex:pageMessages escape="false" />
+
+		<apex:pageBlock >
+			<apex:outputPanel style="font-family: Tahoma !important">
+				<apex:outputText value="{!$Label.avtrrt__Please_select_Job}" /><br />
+				<apex:inputField value="{!jobApplicant.AVTRRT__Job__c}" />
+			</apex:outputPanel>
+
+			<apex:pageBlockButtons >
+				<apex:commandButton value="{!$Label.avtrrt__Copy}" action="{!copy}" disabled="{!isCopyDisabled}" />
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

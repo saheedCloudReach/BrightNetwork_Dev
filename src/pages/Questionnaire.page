@@ -1,0 +1,73 @@
+<apex:page showHeader="false" sideBar="false" id="page" action="{!init}" controller="QuestionnaireController">
+ <style>
+     .msgIcon{display:none;}
+     .infoM3 {
+           background: #fff;
+          border: none;
+     }
+     
+     .btn1{
+        
+  background: none repeat scroll 0 0 #EF7C30 !important;
+  border: medium none navy;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 2px 0 0 15px !important;
+  padding: 5px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  height: 49px;
+  width: 235px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+    }
+ </style>
+ 
+ <script>
+// jQuery workarounds to make it work.
+var j$ = jQuery.noConflict();
+function fixId(myid) {
+    return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+}
+
+function iframeLoaded() {
+    //j$('.refreshPanel').show();
+    
+    var iFrameID = j$('#iframe-form')[0];
+    if (iFrameID) {
+        iFrameID.height = "";
+        iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
+    }
+}
+</script>
+<apex:pageMessages />
+<center>
+        <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" onclick="window.open('{!$Site.CurrentSiteUrl}FCMS__CMSLayout?page=JobListPage&sessionId={!$CurrentPage.parameters.sessionId}&jobSite={!$CurrentPage.parameters.jobSite}&p={!$CurrentPage.parameters.p}','_parent'); return false" rendered="{!displayThankYouMessageOnNewPage}">
+           <!-- <input type="button" value="{!$Label.TRGTFCMS__Search_for_More_Jobs}" />-->
+        </apex:outputLink>
+</center>
+
+
+<apex:form >
+
+<apex:outputPanel id="refreshPanel" rendered="{!displayQuestionnaireBlock}">
+<!--<h3>{!jobTitle} Questionnaire</h3> -->
+<iframe id="iframe-form" class="iframe-form" src="{!url}" height="855px" width="900px" frameborder="0" onload="iframeLoaded()"></iframe>
+<apex:inputHidden value="{!currentJobIndex}" />
+<!--<apex:commandButton value="Previous" action="{!previousPage}" rerender="refreshPanel" disabled="{!disablePreviousButton}"/>
+<apex:commandButton value="Next" action="{!nextPage}" rerender="refreshPanel" disabled="{!disableNextButton}"/>-->
+<br/>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--<apex:commandButton value="Exit" action="{!finish}" styleclass="btn1" />-->
+
+</apex:outputPanel>
+
+
+</apex:form>
+</apex:page>

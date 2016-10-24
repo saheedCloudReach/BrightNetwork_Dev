@@ -1,0 +1,33 @@
+<apex:page controller="AVTRRT.ReferenceSubmissionFormController" showHeader="false" sideBar="false" cache="false">
+	<apex:form >
+		<apex:pageMessages escape="false" />
+
+		<apex:pageBlock rendered="{!isEdit == false}" id="referenceList">
+			<apex:repeat value="{!referenceList}" var="reference">
+				<apex:pageBlockSection title="{!$Label.avtrrt__Reference}">
+					<apex:repeat value="{!fieldSettingList}" var="fieldSetting">
+						<apex:inputField value="{!reference[fieldSetting.Name]}" required="{!fieldSetting.AVTRRT__Is_Mandatory__c}" />
+					</apex:repeat>
+				</apex:pageBlockSection>
+			</apex:repeat>
+
+			<apex:pageBlockButtons >
+				<apex:commandButton value="{!$Label.avtrrt__Add_New_Reference}" action="{!add}" disabled="{!hasErrors}" rerender="referenceList" />
+				<apex:commandButton value="{!$Label.avtrrt__Save}" action="{!save}" disabled="{!hasErrors}" />
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+
+
+		<apex:pageBlock rendered="{!isEdit}">
+			<apex:pageBlockSection rendered="{!hasErrors == false}" title="{!$Label.avtrrt__Reference_Submission_Form}">
+				<apex:repeat value="{!fieldSettingList}" var="fieldSetting">
+					<apex:inputField value="{!reference[fieldSetting.Name]}" required="{!fieldSetting.AVTRRT__Is_Mandatory__c}" />
+				</apex:repeat>
+			</apex:pageBlockSection>
+
+			<apex:pageBlockButtons >
+				<apex:commandButton value="{!$Label.avtrrt__Save}" action="{!save}" disabled="{!hasErrors}" />
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

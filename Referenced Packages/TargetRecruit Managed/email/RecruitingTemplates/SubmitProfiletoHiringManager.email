@@ -1,0 +1,22 @@
+<table height="400" width="600" cellpadding="5" border="0" cellspacing="5" >
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p class="MsoNormal"><span><strong>Hi {!Job_Applicant__c.Hiring_Manager__c},<br><br><span style="FONT-WEIGHT: normal">Please review "{!Job_Applicant__c.Contact_Candidate__c}" for position "{!Job_Applicant__c.Job_Title__c}" .</span></strong></span></p>
+<p class="MsoNormal"><span><strong><span style="FONT-WEIGHT: normal"></span></strong></span><br></p><p class="MsoNormal"><span><span style="FONT-WEIGHT: bold"></span><strong style="FONT-WEIGHT: bold"></strong><strong><span style="FONT-WEIGHT: bold"></span><span style="FONT-WEIGHT: bold">Candidate Summary: </span><span style="FONT-WEIGHT: normal">{!Job_Applicant__c.Candidate_Write_Up__c}</span><br style="FONT-WEIGHT: bold"><span style="FONT-WEIGHT: bold"></span><br style="FONT-WEIGHT: bold"><font size="3"><span style="FONT-WEIGHT: bold">Please contact me with any additional questions on this candidate.</span></font><br style="FONT-WEIGHT: bold"><br>Have a great day!<br></strong></span></p>
+<p class="MsoNormal"><span><strong><br></strong></span></p>
+<p class="MsoNormal"><span><strong>Thanks</strong></span></p>
+<p class="MsoNormal"><br></p>
+<p class="MsoNormal">{!User.LastName} {!User.FirstName}</p>
+<p class="MsoNormal">{!User.CompanyName}</p>
+<p class="MsoNormal">{!User.Email}</p>
+<p class="MsoNormal">{!User.Phone}</p>]]></td>
+</tr>
+<tr height="300" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r2" locked="0" aEditID="c1r2" >
+<![CDATA[<P>&nbsp;</P>]]></td>
+</tr>
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r3" locked="0" aEditID="c1r3" >
+<![CDATA[<P>&nbsp;</P>]]></td>
+</tr>
+</table>

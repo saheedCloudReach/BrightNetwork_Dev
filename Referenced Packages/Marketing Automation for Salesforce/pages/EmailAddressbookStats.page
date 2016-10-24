@@ -1,0 +1,28 @@
+<apex:page standardController="ddm__dmsfc_EmailAddressBook__c" >
+
+    <script type="text/javascript" src="https://sf.crmconnector.net/v2/scripts/EmailMarketing_v3.js"></script>
+    <apex:includeScript value="{!$Resource.ddm__Configuration}" />
+
+    <iframe id="frStats" frameBorder="0" name="frStats" style="border:0px; width:100%; height:300px;" src=""></iframe>           
+         
+    <apex:outputField rendered="false" value="{!ddm__dmsfc_EmailAddressBook__c.ddm__Email_Account__c} "/>
+ 
+    <script type="text/javascript">   
+        var encOrgId = xor_str('{!$Organization.Id}',"FAF02EE5-0D0B-4DC5-B7D8-999DEC10D0BD");
+
+        var qs = '';        
+        qs += 'OrganisationId={!$Organization.Id}';
+        qs += '&ServerUrl={!$Api.Enterprise_Server_URL_180}';           
+        qs += '&SessionId={!$Api.Session_ID}';
+        qs += '&PartnerUrl={!$Api.Partner_Server_URL_140}';
+        qs += '&SfEmailAddressBookId={!JSENCODE(ddm__dmsfc_EmailAddressBook__c.Id)}';
+        qs += '&SfEmailAccountId={!JSENCODE(ddm__dmsfc_EmailAddressBook__c.ddm__Email_Account__c)}';
+        qs += '&AddressBookName={!JSENCODE(ddm__dmsfc_EmailAddressBook__c.Name)}';
+        qs += '&DmAccountId={!ddm__dmsfc_EmailAddressBook__c.ddm__Email_Account__r.ddm__AccountId__c}';
+
+        for (var p in config) qs += "&" + p + "=" + config[p];   
+           
+        var frame = document.getElementById("frStats");
+        frame.src = "https://sf.crmconnector.net/v2/addressbook/statistics?qs=" + EncryptParams(qs);        
+    </script>
+</apex:page>

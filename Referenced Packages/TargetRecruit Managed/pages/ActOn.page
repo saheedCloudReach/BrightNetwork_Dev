@@ -1,0 +1,93 @@
+<apex:page controller="AVTRRT.ActOnController" showHeader="false" sidebar="false">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+    <style type="text/css">
+        h2.mainTitle {
+            font-family: Tahoma;
+            font-size: 14px !important;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var j$ = jQuery.noConflict();
+
+        function fixId(myid) {
+           return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+        }
+
+        function getCandidates() {
+               //alert(candidates.val());
+               //alert(test);
+            return candidates.val();
+           
+        }
+
+        function goRequest() {
+             var f = document.createElement('form');
+             // f.action='https://sf.actonsoftware.com/acton/sforce/sendSforceContactOrLead.jsp';
+             f.action='{!actOnServiceLink}';
+             f.method = 'post';
+             f.target = '_self';
+             
+            var i = document.createElement('input');
+             i.id = 'id';
+             i.name = 'id';
+             i.type = 'hidden';
+             i.value = getCandidates();                
+             f.appendChild(i);   
+            //i.value = 'teststring';   
+
+             var i = document.createElement('input');
+             i.id = 'session';
+             i.name = 'session';
+             i.type = 'hidden';
+             i.value = '{!$Api.Session_ID}';
+             f.appendChild(i);
+
+             var i = document.createElement('input');
+             i.id = 'server';
+             i.name = 'server';
+             i.type = 'hidden';
+             //i.value = '{!salesforceUrlValue}';
+             i.value = '{!$Api.Partner_Server_URL_190}';
+             f.appendChild(i);
+   
+
+            
+             var i = document.createElement('input');
+             i.id = 'userid';
+             i.name = 'userid';
+             i.type = 'hidden';
+             i.value = '{!$User.Id}';
+               
+             f.appendChild(i);
+            
+            
+                
+             document.body.appendChild(f);
+             //alert( j$(f).html());
+             
+             f.submit();
+        }
+    </script>
+    <apex:form >
+        <apex:pageMessages />
+
+        <apex:inputHidden id="candidates" value="{!candidateIds}" />
+        <script type="text/javascript">
+            var candidates = j$(fixId('{!$Component.candidates}'));
+        </script>
+
+        <apex:pageBlock title="{!$Label.avtrrt__Candidate_List}">
+            <apex:pageBlockTable value="{!candidateList}" var="candidate" >
+                <apex:column headerValue="{!$Label.avtrrt__Candidate}">
+                    <apex:outputLink style="font-family: Tahoma;" target="blank" value="/{!candidate.Id}">
+                        {!candidate.Name}
+                    </apex:outputLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+
+        <apex:commandButton onclick="goRequest(); return false;" value="{!$Label.avtrrt__Submit}" rendered="{!isCandidateExist}" />
+    </apex:form>
+</apex:page>

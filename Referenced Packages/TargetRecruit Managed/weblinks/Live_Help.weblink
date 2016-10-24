@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPageWebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Live Help</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>https://server.iad.liveperson.net/hc/52132486/?cmd=file&amp;file=chatFrame&amp;site=52132486&amp;LEAppKey=f907f2d9acd64b7f8c00b83bed3c2822&amp;referrer=http%3A//www.targetrecruit.net/support&amp;referrer=http%3A//www.targetrecruit.net/support&amp;bId=14&amp;sessionkey=H6583239227544981195-7547320110495175991K8480492</url>
+</CustomPageWebLink>

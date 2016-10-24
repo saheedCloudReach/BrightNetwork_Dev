@@ -1,0 +1,11 @@
+<apex:page controller="TRGTFCMS.ClientHomePageController" title="{!$Label.trgtfcms__HomePage}" showHeader="false" sideBar="false" action="{!init}" cache="false">
+<h1 style="text-align: center;"> 
+    <span style="background-color: rgb(173, 216, 230);">
+        <span style="color: rgb(255, 160, 122);"><span style="font-size: 36px;">{!$Label.trgtfcms__Welcom} {!contact.FirstName} {!contact.LastName}</span>
+        </span>
+    </span>
+</h1>   
+
+
+
+</apex:page>

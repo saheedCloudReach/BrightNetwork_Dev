@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HomePageComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <links>Broadcasting</links>
+    <links>Broadcasting_Setup</links>
+    <links>Configuration</links>
+    <pageComponentType>links</pageComponentType>
+</HomePageComponent>

@@ -1,0 +1,413 @@
+<apex:page controller="TRGTFCMS.JobListViewComponentController1" title="{!$Label.trgtfcms__Job_List_Page}"
+        standardstylesheets="true" showHeader="false" sideBar="false" cache="false" action="{!init}" language="{!selectLanguage}">  
+        
+<!-- this component is used for displaying all jobs filtered by filters criteria. -->
+    <head>  
+        <meta name="keywords" content="{!metaKeywords}" id="keywords"/>
+    </head>
+    <style>
+        <apex:outputText value="{!cmsCssCustom}" />
+       .lightLink {
+        color:yellow;
+       }
+       .lightLinkPage {
+        color:violet;
+       }
+       #paging td{
+       font-size: 11.5px;
+    padding: 0;  
+       }
+       .field-keywords{width:91%;}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script>
+        // jQuery workarounds to make it work.
+        var j$ = jQuery.noConflict();
+        function fixId(myid) {
+                return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+        }
+    </script>
+            
+    <script type="text/javascript">
+        function redirectSmartphone(url){
+            if (url && url.length > 0 && isSmartphone())
+            window.parent.location = url;
+        }
+        function isSmartphone(){
+            if (detectUagent("android")) return true;
+            else if (detectUagent("blackberry")) return true;
+            else if (detectUagent("iphone")) return true;
+            else if (detectUagent("palm")) return true;
+            else if (detectUagent("ipad")) return true;
+            else if (detectUagent("ipod")) return true;
+            return false;
+        }
+        
+        function detectUagent(name){
+            var uagent = navigator.userAgent.toLowerCase();
+            return (uagent.search(name) > -1);
+        }
+        redirectSmartphone("/TRGTFCMS__MobilePortal");
+    </script> 
+    
+    <script src="{!$Resource.LinkedIn}" language="javascript"></script>
+
+    <script type="text/JavaScript" language="JavaScript">
+        //pop up the new window...
+        function popWindow(s){
+            //alert('hello');
+            window.open(s,'_parent');
+        }
+
+function CreateBookmarkLink( a ) { 
+title = document.title; 
+url = document.location; 
+try { 
+    // Internet Explorer 
+    window.external.AddFavorite( url, title ); 
+} 
+catch (e) { 
+    try { 
+      // Mozilla 
+      window.sidebar.addPanel( title, url, "" ); 
+    } 
+    catch (e) { 
+      // Opera 
+      if( typeof( opera ) == "object" ) { 
+        a.rel = "sidebar"; 
+        a.title = title; 
+        a.url = url; 
+        return true; 
+      } 
+      else { 
+        // Unknown 
+        alert( 'Press Ctrl-D to add page to your bookmarks' ); 
+      } 
+    } 
+} 
+return false; 
+}
+
+    function linkedinCompany()
+    {
+        new LinkedIn.CompanyInsiderPopup("acumen"," {!org.Name}");
+    }
+    </script>
+    
+    <apex:pageMessages />
+    <apex:outputPanel rendered="{!errorParam}">
+
+    <div class="search-page">
+        <apex:form id="form">
+        <p class="add-favorites-p">
+          <a title="{!$Label.Add_to_favorites}" onclick="CreateBookmarkLink(this)" href="javascript:;">
+                {!$Label.Save_this_page_to_your_favorites}
+            </a>
+    <a title="{!$Label.Add_to_favorites}" onclick="CreateBookmarkLink()" href="javascript:;">
+                <apex:image url="{!URLFOR($Resource.TRGTFCMS__favorites_add)}"/>
+            </a>
+        </p>
+        
+        <div class="container round-corner">
+        <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Candidate',true,false)}">
+        <div class="page-title">
+            <h4 class="message-top-p">{!$Label.trgtfcms__Thank_you_for_your_interest_in_applying_for_a_job_with_us}</h4>
+            
+            
+                
+                <h4 class="message-top-p">
+                    {!$Label.trgtfcms__If_you_prefer_you_can_simply} 
+                    <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" target="_parent">
+                        <apex:param name="page" value="JobApplicationPage" />
+                        <apex:param name="sessionId" value="{!if($CurrentPage.parameters.sessionId==null,'',$CurrentPage.parameters.sessionId)}" />
+                        <apex:param name="jobSite" value="{!$CurrentPage.parameters.jobSite}" />
+                        <apex:param name="p" value="{!if($CurrentPage.parameters.p==null,'',$CurrentPage.parameters.p)}" />
+                        <b>
+                            {!$Label.trgtfcms__Apply}
+                        </b>
+                    </apex:outputLink>
+                    {!$Label.trgtfcms__for_general_consideration}
+                </h4>
+            </div>
+            </apex:outputPanel>
+            
+            <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Vendor Profile',true,false)}">
+            <div class="page-title">
+                <h4 class="message-top-p">{!$Label.trgtfcms__Thank_you_for_your_interest_in_submitting_candidates_for_a_job_with_us}</h4>
+
+                <h4 class="message-top-p">
+                    {!$Label.trgtfcms__If_you_prefer_you_can_simply}
+                    <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" target="_blank">
+                        <apex:param name="page" value="JobApplicationPage" />
+                        <apex:param name="sessionId" value="{!if($CurrentPage.parameters.sessionId==null,'',$CurrentPage.parameters.sessionId)}" />
+                        <apex:param name="jobSite" value="{!$CurrentPage.parameters.jobSite}" />
+                        <apex:param name="p" value="{!if($CurrentPage.parameters.p==null,'',$CurrentPage.parameters.p)}" />
+                        <b>
+                            {!$Label.trgtfcms__Submit_Candidates}
+                        </b>
+                    </apex:outputLink>
+                    {!$Label.trgtfcms__for_general_consideration}
+                </h4>
+            </div>
+            </apex:outputPanel>
+
+            <div class="search-form">
+                <div class="keywords">
+                    <apex:outputLabel styleClass="field-label" for="search-keywords" value="{!$Label.trgtfcms__Keywords_double_dot}" />
+                    <apex:inputText value="{!jobSearch}" styleClass="field-keywords" id="search-keywords"/>
+                </div>
+
+            <div class="coloumn-one">
+                <div class="job-title">
+                    <label class="field-label" for="job-title">{!$Label.trgtfcms__Job_Title}:</label>
+                    <apex:inputField required="false" value="{!job.AVTRRT__Job_Title__c}" styleClass="field-text"/>
+                </div> 
+                <div class="coloumn-one"> 
+                    <apex:outputPanel rendered="{!enableGeoCoding}">
+                     Use my current location : &nbsp;
+                    <apex:inputCheckbox value="{!useMyCurrentLocation}" />
+                    </apex:outputPanel>   
+                </div>          
+            </div>
+            <div class="coloumn-two">
+                <div class="job-category">
+                    <label class="field-label" for="job-category">{!$Label.trgtfcms__Job_Category_double_dot}</label>
+                    <apex:inputField value="{!job.AVTRRT__Job_Category__c}" styleClass="field-text"/>
+                </div>
+                 <div class="coloumn-two"> 
+                    <apex:outputPanel rendered="{!enableGeoCoding}">
+                     Zip Code: &nbsp;
+                    <apex:inputText value="{!zipCode}" />
+                    </apex:outputPanel>   
+                </div>          
+            </div>
+            <div class="coloumn-three">
+                <div class="experience">
+                    <label class="field-label" for="experience">{!$Label.trgtfcms__Experience}:</label>
+                    <apex:inputField value="{!job.AVTRRT__Experience__c}" styleClass="field-text"/>
+                </div>
+                <div>
+                    <apex:outputPanel rendered="{!enableGeoCoding}">
+                     Radius: &nbsp;
+                        <apex:inputText value="{!radius}" />
+                    </apex:outputPanel>  
+                </div>
+                
+            </div>
+     <div class="coloumn-four">
+                 <div class="job-term">
+                    <label class="field-label" for="job-term">{!$Label.trgtfcms__Job_Term_double_dot}</label>
+                    <apex:inputField value="{!job.AVTRRT__Job_Term__c}" styleClass="field-text"/>
+                </div>
+                <div>
+                    
+                   
+                </div>
+            </div>
+        </div>
+        <div class="form-submit1 table_apply_button"  style="float: left;margin-top: 7px;width: 100%;">
+            <apex:commandButton action="{!search}" value="{!$Label.trgtfcms__Search_Jobs}"/>
+            <apex:commandButton onclick="window.location.href = '{!currentUrlJobListPage}';return false;" value="{!$Label.trgtfcms__Reset}" />
+        </div>
+
+    </div>
+    </apex:form>
+    
+    <apex:form id="form1">
+
+    <div class="search-result">
+        <apex:outputPanel rendered="{!showJobError}" styleClass="messages" >
+            <div class="messages" >
+                    <div class="warning" >{!$label.No_Jobs_found_Please_change_your_search_criteria}</div>
+            </div>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!showApplyButton}">
+            <table class="cmstable" cellspacing="0" summary="{!$Label.Search_Result_of_the_jobs}">
+                <tr id="afterInsertPaging">
+                    <td colspan="8">
+                        <div class="form-submit1 table_apply_button">
+                        <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Vendor Profile',true,false)}">
+                              <apex:commandLink action="{!apply}"  value="" rendered="{!showApplyButton}" target="_parent"><input type="button" value="{!$Label.Submit_Candidates}" /></apex:commandLink>
+                        </apex:outputPanel>
+                         <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Candidate',true,false)}">
+                              <apex:commandLink action="{!apply}"  value="" rendered="{!showApplyButton}" target="_parent"><input type="button" value="{!$Label.Apply_for_Selected_Jobs}" /></apex:commandLink>
+                        </apex:outputPanel>
+                                <input type="reset" />
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <apex:outputPanel rendered="{!isShowPagination}">
+                    <th scope="col" abbr="cbox">&nbsp;&nbsp; <apex:inputCheckBox value="{!jobCheckBox1}" id="mainCheckBox" onclick="applyCheckBoxClick(this)"/></th>
+                    </apex:outputPanel>
+                    <th scope="col" abbr="Job Title">{!$label.Job_Title}</th>
+                    <th scope="col" abbr="Description">{!$label.Description}</th>
+                    <th scope="col" abbr="Description">{!$label.Category}</th>
+                    <th scope="col" abbr="Description">{!$label.City}</th>
+                    <th scope="col" abbr="Description">{!$label.State}</th>
+                    <th scope="col" abbr="Description">{!$label.Term}</th>
+                    
+                </tr>
+                <apex:repeat value="{!searchedJobBeanListOfList1}" var="searchedJob" id="repeat1">
+                <apex:repeat value="{!searchedJob}" var="job1" id="repeat2">
+
+                    <tr class="{!job1.oddEvenCssClass}">
+                        <td >
+                            <apex:inputCheckBox value="{!job1.checkBox}" disabled="{!job1.jobAppliedBefore}" styleclass="linkCheckBox" id="checkBox" />
+                            <!--<apex:inputCheckBox value="{!jobCheckBox}" id="checkBox" selected="{!job1.jobAppliedBefore}" disabled="{!job1.jobAppliedBefore}"/>  -->
+                        </td>
+                        <td>
+                            <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" target="_parent">
+                                <apex:param name="jobIds" value="{!job1.jobObject.Id}"/>
+                                <apex:param name="page" value="JobDetailPage" />
+                                <apex:param name="sessionId" value="{!$CurrentPage.parameters.sessionId}" />
+                                <apex:param name="jobSite" value="{!$CurrentPage.parameters.jobSite}" />
+                                <apex:param name="p" value="{!$CurrentPage.parameters.p}" />
+                                {!job1.jobObject.AVTRRT__Job_Title__c}<br/>
+                            </apex:outputLink>
+                            <!--<apex:commandLink action="{!goToThisJob}" onclick="javascript:document.getElementById('JobId').value='{!job1.jobObject.Id}';" value="{!job1.jobObject.AVTRRT__Job_Title__c}" /></br> -->
+                        </td>
+                        <td> <p> {!job1.jobObject.AVTRRT__Job_Summary__c} </p> </td>
+                        <td> <p> {!job1.jobObject.AVTRRT__Job_Category__c} </p> </td>
+                        <td> <p> {!job1.jobObject.AVTRRT__Job_City__c} </p> </td>
+                        <td> <p> {!job1.jobObject.AVTRRT__State__c}</p> </td>
+                        <td> <p> {!job1.jobObject.AVTRRT__Job_Term__c} </p> </td>
+                    </tr>
+            </apex:repeat>
+            </apex:repeat>
+             <apex:outputPanel rendered="{!isShowPagination}">
+             <tr id="paging">
+                <td colspan="8">
+                <span>
+                <nobr>
+                {!$label.Page} #:&nbsp;{!pageNumber} {!$label.out_of} {!pageSizeList.size}
+                &nbsp;
+                 <apex:commandLink target="_self" action="{!pageChanged}">
+                    <apex:param name="PreviousPage" value="Previous"/>
+                    <apex:commandButton disabled="{!disablePreviousButton}" value="{!$Label.trgtfcms__Previous}"  />
+                </apex:commandLink>
+                <apex:repeat value="{!numbersPage}" var="Page">
+                    &nbsp;
+                    <apex:commandLink value="{!Page}" styleClass="empty" target="_self" action="{!pageChanged}">
+                        <apex:param name="pageNumber" value="{!Page}"/>
+                        <apex:param name="countJob" value="{!countJobForPage}"/>
+                    </apex:commandLink>
+                    &nbsp;
+                   </apex:repeat>
+                   &nbsp;
+                   <apex:commandLink target="_self" action="{!pageChanged}">
+                        <apex:param name="nextPage" value="nextPage" />
+                        <apex:commandButton disabled="{!disableNextButton}" value="{!$Label.trgtfcms__Next}" />
+                   </apex:commandLink>
+                   &nbsp;
+                   {!$label.Show_Page}:&nbsp;<apex:selectList value="{!selectedPage}" size="1">
+                        <apex:selectOptions value="{!pages}"></apex:selectoptions>
+                        <apex:actionSupport event="onchange" action="{!selectedPageNumber}"  />
+                    </apex:selectList>
+                   &nbsp;
+                   {!$label.Records_per_Page}:<apex:selectList value="{!selectedPageSize}" size="1">
+                        <apex:selectOptions value="{!pageCountSizeList}"></apex:selectoptions>
+                        <apex:actionSupport event="onchange" action="{!selectedPageCountRecord}"  />
+                    </apex:selectList>
+                   &nbsp;
+                   <b><u> {!$label.Total_count}: {!totalCountRecords}</u></b>
+                  </nobr>
+                  </span>
+                </td>
+            </tr>
+          </apex:outputPanel>
+                <tr>
+                    <td colspan="8">
+                        <div class="form-submit1 table_apply_button">
+                         <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Vendor Profile',true,false)}">
+                              <apex:commandLink action="{!apply}"  value="" rendered="{!showApplyButton}" target="_parent"><input type="button" value="{!$Label.Submit_Candidates}" /></apex:commandLink>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Candidate',true,false)}">
+                              <apex:commandLink action="{!apply}"  value="" rendered="{!showApplyButton}" target="_parent"><input type="button" value="{!$Label.Apply_for_Selected_Jobs}" /></apex:commandLink>
+                        </apex:outputPanel>
+                            <input type="reset" />
+                            <apex:outputPanel rendered="{!isShowPagination}">
+                            </apex:outputPanel>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </apex:outputPanel>
+    </div>
+    <input type="hidden" Id="JobId"  value="" />
+    </apex:form>
+    </div>
+    </apex:outputPanel>
+
+    <script>
+     j$(document).ready(function() {
+         
+        var pageNumber = '{!pageNumber}';
+        
+        j$('.empty').each(function(){
+            
+            if(j$(this).text() === pageNumber){
+                j$(this).addClass('lightLinkPage');
+            }
+        });
+        
+        var paging = j$('#paging').clone(true);
+        j$('#afterInsertPaging').after(paging);
+        
+        window.scrollTo(0, 0);parent.scrollTo(0, 0);
+    });
+    function goToThisJob(id){
+        document.getElementById(JobId).value=id;
+        alert(document.getElementById('JobId').value);
+        return true;
+    }
+
+    function applyCheckBoxClick(inputCheck)
+    {
+        checkId = inputCheck.id;
+        var checkIdList = checkId.split(':');
+        size = checkIdList.length;
+
+        checkName = checkIdList[size-1];
+        //checkName1 = ':'+checkName;
+        baseIdPart = checkId.replace(checkName,'');
+       
+        var i=0;
+        var j=0;
+        if(inputCheck.checked==true)
+        {
+            
+            while (document.getElementById(baseIdPart+'repeat1:'+i+':repeat2:'+j+':checkBox'))
+            {
+                if(document.getElementById(baseIdPart+'repeat1:'+i+':repeat2:'+j+':checkBox').disabled == false){
+                    document.getElementById(baseIdPart+'repeat1:'+i+':repeat2:'+j+':checkBox').checked =true;
+                }
+                j++;
+                if(j==999){
+                    i++;
+                    j=0;
+                }
+            }
+
+        }
+        else
+        {
+            while (document.getElementById(baseIdPart+'repeat1:'+i+':repeat2:'+j+':checkBox'))
+            {
+                if(document.getElementById(baseIdPart+'repeat1:'+i+':repeat2:'+j+':checkBox').disabled == false){
+                    document.getElementById(baseIdPart+'repeat1:'+i+':repeat2:'+j+':checkBox').checked =false;
+                }
+                j++;
+                if(j==999){
+                    i++;
+                    j=0;
+                }
+            }
+        }
+    }
+    
+    
+    </script>
+</apex:page>

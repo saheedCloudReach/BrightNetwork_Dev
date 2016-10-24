@@ -1,0 +1,3 @@
+<apex:page standardController="ddm__dmsfc_EmailAddressBook__c" >
+    <p>Please use the "Advanced" button to edit Address Book settings.</p>
+</apex:page>

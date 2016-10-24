@@ -1,0 +1,56 @@
+<apex:page controller="BCST.SetLookUpExtrafieldsController" showHeader="false" standardStylesheets="true">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+<style type="text/css">
+    td {
+        font-family: Tahoma;
+        display: block;
+    }
+    
+    table {
+        width: 500px;
+    }
+</style>
+
+<script type="text/javascript">
+    var j$ = jQuery.noConflict();
+    
+    function updateParentElement(val) {
+        var htmlElementId = '{!htmlElementId}';     
+        <!-- alert('value='+val); -->
+        if (val == null) { val = ''; } 
+        
+        window.opener.document.getElementById(htmlElementId).value = val;
+        j$(window.opener.document.getElementById(htmlElementId)).change();
+        window.close();
+    }
+</script>
+
+
+<body>
+    <apex:form >
+        <apex:pageBlock rendered="{!boardId != null && extraName != null && htmlElementId != null}">
+            <br />
+            <apex:outputPanel style="font-family: Verdana; font-size: 11px; font-weight: bold;">
+                <apex:outputText value="{!$Label.bcst__Keyword}" style="font-family: Arial;"/>&nbsp;&nbsp;
+                <apex:inputText value="{!keyword}" style="font-family: Arial;" />&nbsp;
+                <apex:commandButton value="{!$Label.bcst__Go}" action="{!go}" />
+            </apex:outputPanel><br /><br /><br />
+            
+            <apex:pageBlockSection title="{!$Label.bcst__Please_select}">
+                <apex:selectRadio value="{!itemSelected}">
+                    <apex:selectOptions value="{!itemList}" />
+                </apex:selectRadio> 
+            </apex:pageBlockSection>
+            
+            <apex:commandButton value="{!$Label.bcst__Save}" onclick="updateParentElement(j$('input[type=radio]:checked').val()); return false;" />
+        </apex:pageBlock>
+        
+        <apex:pageBlock rendered="{!boardId == null || extraName == null || htmlElementId == null}">
+            <p style="font-family: Tahoma; font-size: 12px; color: Red;">{!$Label.bcst__Please_check_the_URL_parameters}</p>
+        </apex:pageBlock>
+    </apex:form>
+</body>
+
+</apex:page>

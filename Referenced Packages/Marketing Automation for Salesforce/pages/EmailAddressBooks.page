@@ -1,0 +1,5 @@
+<apex:page controller="ddm.IEHeaderController" tabStyle="ddm__dmsfc_EmailAddressBook__c" docType="xhtml-1.0-strict">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <c:CommonJS />
+    <apex:listViews id="List" type="ddm__dmsfc_EmailAddressBook__c"  />
+</apex:page>

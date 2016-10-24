@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification to Candidates about new Job</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Avankia_Letterhead</letterhead>
+    <name>Notify Job To Candidates</name>
+    <style>freeForm</style>
+    <subject>Your Profile Matched for Job: {!Job__c.Job_Title__c}</subject>
+    <textOnly>Hi,
+
+ 
+
+This is to intimate you that your profile matches the Job &quot;{!Job__c.Job_Title__c}&quot; for {!Job__c.Account_Job__c}. Please find the details below:
+
+ 
+
+Job Summary:
+
+{!Job__c.Job_Summary__c}
+
+ 
+
+Job Category: {!Job__c.Job_Category__c}
+
+Job Term: {!Job__c.Job_Term__c}
+
+Desired Skillset: {!Job__c.00N40000001K6wl}
+
+Expected Start Date: {!Job__c.Start_Date__c}
+
+Job Location: 
+
+{!Job__c.Street_Address__c}
+
+{!Job__c.Job_City__c}
+
+{!Job__c.State__c}
+
+{!Job__c.Job_Postal_Code__c} 
+{!Job__c.Country_Locale__c}
+
+ 
+
+ 
+
+Please contact us back, incase of any clarifications.
+
+ 
+
+Thanking You,
+
+{!Job__c.OwnerFullName}
+
+{!Job__c.OwnerTitle}
+
+{!Job__c.OwnerPhone}
+
+{!Job__c.OwnerEmail}</textOnly>
+    <type>html</type>
+</EmailTemplate>

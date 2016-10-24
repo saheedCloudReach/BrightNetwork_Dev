@@ -1,0 +1,280 @@
+<apex:page id="page" showHeader="false" sidebar="false" controller="AVTRRT.CreateNewJobOrderController" docType="html-5.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+
+	<link rel="stylesheet" href="{!URLFOR($Resource.OneStarter,'icons.css')}"/>
+	<link rel="stylesheet" href="{!URLFOR($Resource.OneStarter,'styles.css')}"/>
+	<link rel="stylesheet" href="{!URLFOR($Resource.OneStarter,'OneStarter.css')}"/>
+	<!-- JavaScript files -->
+	<script src="{!URLFOR($Resource.TouchSwipe,'jquery.touchSwipe.min.js')}"></script>
+	<script src="{!URLFOR($Resource.OneStarter,'jquery.onestarter.js')}"></script>
+	<script src="/canvas/sdk/js/publisher.js"></script>
+
+	<script>
+		$(function() {
+			$("[id $='datepicker']").datepicker();
+		});
+		function popupWindow(element) {
+			window.open("/apex/PopupWindow?name="+element,"Ratting","toolbar=no, status=no, width=auto,height=auto");
+		}
+		var s1 = {};
+		$(document).ready(function() {
+			s1 = $('div#one-app').oneStarter('record-action');
+		});
+		Sfdc.canvas.publisher.subscribe({name: "publisher.showPanel",onData:function(e) {
+			Sfdc.canvas.publisher.publish({name: "publisher.setValidForSubmit", payload:"true"});
+		}});
+
+		Sfdc.canvas.publisher.subscribe({ name: "publisher.post", onData: function(e) {
+			CreateNewJob();
+		}});
+		function openPopWin(element){
+			document.getElementById('page:f1:hid').value=element;
+			openPop(element);
+		}
+		function passingToMainWindow(recordId, recordName) {
+			var objName = document.getElementById('page:f1:hid').value;
+			var pageIds = 'page:f1:';
+
+			var finalObj = pageIds.concat(objName);
+			var finalObjId = pageIds.concat(objName) + '_lkid';
+			var finalObjName = pageIds.concat(objName) + '_lkold';
+
+			document.getElementById(finalObj).value = recordName;
+			document.getElementById(finalObjId).value = recordId;
+			document.getElementById(finalObjName).value = recordName;
+
+			closepop();
+		}
+		function display(){
+			var inputValue = document.getElementById('inputField').value;
+			DisplaySelectedList(inputValue);
+		}
+	</script>
+	<style>
+		body{
+			margin-left:10px ;
+			position:relative;
+			font-size:100%;
+		}
+		::-webkit-scrollbar {
+			display: none;
+		}
+		.one-field-section{
+			border-bottom :0px !important;
+		}
+		.ui-datepicker-next, .ui-datepicker-prev {
+			position:relative;
+		}
+		.ui-datepicker-next:after {
+			z-index:10000;
+			color:black;
+			position:absolute;
+			left:9px;
+			top:4px;
+			content: ">";
+		}
+		.ui-datepicker-prev:after {
+			z-index:10000;
+			color:black;
+			position:absolute;
+			left:9px;
+			top:4px;
+			content: "&lt;";
+		}
+		a:active {
+			color: #0C090A;
+		}
+		a:visited {
+			color: #0C090A;
+		}
+		a:link {
+			color: #0C090A;
+		}
+		a {
+			color: #0C090A;
+		}
+		.titleClass {
+			display: block !important;
+			position: relative !important;
+			color: #3c3d3e; !important;
+			font-weight: bold !important;
+			font-size:16px;
+			border-bottom: 1px solid #cfd4d9 !important;
+			padding: 15px !important;
+			margin-left:-3px;
+
+		}
+
+		.tablebodyClass {
+			display: block !important;
+			position: relative !important;
+			color: #3c3d3e; !important;
+			font-weight: normal !important;
+			font-size:14px;
+			padding: 10px !important;
+			border-bottom: 1px solid #cfd4d9 !important;
+		}
+		.sf1input {
+			width:100%;
+			font-size: 14px;
+			color: #3c3d3e;
+			padding: 7px 14px;
+			line-height: 25px;
+			border: 1px solid #cfd0d2;
+			border-radius: 5px;
+			background-color: #fff;
+			box-shadow: inset 0 2px 2px rgba(0,0,0,.07);
+		}
+		.icon {
+			float: left;
+			display: inline-block;
+			height: 30px;
+			width: 30px;
+			position:relative;
+			top:0px !important;
+		}
+		.imgIcon{
+			position:relative;
+			height: 30px;
+			width: 30px;
+			float: left;
+			background-color: #6f7ccb;
+			border-radius: 3px;
+			top:-4px;
+		}
+		.custPopup{
+			position:absolute;
+			background-color: white;
+			z-index: 9999;
+			padding:10px;
+			position: absolute;
+			width: 100%;
+			top:100px;
+			border-radius: 5px;
+
+		}
+		.popupBackground{
+			opacity: 0.20;
+			border-radius: 5px;
+			filter: alpha(opacity = 20);
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			border-radius: 5px;
+			z-index: 9998;
+		}
+		.buttonclass {
+		border: 1px solid #095c90 !important;
+		border-radius: 5px !important;
+		box-shadow: inset 0 2px 2px rgba(0,0,0,.07) !important;
+		background: -webkit-linear-gradient(#1482c7,#056590) !important;
+		height: 30px !important;
+		margin: 7px !important;
+		padding: 0 14px 2px !important;
+		min-width: 0 !important;
+		color: #ffffff !important;
+		font-size:75% !important;
+		}
+
+	</style>
+	<apex:outputpanel id="TestPanel" >
+		<div id="one-app">
+			<apex:form id="f1">
+				<div id="form">
+					<section>
+						<apex:actionFunction Name="CreateNewJob" action="{!createNewJob}" />
+						<label Class="field-label">Job Title</label>
+						<apex:inputText value="{!userInput.AVTRRT__Job_Title__c}" />
+
+						<label Class="field-label">Client</label>
+						<a href="javascript:void(0);" onclick="openPopWin('Account')" style="text-decoration: none !important;">
+							<apex:inputField value="{!userInput.AVTRRT__Account_Job__c}" id="Account" HTML-PlaceHolder="Select Account" />
+						</a>
+
+						<label Class="field-label">Start Date</label>
+							<apex:inputText value="{!userInput.AVTRRT__Start_Date__c}"  id="datepicker" HTML-PlaceHolder="M/d/yyyy"/>
+
+						<label Class="field-label">Recruiter</label>
+						<a href="javascript:void(0);" onclick="openPopWin('User')" style="text-decoration: none !important;">
+							<apex:inputField value="{!userInput.AVTRRT__Recruiter__c}" id="User" HTML-PlaceHolder="Select User"/>
+						</a>
+
+						<label Class="field-label">Hiring Manager</label>
+						<a href="javascript:void(0);" onclick="openPopWin('Contact')" style="text-decoration: none !important;">
+							<apex:inputField value="{!userInput.AVTRRT__Hiring_Manager__c}" styleclass="" id="Contact" HTML-PlaceHolder="Select Contact"/>
+						</a>
+
+						<label Class="field-label">Job Description</label>
+						<apex:inputField value="{!userInput.AVTRRT__Job_Description__c}" style="resize:vertical !important;"/>
+						<apex:inputHidden value="{!name}" id="hid" />
+
+						<apex:outputPanel id="popupBlock">
+							<apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}" />
+							<apex:outputPanel styleClass="custPopup" layout="block" rendered="{!displayPopUp}" id="look">
+
+								<table style="width:100%;background-color: #f0f1f2;">
+									<tr>
+										<td style="background: linear-gradient(#2a93d5,#107abb);border-radius:5px;">
+											<apex:commandButton action="{!closePopup}" value="Cancel" rerender="popupBlock" styleClass="buttonclass"/>
+
+										</td>
+									</tr>
+									<tr>
+										<td class="tablebodyClass">
+											<input type="text" value="{!searchString}" id="inputField" placeholder="Search for Name" class="sf1input"/>
+											<apex:image value="{!$Resource.AVTRRT__SearchIcon}" styleclass="icon" onClick="display();"
+											style=" cursor:pointer;height:18px !important;width:18px !important;float:right;z-index:10;margin-right:10px;margin-top:-30px;"/>
+										</td>
+									</tr>
+									<tr>
+										<td class="titleClass">
+											<apex:outputpanel rendered="{!if(name =='Account',true,false)}">
+												<div class="imgIcon">
+													<img src="https://ap1.salesforce.com/img/icon/t4/standard/account_120.png" class="icon" />
+												</div>
+											</apex:outputpanel>
+
+											<apex:outputpanel rendered="{!if(name =='Contact',true,false)}">
+												<div class="imgIcon">
+													<img src="https://ap1.salesforce.com/img/icon/t4/standard/contact_120.png" class="icon" />
+												</div>
+											</apex:outputpanel>
+
+											<apex:outputpanel rendered="{!if(name =='User',true,false)}">
+												<div class="imgIcon">
+													<img src="https://ap1.salesforce.com/img/icon/t4/standard/people_120.png" class="icon" />
+												</div>
+											</apex:outputpanel>
+
+											<span style="position:relative;margin-left:7px !important;top:0px !important">{!name}</span>
+
+											<apex:repeat value="{!listRecords}" var="acc">
+													<tr>
+														<td class="tablebodyClass" style="cursor:pointer;" onClick="passingToMainWindow('{!acc['Id']}', '{!acc['Name']}');">
+															<span >{!acc['Name']}</span>
+														</td>
+													</tr>
+											</apex:repeat>
+
+										</td>
+									</tr>
+								</table>
+							</apex:outputPanel>
+						</apex:outputPanel>
+					</section>
+				</div>
+				<apex:actionFunction action="{!showPopup}" name="openPop" rerender="popupBlock">
+					<apex:Param value="name" assignTo="{!name}" name="arg1" />
+				</apex:actionFunction>
+				<apex:actionFunction action="{!closePopup}" name="closepop" rerender="popupBlock"/>
+				<apex:actionFunction name="DisplaySelectedList" action="{!showPopup}" reRender="popupBlock">
+					<apex:Param value="searchString" assignTo="{!searchString}" name="arg1" />
+				</apex:actionFunction>
+			</apex:form>
+		</div>
+	</apex:outputpanel>
+</apex:page>

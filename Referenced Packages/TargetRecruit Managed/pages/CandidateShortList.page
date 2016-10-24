@@ -1,0 +1,31 @@
+<apex:page Controller="AVTRRT.CandidateShortListController" sidebar="false" showHeader="false" tabStyle="AVTRRT__Search__c" >
+
+	<apex:outputPanel rendered="{!isAllowClose}">
+	<script>
+		window.parent.CloseShortListWindow();
+	</script>
+	</apex:outputPanel>
+
+	<apex:form >
+		<apex:pageMessages escape="false" />
+		<apex:pageBlock >
+
+			<apex:pageBlockButtons >
+			    <apex:commandButton action="{!save}" value="{!$Label.avtrrt__Add}" />
+			    <apex:commandButton value="{!$Label.avtrrt__Cancel}" onclick="window.close(); return false" />
+			</apex:pageBlockButtons>
+
+			<apex:inputField value="{!fakeContact.AVTRRT__Candidate_Short_List__c}"/>
+
+			<apex:outputLabel value="{!$Label.avtrrt__Other_Short_list_Name}:" />&nbsp;
+			<apex:inputText value="{!customShortListValue}" />
+			<br />
+
+			<apex:inputCheckbox value="{!isAddToExists}"/>
+			<apex:outputLabel ><b>{!$Label.avtrrt__Add_to_existing_values}</b></apex:outputLabel>
+
+		</apex:pageBlock>
+
+	</apex:form>
+
+</apex:page>

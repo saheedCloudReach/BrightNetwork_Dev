@@ -1,0 +1,36 @@
+<apex:page standardController="AVTRRT__CallEmAlls__c" extensions="AVTRRT.CallEmAllController" 
+		showHeader="false" sidebar="false">
+		
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+	<style type="text/css">
+		h2.mainTitle {
+			font-family: Tahoma;
+			font-size: 14px !important;
+		}
+	</style>
+
+	<apex:form >
+		<apex:pageMessages />
+
+		<apex:inputHidden id="candidates" value="{!candidateIds}" />
+		<B>{!$Label.Job_Selected}&nbsp; {!job.Name} &nbsp; - &nbsp; {!job.Job_Title__c}</B>
+		<apex:pageBlock title="{!$Label.avtrrt__CallEmAll_Candidate_List_Label}">
+			<apex:pageBlockTable value="{!candidates}" var="candidate" >
+				<apex:column headerValue="{!$Label.avtrrt__Candidate}">
+					<apex:outputLink style="font-family: Tahoma;" target="blank" value="/{!candidate.Id}">
+						{!candidate.Name}
+					</apex:outputLink>
+				</apex:column>
+				<apex:column headerValue="Email">
+					{!candidate.Email}
+				</apex:column>
+				<apex:column headerValue="Phone">
+					{!candidate.Phone}
+				</apex:column>
+			</apex:pageBlockTable>
+		</apex:pageBlock>
+
+		<apex:commandButton action="{!goToCallEmAllAudio}" value="{!$Label.avtrrt__CallEmAll_Continue_button}" /> 
+	</apex:form>
+</apex:page>

@@ -1,0 +1,52 @@
+<apex:page standardController="AVTRRT__Job__c" extensions="TRGTFCMS.ClientCreateEditJobExtension" showHeader="false" sidebar="false" tabStyle="AVTRRT__Job__c" cache="false">
+    
+     <apex:pageMessages />
+   
+    <apex:form >
+   
+        <apex:pageBlock title="{!$Label.trgtfcms__Job_Edit}">
+            <apex:pageBlockButtons >
+            
+                    <apex:commandLink action="{!customEdit}" target="_parent">
+                        <apex:commandButton value="{!$Label.trgtfcms__Edit}" style="font-weight:bold"/>
+                    </apex:commandLink>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                    <apex:commandLink action="{!customDelete}" target="_parent">
+                        <apex:commandButton value="{!$Label.trgtfcms__Delete}" style="font-weight:bold"/>
+                    </apex:commandLink>
+                    
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection id="pageBlockSection1" title="{!$Label.trgtfcms__Information}">
+
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Job_Title__c}" id="AVTRRT__Job_Title__c" />
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Job_Term__c}" id="AVTRRT__Job_Term__c" />
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Number_of_Positions__c}" id="AVTRRT__Number_of_Positions__c"/>
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Bill_Rate_Range__c}" id="AVTRRT__Bill_Rate_Range__c"/>
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Experience__c}" id="AVTRRT__Experience__c" />
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Start_Date__c}" id="AVTRRT__Start_Date__c" />
+          </apex:pageBlockSection>
+          <apex:pageBlockSection id="pageBlockSection2" title="{!$Label.trgtfcms__Job_Description}">
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Job_Summary__c}" id="AVTRRT__Job_Summary__c"/>
+          
+              <apex:outputPanel > 
+                    <apex:outputlabel > <b>{!$Label.trgtfcms__Job_Description}</b>  </apex:outputlabel>  
+                    <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Job_Description_Rich__c}" id="AVTRRT__Job_Description__c"/>
+              </apex:outputPanel>
+          </apex:pageBlockSection>
+          
+          <apex:pageBlockSection id="pageBlockSection3" title="{!$Label.trgtfcms__Job_Location_Detail}">
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Street_Address__c}" id="AVTRRT__Street_Address__c"/>
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Job_Time_Zone__c}" id="AVTRRT__Job_Time_Zone__c"/>
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Job_City__c}" id="AVTRRT__Job_City__c"/>
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Travel_Per__c}" id="AVTRRT__Travel_Per__c"/>
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__State__c}" id="AVTRRT__State__c"/>
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Travel_Comments__c}" id="AVTRRT__Travel_Comments__c"/>
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Country_Locale__c}" id="AVTRRT__Country_Locale__c"/>
+                <apex:outputText value=""/>
+                <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Job_Postal_Code__c}" id="AVTRRT__Job_Postal_Code__c"/> 
+          </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

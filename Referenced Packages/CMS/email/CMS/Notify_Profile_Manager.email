@@ -1,0 +1,7 @@
+<h3>Hi   {!Contact.Profile_Manager_Name__c}</h3>
+<p>{!Contact.Name} has been registered himself for one of the profile  {!Contact.CMSProfile__r} in which you are the manager . <br/>
+
+Please approve it.</p>
+<p>
+<b>{!Organization.Name}</b> Support Team
+</p>

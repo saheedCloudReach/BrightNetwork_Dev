@@ -1,0 +1,117 @@
+<apex:page id="page" controller="AVTRRT.CreateNewJobOrderController" action="{!ViewCandidates}" cache="false" showHeader="false" sidebar="false" docType="HTML-5.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+
+	<link rel="stylesheet" href="{!URLFOR($Resource.OneStarter,'icons.css')}"/>
+	<link rel="stylesheet" href="{!URLFOR($Resource.OneStarter,'styles.css')}"/>
+	<link rel="stylesheet" href="{!URLFOR($Resource.OneStarter,'OneStarter.css')}"/>
+	<!-- JavaScript files -->
+	<script src="{!URLFOR($Resource.TouchSwipe,'jquery.touchSwipe.min.js')}"></script>
+	<script src="{!URLFOR($Resource.OneStarter,'jquery.onestarter.js')}"></script>
+	<script src="/canvas/sdk/js/publisher.js"></script>
+
+	<script>
+		var s1 = {};
+		$(document).ready(function() {
+			s1 = $('div#one-app').oneStarter('app');
+		});
+		Sfdc.canvas.publisher.subscribe({name: "publisher.showPanel",onData:function(e) {
+			Sfdc.canvas.publisher.publish({name: "publisher.setValidForSubmit", payload:"true"});
+		}});
+
+		Sfdc.canvas.publisher.subscribe({ name: "publisher.post", onData: function(e) {
+			SubmitCandidates();
+		}});
+	</script>
+	<style>
+		body{
+			position:relative;
+			font-size:100%;
+		}
+		::-webkit-scrollbar {
+			display: none;
+		}
+		.one-field-section{
+			border-bottom :0px !important;
+		}
+		a:active {
+			color: #0C090A;
+		}
+		a:visited {
+			color: #0C090A;
+		}
+		a:link {
+			color: #0C090A;
+		}
+		a {
+			color: #0C090A;
+		}
+
+		.wrapdiv{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.listView{
+			list-style: none;
+			margin-bottom: 10px;
+			border-radius: 5px;
+			border: 1px solid #cfd4d9;
+			background-color: #ffffff;
+			padding: 14px;
+			line-height:25px;
+		}
+	</style>
+
+	<apex:outputpanel id="TestPanel" >
+		<div id="one-app">
+			<apex:form >
+				<div id="form">
+					<section>
+
+						<apex:actionFunction name="SubmitCandidates" action="{!getSelected}" oncomplete="DisplayCandidates();" rendered="{!if(candidateList.size==0,false,true)}"/>
+						<apex:outputpanel rendered="{!if(candidateNames!='',True,False)}">
+							<h3>{!candidateNames} has been Applied for <Font style="color:Red">{!currentJobName}</font> Job.</h3>
+							<br/>
+						</apex:outputPanel>
+
+						<apex:outputpanel rendered="{!if(candidateList.size==0,True,False)}">
+							<h3>There are No Matching Candidates related to <Font style="color:Red">{!currentJobName}</font> Job.</h3>
+							<br/>
+						</apex:outputPanel>
+
+						<apex:outputpanel rendered="{!if(candidateList.size==0,false,true)}" >
+							<div id="one-app">
+								<ul class="list-simple">
+									<apex:repeat value="{!candidateList}"  var="t" id="panel" >
+										<li class="listView">
+											<apex:outputlink value="/{!t.can.id}"  target="_blank" style="text-decoration:none;">
+												<div>
+													<span><apex:inputCheckbox value="{!t.selected}" id="inputId"/></span>
+													<span>{!t.can.Name}</span>
+												</div>
+												<div >
+													<div class="wrapdiv">
+														<span>Brief Summary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+														<span >{!t.can.AVTRRT__Candidate_Summary__c}</span>
+													</div>
+													<div class="wrapdiv">
+														<span>Available Start Date :</span>
+														<span><apex:outputField value="{!t.can.AVTRRT__Available_To_Start__c}"/></span>
+													</div>
+												</div>
+											</apex:outputlink>
+										</li>
+									</apex:repeat>
+								</ul>
+							</div>
+						</apex:outputPanel>
+						<apex:actionFunction name="DisplayCandidates" action="{!ViewCandidates}"/>
+					</section>
+				</div>
+			</apex:form>
+		</div>
+	</apex:outputpanel>
+
+</apex:page>

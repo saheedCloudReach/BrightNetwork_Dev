@@ -1,0 +1,12 @@
+<table cellpadding="5" width="550" height="400" cellspacing="5" border="0" >
+<tr height="400" valign="top" >
+<td locked="0" style=" font-family:arial; bLabel:main; color:#000000; font-size:12pt; bEditID:r3st1; background-color:#FFFFFF;" aEditID="c1r1" tEditID="c1r1" >
+<![CDATA[<P>Dear {!Placement__c.Account_Manager__c},</P>
+<P><BR>There&nbsp;has been a placement termination marked for the job titled '{!Placement__c.Job_Title__c}' of the company '{!Placement__c.Employer__c} '. </P>
+<P>&nbsp;<BR>Thanking You,</P>
+<P>{!Placement__c.OwnerFullName}</P>
+<P>{!Placement__c.OwnerTitle}</P>
+<P>{!Placement__c.OwnerPhone}</P>
+<P>{!Placement__c.OwnerEmail}</P>]]></td>
+</tr>
+</table>

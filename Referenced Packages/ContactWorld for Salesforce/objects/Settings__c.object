@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>AdditionalFields__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Name of additional field to show in the Log a Call Action.</description>
+        <externalId>false</externalId>
+        <label>Log A Call Additional Fields</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Flags__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Optional control flags</inlineHelpText>
+        <label>Flags</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SelectPresentedClidClassName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Used to specify the name of the Apex Class that implements the Presented CLID query.</description>
+        <externalId>false</externalId>
+        <label>Callback Number Selector Class</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>baseURL__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>URL used to access ContactWorld API.  Please ensure that it is in the list of allowed Remote Sites.</inlineHelpText>
+        <label>ContactWorld URL</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>callTimeOutMS__c</fullName>
+        <defaultValue>20000</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>API call time out time in milliseconds</inlineHelpText>
+        <label>Call Time Out (ms)</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>clientId__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Client Id</inlineHelpText>
+        <label>ContactWorld Account Client Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>clientSecret__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>ContactWorld Account Client Secret</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

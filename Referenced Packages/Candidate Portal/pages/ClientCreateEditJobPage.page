@@ -1,0 +1,52 @@
+<apex:page standardController="AVTRRT__Job__c" extensions="TRGTFCMS.ClientCreateEditJobExtension" showHeader="false" sidebar="false" cache="false" standardstylesheets="true">
+	<apex:pageMessages />
+    <apex:form >
+        <apex:pageBlock title="{!$Label.trgtfcms__Job_Edit}" mode="edit">
+            
+            <apex:pageBlockButtons >
+                
+                
+                <apex:commandLink action="{!customSave}" target="_parent">
+                    <apex:commandButton value="{!$Label.trgtfcms__Save}" onclick="return false;" />
+                </apex:commandLink>
+                
+                <apex:commandLink action="{!customSaveAndNew}" target="_parent">
+                    <apex:commandButton value="{!$Label.trgtfcms__Save_and_New}" onclick="return false;" />
+                </apex:commandLink>
+                
+                
+                <apex:commandLink action="{!customCancel}" target="_parent">
+                    <apex:commandButton value="{!$Label.trgtfcms__Cancel}" immediate="true" />
+                </apex:commandLink>
+                
+            </apex:pageBlockButtons>
+        
+            <apex:pageBlockSection title="{!$Label.trgtfcms__Information}">
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Job_Title__c}"  required="true"/>
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Job_Term__c}"  />
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Number_of_Positions__c}" />
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Bill_Rate_Range__c}" />
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Experience__c}"  />
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Start_Date__c}"  required="true"/>
+            </apex:pageBlockSection>
+     
+            <apex:pageBlockSection id="pageBlockSection2" title="Job Description">
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Job_Summary__c}" />
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Job_Description_Rich__c}" />
+           </apex:pageBlockSection>
+        
+           <apex:pageBlockSection id="pageBlockSection3" title="Job Location Detail">
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Street_Address__c}" />
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Job_Time_Zone__c}" />
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Job_City__c}" />
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Travel_Per__c}" />
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__State__c}" />
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Travel_Comments__c}" />
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Country_Locale__c}" />
+                <apex:outputText value=""/>
+                <apex:inputField value="{!AVTRRT__Job__c.AVTRRT__Job_Postal_Code__c}" />
+            </apex:pageBlockSection>
+    
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

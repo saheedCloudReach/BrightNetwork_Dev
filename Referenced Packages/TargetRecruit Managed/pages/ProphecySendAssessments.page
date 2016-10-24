@@ -1,0 +1,149 @@
+<apex:page standardController="contact"  extensions="AVTRRT.ProphecySendAssessments" action="{!GetAssessmentTypes}" sidebar="false" showHeader="true">
+<apex:form >
+<br/>
+<apex:pageblock >
+<font color="red"><b><apex:messages /></b></font>
+    <apex:pageBlockButtons location="top">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <apex:commandbutton value="{!$Label.avtrrt__Prophecy_Button_Reset}" action="{!reset}" />
+        <apex:commandbutton value="{!$Label.avtrrt__Prophecy_Button_Cancel}" action="{!cancel}" />
+    </apex:pageBlockButtons>
+    <table>
+    <tr>
+        <td valign="top" width="50%">
+        <apex:pageBlock >
+        <apex:pageBlockSection columns="1" title="{!$Label.avtrrt__Prophecy_Choose_Assessment_Label}">
+        <center>
+        <apex:pageBlockSectionItem >
+        <apex:selectList size="1" value="{!SelectedAssessmentType}" onchange="test();" id="optionvalue" >
+        <apex:selectOptions value="{!options}" >
+        </apex:selectOptions>
+        </apex:selectList>
+        <apex:commandbutton value="{!$Label.avtrrt__Prophecy_Button_GO}" action="{!showassessments}" />
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem >
+        </apex:pageBlockSectionItem>
+        </center>
+        </apex:pageBlockSection>
+</apex:pageBlock>
+
+<apex:pageBlock >
+        <apex:pageBlockButtons >
+        <apex:commandbutton value="{!$Label.avtrrt__Prophecy_Button_ADD}" action="{!processSelectedAssessments}" />
+        </apex:pageBlockButtons>
+        <!-- In our table we are displaying the cContact records -->
+        <apex:pageBlockTable value="{!AssessmentList}" var="a">
+             <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Select}">
+                   <!-- This is our selected Boolean property in our wrapper class -->
+                    <apex:inputCheckbox value="{!a.selected}"/>
+             </apex:column>
+             <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Assesmentname}">
+                   <!-- This is our selected Boolean property in our wrapper class -->
+                   <apex:outputtext value="{!a.name}" />
+             </apex:column>
+             <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Assessment_Type}">
+                   <!-- This is our selected Boolean property in our wrapper class -->
+                   <apex:outputtext value="{!a.type}"/>
+             </apex:column>
+             <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Cost_Points}">
+                   <!-- This is our selected Boolean property in our wrapper class -->
+                   <apex:outputtext value="{!a.CostPoints }"/>
+             </apex:column>
+             <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Number_Of_Questions}">
+                   <!-- This is our selected Boolean property in our wrapper class -->
+                   <apex:outputtext value="{!a.NumberOfQuestions }"/>
+             </apex:column>
+             <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Time_Limit}">
+                   <!-- This is our selected Boolean property in our wrapper class -->
+                   <apex:outputtext value="{!a.TimeLimit }"/>
+             </apex:column>
+        </apex:pageBlockTable>
+</apex:pageBlock>   
+</td>
+<td >
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 
+ </td>
+ <td valign="top" width="50%" >
+ <apex:pageBlock >
+     <apex:pageBlockSection columns="2" title="{!$Label.avtrrt__Prophecy_Candidate_Detail}">
+     <apex:pageBlockSectionItem >
+         <apex:outputLabel value="{!$Label.avtrrt__prophecygetassessments_contactname}" />
+         <apex:outputLink value="/{!v_ContactSobj.id}">{!v_ContactSobj.name}</apex:outputLink>
+     </apex:pageBlockSectionItem>
+     
+     <apex:pageBlockSectionItem >
+         <b>{!$Label.avtrrt__prophecygetassessments_Phone}</b>
+         <apex:outputText value=" {!v_ContactSobj.Phone}"></apex:outputText>
+     </apex:pageBlockSectionItem>
+     
+     <apex:pageBlockSectionItem >
+         <b>{!$Label.avtrrt__prophecygetassessments_Email}</b>
+         <apex:outputText value=" {!v_ContactSobj.email}"></apex:outputText>
+     </apex:pageBlockSectionItem>
+        
+     <apex:pageBlockSectionItem >
+         <b>{!$Label.avtrrt__prophecygetassessments_Mobile}</b>
+         <apex:outputText value=" {!v_ContactSobj.MobilePhone}"></apex:outputText>
+     </apex:pageBlockSectionItem>
+     <apex:pageBlockSectionItem >
+     </apex:pageBlockSectionItem>
+     </apex:pageblocksection> 
+</apex:pageBlock> 
+     
+<apex:pageBlock title="{!$Label.avtrrt__Prophecy_Send_Assessments}" >
+     <apex:pageBlockButtons location="Top">
+     <apex:commandbutton value="{!$Label.avtrrt__Prophecy_Button_Send_assesment}" action="{!sendassess}" />
+     </apex:pageBlockButtons>
+     
+     <apex:pageBlockTable value="{!ListOfAllAssessmentsSentToProphecy}" var="a" >
+             <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Select}">
+             <!-- This is our selected Boolean property in our wrapper class -->
+                   <apex:inputCheckbox value="{!a.selected}"/>
+             </apex:column>
+             <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Assesmentname}">
+              <!-- This is our selected Boolean property in our wrapper class -->
+                    <apex:outputtext value="{!a.name}" />
+             </apex:column>
+             <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Assessment_Type}">
+               <!-- This is our selected Boolean property in our wrapper class -->
+                   <apex:outputtext value="{!a.type}"/>
+             </apex:column>
+             <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Cost_Points}">
+               <!-- This is our selected Boolean property in our wrapper class -->
+                    <apex:outputtext value="{!a.CostPoints }"/>
+             </apex:column>
+             <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Number_Of_Questions}">
+                <!-- This is our selected Boolean property in our wrapper class -->
+                     <apex:outputtext value="{!a.NumberOfQuestions }"/>
+             </apex:column>
+             <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Time_Limit}">
+                 <!-- This is our selected Boolean property in our wrapper class -->
+                    <apex:outputtext value="{!a.TimeLimit }"/>
+             </apex:column>
+     </apex:pageBlockTable>
+</apex:pageBlock> 
+    
+ </td>
+ </tr>
+ </table>
+ 
+</apex:pageblock>
+</apex:form>
+</apex:page>

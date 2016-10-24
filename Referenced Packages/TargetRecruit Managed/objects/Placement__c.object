@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>Override_Placements_New_Button</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Scontrol</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Placement details are stored in this object.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account_Manager_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Account Manager Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Account Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Placements1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Assigned_Recruiter_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job Recruiter Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Assigned_Recruiter__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job Recruiter</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Placements2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Bill_Rate__c</fullName>
+        <defaultValue>&quot;0&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Bill Rate</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_Candidate__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Candidate</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Placements</relationshipLabel>
+        <relationshipName>Placements1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Contract__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Contract Placement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Contract to Hire Placement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Permanent Placement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Date_Accepted__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Date Accepted</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Employer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Placement</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Extension__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Extension</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>External_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>External ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Feedback_has_been_Submitted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Feedback has been Submitted</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Hiring_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Hiring Manager</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Placements</relationshipLabel>
+        <relationshipName>Placements</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Job_Applicant__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Related Job Applicant Information</description>
+        <externalId>false</externalId>
+        <label>Job Applicant</label>
+        <referenceTo>Job_Applicant__c</referenceTo>
+        <relationshipName>Placements</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Job_Title__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job Title</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Job__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job Num</label>
+        <referenceTo>Job__c</referenceTo>
+        <relationshipName>Placement</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>NetMargin__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>NetMargin</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Net_Margin__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>If((Bill_Rate__c==Null || Bill_Rate__c == &quot;0&quot;),VALUE(Pay_Rate__c),VALUE(Bill_Rate__c) - VALUE(Pay_Rate__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Net Margin</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_Of_Days_Taken__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>No. Of  Days Taken</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Overall_Feedback__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Overall Feedback</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Good</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Excellent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Average</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Below Average</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Pay_Rate__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Pay Rate</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Pay_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Pay Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>W-2 w/benefits</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>W-2 w/o benefits</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Corp to Corp</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Permanent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Terms__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Payment Terms</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Percentage__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Discount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Placement_Feedback_Form__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK($Setup.ConfigSettingsHierarchy__c.InterviewFeedbackSiteURL__c &amp; &apos;AVTRRT__Placement?Id=&apos; &amp; Id, $Label.avtrrt__Click_here)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Placement Feedback Form</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Placement_Feedback__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Placement Feedback</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Rating__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>if( NetMargin__c  &gt; 0 &amp;&amp; NetMargin__c &lt; 13.51, IMAGE(&quot;/servlet/servlet.FileDownload?file=01540000000LdaD&quot;, &quot;1 Star&quot;), 
+  if(NetMargin__c   &gt; 13.51 &amp;&amp; NetMargin__c&lt; 16.51,
+ IMAGE(&quot;/servlet/servlet.FileDownload?file=01540000000LdaE&quot;, &quot;2 Star&quot;), 
+  if(NetMargin__c   &gt; 16.51 &amp;&amp; NetMargin__c &lt; 19.51,
+ IMAGE(&quot;/servlet/servlet.FileDownload?file=01540000000LdaG&quot;, &quot;3 Star&quot;), 
+  if(NetMargin__c   &gt; 19.51 &amp;&amp; NetMargin__c &lt; 22.51,
+ IMAGE(&quot;/servlet/servlet.FileDownload?file=01540000000LdaF&quot;, &quot;4 Star&quot;), 
+ IF(NetMargin__c &gt; 22.51,IMAGE(&quot;/servlet/servlet.FileDownload?file=01540000000LdaH&quot;, &quot;5 Star&quot;),&quot;&quot;))))
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Placement  Rating</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Recruiter_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Candidate Recruiter Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Recruiter__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Candidate Recruiter</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Placements</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SOW_Contract_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>SOW Contract Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Sign_on_Bonus__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sign on Bonus</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Terminated_Reason__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Terminated Reason</label>
+        <picklist>
+            <controllingField>Terminated__c</controllingField>
+            <picklistValues>
+                <fullName>Assignment Ended</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fired</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hired By Client</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Resigned</fullName>
+                <default>false</default>
+                <controllingFieldValues>checked</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Terminated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Terminated</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Placement</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Contact_Candidate__c</columns>
+        <columns>Job_Title__c</columns>
+        <columns>Employer__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Job_Applicant__c</columns>
+        <columns>Job__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Placements</fullName>
+        <columns>NAME</columns>
+        <columns>Contact_Candidate__c</columns>
+        <columns>Employer__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Recruiter__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Placements</label>
+    </listViews>
+    <nameField>
+        <displayFormat>P{00000000}</displayFormat>
+        <label>Placement ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Placements</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>CorporatePlacement</fullName>
+        <active>true</active>
+        <label>Corporate Placement</label>
+        <picklistValues>
+            <picklist>Contract__c</picklist>
+            <values>
+                <fullName>Contract Placement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract to Hire Placement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permanent Placement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Overall_Feedback__c</picklist>
+            <values>
+                <fullName>Average</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Below Average</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Excellent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Pay_Type__c</picklist>
+            <values>
+                <fullName>Corp to Corp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permanent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W-2 w%2Fbenefits</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W-2 w%2Fo benefits</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Terminated_Reason__c</picklist>
+            <values>
+                <fullName>Assignment Ended</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fired</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hired By Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resigned</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>StaffingPlacement</fullName>
+        <active>true</active>
+        <label>Staffing Placement</label>
+        <picklistValues>
+            <picklist>Contract__c</picklist>
+            <values>
+                <fullName>Contract Placement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract to Hire Placement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permanent Placement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Overall_Feedback__c</picklist>
+            <values>
+                <fullName>Average</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Below Average</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Excellent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Pay_Type__c</picklist>
+            <values>
+                <fullName>Corp to Corp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permanent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W-2 w%2Fbenefits</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W-2 w%2Fo benefits</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Terminated_Reason__c</picklist>
+            <values>
+                <fullName>Assignment Ended</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fired</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hired By Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resigned</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Contact_Candidate__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Employer__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Job__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Job_Title__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Start_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>End_Date__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Contact_Candidate__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Job__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Start_Date__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Contact_Candidate__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Job__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Start_Date__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Contact_Candidate__c</searchFilterFields>
+        <searchFilterFields>Job__c</searchFilterFields>
+        <searchFilterFields>Start_Date__c</searchFilterFields>
+        <searchResultsAdditionalFields>Contact_Candidate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Job__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Start_Date_and_End_Date_validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>Start_Date__c &gt; End_Date__c</errorConditionFormula>
+        <errorDisplayField>End_Date__c</errorDisplayField>
+        <errorMessage>End Date can&apos;t be less than Start Date</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Checklist</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Checklist</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/AVTRRT__ChecklistPage?id={!Placement__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Extend_Placement</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Extend Placement</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!requireScript(&quot;/soap/ajax/24.0/connection.js&quot;)} 
+{!requireScript(&quot;/soap/ajax/24.0/apex.js&quot;)} 
+
+if (&apos;{!Placement__c.End_Date__c}&apos; == null || &apos;{!Placement__c.End_Date__c}&apos; == &apos;&apos;) {
+  alert(&apos;To extend the placement you should have a value in &quot;End Date&quot; field&apos;);
+} else {
+  sforce.connection.sessionId = &apos;{!$Api.Session_ID}&apos;;
+ 
+  if(confirm(&quot;Create extension for this placement?&quot;)) { 
+    var returnValue = sforce.apex.execute( &quot;AVTRRT.CreatePlacementExtension&quot;, &quot;createExtension&quot;, 
+        {p_placementId:&apos;{!Placement__c.Id}&apos;}); 
+
+    location.href= returnValue + &apos;/e?retURL=%2F&apos; + returnValue; 
+  }
+}</url>
+    </webLinks>
+</CustomObject>

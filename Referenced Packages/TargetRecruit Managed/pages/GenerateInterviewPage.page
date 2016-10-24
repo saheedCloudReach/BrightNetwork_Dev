@@ -1,0 +1,9 @@
+<apex:page standardController="AVTRRT__Interview__c" extensions="AVTRRT.GenerateInterviewController" action="{!init}">
+
+<apex:outputPanel rendered="{!openEventPage}"> 
+    <script type="text/JavaScript" language="JavaScript">
+        window.open('{!JSENCODE(url)}', '_blank');
+    </script>
+</apex:outputPanel>
+
+</apex:page>

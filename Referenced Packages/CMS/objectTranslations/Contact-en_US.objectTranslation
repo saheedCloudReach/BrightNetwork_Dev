@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- CMSProfile --></label>
+        <name>CMSProfile__c</name>
+        <relationshipLabel><!-- Contacts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>Company_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Job Site --></label>
+        <name>Job_Site__c</name>
+        <picklistValues>
+            <masterLabel>Default</masterLabel>
+            <translation><!-- Default --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing</masterLabel>
+            <translation><!-- Marketing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales</masterLabel>
+            <translation><!-- Sales --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- LinkedInId --></label>
+        <name>LinkedInId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Login URL --></label>
+        <name>Login_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Password --></label>
+        <name>Password__c</name>
+    </fields>
+    <fields>
+        <label><!-- PortalEmailAlert --></label>
+        <name>PortalEmailAlert__c</name>
+        <picklistValues>
+            <masterLabel>Forgot Password</masterLabel>
+            <translation><!-- Forgot Password --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No action</masterLabel>
+            <translation><!-- No action --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Password Changed</masterLabel>
+            <translation><!-- Password Changed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>User Created</masterLabel>
+            <translation><!-- User Created --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Profile Manager Email --></label>
+        <name>Profile_Manager_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profile Manager Name --></label>
+        <name>Profile_Manager_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- This check box value will decide whether the registration of this contact as a portal user is approved or not. --></help>
+        <label><!-- Registration Approved --></label>
+        <name>Registration_Approved__c</name>
+    </fields>
+    <fields>
+        <label><!-- UserName --></label>
+        <name>UserName__c</name>
+    </fields>
+</CustomObjectTranslation>

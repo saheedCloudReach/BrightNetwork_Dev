@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>X1_25000__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>1 - 25000</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X25000_35000__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>25000 - 35000</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X35000_45000__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>35000 - 45000</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X45000_55000__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>45000 - 55000</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X55000_65000__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>55000 - 65000</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X65000_75000__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>65000 - 75000</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X75000_85000__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>75000 - 85000</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X85000_95000__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>85000 - 95000</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X95000_1000000__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>95000 - 1000000</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>max_value__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>max_value</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>min_value__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>min_value</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Job Broadcasting Salary Range</label>
+    <visibility>Public</visibility>
+</CustomObject>

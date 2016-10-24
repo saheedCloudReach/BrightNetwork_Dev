@@ -1,0 +1,4 @@
+<!-- TODO: Visualforce Page name should not have a Page suffix -->
+<apex:page controller="FCMS.LinkedInAuthController" action="{!linkedInLogin}">
+
+</apex:page>

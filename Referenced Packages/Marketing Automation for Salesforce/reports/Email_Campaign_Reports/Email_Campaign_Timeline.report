@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>Line</chartType>
+        <enableHoverLabels>true</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>dmsfc_EmailSendSummary__c$DateSent__c</groupingColumn>
+        <location>CHART_TOP</location>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>true</showValues>
+        <size>Large</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <title>Email Campaigns Timeline</title>
+        <titleColor>#000000</titleColor>
+        <titleSize>14</titleSize>
+    </chart>
+    <columns>
+        <field>dmsfc_EmailSendSummary__c$EmailCampaign__c</field>
+    </columns>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>dmsfc_EmailSendSummary__c$DateSent__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Email Campaign Timeline</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Email_Send_Summaries__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>dmsfc_EmailSendSummary__c$CreatedDate</dateColumn>
+        <endDate>2012-12-31</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2009-10-01</startDate>
+    </timeFrameFilter>
+</Report>

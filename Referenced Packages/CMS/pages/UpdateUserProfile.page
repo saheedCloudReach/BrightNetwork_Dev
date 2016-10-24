@@ -1,0 +1,113 @@
+<apex:page controller="FCMS.UpdateUserProfileController" standardstylesheets="true" showHeader="false"
+		sideBar="false" cache="false" action="{!init}" language="{!selectLanguage}">
+
+	<style>
+		<apex:outputText value="{!cmsCssCustom}" />
+	</style>
+
+	<apex:pageMessages id="error"/>
+
+	<apex:form id="Form1">
+		<table>
+			<tr>
+				<td>
+					<div class="content1">
+						<div class="profile-information">
+							<div class="section-header">
+								<h3>{!$Label.General_InformationCMS}</h3>
+							</div>
+							<div class="row">
+								<!-- Lables for the Contact fields -->
+								 * <I>{!$Label.Indicates_required_fields}</I>
+							</div>
+							<div class="row">
+
+								<apex:outputLabel for="contact_FirstName__c" styleClass="field-label" >
+									<span class="required">*</span>
+									{!$Label.fcms__First_Name}
+								</apex:outputLabel>
+
+								<!-- Below is the Input field from contact object if client want to add more fileds on this appplication page then he can add by just copy the below apex inputField element and change the value and id attributes of new element to the required contact object field -->
+								<apex:inputField value="{!contact.FirstName}" styleClass="field-text"
+										id="contact_FirstName__c" required="true"/>
+							</div>
+							   <div class="row">
+								<apex:outputLabel for="contact_LastName" styleClass="field-label">
+									<span class="required">*</span>
+									{!$Label.fcms__Last_Name}
+								</apex:outputLabel>
+								<apex:inputField value="{!contact.LastName}" styleClass="field-text"
+										id="contact_LastName" required="true"/>
+							   </div>
+							   <div class="row">
+								<apex:outputLabel for="contact_AVTRRTCity" styleClass="field-label"
+										value="{!$Label.fcms__City}" />
+								<apex:inputField value="{!contact.MailingCity}" styleClass="field-text"
+										id="contact_AVTRRTCity"/>
+							</div>
+							<div class="row">
+								<apex:outputLabel for="contact_AVTRRTState" styleClass="field-label"
+										value="{!$Label.fcms__State}" />
+								<apex:inputField value="{!contact.MailingState}" styleClass="field-text"
+										id="contact_AVTRRTState"/>
+							</div>
+							<div class="row">
+								<apex:outputLabel for="contact_AVTRRTPostalCode" styleClass="field-label"
+										value="{!$Label.fcms__Zip_Postal_Code}" />
+								<apex:inputField value="{!contact.MailingPostalCode}" styleClass="field-text"
+										id="contact_AVTRRTPostalCode"/>
+							</div>
+							<div class="row">
+								<apex:outputLabel for="contact_Email" styleClass="field-label" >
+									<span class="required">*</span>
+									{!$Label.fcms__EmailCMS}
+								</apex:outputLabel>
+								<apex:inputField value="{!contact.Email}" styleClass="field-text"
+										id="contact_Email" required="true"/>
+							   </div>
+							<div class="row">
+								<apex:outputLabel for="contact_AVTRRTPhone" styleClass="field-label"
+										value="{!$Label.fcms__PhoneCMS}" />
+								<apex:inputField value="{!contact.Phone}" styleClass="field-text"
+										id="contact_AVTRRTPhone"/>
+							</div>
+						</div>
+ 
+						
+							<div class="profile-information">
+								<div class="section-header">
+									  <h3>{!$Label.fcms__Password_Change}</h3>
+								  </div>
+								  <div class="row">
+									  <apex:outputLabel for="contact_UserName__c" styleClass="field-label"
+											  value="{!$Label.fcms__User_Name}" />
+									  <apex:outputText value="{!contact.FCMS__UserName__c}" styleClass=""
+											  id="contact_UserName__c" />
+								  </div>
+								  <div class="row">
+									  <apex:outputLabel for="contact_Password__c" styleClass="field-label"
+											  value="{!$Label.fcms__Password}" />
+									  <apex:inputSecret value="{!contact.FCMS__Password__c}" styleClass="field-text"
+											  id="contact_Password__c" />
+								  </div>
+								  <div class="row">
+									  <apex:outputLabel for="confirmPassword" styleClass="field-label"
+											  value="{!$Label.fcms__Confirm_Password}" />
+									  <apex:inputSecret value="{!confirmPassword}" styleClass="field-text"
+											  id="confirmPassword" />
+								  </div>
+							  </div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="even">
+					  <div class="form-submit1">
+						  <apex:commandButton action="{!updateNow}" value="{!$Label.fcms__Update}" />
+						  <apex:commandButton id="reset" value="{!$Label.fcms__Reset}" action="{!reset}" immediate="true" />
+					  </div>
+				</td>
+			</tr>
+		</table>
+	</apex:form>
+</apex:page>

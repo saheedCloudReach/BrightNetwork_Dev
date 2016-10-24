@@ -1,0 +1,54 @@
+<apex:page standardController="AVTRRT__Placement__c"
+    extensions="AVTRRT.PlacementControllerExtension" title="{!$Label.avtrrt__Placement}"
+    showHeader="false" sideBar="false" cache="false" tabStyle="AVTRRT__Search__c" >
+    <apex:outputPanel >
+        <apex:form >
+            <apex:pageMessages />
+            <apex:pageBlock >
+                <apex:pageBlockSection columns="1" title="{!$Label.avtrrt__General_Information}">
+                    <apex:pageblockSectionItem >
+                        <apex:outputText >{!$Label.avtrrt__Placement_ID}</apex:outputText>
+                        <apex:outputText value="{!AVTRRT__Placement__c.Name}" />
+                    </apex:pageblockSectionItem>
+                    <apex:pageblockSectionItem >    
+                        <apex:outputText >{!$Label.avtrrt__Candidate_Name}</apex:outputText>
+                        <apex:outputText value="{!AVTRRT__Placement__c.Contact_Candidate__r.name}" />
+                    </apex:pageblockSectionItem>
+                    <apex:pageblockSectionItem >
+                        <apex:outputText >{!$Label.avtrrt__Job}</apex:outputText>
+                        <apex:outputText value="{!AVTRRT__Placement__c.Job__r.name}" />
+                    </apex:pageblockSectionItem>
+                    <apex:pageblockSectionItem >
+                        <apex:outputText >{!$Label.avtrrt__Job_Title}</apex:outputText>
+                        <apex:outputText value="{!AVTRRT__Placement__c.AVTRRT__Job_Title__c}" />
+                    </apex:pageblockSectionItem>
+                    <apex:pageblockSectionItem >
+                        <apex:outputText >{!$Label.avtrrt__Start_Date}</apex:outputText>
+                        <apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+                            <apex:param value="{!AVTRRT__Placement__c.AVTRRT__Start_Date__c}"/>
+                        </apex:outputText>
+                    </apex:pageblockSectionItem>
+                    <apex:pageblockSectionItem >    
+                        <apex:outputText >{!$Label.avtrrt__End_Date}</apex:outputText>
+                        <apex:outputText value="{0,date,dd'/'MM'/'yyyy}">
+                            <apex:param value="{!AVTRRT__Placement__c.AVTRRT__End_Date__c}"/>
+                        </apex:outputText>                       
+                    </apex:pageblockSectionItem>
+                    <apex:pageblockSectionItem >
+                        <apex:outputText >{!$Label.avtrrt__Overall_Feedback}</apex:outputText>
+                        <apex:inputfield value="{!AVTRRT__Placement__c.AVTRRT__Overall_Feedback__c}" />
+                    </apex:pageblockSectionItem>
+                    <apex:pageblockSectionItem >
+                        <apex:outputtext >{!$Label.avtrrt__Placement_Feedback}</apex:outputText>
+                        <apex:inputField value="{!AVTRRT__Placement__c.AVTRRT__Placement_Feedback__c}" style="height: 110px; width:450px;" />
+                    </apex:pageblockSectionItem>
+                </apex:pageBlockSection>
+                <apex:pageBlockButtons location="bottom">
+                    <apex:commandButton action="{!SaveRecord}" value="{!$Label.avtrrt__Save}" />
+                    <apex:commandButton action="{!SubmitRecord}" value="{!$Label.avtrrt__Submit}" />
+                </apex:pageBlockButtons>
+            </apex:pageBlock>
+        </apex:form>
+    </apex:outputPanel>
+
+</apex:page>

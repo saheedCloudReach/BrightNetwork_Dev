@@ -1,0 +1,24 @@
+<apex:page contenttype="text/xml" sidebar="false" showheader="false" controller="AVTRRT.RssFeedController">
+	
+	<?xml version="1.0" encoding="utf-8"?>
+	
+	<rss version="2.0">
+		<channel>
+			<apex:repeat value="{!jobList}" var="job">
+				<item>
+					<title>
+						{!HTMLENCODE(job.AVTRRT__Job_Title__c)}
+					</title>
+			
+					<description>
+						{!HTMLENCODE(job.AVTRRT__Job_Summary__c)}
+					</description>
+				
+					<link> 
+						{!HTMLENCODE(rssUrl)}{!HTMLENCODE(job.Id)}
+					</link>
+				</item>
+			</apex:repeat>
+		</channel>   
+	</rss>
+</apex:page>

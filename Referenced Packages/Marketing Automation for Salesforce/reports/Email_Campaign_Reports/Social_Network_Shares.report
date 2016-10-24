@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>Pie</chartType>
+        <enableHoverLabels>true</enableHoverLabels>
+        <expandOthers>false</expandOthers>
+        <groupingColumn>dmsfc_EmailCampaign__c.Email_Social_Bookmarks__r$SocialName__c</groupingColumn>
+        <legendPosition>Bottom</legendPosition>
+        <location>CHART_TOP</location>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>true</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>true</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>10</textSize>
+        <title>Social Networks across Email Campaigns</title>
+        <titleColor>#000000</titleColor>
+        <titleSize>12</titleSize>
+    </chart>
+    <columns>
+        <field>dmsfc_EmailCampaign__c$Name</field>
+    </columns>
+    <columns>
+        <field>dmsfc_EmailCampaign__c.Email_Social_Bookmarks__r$Name</field>
+    </columns>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>dmsfc_EmailCampaign__c.Email_Social_Bookmarks__r$SocialName__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Social Network Shares</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>SocialNetworkNames__c</reportType>
+    <scope>user</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>dmsfc_EmailCampaign__c$CreatedDate</dateColumn>
+        <endDate>2012-12-31</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2009-10-01</startDate>
+    </timeFrameFilter>
+</Report>

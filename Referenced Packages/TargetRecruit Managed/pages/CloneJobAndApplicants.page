@@ -1,0 +1,8 @@
+<apex:page standardController="AVTRRT__Job__c" extensions="AVTRRT.CloneJobAndApplicantsController" action="{!cloneRecords}">
+	<apex:pageMessages />
+
+	<apex:form style="padding-left: 20px;" >
+		<apex:commandButton value="Continue" action="{!run}" />
+		<apex:commandButton value="Cancel" action="{!cancel}" />
+	</apex:form>
+</apex:page>

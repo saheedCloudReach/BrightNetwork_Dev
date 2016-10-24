@@ -1,0 +1,3 @@
+<apex:page standardController="AVTRRT__Job__c" extensions="AVTRRT.GenerateTinyUrlController" action="{!init}">
+
+</apex:page>

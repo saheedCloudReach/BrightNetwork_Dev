@@ -1,0 +1,11 @@
+<table width="550" cellpadding="5" height="400" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td locked="0" style=" font-family:arial; bLabel:main; color:#000000; font-size:12pt; bEditID:r3st1; background-color:#FFFFFF;" aEditID="c1r1" tEditID="c1r1" >
+<![CDATA[<P class=MsoNormal style="MARGIN: 0in 0in 10pt"><FONT face=Calibri>Hello!</FONT></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 10pt"><FONT face=Calibri>Your {!Interview__c.Type_Of_Interview__c} interview for {!Interview__c.Contact_Candidate__c} scheduled for {!Interview__c.Start_Date__c} at {!Interview__c.Account_X__c} with {!Interview__c.Hiring_Manager__c} for the {!Interview__c.Job_Name__c}, has changed.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN></FONT></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 10pt"><FONT face=Calibri><STRONG>Your {!Interview__c.Type_Of_Interview__c} interview is now scheduled for {!Interview__c.Start_Date__c} at {!Interview__c.Account_X__c} with {!Interview__c.Hiring_Manager__c}.<?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p></o:p></STRONG></FONT></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 10pt"><FONT face=Calibri>Please contact&nbsp;{!Interview__c.Recruiter__c} if&nbsp;you have any additional questions or concerns.</FONT></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 10pt"><o:p><FONT face=Calibri>&nbsp;</FONT></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 10pt"><FONT face=Calibri>Good luck and have a great day!</FONT></P>]]></td>
+</tr>
+</table>

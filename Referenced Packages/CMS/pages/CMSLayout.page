@@ -1,0 +1,46 @@
+<apex:page controller="FCMS.CMSLayoutController" standardStylesheets="true" showHeader="false"
+		sideBar="false" action="{!redirectIfNotLoggedIn}" id="CMSLayout1" ><!-- language="{!selectLanguage}" --> 
+<head>
+    <meta name="keywords" content="{!metaText}" id="metaText"/>
+
+    <title>{!pageTitle}</title>
+
+    <apex:includeScript value="{!$Resource.FCMS__jquery142}"/>
+    <apex:includeScript value="{!$Resource.FCMS__jqiframe}"/>
+
+    <apex:stylesheet value="{!$Page.FCMS__CMSCssCustom}"/>
+</head>
+
+<style>
+    <apex:outputText value="{!cmsCssCustom}" />
+</style>
+
+<body class="{!layoutWidth}">
+    <apex:pageMessages />
+
+    <apex:outputPanel styleClass="wrapper round-corner" layout="block" >
+        <apex:include pageName="FCMS__CMSHeaderRegion" id="CMSHeaderRegion" />
+
+        <div class="wrapper1">
+            <div class="container1">
+                <apex:include pageName="FCMS__CMSLeftRegion" id="CMSLeftRegion" />
+
+                <div class="center1">
+                    <div class="squeeze">
+                        <div class="right-corner">
+                            <div class="left-corner">
+                                <apex:include pageName="FCMS__CMSContentRegion" id="CMSContentRegion" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <apex:include pageName="FCMS__CMSRightRegion" id="CMSRightRegion" />
+
+                <apex:include pageName="FCMS__CMSFooterRegion" id="CMSFooterRegion" />
+            </div>
+        </div>
+    </apex:outputPanel>
+</body>
+
+</apex:page>

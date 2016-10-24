@@ -1,0 +1,128 @@
+<!--1) The Functionality Of this Page is used to Send the Request of  Screening types
+2) Passing the Main Xml tree from the Page passing to the variable mainXML
+3) Screening type Related to the Educational and Employment we are Passing from the Controller
+4) Ending Screnning we are passing from the Page to the variable mainXMLScreenings
+5) Atlast we are passing the Finalxmltree to the variable XmlforRequest -->
+
+<apex:page standardController="Contact" extensions="AVTRRT.BackGroundCheckV2">
+
+<apex:outputPanel rendered="{!readyForRequest}">
+<html>
+<head>
+<!-- CSS for Displaying Links as Buttons for Consistency -->
+<style type="text/css">
+.classname {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}.classname:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color:#dfdfdf;
+}.classname:active {
+	position:relative;
+	top:1px;
+}
+</style>
+</head>
+<br/>
+
+
+<font size="3"><b>{!$Label.Back_Ground_Check_Send_Request_Label}</b></font>
+<br/>
+<br/>
+<table >
+	 <tr>
+	 <td >
+	 <!--Passing the Main Xml tree-->
+
+	 <apex:variable value="<?xml version='1.0' encoding='utf-8'?" var="xmlStarttag"/>
+	 <apex:variable value=">" var="xmlEndtag"/>
+	 <apex:variable value="{!xmlStarttag}{!xmlEndtag}<ExpressXML>
+														 <AccountNumber>{!universalbackgroundcheckCustomSetting.Account_Number__c}</AccountNumber>
+														 <Username>{!universalbackgroundcheckCustomSetting.User_Name__c}</Username>
+														 <Package>{!universalbackgroundcheckCustomSetting.Package__c}</Package>
+														 <Person>
+														 <PartnerReference>{!contact.id}</PartnerReference>
+														 <ApplicantID>{!contact.id}</ApplicantID>
+														 <FirstName>{!contact.firstname}</FirstName>
+														 <MiddleName></MiddleName>
+														 <LastName>{!contact.lastname}</LastName>
+														 <SSN>{!contact.SSN__c }</SSN>
+														 <DOB format='MMDDYYYY'>{!Birthdate}</DOB>
+														 <Phone>{!contact.Phone}</Phone>
+														 <Email>{!contact.Email}</Email>
+														 <AddressHistory> <Address Type='Current'>
+														 <AddressLine>{!contact.mailingStreet}</AddressLine>
+														 <City>{!contact.mailingcity}</City>
+														 <StateProvince>{!contact.mailingstate}</StateProvince>
+														 <PostalCode>{!contact.mailingPostalCode}</PostalCode>
+														 <Country>{!contact.mailingCountry}</Country>
+														 </Address></AddressHistory>
+														 </Person>
+														 <Screenings>" var="mainXML"/>
+
+	 <form name="Universalbackgroundcheck" method="post" action= "https://www1.universalbackground.com/partners/targetrecruit/" target="blank">
+
+
+
+<apex:outputPanel rendered="{!CredentialRequest }">
+	  <apex:variable value="
+							</Screenings></ExpressXML>" var="mainXMLScreenings" />
+
+	 <!-- Finalxml tree store in the XmlForRequest variable-->
+
+	 <apex:variable value="{!mainXML}{!FinalXML}{!mainXMLScreenings}" var="XmlForRequest"/>
+	 <input type="hidden" name="ExpressXML" value="{!XmlForRequest}"/>
+	 </apex:outputPanel>
+<apex:outputPanel rendered="{!!CredentialRequest }">
+	  <apex:variable value="<DriverLicense><License>
+							<Number>{!contact.Driver_Licence_Number__c}</Number>
+							<StateProvince>{!contact.Driver_Licence_State__c}</StateProvince>
+							</License></DriverLicense >
+							<SexOffenderDatabase />
+							<NationalCriminalDatabase />
+							<OFAC />
+							<OIG />
+							<GSA />
+							</Screenings></ExpressXML>" var="mainXMLScreenings" />
+
+	 <!-- Finalxml tree store in the XmlForRequest variable-->
+<!--   <input type="text" value="{!FinalXML}" /> -->
+	 <apex:variable value="{!mainXML}{!FinalXML}{!mainXMLScreenings}" var="XmlForRequest"/>
+	 <input type="hidden" name="ExpressXML" value="{!XmlForRequest}"/>
+	 </apex:outputPanel>
+	 <input type="submit" name="Submit" value="{!$Label.Back_Ground_Check_Button}" class="classname" style=" height: 32px"/>
+	 </form>
+	  </td>
+
+	 <td>
+	 <apex:form >
+	 <apex:commandlink value="{!$Label.avtrrt__Back_Ground_Check_Cancel_Button}" action="{!cancel}" styleclass="classname" style="text-decoration:none; " />
+	 </apex:form>
+	 </td>
+	 </tr>
+</table>
+</html>
+	</apex:outputPanel>
+	 <apex:outputPanel rendered="{!!readyForRequest}">
+	 <apex:messages />
+	 </apex:outputPanel>
+</apex:page>

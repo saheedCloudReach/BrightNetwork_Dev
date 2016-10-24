@@ -1,0 +1,15 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; ">Dear {!Job_Applicant__c.Recruiter__c},</p>
+<p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; ">&nbsp;</p>
+<p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; ">Candidate '{!Job_Applicant__c.Contact_Candidate__c}' has been rejected&nbsp; for the job '{!Job_Applicant__c.Job_Title__c}'.</p>
+<p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; ">&nbsp;</p>
+<p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; ">Click <a href="http://na2.salesforce.com/{!Job_Applicant__c.Id}">here</a> to view the job applicant record details.</p>
+<p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; ">&nbsp;</p>
+<p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; ">Thanks,</p><font face="arial" size="3">{!Job_Applicant__c.OwnerFullName} 
+</font><p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; ">{!Job_Applicant__c.OwnerTitle}</p>
+<p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; ">{!Job_Applicant__c.OwnerEmail}</p>
+<p style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; ">{!Job_Applicant__c.OwnerPhone}</p>]]></td>
+</tr>
+</table>

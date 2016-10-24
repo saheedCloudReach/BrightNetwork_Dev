@@ -1,0 +1,413 @@
+<apex:page standardController="AVTRRT__Job__c" extensions="BCST.SetBroadcastingExtrafieldsController" showHeader="false" standardStylesheets="true" action="{!init}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.blockQuery)}"></script>
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+    <style type="text/css">
+        .mainTitle
+        {
+            font-family: Tahoma !important;
+            font-size: 14px !important;
+            color: #474747 !important;
+        }
+        .divButton
+        {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+         .left_panel
+         {
+            width: 190px; 
+            margin: 0 10px 0 0           
+            float: left;
+         }
+        .right_panel
+        {              
+            margin: 0 0 0 225px;
+            float: left;
+        }
+    </style>
+            
+    <script type="text/javascript">
+        var j$ = jQuery.noConflict();
+
+        function fixId(myid) {
+            return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+        }
+
+        function updateMultiSelect(apexId, items) {
+            var optionList = j$(apexId).children();
+            var itemList = items.split(', ');
+
+            for (var i = 0; i < optionList.length; i++) {
+                var eachOption = optionList[i];
+                var value = j$(eachOption).attr('value');
+
+                for (var j = 0; j < itemList.length; j++) {
+                    if (itemList[j] == value) {
+                        j$(eachOption).attr('selected', 'true');
+                        break;
+                    }
+                }
+            }
+        }
+        
+        
+        function customLookup(extra_name, board_id, isParent) {
+            var parent_id = document.getElementById(extra_name + '@parent').firstChild.getAttribute('id');
+            var child_id = isParent 
+                    ? null 
+                    : document.getElementById(extra_name + '@child').firstChild.getAttribute('id');
+			
+            var target_id = isParent ? parent_id : child_id;
+            var parent_val = '';
+            
+            if (!isParent) { 
+                parent_val = j$(fixId(parent_id)).val(); 
+				                
+            }//else{
+            //  var cId = document.getElementById(extra_name + '@child').firstChild.getAttribute('id');
+            //  document.getElementById(cId).value = '';
+                //cId.attr('readonly', 'readonly');
+                //document.getElementById(extra_name + '@child').firstChild.getAttribute('id').value = '';
+                //document.getElementById('{!$Component.extraIndexSelectList3}').value = '-none-';
+                //document.getElementById(j$(fixId('{!$Component.extraIndexSelectList3}'))).value = '';
+            //}
+        
+            window.showModalDialog('/apex/BCST__SetBroadcastingLookUpExtrafields?board_id=' + board_id + 
+                    '&extra_name=' + extra_name + 
+                    '&target_id=' + target_id + 
+                    '&val=' + j$(fixId(target_id)).val() +
+                    '&parent_val=' + parent_val);
+                    
+        }
+		
+		function loadAndValidateLocation(){
+		
+			     	
+        	var country = j$('.countryclass').val();
+        	var city = j$('.cityclass').val();
+
+        	if(country =='' || city ==''){
+        		alert('Please enter value for Country and City fields to get list of locations');
+        		return false;
+        	}
+        	else{
+        		loadLocationsAction(country,city);
+        	}
+        	
+        }
+        
+    </script>
+       
+    <apex:form id="setextraform">
+
+	<apex:actionFunction name="loadLocationsAction" action="{!populateLocations}">
+    	<apex:param name="country" assignTo="{!country}" value=""/>
+		<apex:param name="city" assignTo="{!city}" value=""/>	
+	</apex:actionFunction>
+
+    <div class = "block">
+         <apex:pageMessages />        
+        <apex:pageBlock title="{!$Label.bcst__Set_Extra_fields}">         
+            <table  width="100%">
+                <tr>
+                    <td valign="top" class="td-ts" width="15%">  
+                        <apex:pageBlock title="{!$Label.bcst__Job_Boards}">           
+                            <apex:pageBlockSection columns="1">
+                                <apex:pageBlockSectionItem >                     
+                                    <apex:commandlink styleClass="jobBoardLinkId" value="{!$Label.bcst__Default_Fields}" style="font-family: Tahoma;" reRender="defaultExtraFields,jobBoardExtraFields" status="wait">
+                                    <apex:param name="jobBoardName" value="default" assignTo="{!jobBoardName}" /> 
+                                     </apex:commandlink>  
+                                </apex:pageBlockSectionItem>
+                                <apex:repeat value="{!JobBoardsList}" var="jobBoard">             
+                                    <apex:pageBlockSectionItem >                                                    
+                                        <apex:commandlink styleClass="jobBoardLinkId" id="jobBoardLinkId" style="font-family: Tahoma;" value="{!jobBoard}" action="{!getJobBoardExtraFields}" reRender="jobBoardExtraFields,defaultExtraFields" status="wait"> 
+                                            <apex:param name="jobBoardName" value="{!jobBoard}" assignTo="{!jobBoardName}" />                                                                                                 
+                                        </apex:commandlink>                                    
+                                    </apex:pageBlockSectionItem>                                     
+                                </apex:repeat>
+                            </apex:pageBlockSection>                          
+                         </apex:pageBlock>               
+                     </td>
+                    <td valign="top" width="80%" >
+                    <apex:outputPanel id="defaultExtraFields">
+                    <apex:pageBlock title="{!$Label.bcst__Default_Fields}" rendered="{!if(jobBoardName == 'default','true','false')}">
+                <apex:pageBlockSection columns="2" >
+                <!-- Code added by pandeiswari for location webservice -->
+               	  	
+                  <apex:pageBlockSectionItem >
+                        <apex:outputText value="Country *" />
+                        <apex:outputPanel >
+                            <apex:inputText id="countryid" value="{!country}" styleClass="countryclass"></apex:inputText>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                      
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText id="jobType" value="Job Type *" />
+                        <apex:outputPanel >
+                            <apex:selectList style="width: 300px; font-family: Tahoma;" size="1"
+                                        value="{!jobTypeSelected}">
+                                <apex:selectOptions value="{!jobTypeSelectOption}" />
+                            </apex:selectList>
+                            <apex:outputText style="font-family: Calibri; color: #745e5e;" escape="false" value="BCST__Idibu_Job_Type__c" rendered="{!isShowExtrafieldNames}" />
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                  
+                     <apex:pageBlockSectionItem >
+                        <apex:outputText value="City *" />
+                        <apex:outputPanel >
+                            <apex:inputText id="cityid"  value="{!city}" styleClass="cityclass"></apex:inputText>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText id="category" value="Sector *" />
+                        <apex:outputPanel >
+                            <apex:selectList style="width: 300px; font-family: Tahoma;" size="1"
+                                        value="{!categorySelected}">
+                                <apex:selectOptions value="{!categorySelectOption}" />
+                            </apex:selectList>
+                            <apex:outputText style="font-family: Calibri; color: #745e5e;" escape="false" value="BCST__Idibu_Category__c" rendered="{!isShowExtrafieldNames}" />
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText id="location" value="Location*" />
+                        <apex:outputPanel >
+                            <apex:selectList style="width: 300px; font-family: Tahoma;" size="1"
+                                        value="{!locationSelected}">
+                                <apex:selectOptions value="{!locationSelectOption}" />
+                            </apex:selectList>
+                            <apex:outputText style="font-family: Calibri; color: #745e5e;" escape="false" value="BCST__Idibu_Location__c" rendered="{!isShowExtrafieldNames}" />
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                  
+                    <apex:pageBlockSectionItem >
+                    <apex:outputPanel >
+                        <apex:actionStatus id="finishblock">
+	           				 <apex:facet name="stop">
+	                			<apex:commandButton value="Get Area" onclick="javascript:loadAndValidateLocation()"  reRender="location" status="finishblock" />
+	                		</apex:facet>
+	                		<apex:facet name="start">
+		                    	<apex:outputPanel >
+		                    	    <apex:image value="/img/loading32.gif" style="height: 15px;" />
+		                        	<apex:commandButton value="Fetching area..." status="finishblock" disabled="true" />
+		                   		 </apex:outputPanel>
+	                		</apex:facet>
+	        			</apex:actionStatus>
+                        <!--  
+							<apex:commandButton value="Get Location" onclick="javascript:loadAndValidateLocation()"  reRender="location">
+							</apex:commandButton>    -->                       
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText id="salaryRange" value="Salary Range *" />
+                        <apex:outputPanel >
+                            <apex:selectList style="width: 300px; font-family: Tahoma;" size="1"
+                                        value="{!salaryRangeSelected}">
+                                <apex:selectOptions value="{!salaryRangeSelectOption}" />
+                            </apex:selectList>
+                            <apex:outputText style="font-family: Calibri; color: #745e5e;" escape="false" value="BCST__Idibu_Salary_Range__c" rendered="{!isShowExtrafieldNames}" />
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                <apex:pageBlockSectionItem >
+                        <apex:outputText id="jobTime" value="Job Time *" />
+                        <apex:outputPanel >
+                            <apex:selectList style="width: 300px; font-family: Tahoma;" size="1"
+                                        value="{!jobTimeSelected}">
+                                <apex:selectOptions value="{!jobTimeSelectOption}" />
+                            </apex:selectList>
+                            <apex:outputText style="font-family: Calibri; color: #745e5e;" escape="false" value="BCST__Idibu_Job_Time__c" rendered="{!isShowExtrafieldNames}" />
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputText id="currency" value="Currency" />
+                        <apex:outputPanel >
+                            <apex:selectList style="width: 300px; font-family: Tahoma;" size="1"
+                                        value="{!currencySelected}">
+                                <apex:selectOptions value="{!currencySelectOption}" />
+                            </apex:selectList>
+                            <apex:outputText style="font-family: Calibri; color: #745e5e;" escape="false" value="BCST__Idibu_Currency__c" rendered="{!isShowExtrafieldNames}" />
+                        </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+                    </apex:outputPanel>
+                <apex:outputPanel id="jobBoardExtraFields">
+                <apex:pageBlock title="{!v_idibuJobBoardEx.name}" rendered="{!jobBoardName!='default' && v_idibuJobBoardEx.isRendered}">
+                    <apex:pageBlockSection columns="2" >
+                        <apex:repeat value="{!v_idibuJobBoardEx.extrafieldsList}" var="extrafield">
+                            <apex:pageBlockSectionItem rendered="{!extrafield.extrafield_type != 'hidden'}">
+                                <apex:outputPanel >
+                                    <apex:outputText id="cLabel" value="{!extrafield.extrafield_description}" />
+                                    <apex:outputPanel rendered="{!extrafield.validationMessage != null}">
+                                        &nbsp;&nbsp;
+                                        <span class="infoElement">
+                                            <div onmouseover="addMouseOver(this)" onfocus="addMouseOver(this)" class="mouseOverInfoOuter">
+                                                <img class="infoIcon" src="/s.gif" />
+                                                <div style="display: none; opacity: 0;" class="mouseOverInfo">
+                                                    <span class="searchHints">
+                                                        {!extrafield.validationMessage}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+
+                                <apex:outputPanel >
+                                    <script type="text/javascript">
+                                        var cLabel = j$(fixId('{!$Component.cLabel}'));
+                                        var required = '{!extrafield.extrafield_required}';
+                                        if (required == 'true')
+                                        {
+                                            var text = '{!extrafield.extrafield_description}';
+                                            cLabel.html(text + '<font color="#9e0b0f"><b>&nbsp;*</b></font>');
+                                        }
+                                    </script>
+                                    
+                                     
+                                    <apex:selectList style="width: 148px; font-family: Tahoma;" id="extraIndexSelectList1" value="{!extrafield.parentSelected}" size="1" rendered="{!(extrafield.extrafield_type == 'select') && (extrafield.extrafield_multi != 'true') && (extrafield.parentOptionList.size < 100)}">
+                                        <apex:selectOptions value="{!extrafield.parentOptionList}" />
+                                        <apex:actionSupport event="onchange" rerender="extraParentSelectList,extraIndexSelectList3" status="wait" />
+                                    </apex:selectList> 
+                                    
+                                    
+                                    <apex:outputPanel rendered="{!(extrafield.extrafield_type == 'select') && (extrafield.extrafield_multi != 'true') && (extrafield.parentOptionList.size > 99)}">
+                                        <span id="{!extrafield.extrafield_name}@parent">
+                                            <apex:inputText id="extraIndexSelectList2" value="{!extrafield.parentSelected}" style="width: 120px; font-family: Tahoma;">
+                                                <apex:actionSupport event="onchange" rerender="extraParentSelectList,extraIndexSelectList3" status="wait" />
+                                            </apex:inputText>
+                                            <a onclick="customLookup('{!extrafield.extrafield_name}', '{!v_idibuJobBoardEx.board_id}', true)" title="Lookup (New Window)">
+                                                <img class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon'; this.className = 'lookupIcon';" 
+                                                        onmouseover="this.className = 'lookupIconOn'; this.className = 'lookupIconOn';" src="/s.gif" />
+                                            </a>    
+                                        </span>
+                                    </apex:outputPanel>
+                                    
+                                    <script type="text/javascript">
+                                        var isUsedparentOptionList = '{!extrafield.isUsedparentOptionList}';
+                                        var extraIndexSelectList1 = j$(fixId('{!$Component.extraIndexSelectList1}'));
+                                        var extraIndexSelectList2 = j$(fixId('{!$Component.extraIndexSelectList2}'));
+                                        
+                                        extraIndexSelectList2.attr('readonly', 'readonly');
+                                        
+                                        //var extraIndexSelectList3 = j$(fixId('{!$Component.extraIndexSelectList3}'));
+                                        //extraIndexSelectList3.attr('readonly', 'readonly');
+                                        
+                                        if (isUsedparentOptionList == 'false') {
+                                            extraIndexSelectList1.css('width', '300px');
+                                            extraIndexSelectList2.css('width', '272px');
+                                        }
+                                    </script>
+                                    <!--
+                                    <apex:selectList style="width: 149px; font-family: Tahoma;" id="extraParentSelectList" value="{!extrafield.childSelected}" size="1" rendered="{!(extrafield.isUsedparentOptionList) && (extrafield.extrafield_multi != 'true') }">
+                                        <apex:selectOptions value="{!extrafield.childOptionList}" />
+                                    </apex:selectList>
+                                    -->
+                                    <!-- -----------------------------------------------------------Code By Shashish -->
+                                    
+                                    <apex:selectList style="width: 149px; font-family: Tahoma;" id="extraParentSelectList" value="{!extrafield.childSelected}" size="1" rendered="{!(extrafield.isUsedparentOptionList) && (extrafield.extrafield_multi != 'true') && AND(NOT(ISNULL(extrafield.childOptionList)), (extrafield.childOptionList.size < 100)) }">
+                                        <apex:selectOptions value="{!extrafield.childOptionList}" />
+                                    </apex:selectList>
+                                    
+                                    <apex:outputPanel rendered="{!(extrafield.isUsedparentOptionList) && (extrafield.extrafield_multi != 'true') && AND(NOT(ISNULL(extrafield.childOptionList)), (extrafield.childOptionList.size > 99))}">
+                                        <span id="{!extrafield.extrafield_name}@child">
+                                            <apex:inputText id="extraIndexSelectList3" value="{!extrafield.childSelected}" style="width: 120px; font-family: Tahoma;" />
+                                            
+                                            <!-- Commented by Aliaksandr Satskou, 07/25/2013 -->
+                                            <!--apex:actionSupport event="onchange" rerender="extraParentSelectList" status="wait" /-->
+                                            
+                                            <a onclick="customLookup('{!extrafield.extrafield_name}', '{!v_idibuJobBoardEx.board_id}', false)" title="Lookup (New Window)">
+                                                <img class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon'; this.className = 'lookupIcon';" 
+                                                        onmouseover="this.className = 'lookupIconOn'; this.className = 'lookupIconOn';" src="/s.gif" />
+                                            </a>    
+                                        </span>
+                                    </apex:outputPanel>
+                                    
+                                    <script type="text/javascript">
+                                        var extraIndexSelectList3 = j$(fixId('{!$Component.extraIndexSelectList3}'));
+                                        
+                                        extraIndexSelectList3.attr('readonly', 'readonly');
+                                        
+                                    </script>
+                                    
+                                    <!-- ---------------------------------------------------------------------------------------------->
+
+                                    <apex:outputPanel rendered="{!(extrafield.extrafield_type == 'select') && (extrafield.extrafield_multi == 'true') && (!extrafield.isUsedparentOptionList)}">
+                                        <apex:selectList style="width: 300px; height: 102px; font-family: Tahoma;" id="extraIndexMultiSelectList" value="{!extrafield.parentSelected}" multiselect="true">
+                                            <apex:selectOptions value="{!extrafield.parentOptionList}" />
+                                        </apex:selectList>
+                                        <script type="text/javascript">
+                                            var extraIndexMultiSelectList = fixId('{!$Component.extraIndexMultiSelectList}');
+                                            var parentSelected = '{!extrafield.parentSelected}';
+
+                                            if (parentSelected != null) {
+                                                parentSelected = parentSelected.substring(1, parentSelected.length - 1);
+                                            }
+
+                                            updateMultiSelect(extraIndexMultiSelectList, parentSelected);
+                                        </script>
+                                    </apex:outputPanel>
+
+                                    <apex:outputPanel rendered="{!(extrafield.extrafield_type == 'select') && (extrafield.extrafield_multi == 'true') && (extrafield.isUsedparentOptionList)}">
+                                        <apex:selectList style="width: 300px; font-family: Tahoma;" id="extraIndexMultiParentSelectList" value="{!extrafield.parentSelected}" size="1">
+                                            <apex:selectOptions value="{!extrafield.parentOptionList}" />
+                                            <apex:actionSupport event="onchange" rerender="extraParentMultiSelectList" status="wait" />
+                                        </apex:selectList>
+                                        <br />
+                                        <!-- TODO: Change to parentOptionIdToChildSelectOptionListMap[extrafield.parentSelected] -->
+                                        <apex:selectList style="width: 300px; height: 102px; font-family: Tahoma;" id="extraParentMultiSelectList" value="{!extrafield.childSelected}" multiselect="true">
+                                            <apex:selectOptions value="{!extrafield.childOptionList}" />
+                                        </apex:selectList>
+                                        <script type="text/javascript">
+                                            var extraParentMultiSelectList = fixId('{!$Component.extraParentMultiSelectList}');
+                                            var childSelected = '{!extrafield.childSelected}';
+
+                                            if (childSelected != null) {
+                                                childSelected = childSelected.substring(1, childSelected.length - 1);
+                                            }
+
+                                            updateMultiSelect(extraParentMultiSelectList, childSelected);
+                                        </script>
+                                    </apex:outputPanel>
+
+                                    <apex:inputText style="width: 296px; font-family: Tahoma;" id="extraInputText" value="{!extrafield.parentSelected}" rendered="{!(extrafield.extrafield_type == 'text') || (extrafield.extrafield_type == 'textarea')}"/>
+                                    <br />
+                                    <apex:outputText style="font-family: Calibri; color: #9e0b0f;" escape="false" value="{!extrafield.message}" />
+                                    <apex:outputText style="font-family: Calibri; color: #745e5e;" escape="false" value="{!extrafield.extrafield_name}" rendered="{!isShowExtrafieldNames}" />
+                                </apex:outputPanel>
+                            </apex:pageBlockSectionItem>
+                        </apex:repeat>                  
+                    </apex:pageBlockSection>
+                </apex:pageBlock>                      
+                </apex:outputPanel>
+                    </td>
+                </tr>
+        </table>        
+          <table width="100%">
+            <tr>
+                
+                    <td class="divButton" align="center">
+                    <!-- apex:commandButton style="float: right; margin-left: 10px;" value="Save and Next" action="{!apply}" /-->
+                        <apex:commandButton value="{!$Label.bcst__Save}" action="{!apply}" oncomplete="('{!jobBoardName}' == 'default') ? alert('Default Fields was successfully saved') : alert('{!jobBoardName} was successfully saved');" />
+                    </td>                
+            </tr>  
+           </table>                    
+  </apex:pageBlock> 
+  </div> 
+      <apex:actionStatus id="wait"
+            onstart="j$('#dialogWait').dialog({modal:false, resizable:false, width:180, open:function(event, ui) { j$('#dialogWait').css('height','44px').css('min-height','44px'); j$('div.block').block({message: null}); j$('#dialogWait').siblings('.ui-dialog-titlebar').hide(); } })"
+            onstop="j$('#dialogWait').dialog('close'); j$('div.block').unblock();" />
+    <div id="dialogWait" style="display:none;">
+        <apex:image id="searchImage" url="{!$Resource.BCST__loading}" style="float: left;"/>
+        <div style="float: left; padding: 15px 5px 5px 15px;">Wait...</div>
+    </div>    
+   </apex:form>    
+</apex:page>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Job_Applicant__c.Account_Job__c</field>
+    </columns>
+    <columns>
+        <field>Job_Applicant__c.Contact_Candidate__c</field>
+    </columns>
+    <columns>
+        <field>Job_Applicant__c.Job_Title__c</field>
+    </columns>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Job_Applicant__c.Stage__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Job_Applicant__c.Recruiter__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Submittal Count(By Recruiter)</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Job_Applicant__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Job_Applicant__c.Resume_Received_Date__c</dateColumn>
+        <interval>INTERVAL_LASTMONTH</interval>
+    </timeFrameFilter>
+</Report>

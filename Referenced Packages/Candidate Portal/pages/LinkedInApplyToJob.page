@@ -1,0 +1,15 @@
+<apex:page showHeader="false" controller="TRGTFCMS.LinkedInApplyToJobController" language="{!selectLanguage}" action="{!init}">
+
+<apex:form >
+	<apex:outputPanel id="messages">
+		<apex:pageMessages escape="false" />
+	</apex:outputPanel>
+
+	<apex:actionFunction name="processCandidate" action="{!processCandidate}" rerender="messages"/>
+</apex:form>
+
+<script>
+	processCandidate();
+</script>
+
+</apex:page>

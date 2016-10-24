@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification for Change in Interview</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Avankia_Letterhead</letterhead>
+    <name>Interview Change</name>
+    <style>freeForm</style>
+    <subject>Interview Change Notification</subject>
+    <textOnly>Hello! 
+
+Your {!Interview__c.Type_Of_Interview__c} interview for {!Interview__c.00N40000001K6uo} scheduled for {!Interview__c.Start_Date__c} at {!Interview__c.Account_X__c} with {!Interview__c.Hiring_Manager__c} for the {!Interview__c.Job_Name__c}, has changed. 
+
+Your {!Interview__c.Type_Of_Interview__c} interview is now scheduled for {!Interview__c.Start_Date__c} at {!Interview__c.Account_X__c} with {!Interview__c.Hiring_Manager__c}. 
+
+Please contact [insert Recruiter Name] you have any additional questions or concerns. 
+
+Good luck and have a great day!</textOnly>
+    <type>html</type>
+</EmailTemplate>

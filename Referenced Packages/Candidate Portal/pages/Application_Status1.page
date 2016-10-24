@@ -1,0 +1,81 @@
+<apex:page controller="TRGTFCMS.ApplicationStatusController1" title="{!$Label.trgtfcms__Application_Status}" standardstylesheets="false" showHeader="false" sideBar="false" cache="false">
+    
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script>
+        var j$ = jQuery.noConflict();
+        function fixId(myid) {
+           return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+        }
+    </script>
+    <head>
+        <meta name="keywords" content="{!metaKeywords}" id="keywords"/>
+
+    </head>
+    <style>
+        <apex:outputText value="{!cmsCssCustom}" />
+    </style>
+    <apex:form >
+    <apex:outputPanel rendered="{!jobApplicationMSGShowHide}"  styleClass="messages">
+    <apex:outputText value="{!jobApplicationMSG}" id="jobApplicationMSG"  styleClass="warning"/>
+    </apex:outputPanel>
+        <br/>
+
+    <div class="content1">
+                <div class="form-submit1 table_apply_button application_button">
+                            <apex:commandButton action="{!withdraw}" value="{!$Label.trgtfcms__Withdraw}" />
+                            <input type="reset"/>
+                </div>
+                <div class="page-title">
+                    <h2>{!$Label.trgtfcms__Application_Status}</h2>
+                </div>
+
+                <table id="cmstable" cellspacing="0" summary="{!$Label.The_list_of_jobs_user_submitted}">
+                    <tr>
+                        <th scope="col" abbr="{!$Label.Job_No}">&nbsp;{!$Label.Job_No}</th>
+                        <th scope="col" abbr="{!$Label.Job_Title}">&nbsp;{!$Label.Job_Title}</th>
+                        <th scope="col" abbr="{!$Label.Application_Date}">&nbsp;{!$Label.Application_Date}</th>
+                        <th scope="col" abbr="{!$Label.Last_Modified_Date}">&nbsp;{!$Label.Last_Modified_Date}</th>
+                        <th scope="col" abbr="{!$Label.Stage}">&nbsp;{!$Label.Stage}</th>
+                        <th scope="col" abbr="{!$Label.trgtfcms__Withdraw}">{!$Label.trgtfcms__Withdraw}
+                            <BR></BR>
+                            <input type="checkbox" name="checkAllAuto" id="checkAllAuto"/>
+                        </th>
+
+                    </tr>
+                    <apex:repeat value="{!jobApplicationBeanList}" var="jobApplication" id="repeat">
+                        <tr class="{!jobApplication.cssClassEvenOdd}">
+                            <td><apex:outputText value="{!jobApplication.jobApplication.AVTRRT__Job__r.Name}"/></td>
+                            <td>
+                                <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" target="_blank">
+                                    <apex:param name="page" value="JobDetailPage" />
+                                    <apex:param name="sessionId" value="{!$CurrentPage.parameters.sessionId}" />
+                                    <apex:param name="jobIds" value="{!jobApplication.jobApplication.AVTRRT__Job__r.Id}" />
+                                    <apex:param name="jobSite" value="{!$CurrentPage.parameters.jobSite}" />
+                                    <apex:param name="p" value="{!$CurrentPage.parameters.p}" />
+                                    {!jobApplication.jobApplication.AVTRRT__Job__r.AVTRRT__Job_Title__c}
+                                </apex:outputLink>
+                            </td>
+                            <td><apex:outputText value="{!jobApplication.applicationDate}"/></td>
+                            <td><apex:outputText value="{!jobApplication.lastModifiedDate}"/></td>
+                            <td><apex:outputText value="{!jobApplication.jobApplication.AVTRRT__Stage__c}"/></td>
+                            <td><apex:inputCheckbox value="{!jobApplication.check}" id="withdrawCheckBox"/></td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+                <script>
+                j$('#checkAllAuto').click(function(){
+                   j$("INPUT[type='checkbox']").attr('checked', j$('#checkAllAuto').is(':checked'));
+                });
+                </script>
+                <div class="form-submit1 table_apply_button application_button">
+                    <apex:commandButton action="{!withdraw}" value="{!$Label.trgtfcms__Withdraw}" />
+                    <input type="reset"/>
+                </div>
+            </div>
+
+
+
+    </apex:form>
+
+</apex:page>

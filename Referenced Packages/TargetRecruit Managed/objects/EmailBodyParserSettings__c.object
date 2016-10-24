@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Parts_Delimiter__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Parts Delimiter</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quotes_Symbol__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Value Delimiter</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rows_Delimiter__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Delimiter to split rows. For example if a row looks like: 
+
+&quot;AM Notes&quot; : &quot;ABC is Excellent.&quot;,
+
+then the delimiter is &apos;,&apos;-symbol</description>
+        <externalId>false</externalId>
+        <label>Rows Delimiter</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>EmailBodyParserSettings</label>
+    <visibility>Public</visibility>
+</CustomObject>

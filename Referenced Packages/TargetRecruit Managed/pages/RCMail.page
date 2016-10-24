@@ -1,0 +1,407 @@
+<apex:page standardController="AVTRRT__Job_Applicant__c" extensions="AVTRRT.RCMailController" recordSetVar="applicants" title="{!$Label.avtrrt__Submit_Candidates}">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script src="/static/022509/js/spch.js"></script>
+	<script>
+
+	var j$ = jQuery.noConflict();
+	function fixId(myid) {
+	return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+	}
+
+	function openRichTextPreview() {
+		var text = trim(FCKeditorAPI.GetInstance(editor.InstanceName).GetXHTML());
+		if(text==''){
+			alert('No data found in Body.');
+		}else{
+			var currPreviewWindow = window.open('Preview.jsp', 'cpw', 'width=450,height=400,scrollbars=yes,toolbar=no,status=no,directories=no,menubar=no,resizable=yes');
+			currPreviewWindow.document.open();
+			currPreviewWindow.document.write('<html><style>p{margin-top:0px; margin-bottom:0px;}</style><body bgcolor="#FFFFFF" marginwidth="2" marginheight="2" style="font-family:Arial;font-size:10pt;color:000000">');
+			currPreviewWindow.document.write(text);
+			currPreviewWindow.document.write('</body></html>');
+			currPreviewWindow.document.close();
+	}
+	}
+
+	function getControls(sId) {
+		return {frame: document.getElementById(sId + "___Frame"),
+				input: document.getElementById(sId)};
+	}
+	function doRichTextSpell() {
+		var oEditorControls = getControls(editor.InstanceName);
+		oEditorControls.input.value = oEditorControls.frame.contentWindow.FCK.GetXHTML();
+		doSpell({
+				ctrl:editor.InstanceName,
+				lang:'en',
+				title:'Check Spelling',
+				intLang:'en'
+			},
+			'/servlet/SProxyWrapper',
+			document.location.protocol + '//' + 'spell-sjl.salesforce.com/spellcheck',
+			'There is nothing to check',
+			'We are sorry,our spellchecker currently does not support the browser you are using. Please upgrade your browser.'
+		);
+	}
+
+	var suffixUser = ' [User]';
+	var suffixContact = ' [Contact]';
+
+	function moveTo(select, hiddenUsers, hiddenContacts, hiddenEmails) {
+		var $selectedElement = j$(selectedElement);
+		if ($selectedElement.is('select')) {
+			j$.each($selectedElement[0].options, function() {
+				if (this.selected){
+					var alreadyExists = false;
+					var itemToMove = this;
+
+					j$.each(select[0].options, function() {
+						if (this.value == itemToMove.value)
+							alreadyExists = true;
+					});
+
+					if (!alreadyExists) {
+						var copy = j$(this).clone()[0];
+						copy.text = copy.text + suffix;
+						select.append(copy);
+					}
+				}
+			});
+		} else {
+			var emailsInString = $selectedElement.val();
+			var emails = emailsInString.split('\n');
+
+			j$.each(emails, function(index, email) {
+				if (validateEmail(email)) {
+					var option = j$('<option>')[0];
+					option.text = email;
+					option.value = email;
+					select.append(option);
+				} else {
+					alert('Email "' + email + '" is invalid.');
+				}
+			});
+		}
+
+		updateToHidden(select, hiddenUsers, hiddenContacts, hiddenEmails);
+	}
+
+	function validateEmail(email) {
+		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(email);
+	}
+
+	function moveFrom(select, hiddenUsers, hiddenContacts, hiddenEmails) {
+		j$.each(select[0].options, function(index) {
+			if (this.selected){
+				j$(this).remove();
+				moveFrom(select, hiddenUsers, hiddenContacts, hiddenEmails);
+			}
+		});
+
+		updateToHidden(select, hiddenUsers, hiddenContacts, hiddenEmails);
+	}
+	function updateToHidden(select, hiddenUsers, hiddenContacts, hiddenEmails) {
+		hiddenUsers[0].value = '';
+		hiddenContacts[0].value = '';
+		hiddenEmails[0].value = '';
+
+		j$.each(select[0].options, function(index) {
+			if (this.text.lastIndexOf(suffixUser) > -1) {
+				hiddenUsers[0].value += ',' + this.value;
+			} else if (this.text.lastIndexOf(suffixContact) > -1) {
+				hiddenContacts[0].value += ',' + this.value;
+			} else {
+				hiddenEmails[0].value += ',' + this.value;
+			}
+		});
+
+		if (hiddenUsers[0].value.length > 0)
+			hiddenUsers[0].value = hiddenUsers[0].value.substr(1);
+
+		if (hiddenContacts[0].value.length > 0)
+			hiddenContacts[0].value = hiddenContacts[0].value.substr(1);
+
+		if (hiddenEmails[0].value.length > 0)
+			hiddenEmails[0].value = hiddenEmails[0].value.substr(1);
+	}
+
+	function updateFromHidden(select, hiddenUsers, hiddenContacts, hiddenEmails) {
+		select.empty();
+
+		j$.each(hiddenUsers[0].value.split(","), function(index) {
+			addToSelect(select, this);
+		});
+		j$.each(hiddenContacts[0].value.split(","), function(index) {
+			addToSelect(select, this);
+		});
+		j$.each(hiddenEmails[0].value.split(","), function(index) {
+			addToSelect(select, this);
+		});
+	}
+
+	function addToSelect(select, val) {
+		if (val != '') {
+			var optionText = getFromSourceSelectByValue(userOptions, val);
+			if (optionText != null) {
+				optionText += suffixUser;
+			} else {
+				optionText = getFromSourceSelectByValue(contactOptions, val);
+				if (optionText != null) {
+					optionText += suffixContact;
+				} else {
+					optionText = val;
+				}
+			}
+
+			select.append(j$('<option value="' + val + '">' + optionText + '</option>'));
+		}
+	}
+
+	function getFromSourceSelectByValue(select, val) {
+		var retVal = null;
+
+		j$.each(select[0].options, function(index) {
+			if (this.value == val)
+				retVal = this.text;
+		});
+
+		return retVal;
+	}
+
+	function addFile() {
+		var hiddenFileHolder = newFiles.find('div:hidden:first');
+
+		hiddenFileHolder.remove();
+		newFiles.append(hiddenFileHolder);
+
+		hiddenFileHolder.show();
+
+		ensureAddFileLinkState();
+	}
+
+	function removeFile(link) {
+		var fileHolder = link.parent();
+		fileHolder.hide();
+		fileHolder.find(':first-child').val(null);
+		ensureAddFileLinkState();
+	}
+
+	function ensureAddFileLinkState() {
+		if (newFiles.find('div:hidden').size() == 0)
+			addFileLink.hide();
+		else
+			addFileLink.show();
+	}
+
+	var selectedElement;
+	function setSelectedElement(element) {
+		selectedElement = element;
+	}
+
+	</script>
+
+	<apex:pageMessages />
+
+	<apex:sectionHeader title="Submit Candidate" />
+
+	<apex:form >
+
+	<apex:outputPanel rendered="{!contactIds != null}">
+		Candidate:&nbsp;
+		<apex:inputField value="{!fakeJobAppForCandidateLookup.AVTRRT__Contact_Candidate__c}" />
+		<apex:commandButton value="Select" action="{!selectCandidate}" />
+	</apex:outputPanel>
+
+	<apex:outputPanel rendered="{!jobApps.size != 0 || fakeJobAppForCandidateLookup.AVTRRT__Contact_Candidate__c != null}">
+
+		<apex:outputPanel rendered="{!jobApps.size != 0}">
+			<apex:outputText >{!headerText}</apex:outputText><br /><br />
+		</apex:outputPanel>
+
+		<apex:inputHidden value="{!toContactsString}" id="toContactsString" />
+		<apex:inputHidden value="{!toUsersString}" id="toUsersString" />
+		<apex:inputHidden value="{!toEmailsString}" id="toEmailsString" />
+		<apex:inputHidden value="{!ccContactsString}" id="ccContactsString" />
+		<apex:inputHidden value="{!ccUsersString}" id="ccUsersString" />
+		<apex:inputHidden value="{!ccEmailsString}" id="ccEmailsString" />
+		<apex:inputHidden value="{!bccContactsString}" id="bccContactsString" />
+		<apex:inputHidden value="{!bccUsersString}" id="bccUsersString" />
+		<apex:inputHidden value="{!bccEmailsString}" id="bccEmailsString" />
+		<script>
+		var toContactsString = j$(fixId('{!$Component.toContactsString}'));
+		var toUsersString = j$(fixId('{!$Component.toUsersString}'));
+		var toEmailsString = j$(fixId('{!$Component.toEmailsString}'));
+		var ccContactsString = j$(fixId('{!$Component.ccContactsString}'));
+		var ccUsersString = j$(fixId('{!$Component.ccUsersString}'));
+		var ccEmailsString = j$(fixId('{!$Component.ccEmailsString}'));
+		var bccContactsString = j$(fixId('{!$Component.bccContactsString}'));
+		var bccUsersString = j$(fixId('{!$Component.bccUsersString}'));
+		var bccEmailsString = j$(fixId('{!$Component.bccEmailsString}'));
+		</script>
+
+		<apex:pageBlock mode="edit" >
+
+		<apex:pageblockButtons >
+			<apex:commandButton value="{!$Label.avtrrt__Send}" action="{!send}" />
+			<apex:commandButton value="{!$Label.avtrrt__Preview}" onclick="openRichTextPreview();return false;" />
+			<apex:commandButton value="{!$Label.avtrrt__Cancel}" onclick="parent.location.href = '/{!IF($CurrentPage.parameters.jobAppId==null, jobApps[0].Job__c, jobApps[0].Id)}';return false;" />
+		</apex:pageblockButtons>
+
+		<apex:pageBlockSection columns="1" title="{!$Label.avtrrt__Recipients}">
+		<apex:outputPanel >
+		<table width="100%"><tr>
+		<td width="48%">
+			<apex:selectList size="1" onchange="selectDDL(this)" id="ddlRecipients" >
+				<apex:selectOptions value="{!typeOptions}"></apex:selectOptions>
+			</apex:selectList><br />
+			<apex:selectList multiselect="true" style="width:100%; height:111px"
+					id="contactOptions" onfocus="setSelectedElement(this);">
+				<apex:selectOptions value="{!contactOptions}"></apex:selectOptions>
+			</apex:selectList>
+			<apex:selectList multiselect="true" style="width:100%; height:111px; display:none"
+					id="userOptions" onfocus="setSelectedElement(this);" >
+				<apex:selectOptions value="{!userOptions}"></apex:selectOptions>
+			</apex:selectList>
+			<br />
+			Additional Emails (put each email to new line):
+			<apex:inputTextArea style="width:99%; height:111px;"
+					id="additionalEmails" onfocus="setSelectedElement(this);" />
+			<script>
+				var contactOptions = j$(fixId('{!$Component.contactOptions}'));
+				var userOptions = j$(fixId('{!$Component.userOptions}'));
+				var additionalEmails = j$(fixId('{!$Component.additionalEmails}'));
+				function selectDDL(typeOptions) {
+					contactOptions.css('display', typeOptions.value == '2' ? 'block' : 'none');
+					userOptions.css('display', typeOptions.value == '1' ? 'block' : 'none');
+					fromBox = typeOptions.value == '1' ? userOptions : contactOptions;
+					suffix = typeOptions.value == '1' ? suffixUser  : suffixContact ;
+				}
+				selectDDL(j$(fixId('{!$Component.ddlRecipients}'))[0]);
+			</script>
+		</td>
+		<td width="4%">
+			<div style="text-align:center;padding-top:37px">
+				<div>
+					<a href="javascript:moveTo(toBox, toUsersString, toContactsString, toEmailsString);">
+						<img title="->" alt="->" src="/s.gif" style="background:transparent url(/img/alohaSkin/combobox_arrows_sprite.gif) no-repeat scroll 0 0;background-position:left -0px;height:20px;width:24px" />
+					</a>
+				</div>
+				<div>
+					<a href="javascript:moveFrom(toBox, toUsersString, toContactsString, toEmailsString);">
+						<img title="<-" alt="<-" src="/s.gif" style="background:transparent url(/img/alohaSkin/combobox_arrows_sprite.gif) no-repeat scroll 0 0;background-position:left -60px;height:20px;width:24px" />
+					</a>
+				</div>
+			</div>
+			<div style="text-align:center;padding-top:48px">
+				<div>
+					<a href="javascript:moveTo(ccBox, ccUsersString, ccContactsString, ccEmailsString);">
+						<img title="->" alt="->" src="/s.gif" style="background:transparent url(/img/alohaSkin/combobox_arrows_sprite.gif) no-repeat scroll 0 0;background-position:left -0px;height:20px;width:24px" />
+					</a>
+				</div>
+				<div>
+					<a href="javascript:moveFrom(ccBox, ccUsersString, ccContactsString, ccEmailsString);">
+						<img title="<-" alt="<-" src="/s.gif" style="background:transparent url(/img/alohaSkin/combobox_arrows_sprite.gif) no-repeat scroll 0 0;background-position:left -60px;height:20px;width:24px" />
+					</a>
+				</div>
+			</div>
+			<div style="text-align:center;padding-top:48px">
+				<div>
+					<a href="javascript:moveTo(bccBox, bccUsersString, bccContactsString, bccEmailsString);">
+						<img title="->" alt="->" src="/s.gif" style="background:transparent url(/img/alohaSkin/combobox_arrows_sprite.gif) no-repeat scroll 0 0;background-position:left -0px;height:20px;width:24px" />
+					</a>
+				</div>
+				<div>
+					<a href="javascript:moveFrom(bccBox, bccUsersString, bccContactsString, bccEmailsString);">
+						<img title="<-" alt="<-" src="/s.gif" style="background:transparent url(/img/alohaSkin/combobox_arrows_sprite.gif) no-repeat scroll 0 0;background-position:left -60px;height:20px;width:24px" />
+					</a>
+				</div>
+			</div>
+		</td>
+		<td width="48%" style="padding-top: 22px;">
+			&nbsp;<apex:outputLabel styleClass="labelCol first" value="{!$Label.avtrrt__TO}"></apex:outputLabel>
+			<select id="toBox" size="3" multiple="true" style="width:85%" />
+			<br /><br />&nbsp;<apex:outputLabel styleClass="labelCol first" value="{!$Label.avtrrt__CC}"></apex:outputLabel>
+			<select id="ccBox" size="3" multiple="true" style="width:85%" />
+			<br /><br /><apex:outputLabel styleClass="labelCol first" value="{!$Label.avtrrt__BCC}"></apex:outputLabel>
+			<select id="bccBox" size="3" multiple="true" style="width:85%" />
+			<script>
+			var toBox = j$('#toBox');
+			var ccBox = j$('#ccBox');
+			var bccBox = j$('#bccBox');
+
+			updateFromHidden(toBox, toUsersString, toContactsString, toEmailsString);
+			updateFromHidden(ccBox, ccUsersString, ccContactsString, ccEmailsString);
+			updateFromHidden(bccBox, bccUsersString, bccContactsString, bccEmailsString);
+			</script>
+		</td>
+		</tr></table>
+		</apex:outputPanel>
+		</apex:pageBlockSection>
+
+		<apex:pageBlockSection columns="1" title="{!$Label.avtrrt__Message}">
+			<apex:pageMessages ></apex:pageMessages>
+
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel value="Folder"></apex:outputLabel>
+				<apex:selectList value="{!folderId}" size="1">
+					<apex:selectOptions value="{!folderOptions}"></apex:selectOptions>
+					<apex:actionSupport event="onchange" action="{!selectFolder}"
+						status="statusLoading" immediate="false" />
+				</apex:selectList>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel value="{!$Label.avtrrt__Template}"></apex:outputLabel>
+				<apex:selectList value="{!selectedTemplateId}" size="1">
+					<apex:selectOptions value="{!templateOptions}"></apex:selectOptions>
+					<apex:actionSupport event="onchange" action="{!selectTemplate}"
+						status="statusLoading" immediate="false" />
+				</apex:selectList>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel value="{!$Label.avtrrt__Subject}"></apex:outputLabel>
+				<apex:inputText value="{!subject}" style="width:100%" />
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel value="{!$Label.avtrrt__Body}"></apex:outputLabel>
+				<apex:inputField value="{!body.AVTRRT__HTML_Editor_Hidden_Field__c}" />
+			</apex:pageBlockSectionItem>
+		</apex:pageBlockSection>
+
+		<apex:pageBlockSection columns="1" title="{!$Label.avtrrt__Attachments_20_maximum}">
+
+			<apex:outputPanel >
+				<apex:repeat value="{!attachmentsWithCheckbox}" var="attachmentWithCheckbox">
+					<apex:inputCheckbox value="{!attachmentWithCheckbox.isSelected}" id="attJobApp" />
+					<apex:outputLabel styleClass="labelCol first" value="{!attachmentWithCheckbox.attachment.Name}" for="attJobApp" /><br />
+				</apex:repeat>
+			</apex:outputPanel>
+
+			<apex:outputLabel styleClass="labelCol" value="{!$Label.avtrrt__Type_the_path}" />
+
+			<apex:outputPanel >
+				<apex:outputPanel id="newFiles">
+					<apex:repeat value="{!newAttachmentList}" var="newAttachment">
+						<div style="display:none">
+							<apex:inputFile value="{!newAttachment.Body}" fileName="{!newAttachment.Name}" />
+							<a class="labelCol" style="padding:0" onclick="removeFile(j$(this)); return false;" href="javascript:">{!$Label.Remove_File}</a>
+						</div>
+					</apex:repeat>
+				</apex:outputPanel>
+
+				<a id="addFileLink" class="labelCol" style="padding:0" href="javascript:addFile()">{!$Label.Add_File}</a>
+
+				<script>
+					var newFiles = j$(fixId('{!$Component.newFiles}'));
+					var addFileLink = j$(fixId('addFileLink'));
+				</script>
+			</apex:outputPanel>
+
+		</apex:pageBlockSection>
+
+		</apex:pageBlock>
+
+	</apex:outputPanel>
+
+	</apex:form>
+
+</apex:page>

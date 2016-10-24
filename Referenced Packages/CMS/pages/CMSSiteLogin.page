@@ -1,0 +1,75 @@
+<apex:page controller="FCMS.CMSSiteLoginController" standardstylesheets="false" showHeader="false"
+    sideBar="false" setup="false" title="{!$Label.site.login}"  language="{!selectLanguage}" >
+    <style>
+           <apex:outputText value="{!cmsCssCustom}" />
+    </style>
+    
+  <apex:outputPanel styleClass="left-section1 container " layout="block">
+        <apex:outputPanel styleClass="page-title" layout="block">
+            <h2>{!$Label.fcms__Login}</h2>
+        </apex:outputPanel>
+
+      <apex:form id="Form1">
+            <apex:outputPanel layout="block" styleClass="uname" id="userName">
+                <apex:outputLabel for="cmsUserName" value="{!$Label.fcms__User_Name}" styleClass="field-label"/>
+                <apex:inputText id="cmsUserName" value="{!username}" styleClass="field-text"/>
+            </apex:outputPanel>
+                <br />
+            <apex:outputPanel layout="block" styleClass="pwd" id="password">
+                <apex:outputLabel for="cmsPassword" value="{!$Label.fcms__Password}" styleClass="field-label"/>
+                <apex:inputSecret id="cmsPassword" value="{!password}" styleClass="field-text"/>
+            </apex:outputPanel>
+
+            <apex:outputPanel layout="block" styleClass="forgot-pwd-newuser">
+                <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="forgot-pwd">
+                    <apex:param name="page" value="CMSForgotPassword"/>
+                    <apex:param name="jobSite" value="{!$CurrentPage.parameters.jobSite}" />
+                    <apex:param name="p" value="{!$CurrentPage.parameters.p}" />
+                    {!$Label.fcms__Forgot_Password}
+                </apex:outputLink>
+                <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="newuser">
+                    <apex:param name="page" value="CMSSiteRegister"/>
+                    <apex:param name="jobSite" value="{!$CurrentPage.parameters.jobSite}" />
+                    <apex:param name="p" value="{!$CurrentPage.parameters.p}" />
+                    <apex:param name="startUrl" value="{!if($CurrentPage.parameters.startUrl==null,'',$CurrentPage.parameters.startUrl)}" />
+                    {!$Label.fcms__New_User}
+                </apex:outputLink>
+            </apex:outputPanel>
+
+            <apex:outputPanel layout="block" styleClass="uname" id="Section">
+            <br/>
+                    <div class="form-submit1" >
+                    <apex:commandButton value="{!$Label.fcms__Login}" action="{!login}" title="{!$Label.fcms__Login}" id="login" onclick="return userNamePasswordValidation(this)"/>
+                    </div>
+            </apex:outputPanel>
+            
+            <apex:outputLink value="{!linkedInUrl}" target="_parent" id="theLink" rendered="{!render}">
+                                           
+            <apex:image url="{!URLFOR($Resource.FCMS__LinkedIn_Login_Button)}" /> </apex:outputLink>
+            
+        </apex:form>
+
+   </apex:outputPanel>
+   <script>
+    function userNamePasswordValidation(loginButton){
+        var loginButtonId = loginButton.id;
+        var loginButtonIdList = loginButtonId.split(':');
+        buttonName = 'Section:';
+        var buttonName = loginButtonIdList[loginButtonIdList.length-1];
+        var baseId = loginButtonId.replace(buttonName,'');
+        if((document.getElementById(baseId+'cmsUserName').value).length==0){
+            alert('{!$Label.fcms__UserName_can_not}');
+            return false;
+        }
+        else if((document.getElementById(baseId+'cmsPassword').value).length==0){
+            alert('{!$Label.fcms__Password_can_not_be_blank}');
+            return false;
+        }
+        else{
+         return true;
+        }
+    }
+    //var strSessionValue = '<%=Session["someValue"].ToString();%>'
+    //alert(strSessionValue);
+ </script>
+</apex:page>

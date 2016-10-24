@@ -1,0 +1,131 @@
+<apex:page id="thePage" Controller="AVTRRT.JobSearchInCandidateController" showHeader="false" 
+                    standardStylesheets="true" action="{!init}" tabStyle="Contact">
+
+<script>
+ if("{!JSENCODE($Request.success)}" == "true") {
+        //parent.window.close();
+      try{
+            if(window.navigator.appName!= "Netscape" ){
+              window.parent.location.href = "/{!JSENCODE($Request.id)}";          
+             }else{
+              parent.window.location.href = "/{!JSENCODE($Request.id)}";  
+             }
+       }catch(err){
+        // alert(err); 
+       }
+       
+    }
+    
+     function checkAll(cb)
+    {
+        var inputElem = document.getElementsByTagName("input");
+        for(var i=0; i<inputElem.length; i++)
+        {
+        if(inputElem[i].id.indexOf("theCheckbox")!=-1)
+        inputElem[i].checked = cb.checked;
+        }
+    }   
+</script>
+
+
+<apex:includeScript value="{!$Resource.AVTRRT__validateContactObject_js}"/> 
+  
+    <apex:form id="theForm">
+         <apex:pageBlock mode="view" id="block">
+         
+          <apex:messages styleClass="error" />
+<!--             <apex:pageBlockSection title="" columns="1" > -->
+                  <apex:panelGrid border="0" cellspacing="0" cellpadding="0" columns="5" id="theQuickSearch" width="100%">
+                        <apex:outputText value="{!$Label.avtrrt__Search_double_dot}" />
+                        <apex:inputText value="{!searchJob}" id="keywords"  size="70" />
+                        <apex:commandButton action="{!search}" value="{!$Label.avtrrt__Search}" id="searchButton" />
+                        <apex:outputText value="{!$Label.avtrrt__Search_Count}"/>   
+                         <apex:selectList size="1" value="{!searchResult}">
+                            <apex:selectOptions value="{!items}" />
+                        </apex:selectList>
+
+                </apex:panelGrid>
+<!--               </apex:pageBlockSection> -->
+              <apex:panelGrid border="0" columns="0" id="noteSearch" width="100%">
+<!--              <apex:inputHidden value="{!skills}" id="skills" /> -->
+              
+              <apex:outputText value=""/>
+              <apex:outputText value=""/>
+                <apex:outputText value=""><b>{!$Label.avtrrt__Note_double_dot}</b></apex:outputText>
+                <apex:outputText value="">{!$Label.avtrrt__Search_Result_100}</apex:outputText>
+                <apex:outputText value="">{!$Label.avtrrt__Custom_Search_Provide}</apex:outputText>
+                <apex:outputText value="">{!$Label.avtrrt__Maximum_5_keywords}</apex:outputText>
+              </apex:panelGrid>
+             
+             <apex:pageBlockSection title="{!$Label.avtrrt__Search_Results}" columns="1" id="searchCriteria">
+                <apex:panelGrid columns="1" id="theCoumnSelectGrid" title="{!$Label.avtrrt__Search_Result}" border="0" width="100%">
+                     <apex:dataTable align="center"   value="{!jobList}" var="item" id="table" border="1" width="100%">
+                     
+                     <apex:column >
+                        <apex:facet name="header">
+                        
+                        <apex:inputCheckbox value="{!IsAllSelected}" >
+                            <apex:actionSupport event="onclick" action="{!GetSelected}" onsubmit="checkAll(this)" rerender="table"/>
+                        </apex:inputCheckbox> 
+                        </apex:facet> 
+                        <apex:inputCheckbox value="{!item.AVTRRT__isRequired__c}" id="theCheckbox"/>
+<!--                        <apex:inputHidden value="{!item.Id}" /> --> 
+                  
+                     </apex:column> 
+                    <apex:column >
+                        <apex:facet name="header"><b>{!$Label.avtrrt__Job_Num}</b> </apex:facet>
+                        <!-- <apex:outputLink value="/{!item.Id}" id="theLink"> -->
+                        <apex:outputLink target="_blank" value="{!URLFOR($Action.Job__c.View,item.Id)}"> 
+                        {!item.Name}
+                        </apex:outputLink> 
+                       
+                  
+                     </apex:column>
+                     <apex:column >
+                        <apex:facet name="header"><b>{!$Label.avtrrt__Skills_Matched}</b> </apex:facet>
+                        <center>
+                        <apex:outputField style="align:center"  value="{!item.AVTRRT__Skill_Matched__c}"/>
+                        </center>
+                     </apex:column>
+                     <apex:column >
+                        <apex:facet name="header" ><b>{!$Label.avtrrt__Job_Title}</b> </apex:facet>
+                        <apex:outputField value="{!item.AVTRRT__Job_Title__c}"/>
+                     </apex:column>
+                     <apex:column >
+                        <apex:facet name="header"><b>{!$Label.avtrrt__Account}</b> </apex:facet>
+                       <apex:outputLink target="_blank" value="{!IF(item.AVTRRT__Account_Job__c==null,null,URLFOR($Action.Account.View,item.AVTRRT__Account_Job__c))}"> 
+                        {!item.Account_Job__r.Name} 
+                    </apex:outputLink>
+                        <!-- 
+                        <apex:outputField value="{!item.Account_Job__c}"/>
+                         -->
+                     </apex:column>
+                     <apex:column >
+                        <apex:facet name="header"><b>{!$Label.avtrrt__Hiring_Manager}</b> </apex:facet>
+                        <apex:outputLink target="_blank" value="{!IF(item.AVTRRT__Hiring_Manager__c==null,null,URLFOR($Action.Contact.View,item.AVTRRT__Hiring_Manager__c))}"> 
+                        {!item.Hiring_Manager__r.Name}
+                        </apex:outputLink> 
+                       <!--  <apex:outputField value="{!item.Hiring_Manager__c}"/> -->
+                     </apex:column>
+                     <apex:column >
+                        <apex:facet name="header"><b>{!$Label.avtrrt__Job_Location}</b> </apex:facet>
+                        <apex:outputField value="{!item.AVTRRT__Job_City__c}"/>
+                     </apex:column>
+                     <apex:column >
+                        <apex:facet name="header"><b>{!$Label.avtrrt__Exp_Start_Date}</b> </apex:facet>
+                        <apex:outputField value="{!item.AVTRRT__Start_Date__c}"/>
+                     </apex:column>
+                     </apex:dataTable>
+                </apex:panelGrid>
+             </apex:pageBlockSection>
+
+             <apex:pageBlockSection columns="0" >
+                 <center>
+                     <apex:panelGrid columns="0" width="100%" border="0">
+                             <apex:commandButton action="{!attachedCandidateToJobs}" value="{!$Label.avtrrt__Create_Job_Applicant_s}" id="attachButton"  onclick="return submitforthisopportunity({!size});"/>
+                     </apex:panelGrid>
+                </center>
+             </apex:pageBlockSection>
+         </apex:pageBlock>
+    </apex:form>
+</apex:page>

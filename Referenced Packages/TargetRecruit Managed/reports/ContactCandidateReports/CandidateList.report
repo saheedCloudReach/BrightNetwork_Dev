@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FIRST_NAME</field>
+    </columns>
+    <columns>
+        <field>LAST_NAME</field>
+    </columns>
+    <columns>
+        <field>Contact.State__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Street_Address__c</field>
+    </columns>
+    <columns>
+        <field>Contact.General_Job_Category_Sought__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Phone__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Locations_1st_Choice__c</field>
+    </columns>
+    <columns>
+        <field>CREATED_DATE</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Candidate List</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContactList</reportType>
+    <scope>my</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Contact.Available_To_Start__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

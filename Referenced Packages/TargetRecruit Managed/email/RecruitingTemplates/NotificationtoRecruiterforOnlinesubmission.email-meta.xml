@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification to Recruiter when a candidate applies online</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Avankia_Letterhead</letterhead>
+    <name>New Online Job Applicant</name>
+    <style>freeForm</style>
+    <subject>{!Job_Applicant__c.Contact_Candidate__c} has applied to {!Job_Applicant__c.Job_Title__c}</subject>
+    <textOnly>Dear {!Job_Applicant__c.Assigned_Recruiter__c},
+
+{!Job_Applicant__c.Contact_Candidate__c} has just applied online to position {!Job_Applicant__c.Job__c} with {!Job_Applicant__c.Account_Job__c} for a {!Job_Applicant__c.Job_Title__c}.  
+
+Please review the candidate’s qualifications and follow-up with a call.
+Click here to view the job applicant record details.
+
+Happy Hunting!</textOnly>
+    <type>html</type>
+</EmailTemplate>

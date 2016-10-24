@@ -1,0 +1,114 @@
+<apex:page standardController="contact" extensions="AVTRRT.SelectFilterFieldsController" sidebar="false" showHeader="false">
+
+<apex:form >
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+<script>
+var j$ = jQuery.noConflict();
+function fixId(myid) {
+    return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+}
+
+function selectAll(selCheckBox, blockTableName, selectedRecordsName){
+    var block = j$(fixId(blockTableName));
+
+    var value = selCheckBox.checked;
+
+    var checkboxes = getAllCheckboxes(block);
+    for (var i = 0; i < checkboxes.length; i++)
+        checkboxes[i].checked = value;
+
+    if (selectedRecordsName != '')
+        updateSelectedCount(blockTableName, selectedRecordsName);
+
+    setTimeout(function() { block.focus(); }, 50);
+}
+
+function updateSelectedCount(blockTableName, selectedRecordsName) {
+    var block = j$(fixId(blockTableName));
+    var selectedRecords = j$(fixId(selectedRecordsName));
+
+    var checkboxes = getAllCheckboxes(block);
+    selectedRecords[0].innerHTML = '{!$Label.Selected}: ' + checkboxes.filter('input:checked').length;
+}
+
+function getAllCheckboxes(block) {
+    return block.find('input:checkbox').slice(1);
+}
+</script>
+
+<apex:outputPanel rendered="{!saveWindow}" >
+<script>
+    window.parent.opener.location.reload();
+    window.parent.close();
+</script>
+</apex:outputPanel>
+
+<apex:pageBlock >
+
+<apex:pageBlockButtons >
+    <apex:commandButton value="{!$Label.avtrrt__Save}" action="{!selectFields}" />
+</apex:pageBlockButtons>
+
+<apex:pageMessages />
+
+<apex:outputPanel id="multiSelector">
+
+    <apex:pageBlockTable value="{!rcrds}" var="item" styleClass="mainTable" id="mainTable">
+        <apex:column width="10" >
+            <apex:facet name="header">
+                <apex:inputCheckbox value="{!topCheckbox}" onclick="selectAll(this, '{!$Component.multiSelector}', '{!$Component.selectedRecords}');  showPriority()" />
+            </apex:facet>
+            <apex:inputCheckbox value="{!item.selected}" id="checkedone" onclick="updateSelectedCount('{!$Component.multiSelector}', '{!$Component.selectedRecords}'); showPriority()" />
+        </apex:column>
+        <apex:column headervalue="{!$Label.avtrrt__Field_Name}">
+            {!item.rcrd.Label}
+        </apex:column>
+
+        <apex:column headerValue="{!$Label.avtrrt__Job_Field}" rendered="{!objectName == null}">
+            <apex:selectList size="1" value="{!item.jobFieldSelected}" style="width:130px;display:{!IF(item.selected, 'block', 'none')}">
+                <apex:selectOptions value="{!jobFields}" />
+            </apex:selectList>
+        </apex:column>
+
+        <apex:column headervalue="{!$Label.avtrrt__Order}">
+            <apex:inputText value="{!item.priority}" style="width:38px;display:{!IF(item.selected, 'block', 'none')}" styleClass="Reference"/>
+        </apex:column>
+
+    </apex:pageBlockTable>
+
+
+    <script>
+        function showPriority() {
+            var rows = j$(fixId('{!$Component.mainTable}')).find('tr').slice(1);
+            var objectName = '{!objectName}';
+
+            rows.each(function(index) {
+                var tds = rows.eq(index).find('td');
+                var isChecked = tds.eq(0).find('input').is(':checked');
+				
+				if (objectName == '') {
+					tds.eq(2).find('select').css('display', isChecked ? 'block' : 'none');
+	                tds.eq(3).find('input').css('display', isChecked ? 'block' : 'none');
+                } else {
+                	tds.eq(1).find('select').css('display', isChecked ? 'block' : 'none');
+	                tds.eq(2).find('input').css('display', isChecked ? 'block' : 'none');
+                }
+            });
+        }
+    </script>
+
+    <apex:outputText id="selectedRecords" value="Selected: 0" />
+
+    <script>
+        updateSelectedCount('{!$Component.multiSelector}', '{!$Component.selectedRecords}')
+    </script>
+
+</apex:outputPanel>
+
+</apex:pageBlock>
+
+</apex:form>
+
+</apex:page>

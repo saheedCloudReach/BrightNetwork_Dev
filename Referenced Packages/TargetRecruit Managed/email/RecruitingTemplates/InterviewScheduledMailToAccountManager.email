@@ -1,0 +1,19 @@
+<table cellpadding="5" width="550" height="400" cellspacing="5" border="0" >
+<tr height="400" valign="top" >
+<td locked="0" style=" font-family:arial; bLabel:main; color:#000000; font-size:12pt; bEditID:r3st1; background-color:#FFFFFF;" aEditID="c1r1" tEditID="c1r1" >
+<![CDATA[<P>Dear&nbsp; <STRONG>{!Interview__c.Account_Manager__c}</STRONG>,</P>
+<P>&nbsp;</P>
+<P>Interview for the candidate {!Interview__c.Contact_Candidate__c}, has been scheduled for the job '{!Interview__c.Job_Name__c}' [Company : {!Interview__c.Account_X__c} ].</P>
+<P>&nbsp;</P>
+<P>The interview&nbsp;has been schedule at&nbsp; {!Interview__c.Start_Date__c} and the type of interview is {!Interview__c.Type_Of_Interview__c} .</P>
+<P><FONT size=2></FONT>&nbsp;</P>
+<P><BR>For more information, please login to your salesforce.com.</P>
+<P>&nbsp;</P>
+<P>Thanking You,</P>
+<P>{!Interview__c.OwnerFullName}</P>
+<P>{!Interview__c.OwnerTitle}</P>
+<P>{!Interview__c.OwnerPhone}</P>
+<P>{!Interview__c.OwnerEmail}</P>
+<P>&nbsp;</P>]]></td>
+</tr>
+</table>

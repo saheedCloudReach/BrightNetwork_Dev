@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <webLinks>
+        <fullName>Add_to_Email_Address_Book</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Link to Email Address Book</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/v2/scripts/emailmarketing_v3.js&apos;)}
+
+var model = {
+    SessionId : &quot;{!$Api.Session_ID}&quot;,
+    PartnerUrl:&quot;{!$Api.Partner_Server_URL_140}&quot;,
+    ParentId : &quot;{!Campaign.Id}&quot;,
+    RequiredType : &quot;AddressBook&quot;,
+    EmailAccountId : &quot;{!dmsfc_EmailAddressBook__c.Email_AccountId__c}&quot;,
+    ParentObjectName : &quot;{!Campaign.Name}&quot;,
+    ReferringUrl : document.location.href
+};
+
+CreateSubscriptionGroup(model);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>ViewCampaignInfluenceReport_EmailMarketing</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>500</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>View Campaign Influence Report</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/00O?rt=117&amp;break0=CAN&amp;scope=1&amp;scopeid_lkid={!Campaign.Id}&amp;scopeid={!Campaign.Name}&amp;c=CAN&amp;c=MR&amp;c=PCS&amp;c=CFN&amp;c=RN&amp;c=ON&amp;c=OA&amp;c=OS&amp;c=OCD&amp;c=AN&amp;s=OA&amp;duel0=CAN%2CMR%2CCFN%2CRN%2CAN%2CON%2CPCS%2COS%2COCD%2COA&amp;details=yes&amp;format=t</url>
+        <width>500</width>
+    </webLinks>
+</CustomObject>

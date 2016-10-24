@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification to Recruiters for assignment on the Job</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Avankia_Letterhead</letterhead>
+    <name>New Recruiter Assigned to Job</name>
+    <style>freeForm</style>
+    <subject>You have new job</subject>
+    <textOnly>Dear {!Job__c.Recruiter__c},
+ 
+You have been assigned for the job &quot;{!Job__c.Job_Title__c}&quot; with job num &quot;{!Job__c.Name}&quot; and the account is &quot;{!Job__c.Account_Job__c}&quot;
+ 
+Happy Hunting! 
+
+Thanks,</textOnly>
+    <type>html</type>
+</EmailTemplate>

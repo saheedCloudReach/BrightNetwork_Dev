@@ -1,0 +1,133 @@
+<apex:page id="thePage" Controller="AVTRRT.CandidateSearchInJobController" showHeader="false" 
+                    standardStylesheets="true" action="{!init}" tabStyle="AVTRRT__Job__c">
+ 
+<apex:includeScript value="{!$Resource.AVTRRT__validateContactObject_js}"/> 
+<script language="JavaScript">
+
+     if("{!JSENCODE($Request.success)}" == "true") {
+     
+        var value = "/{!JSENCODE($Request.id)}";
+        
+        if(navigator.appName=="Netscape"){
+           parent.window.location.href = value;  
+        }else{
+           window.parent.location.href = value;   
+        
+        } 
+             
+    }
+    
+    
+  function checkAll(cb)
+    {
+        var inputElem = document.getElementsByTagName("input");
+        for(var i=0; i<inputElem.length; i++)
+        {
+        if(inputElem[i].id.indexOf("theCheckbox")!=-1)
+        inputElem[i].checked = cb.checked;
+        }
+    }   
+</script>
+<apex:form id="theForm" >
+    <apex:pageBlock mode="view" id="block" >
+          <apex:messages styleClass="error" />
+          <apex:panelGrid border="0" cellspacing="0" cellpadding="0" columns="5" id="theQuickSearch" width="100%">
+                  <apex:outputText value="{!$Label.avtrrt__Search_double_dot}" />
+                  <apex:inputText value="{!searchCandidate}" id="keywords"  size="70" />
+                  <apex:commandButton action="{!search}" value="{!$Label.avtrrt__Search}" id="searchButton" />
+                  <apex:outputText value="{!$Label.avtrrt__Search_Count}"/>
+                   <apex:selectList size="1" value="{!searchResult}">
+                      <apex:selectOptions value="{!items}" />
+                  </apex:selectList>
+          </apex:panelGrid>
+          <apex:panelGrid border="0" columns="0" id="noteSearch" width="100%">
+              <apex:outputText value=""/>
+              <apex:outputText value=""/>
+                <apex:outputText value=""><b>{!$Label.avtrrt__Note_double_dot}</b></apex:outputText>
+                <apex:outputText value="">{!$Label.avtrrt__Search_Result_100}</apex:outputText>
+                <apex:outputText value="">{!$Label.avtrrt__Custom_Search_Provide}</apex:outputText>
+                <apex:outputText value="">{!$Label.avtrrt__Maximum_5_keywords}</apex:outputText>
+          </apex:panelGrid> 
+          
+             <apex:pageBlockSection title="{!$Label.avtrrt__Search_Results}" columns="1" id="searchCriteria" > 
+                <apex:panelGrid columns="1" id="theCoumnSelectGrid" title="{!$Label.avtrrt__Search_Results}" border="0" width="100%">
+                   
+                      <apex:dataTable align="center"   value="{!candidateList}" var="item" id="table" border="1" width="100%"> 
+                  <!-- headerValue="" -->
+                  
+                     <apex:column width="5%">
+                        <apex:facet name="header">
+                         <apex:inputCheckbox value="{!IsAllSelected}" >
+                            <apex:actionSupport event="onclick" action="{!GetSelected}" onsubmit="checkAll(this)" rerender="table"/>
+                        </apex:inputCheckbox> 
+                        </apex:facet>
+                     
+                        <apex:inputCheckbox value="{!item.AVTRRT__isRequired__c}" id="theCheckbox">
+                        </apex:inputCheckbox>  
+                     </apex:column> 
+                    <!-- <apex:column style="white-space: nowrap" >-->
+                    <apex:column width="15%" style="white-space: wrap" >
+                        <apex:facet name="header"> <p style="text-align: center;margin-top: 0px;">{!$Label.avtrrt__Name}</p></apex:facet>
+                        <apex:outputLink target="_blank" value="{!URLFOR($Action.Contact.View,item.Id)}">
+                            <apex:outputField value="{!item.Name}"/>
+                        </apex:outputLink>
+                     </apex:column>
+                    
+                    <apex:column width="10%"  style="white-space: wrap" >
+                        <apex:facet name="header"> <p style="text-align: center;margin-top: 0px;">{!$Label.avtrrt__Notified}</p></apex:facet>
+                        <center>
+                        <apex:inputCheckbox disabled="true" value="{!item.AVTRRT__Notify_Candidate__c}" id="notifiedCheckbox1"/> 
+                        </center>
+                     </apex:column>
+                     
+                     <apex:column width="10%"  style="white-space: wrap" >
+                        <apex:facet name="header"> <p style="text-align: center;margin-top: 0px;">{!$Label.avtrrt__Skills_Matched_Column}</p></apex:facet>
+                        
+                        <center>
+                        <apex:outputField value="{!item.AVTRRT__Skill_Matched__c}"/>
+                        </center>
+                     </apex:column>
+                     <apex:column width="10%"  style="white-space: wrap" >
+                        <apex:facet name="header"> <p style="text-align: center;margin-top: 0px;">{!$Label.avtrrt__Desired_Pay_Type_Column}</p></apex:facet>
+                        <apex:outputField value="{!item.AVTRRT__Pay_Type__c}"/>
+                     </apex:column>
+                     
+
+              
+                     
+                     <apex:column width="10%"  style="white-space: wrap" >
+                        <apex:facet name="header"> <p style="text-align: center;margin-top: 0px;">{!$Label.avtrrt__Available_Date_Column}</p></apex:facet>
+                     
+                        <apex:outputField value="{!item.AVTRRT__Available_To_Start__c}"/>
+                     </apex:column>
+                     <apex:column width="10%"  style="white-space: wrap" >
+                        <apex:facet name="header"> <p style="text-align: center;margin-top: 0px;">{!$Label.avtrrt__Email_Source_Column}</p></apex:facet>
+                        <apex:outputField value="{!item.AVTRRT__Source__c}"/>
+                     </apex:column>
+                   
+                     <apex:column width="10%"  style="white-space: wrap" >
+                        <apex:facet name="header"><p style="text-align: center;margin-top: 0px;">{!$Label.avtrrt__Email}</p></apex:facet>
+                     
+                        <apex:outputLink target="_blank" value="{!URLFOR($Action.Contact.View,item.Id)}"><apex:outputField value="{!item.Email}"/></apex:outputLink>
+                    </apex:column>
+                      
+                     <apex:column width="10%"  style="white-space: wrap" >
+                        <apex:facet name="header"> <p style="text-align: center;margin-top: 0px;">{!$Label.avtrrt__Phone}</p></apex:facet>
+                        <apex:outputField value="{!item.Phone}"/>
+                     </apex:column>
+                      
+                     </apex:dataTable>
+                </apex:panelGrid>
+             </apex:pageBlockSection> 
+  
+<!--         <apex:pageBlockSection columns="2" id="buttons">  -->
+            <center>
+                <apex:panelGrid columns="2" width="55%" border="0">
+                     <apex:commandButton action="{!attachedJobToCandidates}"  value="{!$Label.avtrrt__Create_Job_Applicant_s}" id="attachButton"  onclick="javascript:return submitforthisopportunity({!size});"/>
+                     <apex:commandButton action="{!notifyCandidates}"  value="{!$Label.avtrrt__Notify_Job_To_Candidate_s}" id="notifyButton"  onclick="javascript:return submitforthisopportunity({!size});"/>
+                </apex:panelGrid>
+           </center>
+       
+   </apex:pageBlock>
+</apex:form> 
+</apex:page>

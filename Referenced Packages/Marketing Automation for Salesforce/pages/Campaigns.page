@@ -1,0 +1,4 @@
+<apex:page controller="ddm.IEHeaderController">
+    <c:CommonJS />
+    <apex:listViews id="List" type="Campaign" />
+</apex:page>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification to Account Manager on Interview Set up</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Avankia_Letterhead</letterhead>
+    <name>Interview Setup (To Account Manager)</name>
+    <style>freeForm</style>
+    <subject>Interview Scheduled for Job : {!Interview__c.Job_Name__c}</subject>
+    <textOnly>Dear  {!Interview__c.Account_Manager__c},
+ 
+Interview for the candidate {!Interview__c.Contact_Candidate__c}, has been scheduled for the job &apos;{!Interview__c.Job_Name__c}&apos; [Company : {!Interview__c.Account_X__c} ].
+ 
+The interview has been schedule at  {!Interview__c.Start_Date__c} and the type of interview is {!Interview__c.Type_Of_Interview__c} .
+ 
+
+For more information, please login to your salesforce.com.
+ 
+Thanking You,
+{!Interview__c.OwnerFullName}
+{!Interview__c.OwnerTitle}
+{!Interview__c.OwnerPhone}
+{!Interview__c.OwnerEmail}</textOnly>
+    <type>html</type>
+</EmailTemplate>

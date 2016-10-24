@@ -1,0 +1,127 @@
+<apex:page readOnly="true" showHeader="false" sidebar="false" standardController="Lead"  extensions="ddm.EngagementCustomController">
+
+<link href="https://sf.crmconnector.net/v2/content/webinsight/timeline.css" rel="stylesheet" />
+<link href="https://sf.crmconnector.net/v2/content/webinsight/webinsight.css" rel="stylesheet" />
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://sf.crmconnector.net/v2/Content/WebInsight/templates.js"></script>
+<script src="https://sf.crmconnector.net/v2/Content/WebInsight/webinsight.js"></script>
+
+<script>
+    
+    //contact details 
+    contact = {
+        name:"{!HTMLENCODE(lead.Name)}",
+        email:"{!HTMLENCODE(lead.Email)}"
+    };
+
+    //pageviews
+<apex:repeat value="{!EmailPageViews}" var="pvList">
+    //PageViewList
+    <apex:repeat value="{!pvList}" var="pv">
+    pageViews.push({
+        date: "{!pv.ddm__DateView__c}",
+        emailCampaign : "{!HTMLENCODE(pv.ddm__EmailCampaign__r.Name)}",
+        title: "{!HTMLENCODE(pv.ddm__PageTitle__c)}",
+        website: "{!HTMLENCODE(pv.ddm__Website__c)}",
+        url: "{!HTMLENCODE(pv.ddm__Url__c)}"
+    });
+    </apex:repeat>
+</apex:repeat>
+
+    //send summaries
+<apex:repeat value="{!EmailSendSummaries}" var="summaryList">
+    //SendSummaryList
+    <apex:repeat value="{!summaryList}" var="es">
+    sendSummaries.push({
+        date : "{!es.ddm__DateTimeSent__c}",
+        dateFirstOpened : "{!es.ddm__DateTimeFirstOpened__c}",
+        dateLastOpened : "{!es.ddm__DateTimeLastOpened__c}",
+        campaign : "{!HTMLENCODE(es.ddm__EmailCampaign__r.Name)}",
+        numOpens : {!IF(es.ddm__NumOpens__c == NULL,0,es.ddm__NumOpens__c)},
+        numClicks : {!IF(es.ddm__NumClicks__c == NULL,0,es.ddm__NumClicks__c)},
+        unsubscribed : {!es.ddm__Unsubscribed__c},
+        hardbounced : {!es.ddm__HardBounced__c}
+    });
+    </apex:repeat>
+</apex:repeat>
+
+    //clicks
+<apex:repeat value="{!EmailClicks}" var="cList">
+    //ClickList
+    <apex:repeat value="{!cList}" var="cl">
+    clicks.push({     
+        date: "{!IF(cl.ddm__DateTimeClicked__c == NULL, cl.ddm__DateClicked__c, cl.ddm__DateTimeClicked__c)}",
+        emailCampaign : "{!HTMLENCODE(cl.ddm__EmailCampaign__r.Name)}",      
+        url: "{!HTMLENCODE(cl.ddm__Url__c)}",
+        keyword : "{!HTMLENCODE(cl.ddm__Keyword__c)}"
+    });
+    </apex:repeat> 
+</apex:repeat> 
+
+    //social bookmarks
+<apex:repeat value="{!SocialBookmarks}" var="sbList">
+    //SocialBookmarkList
+    <apex:repeat value="{!sbList}" var="sb">
+    socialbookmarks.push({
+        name: "{!HTMLENCODE(sb.ddm__SocialName__c)}",
+        emailCampaign: "{!HTMLENCODE(sb.ddm__EmailCampaign__r.Name)}",
+        views: "{!sb.ddm__NumViews__c}"        
+    });    
+    </apex:repeat>
+</apex:repeat>
+
+    //roi  
+<apex:repeat value="{!EmailRoi}" var="roiList">
+    //RoiList
+    <apex:repeat value="{!roiList}" var="roi">
+    roi.push({
+        date: "{!roi.ddm__DateEntered__c}",
+        emailCampaign: "{!HTMLENCODE(roi.ddm__EmailCampaign__r.Name)}",
+        type: "{!HTMLENCODE(roi.ddm__Type__c)}",
+        value: "{!HTMLENCODE(roi.ddm__Value__c)}"
+    });    
+    </apex:repeat>
+</apex:repeat>
+    
+  
+    //Forms
+    var qas; //questions&answers.    
+<apex:repeat value="{!FormResponses}" var="frLists">
+    //FormResponseList
+    <apex:repeat value="{!frLists}" var="fr">
+
+    qas = [];
+    <apex:repeat value="{!fr.QuestionAnswers}" var="qa">
+    qas.push({
+        question : {
+            name : "{!qa.Question.Name}",
+            groupId : "{!qa.Question.ddm__GroupId__c}",
+            type : "{!qa.Question.ddm__Type__c}",
+            required : {!qa.Question.ddm__Required__c}
+        },        
+        answer:{
+            textValue : "{!qa.Answer.ddm__TextValue__c}",
+            displayValue: "{!qa.Answer.ddm__DisplayValue__c}",
+            boolValue : {!qa.Answer.ddm__BoolValue__c},
+            intValue : {!qa.Answer.ddm__IntValue__c},
+            decimalValue: {!qa.Answer.ddm__DecimalValue__c},
+            textValue : "{!qa.Answer.ddm__TextValue__c}",                
+            groupId : "{!qa.Answer.ddm__GroupId__c}",
+            isOther: "{!qa.Answer.ddm__IsOther__c}",
+            optionId : "{!qa.Answer.ddm__OptionId__c}",
+        }
+    });
+    </apex:repeat> 
+    forms.push({
+        name : "{!fr.Form.name}",
+        date : "{!fr.Response.ddm__DateCompleted__c}",
+        questionAnswers: qas
+    });
+    </apex:repeat>
+</apex:repeat>
+
+</script>
+
+
+</apex:page>

@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html> <head> <script src="/soap/ajax/9.0/connection.js" type="text/javascript"></script> 
+<script> 
+var str1 = "Select Name From Contact Where Id = '{!Job_Applicant__c.Contact_CandidateId__c}'"; 
+var queryResult = sforce.connection.query(str1); 
+if (queryResult.size > 0) 
+{ 
+var records = queryResult.getArray("records"); 
+var candidate_Name = records[0].Name; 
+
+this.location.href= 
+"/mail/mmchoose.jsp?id="+"{!Job_Applicant__c.Contact_CandidateId__c}"+"&1=candidate_Name&retURL=%2F"+"{!Job_Applicant__c.Id}";
+}
+</script> 
+</html>

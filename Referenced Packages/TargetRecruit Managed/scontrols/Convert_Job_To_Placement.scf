@@ -1,0 +1,161 @@
+<html>
+<head>
+<script type="text/javascript" src="/js/functions.js"></script>
+<script src="/soap/ajax/10.0/connection.js"></script>
+
+<script language="javascript" type="text/javascript">
+function convertJobToPlacement()
+{
+// first check if this person is already converted
+try {
+queryResult = sforce.connection.query("select count() from AVTRRT__Placement__c where AVTRRT__Job__c='{!Job_Applicant__c.JobId__c}' and AVTRRT__Contact_Candidate__c='{!Job_Applicant__c.Contact_CandidateId__c}'");
+
+if (queryResult.size > 0)
+{
+// the candidate is already converted
+alert("This Job applicant is already converted into a placement");
+window.parent.location.href = "/{!Job_Applicant__c.Id}";
+return;
+}
+
+} catch (er){
+alert("Error:"+er);
+}
+
+var str1 = "Select Name,CreatedDate, AVTRRT__Job_Title__c, AVTRRT__Start_Date__c, AVTRRT__Account_Job__c, AVTRRT__Hiring_Manager__c, AVTRRT__Recruiter__c, AVTRRT__Account_Manager__c From AVTRRT__Job__c Where Id = '{!Job_Applicant__c.JobId__c}'";
+
+try {
+queryResult = sforce.connection.query(str1);
+} catch (er){
+alert("Error:"+er);
+}
+
+if (queryResult.size > 0)
+{
+var records = queryResult.getArray("records");
+
+var Job_Name = records[0].Name;
+var Start_Date = records[0].AVTRRT__Start_Date__c;
+var AccountId = records[0].AVTRRT__Account_Job__c;
+var Hiring_Manager = records[0].AVTRRT__Hiring_Manager__c;
+var Recruiter = records[0].AVTRRT__Recruiter__c;
+var RecruiterEmail="";
+var created_date = records[0].CreatedDate;
+if(Recruiter!=null){
+	RecruiterEmail=getEmailId(Recruiter)
+}
+
+var AccountManager = records[0].AVTRRT__Account_Manager__c;
+var AccountManagerEmail = "";
+if(AccountManager!=null){
+AccountManagerEmail=getEmailId(AccountManager);
+}
+//var st = "'{!Job_Applicant__c.Contact_CandidateId__c}'";
+//alert("AAAA"+st);
+var strCand = "Select AVTRRT__Recruiter__c  From contact Where Id = '{!Job_Applicant__c.Contact_CandidateId__c}'";
+
+try {
+	queryResultCand = sforce.connection.query(strCand);
+} catch (er){
+	alert("Error:"+er);
+}
+var RecruiterCand = "";
+if (queryResultCand.size > 0)
+{
+	var recordsCand = queryResultCand.getArray("records");
+	RecruiterCand = recordsCand[0].AVTRRT__Recruiter__c;
+}
+var RecruiterCandEmail = "";
+if(RecruiterCand!=null){
+	RecruiterCandEmail=getEmailId(RecruiterCand)
+}
+var JobTitle = records[0].AVTRRT__Job_Title__c;
+try {
+
+var placement = new sforce.SObject("AVTRRT__Placement__c");
+placement.set("AVTRRT__Job__c",'{!Job_Applicant__c.JobId__c}');
+placement.set("AVTRRT__Contact_Candidate__c",'{!Job_Applicant__c.Contact_CandidateId__c}');
+placement.set("AVTRRT__Job_Title__c",JobTitle);
+
+placement.set("AVTRRT__Start_Date__c",Start_Date);
+placement.set("AVTRRT__Employer__c",AccountId);
+placement.set("AVTRRT__Hiring_Manager__c",Hiring_Manager);
+placement.set("AVTRRT__Job_Applicant__c",'{!Job_Applicant__c.Id}');
+placement.set("AVTRRT__Recruiter__c",RecruiterCand);
+placement.set("AVTRRT__Account_Manager__c",AccountManager);
+placement.set("AVTRRT__Account_Manager_Email__c",AccountManagerEmail);
+placement.set("AVTRRT__Recruiter_Email__c",RecruiterCandEmail);
+
+placement.set("AVTRRT__Assigned_Recruiter_Email__c",RecruiterEmail);
+placement.set("AVTRRT__Assigned_Recruiter__c",Recruiter);
+
+var serverDate = sforce.connection.getServerTimestamp().timestamp;
+var noOfDays = Math.round((getTime(serverDate)-getTime(created_date))/(1000 * 60 * 60 * 24));
+//alert(noOfDays);
+placement.set("AVTRRT__No_Of_Days_Taken__c",noOfDays);
+
+//No_Of_Days_Taken__c
+var p = sforce.connection.create([placement]);
+
+
+
+
+// first change the Stage status to Closed Won.
+var jobApplicant = new sforce.SObject("AVTRRT__Job_Applicant__c");
+jobApplicant.set("Id",'{!Job_Applicant__c.Id}');
+jobApplicant.set("AVTRRT__Stage__c","Closed - Won");//Closed - Won
+var jaStatus = sforce.connection.update([jobApplicant]);
+//alert(jaStatus);
+
+
+//newloc = "/"+p[0].id+"/e?retURL=/{!Job_Applicant__c.Id}";
+newloc = "/"+p[0].id+"/e?retURL=/"+p[0].id;
+window.parent.location.href = newloc;
+} catch (er){
+alert("Error:"+er);
+}
+}
+
+
+}
+
+function getEmailId(id){
+str = "select Email from User where id ='"+id+"'";
+try {
+queryResult = sforce.connection.query(str);
+} catch (er){
+alert("Error:"+er);
+}
+
+if (queryResult.size > 0)
+{
+var records = queryResult.getArray("records");
+
+var email = records[0].Email;
+return email;
+}
+return "";
+}
+
+
+function getTime(fulldate){
+	var year = fulldate.substring(0, 4);
+    var month = fulldate.substring(5, 7);
+    var day = fulldate.substring(8, 10);
+    
+ 	var date = new Date(year, month-1, day, 0, 0, 0);
+	date.setMilliseconds(0);
+	return date.getTime();
+}
+
+</script>
+</head>
+
+<body onload="javascript:convertJobToPlacement()">
+<div id="display">
+<center>
+Please wait while we convert...
+</center>
+</div>
+</body>
+</html>

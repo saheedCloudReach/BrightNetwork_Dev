@@ -1,0 +1,325 @@
+<apex:page controller="AVTRRT.SurveyController" cache="false" showheader="false" action="{!init}" language="{!language}">
+
+<apex:stylesheet value="{!$Page.AVTRRT__labs_survey_css}" />
+<apex:includeScript value="{!URLFOR($Resource.AVTRRT__SurveyForce, 'jquery.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.AVTRRT__SurveyForce, 'survey_jui.js')}" />
+<apex:includeScript value="/soap/ajax/18.0/connection.js" />
+<apex:includeScript value="/soap/ajax/18.0/apex.js" />
+
+<style>
+	table tr {
+		width:200px;
+		border:1px;
+	}
+	
+	form[id*="navBar"] {
+		position: relative;
+		background: #fff;
+		z-index: 10;
+	}
+	
+	#navBarBg {
+		width: 100%;
+		height: 30px;
+		z-index: 9;
+		position: fixed;
+		top:0;
+		left: 0;
+		background: #fff;
+		display: none;
+		-moz-box-shadow:0 0 30px #000;
+		-webkit-box-shadow:0 0 30px #000;
+	}
+	
+	#surveyMenu h4 {
+		display: block;
+		margin-top: 10px;
+	}
+</style>
+
+<script type="text/javascript">
+	sforce.connection.sessionId = '{!$Api.Session_ID}';
+	
+	function fixId(myid) {
+		return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+	}
+	
+	function refreshLayout(clearFields) {
+		if (clearFields) {
+			$("textarea[id*='qQuestion']").val("");
+			$("textarea[id*='qChoices']").val("");
+		}
+	
+		$('#questionBlock').css('display', questionSelect.val() != '' ? 'block' : 'none');
+		$('#choicesBlock').css('display', questionSelect.val() != '{!$Label.Free_Text}' && 
+											questionSelect.val() != '{!$Label.Instructions}' &&
+											questionSelect.val() != '{!$Label.HTML}'
+											? 'block' : 'none');
+											
+		$('#requiaredId').css('display', questionSelect.val() != '{!$Label.HTML}' && 
+											questionSelect.val() != '{!$Label.Instructions}' 
+											? 'block' : 'none');
+	}
+	
+	function makeSave() {
+		if ($("textarea[id*='qQuestion']").val() == '') {
+			alert('Question is required field.');
+			return false;
+		}
+		
+		if (	questionSelect.val() != '{!$Label.Free_Text}' && 
+				questionSelect.val() != '{!$Label.Instructions}' && 
+				questionSelect.val() != '{!$Label.HTML}' && 
+				$("textarea[id*='qChoices']").val() == '') {
+			alert('Choices is required field.');
+			return false;
+		}
+	
+		return true;
+	}
+	
+	$(document).ready(function() {
+		// Displays overlays
+		$("a[rel]").overlay({oneInstance: 'false', mask:'#000', zIndex:'1000',
+			onLoad: function() {
+				if ($.browser.msie && $.browser.version == 7.0) {
+					$('#exposeMask').hide();
+				}
+			}
+		});
+		
+		// setup h2#editMenu to work as tabs for each div directly under div#editSections
+		$("h2#editMenu").tabs("div#editSections > div", {tabs: 'span'});
+	
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 148) {
+				$('#navBarBg').fadeIn(1000);
+				$('form[id*="navBar"]').css('position', "fixed");
+				$('form[id*="navBar"]').css('top', "4px");
+				$('form[id*="navBar"]').css('width', $('body').width()-40 + "px");
+			} else if ($(this).scrollTop() < 148) {
+				$('#navBarBg').fadeOut(100);
+				$('form[id*="navBar"]').css('position', "relative");
+				$('form[id*="navBar"]').css('top', "0px");
+			}
+		});
+		
+		$("#justQuestionList").sortable({
+			axis: 'y', opacity: .6, tolerance: 'pointer', revert: true,
+			update: function(event, ui) {
+				var elemParent = $('#justQuestionList');
+				var childrenList = elemParent.children();
+				var childIds = new Array();
+				var cIds = "";
+				for (var i=0; i<childrenList.length; i++) {
+					cIds = cIds + childrenList[i].id + ",";
+				}
+				jQuery("input[id*='newOrderList']").val(cIds);
+				jQuery("a[id*='saveOrder']").effect("pulsate", { times: 2 }, 1000);
+			}
+		});
+		
+		if ('{!$CurrentPage.parameters.edit}' != "true") {
+			$("#justQuestionList").sortable({cancel:'div'});
+		}
+	
+		$("#surveyDeleteLink").click(function() {
+			if ($("#surveyDelete").css("display") == "none"){
+				$("#surveyDelete").fadeIn();
+			} else {
+				$("#surveyDelete").fadeOut();
+			}
+		});
+	
+		$("#surveyCancelLink").click(function() {
+			$("#surveyDelete").fadeOut();
+		});
+	});
+	
+	function resetSelect(){
+		$("select[id*='questionSelect']").val(0);
+	};
+	
+	function showOtherValue(radioButton) {
+		if ({!$CurrentPage.parameters.edit != "true"}) {
+			var divOther = $(radioButton).parents('div.questionBlock').next('div').children();
+			
+			if ($(radioButton).val() == 'Other') {
+				divOther.show();
+			} else {
+				divOther.hide();
+			}
+		}
+	}
+</script>
+
+<div id="labs_container">
+	<center>
+		<apex:image url="{!URLFOR($Action.Attachment.Download, header.id)}" rendered="{!header.id != null}"/>
+	</center>
+	
+	<div id="fade" class="black_overlay"></div>
+	
+	<apex:pageMessages />
+	
+	<apex:form rendered="{!showPageContent}" >
+		
+		<apex:pageBlock >
+			<apex:outputPanel id="navBar" rendered="{!$CurrentPage.parameters.edit = 'true'}">
+				<apex:commandLink styleclass="btn left" rel="#addQuestion" action="{!addQuestion}" 
+						value="{!$Label.avtrrt__LABS_SF_AddQuestion}" reRender="ok"/>
+				<apex:commandLink id="saveOrder2" action="{!updateOrderList}" 
+						value="{!$Label.avtrrt__LABS_SF_SaveOrder}" styleclass="btn left"/>
+				<apex:inputHidden id="newOrderList" value="{!newOrder}" />
+				<span id="alertOrderUpdated">{!$Label.avtrrt__The_survey_has_been_updated}</span>
+			</apex:outputPanel>
+		</apex:pageBlock>
+
+		<div id="addQuestion" class="overlay">
+			<apex:outputPanel id="selectQuestionType" >
+				<span class="prompt">{!$Label.avtrrt__LABS_SF_SelectQuestionType}
+					<div id="topPickList">
+						<apex:selectList size="1" value="{!questionType}" id="questionSelect">
+							<apex:selectOptions value="{!questionTypeOptions}" />
+							<apex:actionSupport event="onchange" oncomplete="refreshLayout(true)" 
+									reRender="addQuestion, rowQuestion, rowQuestionPreview, singleSelect, 
+											singleSelectPreview, multiSelect, multiSelectPreview, freeText, 
+											freeTextPreview, selectQuestionType, questionBlock" />
+						</apex:selectList>
+						<script>
+							var questionSelect = $(fixId('{!$Component.questionSelect}'));
+						</script>
+					</div>
+				</span>
+			</apex:outputPanel>
+
+			<apex:pageBlock id="questionBlock">
+				<div>
+					<span class="prompt">{!$Label.avtrrt__LABS_SF_Question}</span>
+					<apex:inputTextArea cols="30" rows="3" id="qQuestion" value="{!qQuestion}" 
+							title="{!$Label.avtrrt__The_question_you_would_like_asked}"/>
+
+					<span class="prompt" id="requiaredId">{!$Label.avtrrt__LABS_SF_RequiredQuestion}
+						<apex:inputCheckbox value="{!qRequired}" 
+								title="{!$Label.avtrrt__Is_an_answer_for_the_quesiton}" 
+								selected="{!requiredBool}"/>
+					</span>
+					
+					<div id="choicesBlock" style="display:none">
+						<span class="prompt">{!$Label.avtrrt__LABS_SF_PleaseEnterTheList}</span>
+						<apex:inputTextArea cols="40" rows="12" id="qChoices" value="{!qChoices}" 
+								title="{!$Label.avtrrt__Answers_to_question}"/>
+					</div>
+					
+					<div style="clear:both;"></div>
+					
+					<div style="width:100px;padding-left:260px">
+						<a href="" class="right btn" onClick="$('.close').click(); return false;">
+							{!$Label.LABS_SF_Cancel}
+						</a>
+						<apex:commandButton onclick="return makeSave();" action="{!saveQuestion}" 
+								value="{!$Label.avtrrt__LABS_SF_Save}"/>
+					</div>
+				</div>
+			</apex:pageBlock>
+		</div> <!-- End addQuestion -->
+
+		<!-------------------------------------------------------------------------------------------------->
+		<apex:pageBlock >
+			<div id="questionList">
+				<div id="justQuestionList">
+					<apex:repeat value="{!allQuestions}" var="q" id="qRepeat">
+						<div id ="{!q.id}" class="question" title="{!$Label.Drag_and_Drop_to_Reorder}">
+							<apex:outputPanel >
+								<apex:outputPanel styleClass="question_menu" 
+										rendered="{!$CurrentPage.parameters.edit = 'true'}">
+									
+									<apex:image value="{!URLFOR($Resource.AVTRRT__SurveyForce,'survey_upDown.png')}" 
+											styleClass="right"/>
+									<apex:commandLink styleclass="btn" oncomplete="refreshLayout(false)" 
+											action="{!editQuestion}" value="{!$Label.avtrrt__LABS_SF_Edit}" 
+											rel="#addQuestion" 
+											reRender="addQuestion, rowQuestion, rowQuestionPreview, 
+													singleSelect, singleSelectPreview, multiSelect, 
+													multiSelectPreview, freeText, freeTextPreview, 
+													selectQuestionType, questionBlock">
+										<apex:param name="q" value="{!q.id}" assignTo="{!questionReference}"/>
+									</apex:commandLink>
+									<apex:commandLink styleclass="btn" action="{!deleteQuestion}" 
+											onclick="return confirm('{!$Label.avtrrt__Are_you_sure_you_want_to_delete_this_question}');">
+										{!$Label.avtrrt__LABS_SF_Delete}
+										<apex:param name="q" value="{!q.id}" assignTo="{!questionReference}"/>
+									</apex:commandLink>
+								</apex:outputPanel>
+								
+								<div class="questionBlock" style="padding-left: {!IF(q.questionType == 'Subquestion', '100px', '0px')}">
+									<h1>
+										<apex:outputText value="{!q.orderNumber}. "/>
+										
+										<apex:outputText value="{!q.nameArea}" escape="false" 
+												style="{!IF(q.questionType == 'Subquestion', 'font-family: Times New Roman', 'font-family:Arial')}"/>
+										<apex:outputPanel rendered="{!q.required}" styleClass="requiredText">
+											({!$Label.avtrrt__LABS_SF_Required})
+										</apex:outputPanel>
+									</h1>
+									
+									<div>
+										<apex:selectRadio layout="pageDirection" 
+												rendered="{!q.questionType == 'Single Select--Vertical'}" 
+												value="{!q.selectedOption}" onclick="showOtherValue(this)">
+											<apex:selectOptions value="{!q.options}"/>
+										</apex:selectRadio>
+	
+										<apex:selectCheckboxes layout="pageDirection" 
+												rendered="{!q.questionType == 'Multi-Select--Vertical'}" 
+												value="{!q.selectedOptions}" onclick="showOtherValue(this)">
+											<apex:selectOptions value="{!q.options}"/>
+										</apex:selectCheckboxes>
+	
+										<apex:inputTextArea cols="50" rows="10" 
+												rendered="{!q.questionType == 'Free Text'}" 
+												value="{!q.selectedText}"/>
+	
+										<apex:selectRadio rendered="{!q.questionType == 'Single Select--Horizontal'}" 
+												value="{!q.selectedOption}" onclick="showOtherValue(this)">
+											<apex:selectOptions value="{!q.options}"/>
+										</apex:selectRadio>
+										
+										<p style="height: 10px; display : {!IF(q.questionType == 'Instructions', 'block', 'none')}" ></p>
+										
+										<apex:selectRadio layout="pageDirection" 
+												rendered="{!q.questionType == 'HTML'}" 
+												value="{!q.selectedOption}" onclick="showOtherValue(this)">
+											<apex:selectOptions value="{!q.options}"/>
+										</apex:selectRadio>
+										
+										<apex:selectRadio layout="pageDirection" 
+												rendered="{!q.questionType == 'Subquestion'}" 
+												value="{!q.selectedOption}" onclick="showOtherValue(this)">
+											<apex:selectOptions value="{!q.options}"/>
+										</apex:selectRadio>
+									</div>
+								</div>
+								
+								<div>
+									<apex:inputTextArea cols="50" rows="10" 
+											value="{!q.otherValue}" style="display:none" />
+								</div>
+								
+							</apex:outputPanel>
+						</div>
+					</apex:repeat>
+					<apex:outputPanel layout="block" styleClass="question" 
+							rendered="{!$CurrentPage.parameters.edit != 'true'}">
+						<apex:commandButton action="{!submitAnswers}" value="{!$Label.avtrrt__LABS_SF_SubmitSurvey}" />
+					</apex:outputPanel>
+				</div>
+			</div>
+		</apex:pageBlock>
+	</apex:form>
+	
+	<center>
+		<apex:image url="{!URLFOR($Action.Attachment.Download, footer.id)}" rendered="{!footer.id != null}"/>
+	</center>
+</div>
+</apex:page>

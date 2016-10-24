@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification sent to the candidate when they apply online</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Avankia_Letterhead</letterhead>
+    <name>Thankyou for online Application</name>
+    <style>freeForm</style>
+    <subject>Thank you for your interest in applying for the Job</subject>
+    <textOnly>Dear {!Contact.Name},
+ 
+Thank you for your interest in applying for the job. This is to let you know  that we have received your application on {!Contact.CreatedDate}. 
+ 
+We will get back to you if we find you to be a suitable match for the job.
+ 
+ 
+Thanking you, 
+{!Contact.OwnerFullName}
+{!Contact.OwnerTitle}
+{!Contact.OwnerPhone}
+{!Contact.OwnerEmail}</textOnly>
+    <type>html</type>
+</EmailTemplate>

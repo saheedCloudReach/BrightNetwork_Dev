@@ -1,0 +1,41 @@
+<apex:page standardController="AVTRRT__Interview__c"
+	Extensions="AVTRRT.InterviewsControllerExtend" title="Interview"
+	showHeader="false" sideBar="false" cache="false" tabStyle="AVTRRT__Search__c" 
+	language="{!language}">
+	<apex:outputPanel >
+		<apex:form >
+			<apex:pageMessages />
+			<apex:pageBlock >
+				<apex:pageBlockSection columns="1" title="{!$Label.avtrrt__General_Information}">
+					<apex:pageblockSectionItem >
+						<apex:outputText >{!$Label.avtrrt__Job_Title}</apex:outputText>
+						<apex:outputText value="{!AVTRRT__Interview__c.AVTRRT__Job_Name__c}" />
+					</apex:pageblockSectionItem>
+					<apex:pageblockSectionItem >
+						<apex:outputText >{!$Label.avtrrt__Job_Applicant_Name}</apex:outputText>
+						<apex:outputText value="{!AVTRRT__Interview__c.Contact_Candidate__r.Name}" />
+					</apex:pageblockSectionItem>
+					<apex:pageblockSectionItem >
+						<apex:outputText >{!$Label.avtrrt__Recommended_Hire}</apex:outputText>
+						<apex:inputField value="{!AVTRRT__Interview__c.AVTRRT__Recommended_Hire__c}" />
+					</apex:pageblockSectionItem>
+					<apex:pageblockSectionItem >
+						<apex:outputText >{!$Label.avtrrt__Overall_Feedback}</apex:outputText>
+						<apex:inputField value="{!AVTRRT__Interview__c.AVTRRT__Overall_Feedback__c}" />
+					</apex:pageblockSectionItem>
+					<apex:pageblockSectionItem >
+						<apex:outputText >{!$Label.avtrrt__Interview_Feedback}</apex:outputText>
+						<apex:inputField value="{!AVTRRT__Interview__c.AVTRRT__Interview_Feedback__c}"
+							style="width:450px" />
+					</apex:pageblockSectionItem>
+				</apex:pageBlockSection>
+
+				<apex:pageBlockButtons location="bottom">
+					<apex:commandButton action="{!save}" value="{!$Label.avtrrt__Save}" />
+					<apex:commandButton action="{!submit}" value="{!$Label.avtrrt__Submit}" />
+				</apex:pageBlockButtons>
+			</apex:pageBlock>
+		</apex:form>
+	</apex:outputPanel>
+
+</apex:page>

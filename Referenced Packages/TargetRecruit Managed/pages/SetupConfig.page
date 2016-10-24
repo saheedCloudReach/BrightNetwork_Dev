@@ -1,0 +1,19 @@
+<apex:page controller="AVTRRT.ProphecyUpdateCompanySettings" title="{!$Label.avtrrt__Target_Recruit_Setup}">
+
+<apex:sectionHeader title="{!$Label.avtrrt__Config}" subtitle="{!$Label.avtrrt__Configuration_Setup}" description="{!$Label.avtrrt__Click_the_Setup_button_to_configure_double_dot}"/>
+
+<apex:form >
+
+<apex:pageMessages ></apex:pageMessages>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<apex:commandButton value="{!$Label.avtrrt__Setup}" action="{!setupConfig}"/>
+<apex:commandButton value="{!$Label.avtrrt__Set_Last_Candidate_Id}" action="{!setLastCandidateId}"/>
+<apex:commandButton value="{!$Label.avtrrt__Update_Candidates}" action="{!updateCandidates}"/>
+<apex:commandButton value="{!$Label.avtrrt__Update_Jobs}" action="{!updateJobs}"/>
+<apex:commandButton value="{!$Label.avtrrt__Create_Candidate_Searches_for_Open_Jobs}" action="{!createCandidateSearches}"/><br/><br/>
+<p>{!$Label.Integrations_Setup}</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<apex:commandButton value="{!$Label.avtrrt__Update_Prophecy_Company_Settings}" action="{!Updatecompanysettings}"/>
+</apex:form>
+
+</apex:page>

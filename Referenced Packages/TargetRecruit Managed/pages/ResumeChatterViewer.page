@@ -1,0 +1,17 @@
+<apex:page standardController="Contact" showHeader="false" >
+	<div id="docPreview" style="height:600px">
+		<apex:outputPanel rendered="{!Contact.AVTRRT__Chatter_Id__c != null}">
+			<embed
+					src="/_swf/121310/sfc/flex/DocViewer.swf"
+					flashvars="shepherd_prefix=/sfc/servlet.shepherd&v={!Contact.Chatter_Id__c}&mode=chatterfilepreview&in_tests=false"
+					width="100%" height="100%" align="middle" id="renditionLarge"
+					quality="high" bgcolor="#f3f3f3" name="renditionLarge"
+					allowscriptaccess="sameDomain" allowfullscreen="true"
+					pluginspage="http://www.adobe.com/go/getflashplayer"
+					wmode="opaque" type="application/x-shockwave-flash" ></embed>
+		</apex:outputPanel>
+		<apex:outputPanel rendered="{!Contact.AVTRRT__Chatter_Id__c == null}">
+			<center><p style="font-family: Tahoma; font-size: 14px; border: 1px solid #5674b9; width: 80%; padding: 5px 5px 5px 5px;">{!$Label.avtrrt__Preview_unavailable}</p></center>
+		</apex:outputPanel>
+	</div>
+</apex:page>

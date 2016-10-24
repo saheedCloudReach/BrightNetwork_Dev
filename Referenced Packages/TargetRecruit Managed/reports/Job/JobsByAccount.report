@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Job__c.Published_Url__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Job__c.Stage__c</field>
+    </columns>
+    <columns>
+        <field>Job__c.Job_City__c</field>
+    </columns>
+    <columns>
+        <field>Job__c.Job_Category__c</field>
+    </columns>
+    <columns>
+        <field>Job__c.Job_Term__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Job__c.Stage__c</column>
+            <operator>equals</operator>
+            <value>Open,Sourcing,Sendouts,Interviewing,Negotiating,Checking Reference,Offer Made</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Jobs By Account</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Job__c@Job__c.Account_Job__c</reportType>
+    <scope>user</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Job__c.Estimated_Close_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

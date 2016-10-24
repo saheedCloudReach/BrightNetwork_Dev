@@ -1,0 +1,28 @@
+<apex:page standardController="Contact" extensions="AVTRRT.BackGroundCheck"  showHeader="false" sidebar="false">
+
+    <apex:form >
+    <apex:outputPanel rendered="{!!readyforrequest}">
+    <apex:pageBlock >    
+    <apex:pageBlockSection columns="1" title="{!$Label.avtrrt__Back_Ground_Check_Response_Label}">    
+    <b><apex:messages /></b>
+    </apex:pageBlockSection> 
+    <apex:pageBlockButtons location="bottom">
+    <apex:commandbutton value="{!$Label.avtrrt__Back_Ground_Check_Close_Button}" onclick="window.close();" />  
+    </apex:pageBlockButtons>    
+    </apex:pageBlock>
+    </apex:outputPanel>
+    
+    <apex:outputPanel rendered="{!readyforrequest}">
+    <apex:pageBlock >
+    <b><apex:messages /></b>
+    <apex:pageBlockButtons location="bottom">
+    <apex:commandbutton value="{!$Label.avtrrt__Back_Ground_Check_Send_Request_Button}" action="{!check}"/> &nbsp;&nbsp;&nbsp; <apex:commandbutton value="{!$Label.avtrrt__Back_Ground_Check_Close_Button}" onclick="window.close();" />  
+   
+    </apex:pageBlockButtons>    
+    <apex:pageBlockSection columns="1" title="{!$Label.avtrrt__Back_Ground_Check_Screening_Selection}">  
+    <apex:inputField value="{!BC.AVTRRT__Screenings__c}" required="true"/>
+    </apex:pageBlockSection>   
+    </apex:pageBlock>     
+    </apex:outputPanel>    
+    </apex:form>
+    </apex:page>

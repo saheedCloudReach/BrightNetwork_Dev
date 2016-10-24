@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Marketing Automation Settings</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>ConnectorUrl__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Url of the Marketing Automation Web Service</description>
+        <externalId>false</externalId>
+        <label>ConnectorUrl</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Marketing Automation Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

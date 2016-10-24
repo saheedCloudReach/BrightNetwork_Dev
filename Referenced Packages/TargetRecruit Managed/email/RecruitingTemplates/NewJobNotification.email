@@ -1,0 +1,17 @@
+Dear {!Job__c.Recruiter__c},
+
+You have a NEW Job:
+
+Job Num  - {!Job__c.Name}
+
+Job Title - {!Job__c.Job_Title__c}
+
+Account  - {!Job__c.Account_Job__c}
+
+Account Manager - {!Job__c.Account_Manager__c}
+
+
+
+Happy Hunting!
+
+Thanks,

@@ -1,0 +1,70 @@
+<apex:page controller="TRGTFCMS.ViewFelloshipsPageController" title="{!$Label.trgtfcms__View_Fellowships_Page}" 
+        standardstylesheets="false" showHeader="false" sideBar="false" cache="false" action="{!init}">
+    <head>
+
+    </head>
+    <style>
+        <apex:outputText value="{!cmsCssCustom}" />
+    </style>
+
+    <script type="text/JavaScript" language="JavaScript">
+        //pop up the new window...
+        function popWindow(s){
+            //alert('hello');
+            window.open(s,'_parent');
+        }
+    </script>
+
+    <apex:pageMessages />
+
+    <apex:form id="form">
+        <div class="search-result">
+            <apex:outputPanel rendered="{}" styleClass="messages" >
+                <div class="messages" >
+                    <div class="warning" >{!$Label.No_Jobs_found}</div>
+                </div>
+            </apex:outputPanel>
+
+            <apex:outputPanel styleClass="messages" >
+                <div class="messages" >
+                </div>
+            </apex:outputPanel>
+            <apex:outputPanel >
+            <table class="cmstable" cellspacing="0" summary="{!$Label.Search_Result_of_the_jobs}">
+                            <tr>
+                                <th scope="col" abbr="Job Title">{!$Label.Job_Title}</th>
+                                <th scope="col" abbr="Status">{!$Label.Status}</th>
+                            </tr>
+                                <apex:repeat value="{!JobApplicantsList}" var="JobApplicant" id="repeat1">
+                                    <tr>
+                                        <td >
+                                            <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" target="_blank">
+                                                <apex:param name="jobIds" value="{!JobApplicant.AVTRRT__Job__c}"/>
+                                                <apex:param name="page" value="JobDetailPage" />
+                                                <apex:param name="sessionId" value="{!$CurrentPage.parameters.sessionId}" />
+                                                <apex:param name="jobSite" value="{!$CurrentPage.parameters.jobSite}" />
+                                                <apex:param name="p" value="{!$CurrentPage.parameters.p}" />
+
+                                                {!JobApplicant.AVTRRT__Job_Title__c}<br/>
+                                            </apex:outputLink>
+                                        </td>
+                                        <td >
+                                            <p>
+                                            <apex:inputField value="{!JobApplicant.AVTRRT__Stage__c}" styleClass=""/>
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                </apex:repeat>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="form-submit1">
+                                            <apex:commandButton action="{!save}"  value="{!$Label.trgtfcms__Save}"></apex:commandButton>
+                                        </div>
+                                    </td>
+                                </tr>
+                </table>
+        </apex:outputPanel>
+</div>
+    </apex:form>
+</apex:page>

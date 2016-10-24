@@ -1,0 +1,3765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Account_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>Account.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AutoPopulate_Skillset__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Skillset</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Availability_To_Interview__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Availability To Interview</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Available_To_Start__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Available To Start</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Background_Check__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Background Check</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Birthday__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Birthday</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>CallEmAll_Broadcast_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CallEmAll Broadcast Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CandidateId__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>Candidate_Id__c</formula>
+        <label>CandidateId</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Candidate_Id__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Candidate Id</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Candidate_Short_List__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Candidate Short List</label>
+        <picklist>
+            <picklistValues>
+                <fullName>List1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>List2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Candidate_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Candidate Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Potential</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Billable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hired By Client</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Candidate_Summary__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Candidate Summary</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Candidate_Write_Up__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Candidate Write Up</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Cell_Phone__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Cell Phone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Chatter_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Chatter Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>City__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>City</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Confirmation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Confirmation</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Country__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Country</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cover_Letter__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Cover Letter</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Current_Employer__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Current Employer</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Current_Pay__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Current Pay</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Department__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Department</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Desired_Pay_Range_From__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Desired Pay</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Driver_Licence_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Driver Licence Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Driver_Licence_State__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Driver Licence State</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Duplicate_Criteria__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Duplicate Criteria</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Education_CandidateProf__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Education</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High School</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Technical Training</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Degree in Progress - BS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Degree in Progress - MS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2 Year College</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4 Year College</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Masters</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Doctorate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Professional(MD / JD / CPA)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Education_Details__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Education Details</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Employment_History_Org_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Employment History Org Name</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Ethnicity__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Ethnicity</label>
+        <picklist>
+            <picklistValues>
+                <fullName>American-Indian/Alaskan Native</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Asian</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Black and African-American</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hispanic or Latino</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Native Hawaiian / Pacific Islander</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>White (Not of Hispanic Origin)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Two or More Ethnicities</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>I choose not to disclose.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Experience__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Experience</label>
+        <picklist>
+            <picklistValues>
+                <fullName>01-03 Years</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>04-06 Years</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>07-09 Years</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>10+ Years</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>External_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>External ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fax__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Fax</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Gender__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Gender</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Choose not to Disclose</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>General_Competency__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>General Competency</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>General_Job_Category_Sought__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Accounting/Auditing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Advertising</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Aerospace</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Architectural</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Automotive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Business Development</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Call Center</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Computers/Hardware</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Computers/Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Computers/Software</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consumer Goods</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Defense</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Engineering - Aerospace</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Engineering - Biomedical</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Engineering - Chemical</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Engineering - Civil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Engineering - Computer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Engineering - Electrical</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Engineering - Industrial</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Engineering - Mechanical</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Engineering - Mineral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Executive Management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finance/Economics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Financial Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>General Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Government and Policy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare - Dental</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare - IT Information</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare - Laboratory</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare - LPNs</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare - Medical</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare - Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare - Pharmacy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare - Radiology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare - RNs</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare - Social Service</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare - Support Service</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare - Therapy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthcare - Tourism</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hotel/Resort</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Human Resources</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Import/Export</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Information Technology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Internet/E-Commerce</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Law Enforcement &amp; Security</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Legal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Merchandising</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Military</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nonprofit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oil/Gas/Utilities</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pharmaceutical</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Professional Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Property Management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Publishing/Printing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Quality Control</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Research</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Restaurant &amp; Food Service</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Retail/Wholesale</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skilled Trades</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sports and Recreation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Technical Writing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Technician/Technologist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Writing/Reporting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Home_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Home Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IT_Competency__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>IT Competency</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Internal_Candidate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Internal Candidate</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Duplicate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Is Duplicate</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Job_Title__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job Title</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Jobs_Applied__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Jobs Applied</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Jobs_Notified_Long__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Jobs Notified</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Jobs_Notified__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Jobs Notified Old</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Jobs__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Jobs</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Languages__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Languages</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lat__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Geocoded Latitude for the current records address</description>
+        <externalId>false</externalId>
+        <label>Latitude</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Locations_1st_Choice__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Locations: 1st Choice</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lon__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Geocoded Longitude for the current records address</description>
+        <externalId>false</externalId>
+        <label>Longitude</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Map_Which_Address__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Which address to geocode, or &apos;Do Not Map&apos; if the record should not be geocoded at all</description>
+        <externalId>false</externalId>
+        <label>Mapping Address</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Mailing</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Do Not Map</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Mapping_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The resulting Geocode Status after the record is either inserted or updated/automatically Geocoded. Records marked as &apos;Google Error&apos; or &apos;Google Exhausted&apos; are automatically retried based on a scheduled batch job</description>
+        <externalId>false</externalId>
+        <label>Mapping Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Located Yet</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Located</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Problem with Address</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Google Error</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Google Exhausted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Margin__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>Target_Bill__c - Desired_Pay_Range_From__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Margin</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Migration_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Migration Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>New_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>New Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Notes_and_Comments__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Notes and Comments</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Notify_Candidate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Notify Candidate</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Online_Profile_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Online Profile Link</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Open_For_Relocation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Open For Relocation</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Other_Competency__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Other Competency</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Other_Emails__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Other Emails</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Pager__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Pager</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Parse_Resume_Migration_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Parse Resume Migration Id</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Pay_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Desired Pay Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>W-2 w/benefits</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>W-2 w/o benefits</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Corp to Corp</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Permanent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_of_Travel__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Percentage of Travel</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Phone__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Phone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Postal_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Postal Code</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Preferred_Job_Term__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Preferred Job Term</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Full Time</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Contract to Perm</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>0-3 Month Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3-6 Month Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6-9 Month Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>9+ Month Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Part-Time</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Temporary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Internship</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Previous_Employers__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Previous Employers</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Previous_Titles__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Previous Titles</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Prophecy_Caregiver_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Caregiver ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Recent_Template__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Emails Sent</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Recruiter__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Recruiter</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N40000001lYYcEAM</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Reference_Submission_Form__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK( $Setup.ConfigSettingsHierarchy__c.Reference_Submission_Form_URL__c + &apos;?CandidateId=&apos; + Id, $Label.avtrrt__Click_here, &quot;_blank&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Reference Submission Form</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Referral_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Referral Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Referral_Relationship__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Referral Relationship</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Business contact</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Employee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Former co-worker</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Friend</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Relative</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Referral_Source__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Referral Source</label>
+        <length>70</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ResumeRich__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Resume</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Resume_Attachment_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Resume Attachment Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Resume_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Link captured from NotesAndAttachment object</description>
+        <externalId>false</externalId>
+        <label>Resume Link</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Resume_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Resume Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Resume_Received_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Resume Received Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Resume_URL__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF ((Resume_Attachment_Id__c == &apos;&apos;), &apos;unavailable&apos;, HYPERLINK(&quot;servlet/servlet.FileDownload?file=&quot;&amp;Resume_Attachment_Id__c, &quot;View&quot;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Resume URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Resume__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Please use &quot;,&quot; (Coma) with one space before and after, wherever the skill is specified eg: “, Oracle ,”</inlineHelpText>
+        <label>Work Details</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>50</visibleLines>
+    </fields>
+    <fields>
+        <fullName>SSN__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>SSN</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Skill_Matched__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Skill Matched</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Source__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Resume Source</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Agency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Billboards</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Careerbuilder</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>College Recruiting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Direct Recruiting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Diversity Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ex-Employee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Internal Employee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Internet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Job Boards</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Job Fair</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Linkedin</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Newspaper</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Online Submission</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Print Media</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Users Group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Word of Mouth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>State</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Street_Address__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Street Address</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Target_Bill__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(Pay_Type__c, &quot;W-2 w/benefits&quot; ), ((Desired_Pay_Range_From__c * 1.4)+((Desired_Pay_Range_From__c * 1.4)*0.30)), IF(ISPICKVAL(Pay_Type__c, &quot;W-2 w/o benefits&quot;),((Desired_Pay_Range_From__c * 1.3)+((Desired_Pay_Range_From__c * 1.3)*0.30)), IF(ISPICKVAL(Pay_Type__c, &quot;corp to corp&quot;), ((Desired_Pay_Range_From__c * 1.2)+((Desired_Pay_Range_From__c * 1.2)*0.30)), 0 ) ) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Bill Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Time_Zone__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Time Zone</label>
+        <picklist>
+            <picklistValues>
+                <fullName>-CST</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>-EST</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>-GMT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>-MST</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>-PST</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Total_Experience_Months__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Total Experience (Months)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Experience_Years__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Total Experience (Years)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Update_Skills__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Update Skills</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Updated_Account_from_Current_Employer__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Updated Account from Current Employer</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Veteran_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Veteran Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Active Reservist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inactive Reservist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Newly Separated Veteran</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Special Disable Veteran</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Protected Veteran</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>None of the Above</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>I Choose not to declare</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Video_Resume_Link__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Video Resume Link</label>
+        <length>150</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_10__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 10</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_11__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 11</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_12__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 12</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_13__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 13</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_14__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 14</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_1__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 1</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_2__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 2</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_3__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 3</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_4__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 4</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_5__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 5</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_6__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 6</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_7__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 7</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_8__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 8</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Details_History_9__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details History 9</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Citizen</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>F1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>H1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>L1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Perm Res</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>T1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>X2nd_Choice__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Locations: 2nd Choice</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>isRequired__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>isRequired</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <listViews>
+        <fullName>AllContacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.REPORTS_TO.NAME</columns>
+        <columns>CONTACT.ADDRESS2_CITY</columns>
+        <columns>CONTACT.ADDRESS2_STATE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.CREATED_DATE</columns>
+        <columns>CONTACT.LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.Contact</value>
+        </filters>
+        <label>All Contacts</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>TodaysCandidates</fullName>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <columns>CONTACT.FIRST_NAME</columns>
+        <columns>Candidate_Id__c</columns>
+        <columns>CONTACT.LAST_NAME</columns>
+        <columns>CandidateId__c</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>Work_Status__c</columns>
+        <columns>Notes_and_Comments__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.Candidate</value>
+        </filters>
+        <label>Todays Candidates</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>WeeklyCandidates</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CandidateId__c</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.ADDRESS2_CITY</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.CREATED_DATE</columns>
+        <columns>CREATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.Candidate</value>
+        </filters>
+        <label>Weekly Candidates</label>
+    </listViews>
+    <recordTypes>
+        <fullName>Candidate</fullName>
+        <active>true</active>
+        <description>This for Candidate Record Type</description>
+        <label>Candidate</label>
+        <picklistValues>
+            <picklist>Background_Check__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Candidate_Short_List__c</picklist>
+            <values>
+                <fullName>List1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>List2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Candidate_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Billable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hired By Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Potential</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Education_CandidateProf__c</picklist>
+            <values>
+                <fullName>2 Year College</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4 Year College</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Degree in Progress - BS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Degree in Progress - MS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Doctorate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Masters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional%28MD %2F JD %2F CPA%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technical Training</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Ethnicity__c</picklist>
+            <values>
+                <fullName>American-Indian%2FAlaskan Native</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Black and African-American</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hispanic or Latino</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>I choose not to disclose%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Native Hawaiian %2F Pacific Islander</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Two or More Ethnicities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>White %28Not of Hispanic Origin%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Experience__c</picklist>
+            <values>
+                <fullName>01-03 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04-06 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07-09 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10%2B Years</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gender__c</picklist>
+            <values>
+                <fullName>Choose not to Disclose</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>General_Job_Category_Sought__c</picklist>
+            <values>
+                <fullName>Accounting%2FAuditing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advertising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aerospace</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architectural</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Automotive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computers%2FHardware</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computers%2FOther</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computers%2FSoftware</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Defense</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Aerospace</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Biomedical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Chemical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Civil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Computer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Industrial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Mineral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance%2FEconomics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government and Policy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Dental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - IT Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - LPNs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Laboratory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Medical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Pharmacy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - RNs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Radiology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Social Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Support Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Therapy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Tourism</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotel%2FResort</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human Resources</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Import%2FExport</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internet%2FE-Commerce</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Law Enforcement %26 Security</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Merchandising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nonprofit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oil%2FGas%2FUtilities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pharmaceutical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Property Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Publishing%2FPrinting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quality Control</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %26 Food Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail%2FWholesale</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skilled Trades</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sports and Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technical Writing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technician%2FTechnologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Writing%2FReporting</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Map_Which_Address__c</picklist>
+            <values>
+                <fullName>Do Not Map</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mailing</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Mapping_Status__c</picklist>
+            <values>
+                <fullName>Google Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google Exhausted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Located</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Located Yet</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Problem with Address</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Pay_Type__c</picklist>
+            <values>
+                <fullName>Corp to Corp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permanent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W-2 w%2Fbenefits</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W-2 w%2Fo benefits</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Job_Term__c</picklist>
+            <values>
+                <fullName>0-3 Month Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3-6 Month Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6-9 Month Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9%2B Month Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract to Perm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Full Time</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Part-Time</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Referral_Relationship__c</picklist>
+            <values>
+                <fullName>Business contact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Former co-worker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Friend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relative</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Source__c</picklist>
+            <values>
+                <fullName>Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Billboards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Careerbuilder</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>College Recruiting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Recruiting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diversity Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ex-Employee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal Employee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Job Boards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Job Fair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Linkedin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Newspaper</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Submission</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Print Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Users Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of Mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Time_Zone__c</picklist>
+            <values>
+                <fullName>-CST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-EST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-GMT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-MST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-PST</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Veteran_Status__c</picklist>
+            <values>
+                <fullName>Active Reservist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>I Choose not to declare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive Reservist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Newly Separated Veteran</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None of the Above</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Protected Veteran</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Disable Veteran</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Work_Status__c</picklist>
+            <values>
+                <fullName>Citizen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>H1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>L1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Perm Res</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Contact</fullName>
+        <active>true</active>
+        <description>This for Contact Record Type</description>
+        <label>Contact</label>
+        <picklistValues>
+            <picklist>Background_Check__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Candidate_Short_List__c</picklist>
+            <values>
+                <fullName>List1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>List2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Candidate_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Billable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hired By Client</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Potential</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Education_CandidateProf__c</picklist>
+            <values>
+                <fullName>2 Year College</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4 Year College</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Degree in Progress - BS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Degree in Progress - MS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Doctorate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Masters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional%28MD %2F JD %2F CPA%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technical Training</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Ethnicity__c</picklist>
+            <values>
+                <fullName>American-Indian%2FAlaskan Native</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Black and African-American</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hispanic or Latino</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>I choose not to disclose%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Native Hawaiian %2F Pacific Islander</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Two or More Ethnicities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>White %28Not of Hispanic Origin%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Experience__c</picklist>
+            <values>
+                <fullName>01-03 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04-06 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07-09 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10%2B Years</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gender__c</picklist>
+            <values>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>General_Job_Category_Sought__c</picklist>
+            <values>
+                <fullName>Accounting%2FAuditing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advertising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aerospace</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architectural</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Automotive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Biotechnology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computers%2FHardware</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computers%2FOther</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computers%2FSoftware</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consulting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consumer Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Defense</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Aerospace</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Biomedical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Chemical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Civil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Computer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Electrical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Industrial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Mechanical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engineering - Mineral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Environmental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Executive Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance%2FEconomics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Government and Policy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Dental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - IT Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - LPNs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Laboratory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Medical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Pharmacy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - RNs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Radiology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Social Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Support Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Therapy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthcare - Tourism</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotel%2FResort</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human Resources</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Import%2FExport</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internet%2FE-Commerce</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Law Enforcement %26 Security</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Merchandising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nonprofit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oil%2FGas%2FUtilities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pharmaceutical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Professional Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Property Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Publishing%2FPrinting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quality Control</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %26 Food Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail%2FWholesale</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skilled Trades</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sports and Recreation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technical Writing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technician%2FTechnologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Writing%2FReporting</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Map_Which_Address__c</picklist>
+            <values>
+                <fullName>Do Not Map</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mailing</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Mapping_Status__c</picklist>
+            <values>
+                <fullName>Google Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google Exhausted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Located</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Located Yet</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Problem with Address</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Pay_Type__c</picklist>
+            <values>
+                <fullName>Corp to Corp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permanent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W-2 w%2Fbenefits</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W-2 w%2Fo benefits</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Preferred_Job_Term__c</picklist>
+            <values>
+                <fullName>0-3 Month Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3-6 Month Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6-9 Month Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9%2B Month Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract to Perm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Full Time</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Part-Time</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temporary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Referral_Relationship__c</picklist>
+            <values>
+                <fullName>Business contact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Former co-worker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Friend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relative</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Source__c</picklist>
+            <values>
+                <fullName>Careerbuilder</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Job Boards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Linkedin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Submission</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of Mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Time_Zone__c</picklist>
+            <values>
+                <fullName>-CST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-EST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-GMT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-MST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>-PST</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Veteran_Status__c</picklist>
+            <values>
+                <fullName>Active Reservist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>I Choose not to declare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive Reservist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Newly Separated Veteran</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None of the Above</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Protected Veteran</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Disable Veteran</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Work_Status__c</picklist>
+            <values>
+                <fullName>Citizen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>H1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>L1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Perm Res</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <webLinks>
+        <fullName>Add_Resume</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>page</linkType>
+        <masterLabel>Add Resume</masterLabel>
+        <openType>newWindow</openType>
+        <page>Add_Resume_From_Contact_Record</page>
+        <position>topLeft</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <width>600</width>
+    </webLinks>
+    <webLinks>
+        <fullName>Checklist</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Checklist</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/AVTRRT__ChecklistPage?id={!Contact.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>CreateCareGiver</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>CreateCareGiver</masterLabel>
+        <openType>noSidebar</openType>
+        <page>ProphecyCaregiver</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Initiate_Background_Check</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>250</height>
+        <linkType>page</linkType>
+        <masterLabel>Initiate Background Check</masterLabel>
+        <openType>sidebar</openType>
+        <page>BackgroundCheckV2</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Search_Jobs</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Search Jobs</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.open (&apos;/apex/AVTRRT__JobSearch?candidateId={!Contact.Id}&apos;,&apos;JobSearch&apos;,null);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Send_Assessments</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Send Assessments</masterLabel>
+        <openType>replace</openType>
+        <page>ProphecySendAssessments</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

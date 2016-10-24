@@ -1,0 +1,8 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html> <head> <script src="/soap/ajax/9.0/connection.js" type="text/javascript"></script> 
+
+<script> 
+alert("Sorry! You are not allowed to create new 'Interview' from this button, since the related fields in the Interview Section does not get automatically populated when created using 'New' button. Please create a Interview from the Job Applicant using 'Schedule Interview' button."); 
+window.parent.location.href="{!URLFOR( $Action.Interview__c.Tab, $ObjectType.Interview__c )}";
+</script> 
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification for New Placement</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Avankia_Letterhead</letterhead>
+    <name>New Placement</name>
+    <style>freeForm</style>
+    <subject>Successful Placement</subject>
+    <textOnly>Candidate Name: {!Placement__c.00N40000001K6x2} 
+
+Client: {!Placement__c.Employer__c} 
+
+Recruiter: {!Placement__c.Recruiter__c} 
+
+Account Manager: {!Placement__c.Account_Manager__c} 
+
+Start Date: {!Placement__c.Start_Date__c} 
+
+
+Thanks,</textOnly>
+    <type>html</type>
+</EmailTemplate>

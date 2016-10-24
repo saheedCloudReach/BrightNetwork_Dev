@@ -1,0 +1,10 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html> <head> <script src="/soap/ajax/9.0/connection.js" type="text/javascript"></script> 
+
+<script> 
+alert("Sorry! You are not allowed to create new 'Placement' from this button, since the related fields in the Placement Section does not get automatically populated when created using 'New' button. Please create a Placement from the Job Applicant using 'Convert Job To Placement' button."); 
+
+window.parent.location.href="{!URLFOR( $Action.Placement__c.Tab, $ObjectType.Placement__c )}"; 
+
+</script> 
+</html>

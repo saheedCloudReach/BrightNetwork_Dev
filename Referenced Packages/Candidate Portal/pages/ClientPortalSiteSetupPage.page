@@ -1,0 +1,10 @@
+<apex:page title="{!$Label.trgtfcms__Site_Setup_Page}" controller="TRGTFCMS.ClientPortalSiteSetupController">
+<apex:form >
+    <apex:pageBlock title="{!$Label.trgtfcms__Client_Portal_Setup}" mode="edit" id="pageBlock">
+        <apex:pageMessages />
+        
+                <apex:commandButton id="SetupButtonClientPotal" action="{!setSiteSetupClientPortalProfile}"
+                rerender="pageBlock" value="{!$Label.trgtfcms__Client_Portal_Setup}" />     
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

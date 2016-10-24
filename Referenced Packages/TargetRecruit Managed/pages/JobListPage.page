@@ -1,0 +1,8 @@
+<apex:page controller="AVTRRT.JobBaseController" showHeader="false" sideBar="false"  action="{!redirectToOverride}">
+<!-- template JobPublishLayoutPage will create a complete layout for this page. here we just define the content section of this template with JobListViewComponent -->
+    <apex:composition template="{!layoutOverride1}">
+        <apex:define name="content">
+            <c:JobListViewComponent />
+        </apex:define>
+    </apex:composition>
+</apex:page>

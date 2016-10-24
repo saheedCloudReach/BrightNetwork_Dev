@@ -1,0 +1,1420 @@
+<apex:page standardController="AVTRRT__Account_Search__c" extensions="AVTRRT.AccountSearchController" sidebar="false" action="{!init}">
+
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="{!URLFOR($Resource.blockQuery)}"></script>
+
+<script src="/soap/ajax/23.0/connection.js" type="text/javascript"></script>
+<script src="/soap/ajax/23.0/apex.js" type="text/javascript"></script>
+
+<apex:includeScript value="{!URLFOR($Resource.AVTRRT__MultiSelect, 'multiSelect.js')}"/>
+
+<style type="text/css">
+	.link
+	{
+		padding: 5px 5px 5px 5px;
+		border: 1px solid #d9d9d9;
+		background: White;
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+	}
+	.link:hover
+	{
+		color: #5b6899;
+		cursor: pointer;
+		border: 1px solid #acacac;
+		background: #f8f8f8;
+		text-decoration: none;
+	}
+	.proper-link
+	{
+		font-size: 12px;
+		color: #d9d9d9 !important;
+		text-decoration: underline;
+	}
+	.proper-link:hover
+	{
+		color: #acacac !important;
+		cursor: pointer;
+		text-decoration: none;
+	}
+	.checkboxLabel
+	{
+		color: #252525 !important;
+	}
+	.checkboxLabel:hover
+	{
+		color: #7d4900 !important;
+		font-weight: 500;
+		cursor: default;
+		text-decoration: none;
+	}
+</style>
+
+<script language="javascript">
+
+var selectedQueryFieldsFromHelper = [];
+var keywordsString = '';
+
+// jQuery workarounds to make it work.
+var j$ = jQuery.noConflict();
+function fixId(myid) {
+	return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+}
+
+String.prototype.endsWith = function(str) {
+	return (this.match(str + "$") == str)
+}
+
+function trim(stringToTrim) {
+	return stringToTrim.replace(/^\s+|\s+$/g,"");
+}
+
+// Move to main tab page when user clicked 'Cancel' button.
+function mycancel() {
+	window.parent.location = '{!URLFOR($Action.Account_Search__c.Tab, $ObjectType.Account_Search__c)}';
+}
+
+// Move column names from left select box to right select box in 'Search Display Columns' section and vice versa.
+function move(btn, fromBoxName, toBoxName){
+	var s = "";
+
+	for (i=0; i<fromBoxName.options.length; i++) {
+		if (fromBoxName.options[i].selected)  {
+			var opt = document.createElement('option');
+			opt.value = fromBoxName.options[i].value;
+			opt.text = fromBoxName.options[i].text;
+
+			try {
+				toBoxName.add(opt,null);
+			}
+
+			catch(ex) {
+				toBoxName.add(opt);
+			}
+		}
+	}
+
+	for (i=0; i<fromBoxName.options.length; i++) {
+		if (fromBoxName.options[i].selected)  {
+			fromBoxName.remove(i);
+			i--;
+		}
+	}
+
+	if(toBoxName != null) {
+		for (i=0;i<toBoxName.options.length;i++) {
+			toBoxName.options[i].selected=false;
+		}
+	}
+}
+
+// Change the order of columns. Move selected columns to the top of select box.
+function moveTop(){
+	var options = [];
+	j$.each(toBox.options, function(index) {
+		if (this.selected){
+			options.push(this);
+		}
+	});
+	j$.each(toBox.options, function(index) {
+		if (!this.selected){
+			options.push(this);
+		}
+	});
+
+	j$(toBox).find('option').remove();
+	j$.each(options, function(index) {
+		j$(toBox).append(options[index]);
+	});
+}
+
+// Change the order of columns. Move selected columns to the bootom of select box.
+function moveBottom(){
+	var options = [];
+	j$.each(toBox.options, function(index) {
+		if (!this.selected){
+			options.push(this);
+		}
+	});
+	j$.each(toBox.options, function(index) {
+		if (this.selected){
+			options.push(this);
+		}
+	});
+
+	j$(toBox).find('option').remove();
+	j$.each(options, function(index) {
+		j$(toBox).append(options[index]);
+	});
+}
+
+// Change the order of columns. Move selected columns one row up of select box.
+function moveUp(){
+	j$.each(toBox.options, function(index) {
+		if (this.selected && index > 0){
+			var temp = new Option(toBox.options[index-1].text, toBox.options[index-1].value);
+			var temp2 = new Option(toBox.options[index].text, toBox.options[index].value);
+			toBox.options[index-1] = temp2;
+			toBox.options[index-1].selected = true;
+			toBox.options[index] = temp;
+		}
+	});
+}
+
+// Change the order of columns. Move selected columns one row down of select box.
+function moveDown(){
+	var options = [];
+	j$.each(toBox.options, function(index) {
+		options.push(this);
+	});
+	options.reverse();
+
+	j$.each(options, function(index) {
+		if (this.selected && index > 0){
+			var optionBefore = options[index-1];
+			if (!optionBefore.selected){
+				var option = options[index];
+				j$(optionBefore).after(option);
+			}
+		}
+	});
+}
+
+function getElementById(form, name) {
+	for(var i = 0; i < form.elements.length; i++) {
+		if(form.elements[i].name.indexOf(name) != -1) {
+			return form.elements[i];
+		}
+	}
+}
+
+//
+function search(btn, goToResults) {
+	if(btn.id == saveBtn.id || btn.id == cloneBtn.id) {
+		if(searchName != null) {
+			if(searchName.value == null || trim(searchName.value).length == 0) {
+				alert("Please enter Search Name");
+				return false;
+			}
+		}
+	}
+
+	if(keywords != null && (keywords.value != null || trim(keywords.value).lenght == 0)) {
+		if(trim(keywords.value).length >0 && trim(keywords.value).length < 2) {
+			alert("Please enter atleast 2 characters in keywords field.");
+			return false;
+		}
+	}
+
+
+	if ((keywords != null) && (keywords.value.length > 255)) {
+		alert("Keywords: data value too large. Max length=255.");
+		return false;
+	}
+
+
+	if(fromBox != null) {
+		j$(fromBox.options).each(function(index) {
+			this.selected=false;
+		});
+	}
+
+	var noOfDisplayColumns = 0;
+	if(toBox != null) {
+		for (i=0;i<toBox.options.length;i++) {
+			toBox.options[i].selected=false;
+			noOfDisplayColumns++;
+		}
+	}
+
+	if(noOfDisplayColumns == 0 || noOfDisplayColumns > 10) {
+		alert("Please select Display Columns between 1 and 10");
+		return false;
+	}
+
+	//if (goToResults)
+		//window.location = '#sectionResult';
+
+
+	return true;
+}
+
+function createSelectedColumnsList() {
+	// set value to 'commaSeperatedSelectedFields' property on Apex page.
+	if(hiddenField != null) {
+		hiddenField.value = "";
+		if(toBox != null) {
+			j$.each(toBox.options, function(index) {
+				hiddenField.value += toBox.options[index].value + ',';
+			});
+		}
+	}
+}
+
+// Filter criteria logic
+function ShowFilterValueByType(filter, operator, operatorTemplate, text, datetime, date, lookup, picklist, hidden, init, savedLookupName) {
+	var filterBox = getElementByIdCS(filter);
+	var operatorBox = getElementByIdCS(operator);
+	var operatorTemplateBox = getElementByIdCS(operatorTemplate);
+	var textBox = getElementByIdCS(text);
+	var datetimeBox = getElementByIdCS(datetime);
+	var dateBox = getElementByIdCS(date);
+	var lookupBox = getElementByIdCS(lookup);
+	var picklistBox = getElementByIdCS(picklist);
+	var hiddenBox = getElementByIdCS(hidden);
+
+	if (!init.initValue)
+		hiddenBox.value = '';
+
+	var operatorCurrentValue = j$(operatorBox).find("option:selected").val();
+	// Find out selected field
+	var selectedField;
+	for (var i in selectedQueryFieldsFromHelper) {
+		var field = selectedQueryFieldsFromHelper[i];
+		if (field.name == filterBox.value) {
+			selectedField = field;
+			break;
+		}
+	}
+
+	if (selectedField != null && selectedField.displayType.endsWith('DATETIME')) {
+		datetimeBox.style.display = 'block';
+		if (init.initValue)
+			j$(datetimeBox).find('INPUT').val(hiddenBox.value);
+		else
+			UpdateHiddenFromDateTime(hiddenBox.id, datetimeBox.id);
+	} else {
+		datetimeBox.style.display = 'none';
+	}
+
+	dateBox.value = '';
+	if (selectedField != null && selectedField.displayType.endsWith('DATE')) {
+		dateBox.style.display = 'block';
+		if (init.initValue)
+			j$(dateBox).find('INPUT').val(hiddenBox.value);
+		else
+			UpdateHiddenFromDate(hiddenBox.id, dateBox.id);
+	} else {
+		dateBox.style.display = 'none';
+	}
+
+
+	if (selectedField != null &&
+		(selectedField.displayType.endsWith('PICKLIST')
+		|| selectedField.displayType.endsWith('MULTIPICKLIST')
+		|| selectedField.displayType.endsWith('BOOLEAN')
+		|| selectedField.displayType.endsWith('RECORDTYPE'))) {
+
+		picklistBox.style.display = 'block';
+
+		if (init.initValue)
+			j$(picklistBox).find('INPUT').val(hiddenBox.value);
+		else
+			j$(picklistBox).find('INPUT').val('');
+
+		if (selectedField.displayType.endsWith('RECORDTYPE')) {
+			j$(picklistBox).find('INPUT').attr("disabled", "disabled");
+		} else {
+			j$(picklistBox).find('INPUT').removeAttr("disabled");
+		}
+
+	} else {
+		picklistBox.style.display = 'none';
+	}
+
+	lookupBox.setValue('');
+	if (selectedField != null && selectedField.displayType.endsWith('REFERENCE')) {
+		lookupBox.style.display = 'block';
+		lookupBox.updateLookupType(selectedField.prefix);
+
+		if (init.initValue)
+			lookupBox.setValue(savedLookupName);
+
+	} else {
+		lookupBox.style.display = 'none';
+	}
+
+	textBox.value = '';
+	textBox.style.display = (
+			datetimeBox.style.display == 'none'
+			&& dateBox.style.display == 'none'
+			&& lookupBox.style.display == 'none'
+			&& picklistBox.style.display == 'none'
+			&& filterBox.value != 'none') ? 'block' : 'none';
+	if (textBox.style.display == 'block'){
+		if (init.initValue)
+			textBox.value = hiddenBox.value;
+		else
+			UpdateHiddenFromText(hiddenBox.id, textBox.id);
+		}
+	while (operatorBox.childNodes.length) {
+		operatorBox.removeChild(operatorBox.firstChild);
+	}
+
+	j$(operatorTemplateBox).find('option').each(function(n) {
+		/*if (operatorTemplateBox[n].text == 'none' && filterBox.value != 'none')
+			return true;*/
+		if (operatorTemplateBox[n].text == 'equals' && selectedField == null)
+			return true;
+		if (operatorTemplateBox[n].text == 'not equal to' && selectedField == null)
+			return true;
+		if (operatorTemplateBox[n].text == 'greater than' && (
+			selectedField == null
+			|| selectedField.displayType.endsWith('PICKLIST')
+			|| selectedField.displayType.endsWith('MULTIPICKLIST')
+			|| selectedField.displayType.endsWith('REFERENCE')
+			|| selectedField.displayType.endsWith('BOOLEAN')
+			|| selectedField.displayType.endsWith('URL')
+			|| selectedField.displayType.endsWith('STRING')
+			|| selectedField.displayType.endsWith('TEXTAREA')
+			|| selectedField.displayType.endsWith('RECORDTYPE')))
+			return true;
+		if (operatorTemplateBox[n].text == 'greater or equal' && (
+			selectedField == null
+			|| selectedField.displayType.endsWith('PICKLIST')
+			|| selectedField.displayType.endsWith('MULTIPICKLIST')
+			|| selectedField.displayType.endsWith('REFERENCE')
+			|| selectedField.displayType.endsWith('BOOLEAN')
+			|| selectedField.displayType.endsWith('URL')
+			|| selectedField.displayType.endsWith('STRING')
+			|| selectedField.displayType.endsWith('TEXTAREA')
+			|| selectedField.displayType.endsWith('RECORDTYPE')))
+			return true;
+		if (operatorTemplateBox[n].text == 'less than' && (
+			selectedField == null
+			|| selectedField.displayType.endsWith('PICKLIST')
+			|| selectedField.displayType.endsWith('MULTIPICKLIST')
+			|| selectedField.displayType.endsWith('REFERENCE')
+			|| selectedField.displayType.endsWith('BOOLEAN')
+			|| selectedField.displayType.endsWith('URL')
+			|| selectedField.displayType.endsWith('STRING')
+			|| selectedField.displayType.endsWith('TEXTAREA')
+			|| selectedField.displayType.endsWith('RECORDTYPE')))
+			return true;
+		if (operatorTemplateBox[n].text == 'less or equal' && (
+			selectedField == null
+			|| selectedField.displayType.endsWith('PICKLIST')
+			|| selectedField.displayType.endsWith('MULTIPICKLIST')
+			|| selectedField.displayType.endsWith('REFERENCE')
+			|| selectedField.displayType.endsWith('BOOLEAN')
+			|| selectedField.displayType.endsWith('URL')
+			|| selectedField.displayType.endsWith('STRING')
+			|| selectedField.displayType.endsWith('TEXTAREA')
+			|| selectedField.displayType.endsWith('RECORDTYPE')))
+			return true;
+		if (operatorTemplateBox[n].text == 'starts with' && (
+			selectedField == null
+			|| selectedField.displayType.endsWith('PICKLIST')
+			|| selectedField.displayType.endsWith('MULTIPICKLIST')
+			|| selectedField.displayType.endsWith('CURRENCY')
+			|| selectedField.displayType.endsWith('REFERENCE')
+			|| selectedField.displayType.endsWith('RECORDTYPE')
+			|| selectedField.displayType.endsWith('BOOLEAN')
+			|| selectedField.displayType.endsWith('DATE')
+			|| selectedField.displayType.endsWith('DATETIME')))
+			return true;
+		if (operatorTemplateBox[n].text == 'contains' && (
+			selectedField == null
+			|| selectedField.displayType.endsWith('CURRENCY')
+			|| selectedField.displayType.endsWith('REFERENCE')
+			|| selectedField.displayType.endsWith('RECORDTYPE')
+			|| selectedField.displayType.endsWith('BOOLEAN')
+			|| selectedField.displayType.endsWith('DATE')
+			|| selectedField.displayType.endsWith('DATETIME')))
+			return true;
+		if (operatorTemplateBox[n].text == 'does not contain' && (
+			selectedField == null
+			|| selectedField.displayType.endsWith('CURRENCY')
+			|| selectedField.displayType.endsWith('REFERENCE')
+			|| selectedField.displayType.endsWith('RECORDTYPE')
+			|| selectedField.displayType.endsWith('BOOLEAN')
+			|| selectedField.displayType.endsWith('DATE')
+			|| selectedField.displayType.endsWith('DATETIME')))
+			return true;
+
+		var option = document.createElement("OPTION");
+		option.text = operatorTemplateBox[n].text;
+		option.value = operatorTemplateBox[n].value;
+		operatorBox.options.add(option);
+	});
+
+	if (init.initValue)
+		j$(operatorBox).val(operatorCurrentValue);
+
+	init.initValue = false;
+}
+
+function UpdateHiddenFromText(hidden, text) {
+	var textBox = getElementByIdCS(text);
+	var hiddenBox = getElementByIdCS(hidden);
+	hiddenBox.value = textBox.value;
+}
+
+function UpdateHiddenFromDateTime(hidden, datetime) {
+	var datetimeBox = getElementByIdCS(datetime);
+	var hiddenBox = getElementByIdCS(hidden);
+	hiddenBox.value = j$(datetimeBox).find('INPUT').val();
+}
+
+function UpdateHiddenFromDate(hidden, date) {
+	var dateBox = getElementByIdCS(date);
+	var hiddenBox = getElementByIdCS(hidden);
+	hiddenBox.value = j$(dateBox).find('INPUT').val();
+}
+
+function UpdateHiddenFromPicklist(hidden, picklist) {
+	var picklistBox = getElementByIdCS(picklist);
+	var hiddenBox = getElementByIdCS(hidden);
+	hiddenBox.value = j$(picklistBox).find('INPUT').val();
+}
+
+function UpdateHiddenFromLookup(hidden, lookup) {
+	var lookupBox = getElementByIdCS(lookup);
+	var hiddenBox = getElementByIdCS(hidden);
+	hiddenBox.value = lookupBox.getId();
+}
+
+function ClickRealSave() {
+	var searchNameValue = searchName.value;
+
+	/* Added by Aliaksandr Sastkou, 01/06/2015 (case #00035650) */
+	if (searchNameValue.length > 80) {
+		alert('{!$Label.The_name_cannot_exceed_80_characters}');
+
+		return;
+	}
+
+
+	j$('#dialog').dialog('close');
+	searchNameHidden.value = searchNameValue;
+
+
+	/* Added by Aliaksandr Satskou, 09/01/2014 (case #00030536) */
+	var validate = search(saveBtn);
+
+	if (validate) {
+		j$(saveBtn).click();
+	}
+}
+
+function ClickRealClone() {
+	var searchNameValue = searchName.value;
+
+	/* Added by Aliaksandr Sastkou, 01/06/2015 (case #00035650) */
+	if (searchNameValue.length > 80) {
+		alert('{!$Label.The_name_cannot_exceed_80_characters}');
+
+		return;
+	}
+
+
+	j$('#dialog').dialog('close');
+	searchNameHidden.value = searchNameValue;
+
+
+	/* Added by Aliaksandr Satskou, 09/01/2014 (case #00030536) */
+	var validate = search(cloneBtn);
+
+	if (validate) {
+		j$(cloneBtn).click();
+	}
+}
+
+function ShowWorkDetails(id) {
+	workDetailsFrame.src = '/apex/AVTRRT__WorkDetails?id=' + id + '&keywords=' + j$('#keywordsString')[0].value;
+	j$('#workDetails').dialog({modal:true}, {resizable:false}, {width:810}, {height:600});
+}
+
+function CloseTagsWindow() {
+	j$('#candidateTags').dialog('close');
+}
+
+function CloseShortListWindow() {
+	j$('#shortList').dialog('close');
+}
+
+function GetSelectedIds(block) {
+	var checks = getAllCheckboxes(block);
+	var ids = [];
+	j$.each(checks, function(i) {
+		if (checks[i].checked)
+			ids.push(checks[i].title);
+	});
+	return ids;
+}
+
+function ShowAdvancedOptions() {
+	divAdvancedOptions.style.display = 'block';
+	AdvancedFilterConditionsLink.style.display = 'none';
+}
+
+function ClearAdvancedOptions() {
+	AdvancedFilterConditions.value = '';
+	divAdvancedOptions.style.display = 'none';
+	AdvancedFilterConditionsLink.style.display = 'block';
+}
+
+function showPopupWindow(fieldId, valueId)
+{
+	var field = document.getElementById(fieldId);
+	field = typeof field.selectedIndex == "number" ? field.options[field.selectedIndex] : field;
+	var apiName = field.value;
+
+	var value = document.getElementById(valueId).value.split(',');
+
+	AVTRRT.AccountSearchController.GetPicklistValues(apiName, function(result, event) {
+
+		var plv = result;
+		var innerHtml = '<br /><h3 id="captionSuccess" style="font-family: Tahoma; font-size: 14px; font-weight: normal; color: #5664ee; padding-left: 5px; border-left: 3px solid #39b54a;">Please, select one or more items from list.</h3><br /><br /><div style="min-height: 200px; height: 200px; overflow: auto; border: 1px solid #cacaca;"><div style="padding: 8px 8px 8px 8px;">';
+		for (var i = 0; i < plv.length; i++)
+		{
+			flag = false;
+			for (var j = 0; j < value.length; j++)
+				if (plv[i] == value[j])
+				{
+					innerHtml += '<input type="checkbox" checked class="plCheckBox" name="pl_CheckBox' + i + '" id="pl_CheckBox' + i + '" value="' + plv[i] + '" /><a class="checkboxLabel" onclick="checkIt(\'' + i + '\')">' + plv[i] + '</a><br />';
+					flag = true;
+					break;
+				}
+			if (!flag)
+				innerHtml += '<input type="checkbox" class="plCheckBox" name="pl_CheckBox' + i + '" id="pl_CheckBox' + i + '" value="' + plv[i] + '" /><a class="checkboxLabel" onclick="checkIt(\'' + i + '\')">' + plv[i] + '</a><br />';
+		}
+		innerHtml += '</div></div><br /><div style="float: left;"><a class="proper-link" onclick="popupCheckAll();">Check All</a>&nbsp;&nbsp;<a class="proper-link" onclick="popupUncheckAll();">Uncheck All</a></div><div style="float: right;"><a class="link" onclick="closePopupWindow(\'' + valueId + '\')">Insert selected item(s)</a>&nbsp;&nbsp;<a class="link" onclick="cancelPopup()">Cancel</a></div>';
+
+		j$("#selectBox").html(innerHtml);
+
+		j$("#selectBox").dialog({
+						width: 430,
+						height: 350,
+						resizable: false,
+						draggable: true,
+						modal : true,
+						overlay: { backgroundColor: '#000', opacity: 0.5 }
+		});
+
+	}, {escape:true});
+}
+
+function checkIt(index)
+{
+	var id = '#pl_CheckBox' + index;
+	var checkbox = j$(id);
+	if (checkbox.attr('checked') == 'checked')
+		checkbox.removeAttr('checked');
+	else
+		checkbox.attr('checked', 'checked');
+}
+
+function popupCheckAll()
+{
+	var checkBoxes = j$(".plCheckBox");
+	checkBoxes.each(function(index) {
+		j$(this).attr('checked', 'checked');
+	});
+}
+
+function popupUncheckAll()
+{
+	var checkBoxes = j$(".plCheckBox");
+	checkBoxes.each(function(index) {
+		j$(this).removeAttr('checked');
+	});
+}
+
+function cancelPopup()
+{
+	j$("#selectBox").dialog("close");
+}
+
+function closePopupWindow(valueId)
+{
+	var outStr = '';
+	checkBoxes = j$('.plCheckBox:checked');
+	var valueInput = j$(fixId(valueId));
+
+	j$("#selectBox").dialog("close");
+
+	if (checkBoxes.length != 0) {
+		checkBoxes.each(function(index) {
+			checkBox = j$(this);
+			outStr += checkBox.val() + ',';
+		});
+		outStr = outStr.substring(0, outStr.length - 1);
+		valueInput.val(outStr);
+	}
+	else {
+		valueInput.val('');
+	}
+	valueInput.change();
+}
+
+function enterToSearch(ev) {
+	if (window.event && window.event.keyCode == 13 || ev.which == 13) {
+		j$(searchBtn).click();
+		return false;
+	} else {
+		return true;
+	}
+}
+
+	function IsAccountsSelected(block) {
+		if(GetSelectedIds(block).length == 0) {
+			alert('Please select at least one account.');
+			return false;
+		}
+
+		return true;
+	}
+
+	function getSelectedAccountIdString(block) {
+		var selectedIds = GetSelectedIds(block);
+
+		var resultIDs = '';
+
+		for (var i = 0; i < selectedIds.length; i++) {
+			resultIDs += ';' + selectedIds[i];
+		}
+
+		resultIDs = resultIDs.substring(1);
+
+		return resultIDs;
+	}
+	</script>
+
+</head>
+
+<body>
+
+<div class="block1">
+	<apex:form rendered="{!isActive}">
+
+	<apex:repeat value="{!selectedQueryFieldsFromHelper}" var="s">
+		<script>
+			var item = new Object();
+			item.name = '{!s.Name}';
+			item.displayType = '{!IF(s.Name = "RecordTypeId", "RECORDTYPE", s.FieldType)}';
+			item.prefix = '{!s.ParentObjectPrefix}';
+			selectedQueryFieldsFromHelper.push(item);
+		</script>
+	</apex:repeat>
+
+	<apex:inputHidden id="selectedIdsHidden" value="{!selectedIdsHidden}" />
+	<script>
+		var selectedIdsHidden = j$(fixId('{!$Component.selectedIdsHidden}'));
+	</script>
+
+	<apex:pageBlock title="{!searchObj.Name}">
+
+		<apex:pageBlockSection columns="1" title="Text Search">
+			<apex:outputPanel >
+				<div style="float:left">
+					Keywords&nbsp;&nbsp; <apex:inputText value="{!searchObj.AVTRRT__Keywords__c}" id="keywords" style="width:400px" onkeypress="return enterToSearch(event)" />
+
+					<span class="searchInfoElement">
+						<div onmouseover="addMouseOver(this)" onfocus="addMouseOver(this)" class="mouseOverInfoOuter">
+							<img class="infoIcon" src="/s.gif" />
+							<div style="display: none; opacity: 0;" class="mouseOverInfo">
+								<span class="searchHints">
+									? Use operators such as AND, OR, and AND NOT to refine your search.<br />
+									? Put quotation marks around multiple keywords to perform an exact phrase match, for example, "call john smith".<br />
+									? Add an asterisk to the end of your keyword to search for items that start with the word, for example, acme*.
+								</span>
+							</div>
+						</div>
+					</span>
+
+				</div>
+			</apex:outputPanel>
+
+			<script>
+				var keywords = j$(fixId('{!$Component.keywords}'))[0];
+			</script>
+
+		</apex:pageBlockSection>
+
+		<apex:selectList id="operatorTemplate" size="1" style="display:none">
+			<apex:selectOptions value="{!filterFields}" />
+		</apex:selectList>
+
+		<apex:pageBlockSection title="Additional Search Criteria" columns="1">
+			<apex:outputLink onclick="var winp=window.open('/apex/AVTRRT__SelectFilterFields?object=Account','winp','width=630, height=500,resizable=yes,status=no,toolbar=no,menubar=no,scrollbars=yes, left=75,top=20, dependent=1'); return false">Select Filter Fields</apex:outputLink>
+
+			<apex:panelGrid columns="5" id="theCoumnSelectGrid" title="Select Display Columns">
+				<apex:outputLabel value="" />
+				<apex:outputLabel value="Filter By Fields" />
+				<apex:outputLabel value="Field Operator" />
+				<apex:outputLabel value="Value" />
+				<apex:outputLabel value="" />
+
+
+				<apex:outputLabel value="1" />
+				<apex:selectList id="filter1" size="1" value="{!searchObj.AVTRRT__p1__c}" onchange="ShowFilterValueByType1()">
+					<apex:selectOptions value="{!queryFields}" />
+				</apex:selectList>
+				<apex:selectList id="operator1" size="1" value="{!searchObj.AVTRRT__e1__c}" style="width:150px">
+					<apex:selectOptions value="{!filterFields}" />
+				</apex:selectList>
+				<apex:outputPanel >
+					<apex:inputText id="text1" onchange="UpdateHiddenFromText('{!$Component.hidden1}', '{!$Component.text1}')" />
+					<c:DateInput id="datetime1" onchange="UpdateHiddenFromDateTime('{!$Component.hidden1}', '{!$Component.datetime1}')" />
+					<c:DateInput id="date1" onchange="UpdateHiddenFromDate('{!$Component.hidden1}', '{!$Component.date1}')" />
+					<c:LookupInput id="lookup1" onchange="UpdateHiddenFromLookup('{!$Component.hidden1}', '{!$Component.lookup1}')" />
+					<div id="picklist1">
+						<apex:inputText id="pickListText1" onchange="UpdateHiddenFromPicklist('{!$Component.hidden1}', 'picklist1')" />
+						<a onclick="showPopupWindow('{!$Component.filter1}', '{!$Component.pickListText1}')" title="Lookup (New Window)">
+							<img class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon'; this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn'; this.className = 'lookupIconOn';" src="/s.gif" />
+						</a>
+					</div>
+					<apex:inputHidden id="hidden1" value="{!searchObj.AVTRRT__v1__c}" />
+					<script>
+						var init1 = new Object();
+						init1.initValue = true;
+						function ShowFilterValueByType1(){
+							ShowFilterValueByType('{!$Component.filter1}','{!$Component.operator1}', '{!$Component.operatorTemplate}', '{!$Component.text1}','{!$Component.datetime1}','{!$Component.date1}','{!$Component.lookup1}','picklist1','{!$Component.hidden1}', init1, '{!JSENCODE(savedLookupName1)}');
+						}
+						ShowFilterValueByType1();
+					</script>
+				</apex:outputPanel>
+
+				<apex:outputLabel value="AND" />
+
+				<apex:outputLabel value="2" />
+				<apex:selectList id="filter2" size="1" value="{!searchObj.AVTRRT__p2__c}" onchange="ShowFilterValueByType2()">
+					<apex:selectOptions value="{!queryFields}" />
+				</apex:selectList>
+				<apex:selectList id="operator2" size="1" value="{!searchObj.AVTRRT__e2__c}" style="width:150px">
+					<apex:selectOptions value="{!filterFields}" />
+				</apex:selectList>
+				<apex:outputPanel >
+					<apex:inputText id="text2" onchange="UpdateHiddenFromText('{!$Component.hidden2}', '{!$Component.text2}')" />
+					<c:DateInput id="datetime2" onchange="UpdateHiddenFromDateTime('{!$Component.hidden2}', '{!$Component.datetime2}')" />
+					<c:DateInput id="date2" onchange="UpdateHiddenFromDate('{!$Component.hidden2}', '{!$Component.date2}')" />
+					<c:LookupInput id="lookup2" onchange="UpdateHiddenFromLookup('{!$Component.hidden2}', '{!$Component.lookup2}')" />
+					<div id="picklist2">
+						<apex:inputText id="pickListText2" onchange="UpdateHiddenFromPicklist('{!$Component.hidden2}', 'picklist2')" />
+						<a onclick="showPopupWindow('{!$Component.filter2}', '{!$Component.pickListText2}')" title="Lookup (New Window)">
+							<img class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon'; this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn'; this.className = 'lookupIconOn';" src="/s.gif" />
+						</a>
+					</div>
+					<apex:inputHidden id="hidden2" value="{!searchObj.AVTRRT__v2__c}" />
+					<script>
+						var init2 = new Object();
+						init2.initValue = true;
+						function ShowFilterValueByType2(){
+							ShowFilterValueByType('{!$Component.filter2}','{!$Component.operator2}', '{!$Component.operatorTemplate}', '{!$Component.text2}','{!$Component.datetime2}','{!$Component.date2}','{!$Component.lookup2}','picklist2','{!$Component.hidden2}',init2, '{!JSENCODE(savedLookupName2)}');
+						}
+						ShowFilterValueByType2();
+					</script>
+				</apex:outputPanel>
+
+				<apex:outputLabel value="AND" />
+
+				<apex:outputLabel value="3" />
+				<apex:selectList id="filter3" size="1" value="{!searchObj.AVTRRT__p3__c}" onchange="ShowFilterValueByType3()">
+					<apex:selectOptions value="{!queryFields}" />
+				</apex:selectList>
+				<apex:selectList id="operator3" size="1" value="{!searchObj.AVTRRT__e3__c}" style="width:150px">
+					<apex:selectOptions value="{!filterFields}" />
+				</apex:selectList>
+				<apex:outputPanel >
+					<apex:inputText id="text3" onchange="UpdateHiddenFromText('{!$Component.hidden3}', '{!$Component.text3}')" />
+					<c:DateInput id="datetime3" onchange="UpdateHiddenFromDateTime('{!$Component.hidden3}', '{!$Component.datetime3}')" />
+					<c:DateInput id="date3" onchange="UpdateHiddenFromDate('{!$Component.hidden3}', '{!$Component.date3}')" />
+					<c:LookupInput id="lookup3" onchange="UpdateHiddenFromLookup('{!$Component.hidden3}', '{!$Component.lookup3}')" />
+					<div id="picklist3">
+						<apex:inputText id="pickListText3" onchange="UpdateHiddenFromPicklist('{!$Component.hidden3}', 'picklist3')" />
+						<a onclick="showPopupWindow('{!$Component.filter3}', '{!$Component.pickListText3}')" title="Lookup (New Window)">
+							<img class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon'; this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn'; this.className = 'lookupIconOn';" src="/s.gif" />
+						</a>
+					</div>
+					<apex:inputHidden id="hidden3" value="{!searchObj.AVTRRT__v3__c}" />
+					<script>
+						var init3 = new Object();
+						init3.initValue = true;
+						function ShowFilterValueByType3(){
+							ShowFilterValueByType('{!$Component.filter3}','{!$Component.operator3}', '{!$Component.operatorTemplate}', '{!$Component.text3}','{!$Component.datetime3}','{!$Component.date3}','{!$Component.lookup3}','picklist3','{!$Component.hidden3}',init3, '{!JSENCODE(savedLookupName3)}');
+						}
+						ShowFilterValueByType3();
+					</script>
+				</apex:outputPanel>
+
+				<apex:outputLabel value="AND" />
+
+				<apex:outputLabel value="4" />
+				<apex:selectList id="filter4" size="1" value="{!searchObj.AVTRRT__p4__c}" onchange="ShowFilterValueByType4()">
+					<apex:selectOptions value="{!queryFields}" />
+				</apex:selectList>
+				<apex:selectList id="operator4" size="1" value="{!searchObj.AVTRRT__e4__c}" style="width:150px">
+					<apex:selectOptions value="{!filterFields}" />
+				</apex:selectList>
+				<apex:outputPanel >
+					<apex:inputText id="text4" onchange="UpdateHiddenFromText('{!$Component.hidden4}', '{!$Component.text4}')" />
+					<c:DateInput id="datetime4" onchange="UpdateHiddenFromDateTime('{!$Component.hidden4}', '{!$Component.datetime4}')" />
+					<c:DateInput id="date4" onchange="UpdateHiddenFromDate('{!$Component.hidden4}', '{!$Component.date4}')" />
+					<c:LookupInput id="lookup4" onchange="UpdateHiddenFromLookup('{!$Component.hidden4}', '{!$Component.lookup4}')" />
+					<div id="picklist4">
+						<apex:inputText id="pickListText4" onchange="UpdateHiddenFromPicklist('{!$Component.hidden4}', 'picklist4')" />
+						<a onclick="showPopupWindow('{!$Component.filter4}', '{!$Component.pickListText4}')" title="Lookup (New Window)">
+							<img class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon'; this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn'; this.className = 'lookupIconOn';" src="/s.gif" />
+						</a>
+					</div>
+					<apex:inputHidden id="hidden4" value="{!searchObj.AVTRRT__v4__c}" />
+					<script>
+						var init4 = new Object();
+						init4.initValue = true;
+						function ShowFilterValueByType4(){
+							ShowFilterValueByType('{!$Component.filter4}','{!$Component.operator4}', '{!$Component.operatorTemplate}', '{!$Component.text4}','{!$Component.datetime4}','{!$Component.date4}','{!$Component.lookup4}','picklist4','{!$Component.hidden4}',init4, '{!JSENCODE(savedLookupName4)}');
+						}
+						ShowFilterValueByType4();
+					</script>
+				</apex:outputPanel>
+
+				<apex:outputLabel value="AND" />
+
+				<apex:outputLabel value="5" />
+				<apex:selectList id="filter5" size="1" value="{!searchObj.AVTRRT__p5__c}" onchange="ShowFilterValueByType5()">
+					<apex:selectOptions value="{!queryFields}" />
+				</apex:selectList>
+				<apex:selectList id="operator5" size="1" value="{!searchObj.AVTRRT__e5__c}" style="width:150px">
+					<apex:selectOptions value="{!filterFields}" />
+				</apex:selectList>
+				<apex:outputPanel >
+					<apex:inputText id="text5" onchange="UpdateHiddenFromText('{!$Component.hidden5}', '{!$Component.text5}')" />
+					<c:DateInput id="datetime5" onchange="UpdateHiddenFromDateTime('{!$Component.hidden5}', '{!$Component.datetime5}')" />
+					<c:DateInput id="date5" onchange="UpdateHiddenFromDate('{!$Component.hidden5}', '{!$Component.date5}')" />
+					<c:LookupInput id="lookup5" onchange="UpdateHiddenFromLookup('{!$Component.hidden5}', '{!$Component.lookup5}')" />
+					<div id="picklist5">
+						<apex:inputText id="pickListText5" onchange="UpdateHiddenFromPicklist('{!$Component.hidden5}', 'picklist5')" />
+						<a onclick="showPopupWindow('{!$Component.filter5}', '{!$Component.pickListText5}')" title="Lookup (New Window)">
+							<img class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon'; this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn'; this.className = 'lookupIconOn';" src="/s.gif" />
+						</a>
+					</div>
+					<apex:inputHidden id="hidden5" value="{!searchObj.AVTRRT__v5__c}" />
+					<script>
+						var init5 = new Object();
+						init5.initValue = true;
+						function ShowFilterValueByType5(){
+							ShowFilterValueByType('{!$Component.filter5}','{!$Component.operator5}', '{!$Component.operatorTemplate}', '{!$Component.text5}','{!$Component.datetime5}','{!$Component.date5}','{!$Component.lookup5}','picklist5','{!$Component.hidden5}',init5, '{!JSENCODE(savedLookupName5)}');
+						}
+						ShowFilterValueByType5();
+					</script>
+				</apex:outputPanel>
+
+				<apex:outputLabel value="AND" />
+
+				<apex:outputLabel value="6" />
+				<apex:selectList id="filter6" size="1" value="{!searchObj.AVTRRT__p6__c}" onchange="ShowFilterValueByType6()">
+					<apex:selectOptions value="{!queryFields}" />
+				</apex:selectList>
+				<apex:selectList id="operator6" size="1" value="{!searchObj.AVTRRT__e6__c}" style="width:150px">
+					<apex:selectOptions value="{!filterFields}" />
+				</apex:selectList>
+				<apex:outputPanel >
+					<apex:inputText id="text6" onchange="UpdateHiddenFromText('{!$Component.hidden6}', '{!$Component.text6}')" />
+					<c:DateInput id="datetime6" onchange="UpdateHiddenFromDateTime('{!$Component.hidden6}', '{!$Component.datetime6}')" />
+					<c:DateInput id="date6" onchange="UpdateHiddenFromDate('{!$Component.hidden6}', '{!$Component.date6}')" />
+					<c:LookupInput id="lookup6" onchange="UpdateHiddenFromLookup('{!$Component.hidden6}', '{!$Component.lookup6}')" />
+					<div id="picklist6">
+						<apex:inputText id="pickListText6" onchange="UpdateHiddenFromPicklist('{!$Component.hidden6}', 'picklist6')" />
+						<a onclick="showPopupWindow('{!$Component.filter6}', '{!$Component.pickListText6}')" title="Lookup (New Window)">
+							<img class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon'; this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn'; this.className = 'lookupIconOn';" src="/s.gif" />
+						</a>
+					</div>
+					<apex:inputHidden id="hidden6" value="{!searchObj.AVTRRT__v6__c}" />
+					<script>
+						var init6 = new Object();
+						init6.initValue = true;
+						function ShowFilterValueByType6(){
+							ShowFilterValueByType('{!$Component.filter6}','{!$Component.operator6}', '{!$Component.operatorTemplate}', '{!$Component.text6}','{!$Component.datetime6}','{!$Component.date6}','{!$Component.lookup6}','picklist6','{!$Component.hidden6}',init6, '{!JSENCODE(savedLookupName6)}');
+						}
+						ShowFilterValueByType6();
+					</script>
+				</apex:outputPanel>
+
+				<apex:outputLabel value="AND" />
+
+				<apex:outputLabel value="7" />
+				<apex:selectList id="filter7" size="1" value="{!searchObj.AVTRRT__p7__c}" onchange="ShowFilterValueByType7()">
+					<apex:selectOptions value="{!queryFields}" />
+				</apex:selectList>
+				<apex:selectList id="operator7" size="1" value="{!searchObj.AVTRRT__e7__c}" style="width:150px">
+					<apex:selectOptions value="{!filterFields}" />
+				</apex:selectList>
+				<apex:outputPanel >
+					<apex:inputText id="text7" onchange="UpdateHiddenFromText('{!$Component.hidden7}', '{!$Component.text7}')" />
+					<c:DateInput id="datetime7" onchange="UpdateHiddenFromDateTime('{!$Component.hidden7}', '{!$Component.datetime6}')" />
+					<c:DateInput id="date7" onchange="UpdateHiddenFromDate('{!$Component.hidden7}', '{!$Component.date7}')" />
+					<c:LookupInput id="lookup7" onchange="UpdateHiddenFromLookup('{!$Component.hidden7}', '{!$Component.lookup7}')" />
+					<div id="picklist7">
+						<apex:inputText id="pickListText7" onchange="UpdateHiddenFromPicklist('{!$Component.hidden7}', 'picklist7')" />
+						<a onclick="showPopupWindow('{!$Component.filter7}', '{!$Component.pickListText7}')" title="Lookup (New Window)">
+							<img class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon'; this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn'; this.className = 'lookupIconOn';" src="/s.gif" />
+						</a>
+					</div>
+					<apex:inputHidden id="hidden7" value="{!searchObj.AVTRRT__v7__c}" />
+					<script>
+						var init7 = new Object();
+						init7.initValue = true;
+						function ShowFilterValueByType7(){
+							ShowFilterValueByType('{!$Component.filter7}','{!$Component.operator7}', '{!$Component.operatorTemplate}', '{!$Component.text7}','{!$Component.datetime7}','{!$Component.date7}','{!$Component.lookup7}','picklist7','{!$Component.hidden6}',init7, '{!JSENCODE(savedLookupName7)}');
+						}
+						ShowFilterValueByType7();
+					</script>
+				</apex:outputPanel>
+
+				<apex:outputLabel value="AND" />
+
+				<apex:outputLabel value="8" />
+				<apex:selectList id="filter8" size="1" value="{!searchObj.AVTRRT__p8__c}" onchange="ShowFilterValueByType8()">
+					<apex:selectOptions value="{!queryFields}" />
+				</apex:selectList>
+				<apex:selectList id="operator8" size="1" value="{!searchObj.AVTRRT__e8__c}" style="width:150px">
+					<apex:selectOptions value="{!filterFields}" />
+				</apex:selectList>
+				<apex:outputPanel >
+					<apex:inputText id="text8" onchange="UpdateHiddenFromText('{!$Component.hidden8}', '{!$Component.text8}')" />
+					<c:DateInput id="datetime8" onchange="UpdateHiddenFromDateTime('{!$Component.hidden8}', '{!$Component.datetime8}')" />
+					<c:DateInput id="date8" onchange="UpdateHiddenFromDate('{!$Component.hidden8}', '{!$Component.date8}')" />
+					<c:LookupInput id="lookup8" onchange="UpdateHiddenFromLookup('{!$Component.hidden8}', '{!$Component.lookup8}')" />
+					<div id="picklist8">
+						<apex:inputText id="pickListText8" onchange="UpdateHiddenFromPicklist('{!$Component.hidden8}', 'picklist8')" />
+						<a onclick="showPopupWindow('{!$Component.filter8}', '{!$Component.pickListText8}')" title="Lookup (New Window)">
+							<img class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon'; this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn'; this.className = 'lookupIconOn';" src="/s.gif" />
+						</a>
+					</div>
+					<apex:inputHidden id="hidden8" value="{!searchObj.AVTRRT__v8__c}" />
+					<script>
+						var init8 = new Object();
+						init8.initValue = true;
+						function ShowFilterValueByType8(){
+							ShowFilterValueByType('{!$Component.filter8}','{!$Component.operator8}', '{!$Component.operatorTemplate}', '{!$Component.text8}','{!$Component.datetime8}','{!$Component.date8}','{!$Component.lookup8}','picklist8','{!$Component.hidden8}',init8, '{!JSENCODE(savedLookupName8)}');
+						}
+						ShowFilterValueByType8();
+					</script>
+				</apex:outputPanel>
+
+				<apex:outputLabel value="AND" />
+
+				<apex:outputLabel value="9" />
+				<apex:selectList id="filter9" size="1" value="{!searchObj.AVTRRT__p9__c}" onchange="ShowFilterValueByType9()">
+					<apex:selectOptions value="{!queryFields}" />
+				</apex:selectList>
+				<apex:selectList id="operator9" size="1" value="{!searchObj.AVTRRT__e9__c}" style="width:150px">
+					<apex:selectOptions value="{!filterFields}" />
+				</apex:selectList>
+				<apex:outputPanel >
+					<apex:inputText id="text9" onchange="UpdateHiddenFromText('{!$Component.hidden9}', '{!$Component.text9}')" />
+					<c:DateInput id="datetime9" onchange="UpdateHiddenFromDateTime('{!$Component.hidden9}', '{!$Component.datetime9}')" />
+					<c:DateInput id="date9" onchange="UpdateHiddenFromDate('{!$Component.hidden9}', '{!$Component.date9}')" />
+					<c:LookupInput id="lookup9" onchange="UpdateHiddenFromLookup('{!$Component.hidden9}', '{!$Component.lookup9}')" />
+					<div id="picklist9">
+						<apex:inputText id="pickListText9" onchange="UpdateHiddenFromPicklist('{!$Component.hidden9}', 'picklist9')" />
+						<a onclick="showPopupWindow('{!$Component.filter9}', '{!$Component.pickListText9}')" title="Lookup (New Window)">
+							<img class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon'; this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn'; this.className = 'lookupIconOn';" src="/s.gif" />
+						</a>
+					</div>
+					<apex:inputHidden id="hidden9" value="{!searchObj.AVTRRT__v9__c}" />
+					<script>
+						var init9 = new Object();
+						init9.initValue = true;
+						function ShowFilterValueByType9(){
+							ShowFilterValueByType('{!$Component.filter9}','{!$Component.operator9}', '{!$Component.operatorTemplate}', '{!$Component.text9}','{!$Component.datetime9}','{!$Component.date9}','{!$Component.lookup9}','picklist9','{!$Component.hidden9}',init9, '{!JSENCODE(savedLookupName9)}');
+						}
+						ShowFilterValueByType9();
+					</script>
+				</apex:outputPanel>
+
+				<apex:outputLabel value="AND" />
+
+				<apex:outputLabel value="10" />
+				<apex:selectList id="filter10" size="1" value="{!searchObj.AVTRRT__p10__c}" onchange="ShowFilterValueByType10()">
+					<apex:selectOptions value="{!queryFields}" />
+				</apex:selectList>
+				<apex:selectList id="operator10" size="1" value="{!searchObj.AVTRRT__e10__c}" style="width:150px">
+					<apex:selectOptions value="{!filterFields}" />
+				</apex:selectList>
+				<apex:outputPanel >
+					<apex:inputText id="text10" onchange="UpdateHiddenFromText('{!$Component.hidden10}', '{!$Component.text10}')" />
+					<c:DateInput id="datetime10" onchange="UpdateHiddenFromDateTime('{!$Component.hidden10}', '{!$Component.datetime10}')" />
+					<c:DateInput id="date10" onchange="UpdateHiddenFromDate('{!$Component.hidden10}', '{!$Component.date10}')" />
+					<c:LookupInput id="lookup10" onchange="UpdateHiddenFromLookup('{!$Component.hidden10}', '{!$Component.lookup10}')" />
+					<div id="picklist10">
+						<apex:inputText id="pickListText10" onchange="UpdateHiddenFromPicklist('{!$Component.hidden10}', 'picklist10')" />
+						<a onclick="showPopupWindow('{!$Component.filter10}', '{!$Component.pickListText10}')" title="Lookup (New Window)">
+							<img class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon'; this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn'; this.className = 'lookupIconOn';" src="/s.gif" />
+						</a>
+					</div>
+					<apex:inputHidden id="hidden10" value="{!searchObj.AVTRRT__v10__c}" />
+					<script>
+						var init10 = new Object();
+						init10.initValue = true;
+						function ShowFilterValueByType10(){
+							ShowFilterValueByType('{!$Component.filter10}','{!$Component.operator10}', '{!$Component.operatorTemplate}', '{!$Component.text10}','{!$Component.datetime10}','{!$Component.date10}','{!$Component.lookup10}','picklist10','{!$Component.hidden10}',init10, '{!JSENCODE(savedLookupName10)}');
+						}
+						ShowFilterValueByType10();
+					</script>
+				</apex:outputPanel>
+
+				<apex:outputLabel value="" />
+			</apex:panelGrid>
+
+			<apex:outputPanel >
+				<apex:outputLink id="AdvancedFilterConditionsLink" onclick="ShowAdvancedOptions(); return false">Advanced Options...</apex:outputLink><br />
+				<div id="divAdvancedOptions" style="display:none">
+					<apex:outputLink onclick="ClearAdvancedOptions(); return false">Clear Advanced Options</apex:outputLink><br />
+					<span style="color:#434343">Advanced Filter Conditions:</span><br />
+					<apex:inputText id="AdvancedFilterConditions" value="{!searchObj.AVTRRT__Advanced_Filter_Conditions__c}" style="width:600px" /><br />
+					<script>
+						var AdvancedFilterConditions = j$(fixId('{!$Component.AdvancedFilterConditions}'))[0];
+						var AdvancedFilterConditionsLink = j$(fixId('{!$Component.AdvancedFilterConditionsLink}'))[0];
+						var divAdvancedOptions = j$(fixId('divAdvancedOptions'))[0];
+
+						if (AdvancedFilterConditions.value != '') {
+							ShowAdvancedOptions();
+						}
+					</script>
+					<img width="533" height="211" title="Boolean Filters Help" alt="Boolean Filters Help" src="/img/report_boolean_filter.gif" />
+				</div>
+			</apex:outputPanel>
+
+		</apex:pageBlockSection>
+
+		<apex:pageBlockSection columns="1" title="Location" rendered="{!isGeoEnabled}">
+			<apex:panelGrid columns="2" title="Set location">
+				<apex:outputLabel value="Country:"/>
+				<apex:inputField id="country" value="{!searchObj.AVTRRT__Country_Code__c}"/>
+				<apex:outputLabel value="Zip/Postal Code:"/>
+				<apex:inputText id="zipCode" value="{!searchObj.AVTRRT__Postal_Code__c}" />
+				<apex:outputLabel value="Radius:"/>
+				<apex:inputText id="radiusInMiles" value="{!searchObj.AVTRRT__Radius__c}" />
+			</apex:panelGrid>
+		</apex:pageBlockSection>
+
+		<apex:pageBlockSection title="Search Display Columns">
+			<apex:panelGrid columns="4" id="theCoumnSelectGrids" title="Select Display Columns">
+				<apex:selectList id="fromBox" size="10" multiselect="true">
+					<apex:selectOptions value="{!sourceColumnFields}" />
+				</apex:selectList>
+				<apex:outputPanel style="text-align:center;padding-top:58px" layout="block">
+					<div>
+						<a href="javascript:move(this, fromBox, toBox);createSelectedColumnsList();">
+							<img title="->" alt="->" src="/s.gif" style="background:transparent url(/img/alohaSkin/combobox_arrows_sprite.gif) no-repeat scroll 0 0;background-position:left -0px;height:20px;width:24px" />
+						</a>
+					</div>
+					<div>
+						<a href="javascript:move(this, toBox, fromBox);createSelectedColumnsList();">
+						<img title="<-" alt="<-" src="/s.gif" style="background:transparent url(/img/alohaSkin/combobox_arrows_sprite.gif) no-repeat scroll 0 0;background-position:left -60px;height:20px;width:24px" />
+						</a>
+					</div>
+				</apex:outputPanel>
+				<apex:selectList id="toBox" size="10" multiselect="true">
+					<apex:selectOptions value="{!selectedColumnFields}" />
+				</apex:selectList>
+				<apex:outputPanel style="text-align:center;padding-top:5px" layout="block">
+					<div class="text">Top</div>
+					<div>
+						<a href="javascript:moveTop();">
+							<img title="Top" alt="Top" src="/s.gif" style="background:transparent url(/img/alohaSkin/combobox_arrows_sprite.gif) no-repeat scroll 0 0;background-position:left -240px;height:20px;width:24px" />
+						</a>
+					</div>
+					<div class="text">Up</div>
+					<div>
+						<a href="javascript:moveUp();">
+							<img title="Up" alt="Up" src="/s.gif" style="background:transparent url(/img/alohaSkin/combobox_arrows_sprite.gif) no-repeat scroll 0 0;background-position:left -120px;height:20px;width:24px" />
+						</a>
+					</div>
+					<div>
+						<a href="javascript:moveDown();">
+							<img title="Down" alt="Down" src="/s.gif" style="background:transparent url(/img/alohaSkin/combobox_arrows_sprite.gif) no-repeat scroll 0 0;background-position:left -180px;height:20px;width:24px" />
+						</a>
+					</div>
+					<div class="text">Down</div>
+					<div>
+						<a href="javascript:javascript:moveBottom();">
+							<img title="Bottom" alt="Bottom" src="/s.gif" style="background:transparent url(/img/alohaSkin/combobox_arrows_sprite.gif) no-repeat scroll 0 0;background-position:left -300px;height:20px;width:24px" />
+						</a>
+					</div>
+					<div class="text">Bottom</div>
+				</apex:outputPanel>
+			</apex:panelGrid>
+
+			<script>
+				var fromBox = j$(fixId('{!$Component.fromBox}'))[0];
+				var toBox = j$(fixId('{!$Component.toBox}'))[0];
+			</script>
+
+		</apex:pageBlockSection>
+
+		<apex:pageBlockButtons location="both">
+			<apex:commandButton action="{!search}" value="Search" id="searchButton"  onclick="var r = search(this, true); createSelectedColumnsList(); if (!r) { return false; }" reRender="ResultBlock" status="status" />
+			<apex:actionFunction name="runSearch" action="{!search}"
+					rerender="ResultBlock" status="status"/>
+			<apex:commandButton value="Save" onclick="j$('#dialog').dialog({modal:true}, {resizable:false}, {width:240}, {height:120}); return false;" style="display:{!IF(id==null, 'inline', 'none')}" />
+			<apex:commandButton action="{!save}" value="Save" id="saveButton" onclick="var r = search(this); createSelectedColumnsList(); if (!r) { return false; }" style="display:{!IF(id!=null, 'inline', 'none')}" />
+
+			<apex:commandButton value="Clone" onclick="j$('#dialog').dialog({modal:true}, {resizable:false}, {width:240}, {height:120});return false;" style="display:{!IF(id!=null, 'inline', 'none')}" />
+			<apex:commandButton action="{!cloneSearch}" value="Clone" id="cloneButton" onclick="var r = search(this); createSelectedColumnsList(); if (!r) { return false; }" style="display:none" />
+
+			<apex:commandButton value="Cancel" id="cancelButton" onclick="mycancel();return false;" />
+
+			<script>
+				var saveBtn = j$(fixId('{!$Component.saveButton}'))[0];
+				var cloneBtn = j$(fixId('{!$Component.cloneButton}'))[0];
+				var searchBtn = j$(fixId('{!$Component.searchButton}'))[0];
+			</script>
+		</apex:pageBlockButtons>
+
+		<apex:inputHidden value="{!searchObj.Name}" id="searchNameHidden" /><br /><br />
+
+		<script type="text/javascript">
+			var searchNameHidden = j$(fixId('{!$Component.searchNameHidden}'))[0];
+		</script>
+
+	</apex:pageBlock>
+
+	<div id="dialog" style="display:none" title="Select Search Name">
+		<apex:outputLabel value="Name  " />
+		<apex:inputText id="searchName" value="{!searchObj.Name}" /><br /><br />
+		<apex:commandButton value="Save" onclick="ClickRealSave()" style="display:{!IF(id==null, 'inline', 'none')}" />
+		<apex:commandButton value="Clone" onclick="ClickRealClone()" style="display:{!IF(id!=null, 'inline', 'none')}" />
+	</div>
+	<script>
+		var searchName = j$(fixId('{!$Component.searchName}'))[0];
+	</script>
+
+	<div id="workDetails" style="display:none" title="Work Details">
+		<apex:iframe id="workDetailsFrame" height="550" width="780" scrolling="true" />
+	</div>
+	<script>
+		var workDetailsFrame = j$(fixId('workDetailsFrame'))[0];
+	</script>
+
+	<div id="candidateTags" style="display:none" title="Candidate Tags">
+		<apex:iframe id="candidateTagsFrame" height="300" width="580" />
+	</div>
+	<script>
+		var candidateTagsFrame = j$(fixId('candidateTagsFrame'))[0];
+	</script>
+
+	<div id="shortList" style="display:none" title="Candidate Short List">
+		<apex:iframe id="shortListFrame" height="310" width="360" />
+	</div>
+	<script>
+		var shortListFrame = j$(fixId('shortListFrame'))[0];
+	</script>
+
+	<apex:inputHidden value="{!commaSeperatedSelectedFields}" id="cssFieldsId" />
+	<script>
+		var hiddenField = j$(fixId('{!$Component.cssFieldsId}'))[0];
+	</script>
+
+	<a name="sectionResult"></a>
+
+	<apex:actionStatus id="status"
+			onstart="j$('#dialogSearching').dialog({modal:false, resizable:false, width:180, open:function(event, ui) { j$('#dialogSearching').css('height','44px').css('min-height','44px'); j$('div.block1').block({message: null}); j$('#dialogSearching').siblings('.ui-dialog-titlebar').hide(); } })"
+			onstop="j$('#dialogSearching').dialog('close');window.location='#sectionResult';j$('div.block1').unblock();" />
+	<apex:actionStatus id="statusLoading"
+			onstart="j$('#dialogLoading').dialog({modal:false, resizable:false, width:180, open:function(event, ui) { j$('#dialogLoading').css('height','44px').css('min-height','44px'); j$('div.block1').block({message: null}); j$('#dialogLoading').siblings('.ui-dialog-titlebar').hide(); } })"
+			onstop="j$('#dialogLoading').dialog('close');window.location='#sectionResult';j$('div.block1').unblock();" />
+	<div id="dialogSearching" style="display:none;">
+		<apex:image id="searchImage" url="{!$Resource.AVTRRT__loading}" style="float: left;"/>
+		<div style="float: left; padding: 15px 5px 5px 15px;">Searching...</div>
+	</div>
+	<div id="dialogLoading" style="display:none;">
+		<apex:image id="loadingImage" url="{!$Resource.AVTRRT__loading}" style="float: left;"/>
+		<div style="float: left; padding: 15px 5px 5px 15px;">Loading...</div>
+	</div>
+
+	<apex:outputPanel id="ResultBlock">
+
+	<apex:pageBlock rendered="{!showResultBlock}">
+
+		<apex:pageMessages id="messagesBox" />
+
+		<input type="hidden" id="keywordsString" value="{!keywordsString}" />
+
+		<div style="padding:5px 0; font-family: Tahoma;">
+			Page #:&nbsp;{!PageNumber}&nbsp;out of&nbsp;{!totalPageNumber}&nbsp;&nbsp;&nbsp;&nbsp;
+			<apex:commandButton value="Previous" action="{!previousBtnClick}" disabled="{!previousButtonDisabled}" reRender="ResultBlock" status="status" />
+
+			<apex:repeat value="{!pageNumbers}" var="number">
+				&nbsp;&nbsp;
+				<apex:commandLink action="{!numberBtnClick}" value="{!number}" reRender="ResultBlock" status="status">
+					<apex:param value="{!number}" name="number" assignTo="{!pageNumber}" ></apex:param>
+				</apex:commandLink>
+			</apex:repeat>
+			&nbsp;&nbsp;
+
+			<apex:commandButton value="Next" action="{!nextBtnClick}" disabled="{!nextButtonDisabled}" reRender="ResultBlock" status="status" />
+			&nbsp;&nbsp;
+
+			Show Page:&nbsp;
+			<apex:selectList value="{!selectedPage}" size="1">
+				<apex:selectOptions value="{!pages}"></apex:selectoptions>
+				<apex:actionSupport event="onchange" action="{!pageChanged}" reRender="ResultBlock" status="status" />
+			</apex:selectList>&nbsp;&nbsp;
+			Records per Page:&nbsp;
+			<apex:selectList value="{!selectedPageSize}" size="1">
+				<apex:selectOptions value="{!pageSizes}"></apex:selectoptions>
+				<apex:actionSupport event="onchange" action="{!pageSizeChanged}" reRender="ResultBlock" status="status" />
+			</apex:selectList>
+			<b><u>{!$Label.Total_count}:&nbsp;
+			<apex:outputText value="{!totalNumber}" /></u></b>
+		</div>
+
+		<apex:pageBlockTable value="{!pageMetaRecords}" var="item" id="multiSelector">
+			<apex:column width="10" style="vertical-align:top" >
+				<apex:facet name="header">
+					<apex:inputCheckbox onclick="selectAll(this, multiSelector.id, '{!$Component.selectedRecords}')" />
+				</apex:facet>
+				<apex:inputCheckbox title="{!item.id}" value="{!item.selected}" id="checkedone" onclick="updateSelectedCount(multiSelector.id, '{!$Component.selectedRecords}')" />
+			</apex:column>
+			<apex:column style="vertical-align:top">
+				<apex:facet name="header">
+					<apex:outputPanel >
+						<apex:commandLink rendered="{!isSortableCol0}" action="{!Sort}" value="Account {!IF(sortExpression==col0,IF(sortDirection='ASC','?','?'),'')}" reRender="ResultBlock" status="status">
+							<apex:param value="{!col0}" name="column" assignTo="{!sortExpression}" ></apex:param>
+						</apex:commandLink>
+						<apex:outputLabel value="Account" rendered="{!isSortableCol0 != true}" />
+					</apex:outputPanel>
+				</apex:facet>
+				<apex:outputLink value="/{!item.id}" target="_blank">
+					<apex:outputText value="{!item.val0}" escape="false" />
+				</apex:outputLink>
+			</apex:column>
+			<apex:column style="vertical-align:top" rendered="{!colName1!=null}">
+				<apex:facet name="header">
+					<apex:outputPanel >
+						<apex:commandLink rendered="{!isSortableCol1}" action="{!Sort}" value="{!colName1} {!IF(sortExpression==col1,IF(sortDirection='ASC','?','?'),'')}" reRender="ResultBlock" status="status">
+							<apex:param value="{!col1}" name="column" assignTo="{!sortExpression}" ></apex:param>
+						</apex:commandLink>
+						<apex:outputLabel value="{!colName1}" rendered="{!isSortableCol1 != true}" />
+					</apex:outputPanel>
+				</apex:facet>
+				<apex:outputText value="{!item.val1}" escape="false" />
+			</apex:column>
+			<apex:column style="vertical-align:top" rendered="{!colName2!=null}">
+				<apex:facet name="header">
+					<apex:outputPanel >
+						<apex:commandLink rendered="{!isSortableCol2}" action="{!Sort}" value="{!colName2} {!IF(sortExpression==col2,IF(sortDirection='ASC','?','?'),'')}" reRender="ResultBlock" status="status">
+							<apex:param value="{!col2}" name="column" assignTo="{!sortExpression}" ></apex:param>
+						</apex:commandLink>
+						<apex:outputLabel value="{!colName2}" rendered="{!isSortableCol2 != true}" />
+					</apex:outputPanel>
+				</apex:facet>
+				<apex:outputText value="{!item.val2}" escape="false" />
+			</apex:column>
+			<apex:column style="vertical-align:top" rendered="{!colName3!=null}">
+				<apex:facet name="header">
+					<apex:outputPanel >
+						<apex:commandLink rendered="{!isSortableCol3}" action="{!Sort}" value="{!colName3} {!IF(sortExpression==col3,IF(sortDirection='ASC','?','?'),'')}" reRender="ResultBlock" status="status">
+							<apex:param value="{!col3}" name="column" assignTo="{!sortExpression}" ></apex:param>
+						</apex:commandLink>
+						<apex:outputLabel value="{!colName3}" rendered="{!isSortableCol3 != true}" />
+					</apex:outputPanel>
+				</apex:facet>
+				<apex:outputText value="{!item.val3}" escape="false" />
+			</apex:column>
+			<apex:column style="vertical-align:top" rendered="{!colName4!=null}">
+				<apex:facet name="header">
+					<apex:outputPanel >
+						<apex:commandLink rendered="{!isSortableCol4}" action="{!Sort}" value="{!colName4} {!IF(sortExpression==col4,IF(sortDirection='ASC','?','?'),'')}" reRender="ResultBlock" status="status">
+							<apex:param value="{!col4}" name="column" assignTo="{!sortExpression}" ></apex:param>
+						</apex:commandLink>
+						<apex:outputLabel value="{!colName4}" rendered="{!isSortableCol4 != true}" />
+					</apex:outputPanel>
+				</apex:facet>
+				<apex:outputText value="{!item.val4}" escape="false" />
+			</apex:column>
+			<apex:column style="vertical-align:top" rendered="{!colName5!=null}">
+				<apex:facet name="header">
+					<apex:outputPanel >
+						<apex:commandLink rendered="{!isSortableCol5}" action="{!Sort}" value="{!colName5} {!IF(sortExpression==col5,IF(sortDirection='ASC','?','?'),'')}" reRender="ResultBlock" status="status">
+							<apex:param value="{!col5}" name="column" assignTo="{!sortExpression}" ></apex:param>
+						</apex:commandLink>
+						<apex:outputLabel value="{!colName5}" rendered="{!isSortableCol5 != true}" />
+					</apex:outputPanel>
+				</apex:facet>
+				<apex:outputText value="{!item.val5}" escape="false" />
+			</apex:column>
+			<apex:column style="vertical-align:top" rendered="{!colName6!=null}">
+				<apex:facet name="header">
+					<apex:outputPanel >
+						<apex:commandLink rendered="{!isSortableCol6}" action="{!Sort}" value="{!colName6} {!IF(sortExpression==col6,IF(sortDirection='ASC','?','?'),'')}" reRender="ResultBlock" status="status">
+							<apex:param value="{!col6}" name="column" assignTo="{!sortExpression}" ></apex:param>
+						</apex:commandLink>
+						<apex:outputLabel value="{!colName6}" rendered="{!isSortableCol6 != true}" />
+					</apex:outputPanel>
+				</apex:facet>
+				<apex:outputText value="{!item.val6}" escape="false" />
+			</apex:column>
+			<apex:column style="vertical-align:top" rendered="{!colName7!=null}">
+				<apex:facet name="header">
+					<apex:outputPanel >
+						<apex:commandLink rendered="{!isSortableCol7}" action="{!Sort}" value="{!colName7} {!IF(sortExpression==col7,IF(sortDirection='ASC','?','?'),'')}" reRender="ResultBlock" status="status">
+							<apex:param value="{!col7}" name="column" assignTo="{!sortExpression}" ></apex:param>
+						</apex:commandLink>
+						<apex:outputLabel value="{!colName7}" rendered="{!isSortableCol7 != true}" />
+					</apex:outputPanel>
+				</apex:facet>
+				<apex:outputText value="{!item.val7}" escape="false" />
+			</apex:column>
+			<apex:column style="vertical-align:top" rendered="{!colName8!=null}">
+				<apex:facet name="header">
+					<apex:outputPanel >
+						<apex:commandLink rendered="{!isSortableCol8}" action="{!Sort}" value="{!colName8} {!IF(sortExpression==col8,IF(sortDirection='ASC','?','?'),'')}" reRender="ResultBlock" status="status">
+							<apex:param value="{!col8}" name="column" assignTo="{!sortExpression}" ></apex:param>
+						</apex:commandLink>
+						<apex:outputLabel value="{!colName8}" rendered="{!isSortableCol8 != true}" />
+					</apex:outputPanel>
+				</apex:facet>
+				<apex:outputText value="{!item.val8}" escape="false" />
+			</apex:column>
+			<apex:column style="vertical-align:top" rendered="{!colName9!=null}">
+				<apex:facet name="header">
+					<apex:outputPanel >
+						<apex:commandLink rendered="{!isSortableCol9}" action="{!Sort}" value="{!colName9} {!IF(sortExpression==col9,IF(sortDirection='ASC','?','?'),'')}" reRender="ResultBlock" status="status">
+							<apex:param value="{!col9}" name="column" assignTo="{!sortExpression}" ></apex:param>
+						</apex:commandLink>
+						<apex:outputLabel value="{!colName9}" rendered="{!isSortableCol9 != true}" />
+					</apex:outputPanel>
+				</apex:facet>
+				<apex:outputText value="{!item.val9}" escape="false" />
+			</apex:column>
+		</apex:pageBlockTable>
+		<script>
+			var multiSelector = j$(fixId('{!$Component.multiSelector}'))[0];
+		</script>
+		<br />
+		<apex:outputText id="selectedRecords" value="Selected: 0" />
+	</apex:pageBlock>
+
+
+
+	</apex:outputPanel>
+
+	<div id="selectBox" title="Select item(s)" style="background-color: #fefeff;">
+	</div>
+
+	</apex:form>
+</div>
+	</body>
+
+	<apex:outputPanel rendered="{!searchObj.Id != null && isActive == true}">
+		<script>
+			runSearch();
+		</script>
+	</apex:outputPanel>
+
+	<apex:outputPanel rendered="{!isActive == false}">
+		<div style="font-family: Tahoma; font-size: 14px; border: 1px solid #a02200; background-color: #dbd2cf;">
+			<p style="padding: 0px 10px 0px 10px;">{!$Label.avtrrt__This_functionality_is_not_enabled_for_you_Please_contact_Target_Recruit_support}</p>
+		</div>
+	</apex:outputPanel>
+
+</apex:page>

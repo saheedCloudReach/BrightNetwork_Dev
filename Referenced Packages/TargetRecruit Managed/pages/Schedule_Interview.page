@@ -1,0 +1,13 @@
+<apex:page id="thePage" Controller="AVTRRT.ScheduleInterviewController" showHeader="false" standardStylesheets="true" 
+									action="{!init}" tabStyle="AVTRRT__Job_Applicant__c">
+
+<script>
+	
+ if("{!JSENCODE($Request.success)}" == "true") {
+      //parent.window.close();
+      parent.window.location.href = "/{!JSENCODE($Request.id)}/"+"{!JSENCODE($Request.val)}";          
+ }
+</script>
+<apex:messages />
+	
+</apex:page>

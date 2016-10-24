@@ -1,0 +1,32 @@
+<apex:page controller="AVTRRT.MassActivityController" title="{!$Label.avtrrt__Mass_Activity}">
+
+	<style type="text/css">
+		.font
+		{
+			font-family: Tahoma !important;
+		}
+		.mainTitle
+		{
+			font-family: Tahoma !important;
+			font-size: 14px !important;
+		}
+	</style>
+	<apex:form >
+		<apex:pageMessages escape="false" />
+
+		<apex:pageBlock title="{!$Label.avtrrt__Task_Information}">
+			<apex:pageBlockButtons >
+				<apex:commandButton action="{!save}" value="{!$Label.avtrrt__Save}" />
+			</apex:pageBlockButtons>
+			<apex:pageBlockSection columns="2" >
+				<apex:inputField styleClass="font" value="{!task.Subject}" />
+				<apex:inputField styleClass="font" value="{!task.Description}" />
+				<apex:inputField styleClass="font" value="{!task.OwnerId}" />
+				<apex:inputField styleClass="font" value="{!task.ActivityDate}" />
+				<apex:inputField styleClass="font" value="{!task.whatId}" />
+				<apex:inputField styleClass="font" value="{!task.Priority}" />
+				<apex:inputField styleClass="font" value="{!task.Status}" />
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

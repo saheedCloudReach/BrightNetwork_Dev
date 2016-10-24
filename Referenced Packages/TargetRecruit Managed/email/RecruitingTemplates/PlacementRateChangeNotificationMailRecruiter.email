@@ -1,0 +1,15 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<P>Dear {!Placement__c.Assigned_Recruiter__c},</P>
+<P>&nbsp;</P>
+<P>There has been a rate change for the placement of Job "{!Placement__c.Job_Title__c}".</P>
+<P>&nbsp;</P>
+<P>The new rate assigned for the job is "{!Placement__c.Bill_Rate__c}".</P>
+<P>&nbsp;</P>
+<P>Thanking You,</P>{!Placement__c.OwnerFullName} 
+<P>{!Placement__c.OwnerTitle}</P>
+<P>{!Placement__c.OwnerPhone}</P>
+<P>{!Placement__c.OwnerEmail}</P>]]></td>
+</tr>
+</table>

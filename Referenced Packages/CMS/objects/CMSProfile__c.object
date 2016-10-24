@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Approval_Message_Page__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the page which can be used to show a message to portal user after registration if he has to wait to get his registration approved.</inlineHelpText>
+        <label>Approval Message Page</label>
+        <referenceTo>Page__c</referenceTo>
+        <relationshipLabel>CMSProfiles (Approval Message Page)</relationshipLabel>
+        <relationshipName>CMSProfiles</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CMSCss__c</fullName>
+        <defaultValue>&quot;SiteStyles&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>This field contains the name of the visualforce page which has CSS for CMS according this profile.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please write a visual force page name in this field which contains your CSS for CMS.</inlineHelpText>
+        <label>CMSCss</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Home_Page__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>This the default home page for this profile.</inlineHelpText>
+        <label>Default Home Page</label>
+        <referenceTo>Page__c</referenceTo>
+        <relationshipLabel>CMSProfiles</relationshipLabel>
+        <relationshipName>CMSProfiles2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Force_com_Authorization_and_Registration__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Force.com Authorization and Registration</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>LinkedInLogin__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>LinkedInLogin</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Name__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Profile Name</label>
+        <length>80</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Need_Registration_Approval__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this check box if you want approval process on registration for users under this profile.
+If it is true then user can not be activated till an authorized person activate him.</inlineHelpText>
+        <label>Need Registration Approval</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Order__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Order</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Portal_Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>If this field is checked then permissions for pages and blocks which are used for registration and login will be automatically created.</inlineHelpText>
+        <label>Portal Enabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Profile_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Select account for this profile users.</inlineHelpText>
+        <label>Profile Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>CMSProfiles</relationshipLabel>
+        <relationshipName>CMSProfiles</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Profile_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>This person is responsible for managing this profile users. He has to approve registered users if approval is needed for this profile.</inlineHelpText>
+        <label>Profile Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>CMSProfiles</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>User_Record_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Please select a record type for the user who will register under this profile.</inlineHelpText>
+        <label>User Record Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Registration__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>This field specified whether this profile can be used for user registration or not.</inlineHelpText>
+        <label>Available For User Registration</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>CMSProfile</label>
+    <listViews>
+        <fullName>All_CMSProfiles</fullName>
+        <columns>NAME</columns>
+        <columns>CMSCss__c</columns>
+        <columns>Default_Home_Page__c</columns>
+        <columns>Portal_Enabled__c</columns>
+        <columns>Profile_Account__c</columns>
+        <columns>User_Registration__c</columns>
+        <columns>LinkedInLogin__c</columns>
+        <columns>Order__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All CMSProfiles</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>CMSProfile Label</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>CMSProfiles</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>CMSCss__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Default_Home_Page__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Portal_Enabled__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Profile_Account__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>User_Registration__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>CMSCss__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Default_Home_Page__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Portal_Enabled__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Profile_Account__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>User_Registration__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>CMSCss__c</searchFilterFields>
+        <searchFilterFields>Default_Home_Page__c</searchFilterFields>
+        <searchFilterFields>Portal_Enabled__c</searchFilterFields>
+        <searchFilterFields>Profile_Account__c</searchFilterFields>
+        <searchFilterFields>User_Registration__c</searchFilterFields>
+        <searchResultsAdditionalFields>CMSCss__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Default_Home_Page__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Portal_Enabled__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Profile_Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>User_Registration__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

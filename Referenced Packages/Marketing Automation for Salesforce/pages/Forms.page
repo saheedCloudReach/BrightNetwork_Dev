@@ -1,0 +1,4 @@
+<apex:page controller="ddm.IEHeaderController" showHeader="true"  tabStyle="ddm__dmsfc_Form__c">
+    <c:CommonJS />
+    <apex:listViews id="List" type="ddm__dmsfc_Form__c" />
+</apex:page>

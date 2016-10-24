@@ -1,0 +1,12 @@
+Hello {!Contact.Name} 
+
+To protect your privacy, we have randomly generated a password for your account. You can use the credentials below to login. 
+
+Username: {!Contact.UserName__c} 
+Password: {!Contact.Password__c} 
+
+Once you have logged in, use the Update Profile menu item to change your password. 
+
+
+Thanks, 
+Support Team

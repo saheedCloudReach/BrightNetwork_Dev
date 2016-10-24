@@ -1,0 +1,80 @@
+<apex:page docType="HTML-5.0" showHeader="false" sidebar="false" cache="false" controller="AVTRRT.CreateNewJobOrderController" action="{!Displayjob}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+
+	<link rel="stylesheet" href="{!URLFOR($Resource.OneStarter,'icons.css')}"/>
+	<link rel="stylesheet" href="{!URLFOR($Resource.OneStarter,'styles.css')}"/>
+	<link rel="stylesheet" href="{!URLFOR($Resource.OneStarter,'OneStarter.css')}"/>
+	<!-- JavaScript files -->
+	<script src="{!URLFOR($Resource.TouchSwipe,'jquery.touchSwipe.min.js')}"></script>
+	<script src="{!URLFOR($Resource.OneStarter,'jquery.onestarter.js')}"></script>
+	<script src="/canvas/sdk/js/publisher.js"></script>
+
+	<script>
+		var s1 = {};
+		$(document).ready(function() {
+			s1 = $('div#one-app').oneStarter('app');
+
+		});
+	</script>
+	<style>
+		.one-field-section{
+			border-bottom :0px !important;
+		}
+		body{
+			font-size:100%;
+		}
+		.detail-div{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+
+		}
+		.detail-span{
+			width: 120px;
+			display: inline-block;
+		}
+	</style>
+	<apex:outputpanel id="TestPanel" >
+		<div id="one-app">
+			<apex:form >
+				<apex:outputpanel id="results"  >
+					<apex:commandButton value="View Matching Candidates" action="{!DisplayCandidates}"/>
+					<br/>
+					<div id="detail-example" style="padding:6px;border-radius: 5px;border: 1px solid #cfd4d9;">
+						<div class="detail-div">
+							<span class="detail-span">Job Title</span>
+							<span class="field-value"><apex:outputField value="{!job.AVTRRT__Job_Title__c}" /></span>
+						</div>
+						<br/>
+						<div class="detail-div">
+							<span class="detail-span">Client</span>
+							<span class="field-value" ><apex:outputField value="{!job.AVTRRT__Account_Job__r.Name}" /></span>
+						</div>
+						<br/>
+						<div class="detail-div">
+							<span class="detail-span">Start Date</span>
+							<span class="field-value"><apex:outputField value="{!job.AVTRRT__Start_Date__c}" /></span>
+						</div>
+						<br/>
+						<div class="detail-div">
+							<span class="detail-span">Recruiter</span>
+							<span class="field-value"><apex:outputField value="{!job.AVTRRT__Recruiter__r.Name}" /></span>
+						</div>
+						<br/>
+						<div class="detail-div">
+							<span class="detail-span">Hiring Manager</span>
+							<span class="field-value"><apex:outputField value="{!job.AVTRRT__Hiring_Manager__r.Name}" /></span>
+						</div>
+						<br/>
+						<div>
+							<span class="detail-span">Job Description</span>
+							<span class="field-value">{!job.AVTRRT__Job_Description__c}</span>
+						</div>
+					</div>
+				</apex:outputpanel>
+			</apex:form>
+		</div>
+	</apex:outputpanel>
+</apex:page>

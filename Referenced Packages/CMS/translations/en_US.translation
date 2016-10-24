@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customApplications>
+        <label><!-- CMS --></label>
+        <name>CMS</name>
+    </customApplications>
+    <customLabels>
+        <label><!-- Already a User --></label>
+        <name>Already_a_User</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- An error has occured in the application process. --></label>
+        <name>An_error_has_occured_in_the_application_process</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Approval Message Page --></label>
+        <name>Approval_Message_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Auto Height Iframe --></label>
+        <name>Auto_Height_Iframe</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Auto Height Iframe Code --></label>
+        <name>Auto_Height_Iframe_Code</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Available Menus --></label>
+        <name>Available_Menus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Back to home page --></label>
+        <name>Back_to_home_page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Block Edit --></label>
+        <name>Block_Edit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ByPass Login URL Name --></label>
+        <name>ByPass_Login_URL_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CMSLayout Page Error --></label>
+        <name>CMSLayout_Page_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CMSProfile Edit --></label>
+        <name>CMSProfile_Edit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CMSSiteLoginController Page Error --></label>
+        <name>CMSSiteLoginController_Page_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CMSSiteRegisterController Page Error --></label>
+        <name>CMSSiteRegisterController_Page_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CMS Site Setup --></label>
+        <name>CMS_Site_Setup</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Cancel --></label>
+        <name>Cancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Cancel --></label>
+        <name>CancelCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Candidate_Duplicate_Record_Email --></label>
+        <name>Candidate_Duplicate_Record_Email</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Candidate_Duplicate_Record_Error_Messa --></label>
+        <name>Candidate_Duplicate_Record_Error_Messa</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Captcha_failed_message --></label>
+        <name>Captcha_failed_message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Captcha is incorrect. --></label>
+        <name>Captcha_is_incorrect</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- City --></label>
+        <name>City</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Combination of selected Section --></label>
+        <name>Combination_of_selected_Section</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Company Name --></label>
+        <name>Company_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Configuration setup has been successfully completed --></label>
+        <name>Configuration_setup_has_been_successfully_completed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Configuration setup has been successfully completed --></label>
+        <name>Configuration_setup_has_been_successfully_completedCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ConfirmPasswordError --></label>
+        <name>ConfirmPasswordError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirm Password --></label>
+        <name>Confirm_Password</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirm Password is not --></label>
+        <name>Confirm_Password_is_not</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Contact --></label>
+        <name>Contact</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Contact --></label>
+        <name>ContactCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Content --></label>
+        <name>Content</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Create an Account --></label>
+        <name>Create_an_Account</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Default --></label>
+        <name>Default</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Default --></label>
+        <name>DefaultCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Email --></label>
+        <name>Email</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Email --></label>
+        <name>EmailCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Email can not --></label>
+        <name>Email_can_not</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Email is required --></label>
+        <name>Email_is_required</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error: --></label>
+        <name>Error_double_dot</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ErrorsReceiver --></label>
+        <name>ErrorsReceiver</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Existing Block --></label>
+        <name>Existing_Block</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Existing Block Name --></label>
+        <name>Existing_Block_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FirstName can not --></label>
+        <name>FirstName_can_not</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- First Name --></label>
+        <name>First_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- First name is required. --></label>
+        <name>First_name_is_required</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Flash --></label>
+        <name>Flash</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Forgot Password --></label>
+        <name>Forgot_Password</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- General Information --></label>
+        <name>General_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- General Information --></label>
+        <name>General_InformationCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Guest --></label>
+        <name>Guest</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HTML --></label>
+        <name>HTML</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HTML --></label>
+        <name>HTMLCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IFRAME --></label>
+        <name>IFRAME</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- If you still cannot log in --></label>
+        <name>If_you_still_cannot_log_in</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Indicates required fields --></label>
+        <name>Indicates_required_fields</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Information --></label>
+        <name>Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Invalid Email. --></label>
+        <name>Invalid_Email</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Invalid User Name. --></label>
+        <name>Invalid_User_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Keep in mind --></label>
+        <name>Keep_in_mind</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- LastName can not --></label>
+        <name>LastName_can_not</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Last Name --></label>
+        <name>Last_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Last name is required. --></label>
+        <name>Last_name_is_required</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Login --></label>
+        <name>Login</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Login or Register --></label>
+        <name>Login_or_Register</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Logout --></label>
+        <name>Logout</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- MODULE --></label>
+        <name>MODULE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage Blocks --></label>
+        <name>Manage_Blocks</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage CMSProfile --></label>
+        <name>Manage_CMSProfile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage CMSSiteSetup --></label>
+        <name>Manage_CMSSiteSetup</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage Menu Components --></label>
+        <name>Manage_Menu_Components</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage Menus --></label>
+        <name>Manage_Menus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage Pages --></label>
+        <name>Manage_Pages</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage Sessions --></label>
+        <name>Manage_Sessions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- May be CMSDefaultProfile --></label>
+        <name>May_be_CMSDefaultProfile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Menu Component --></label>
+        <name>Menu_Component</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Menu Component Edit --></label>
+        <name>Menu_Component_Edit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Menu Component Name --></label>
+        <name>Menu_Component_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Menu Component Name is already exist. --></label>
+        <name>Menu_Component_Name_is_already_exist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Menu Component Name is already exist. Please select another Name --></label>
+        <name>Menu_Component_Name_is_already_exist_Please_select_another_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Menu Component can not be blank --></label>
+        <name>Menu_Component_can_not_be_blank</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Module Name --></label>
+        <name>Module_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- New User --></label>
+        <name>New_User</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No Profile found. Please contact your administrator. --></label>
+        <name>No_Profile_found_Please_contact_your_administrator</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No profile is assigned to this contact --></label>
+        <name>No_profile_is_assigned_to_this_contact</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- None --></label>
+        <name>None</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- None --></label>
+        <name>NoneCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Online --></label>
+        <name>Online</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Online --></label>
+        <name>OnlineCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Password --></label>
+        <name>Password</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PasswordError --></label>
+        <name>PasswordError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Password Change --></label>
+        <name>Password_Change</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Password_Email_Error --></label>
+        <name>Password_Email_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Password can not --></label>
+        <name>Password_can_not</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Password can not be blank --></label>
+        <name>Password_can_not_be_blank</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Password confirmation is required. --></label>
+        <name>Password_confirmation_is_required</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Password is required. --></label>
+        <name>Password_is_required</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Phone --></label>
+        <name>Phone</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Phone --></label>
+        <name>PhoneCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Please select --></label>
+        <name>Please_select</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Please select or enter some value --></label>
+        <name>Please_select_or_enter_some_value</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ProfileUpdatedMsg --></label>
+        <name>ProfileUpdatedMsg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Ramesh --></label>
+        <name>Ramesh</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Register --></label>
+        <name>Register</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Register As --></label>
+        <name>Register_As</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Remove --></label>
+        <name>Remove</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Reset --></label>
+        <name>Reset</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Retry login --></label>
+        <name>Retry_login</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save --></label>
+        <name>Save</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save --></label>
+        <name>SaveCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save &amp; New --></label>
+        <name>Save_New</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Select --></label>
+        <name>Select</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Selected Menus --></label>
+        <name>Selected_Menus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Send_Logs --></label>
+        <name>Send_Logs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SessionTimeout --></label>
+        <name>SessionTimeout</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Site is temporarily not working --></label>
+        <name>Site_is_temporarily_not_working</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- State --></label>
+        <name>State</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Submit --></label>
+        <name>Submit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Submit --></label>
+        <name>SubmitCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text --></label>
+        <name>Text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text Content --></label>
+        <name>Text_Content</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- This URL does not exist --></label>
+        <name>This_URL_does_not_exist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- To create an account --></label>
+        <name>To_create_an_account</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Update --></label>
+        <name>Update</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Update Profile Page Error --></label>
+        <name>Update_Profile_Page_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UserName can not --></label>
+        <name>UserName_can_not</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- User Created --></label>
+        <name>User_Created</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- User Name --></label>
+        <name>User_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- User Name (in an email format) --></label>
+        <name>User_Name_in_an_email_format</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- User Record Type --></label>
+        <name>User_Record_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- User name is required. --></label>
+        <name>User_name_is_required</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Visualforce Page Name --></label>
+        <name>Visualforce_Page_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Welcome --></label>
+        <name>Welcome</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- You can not --></label>
+        <name>You_can_not</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- You have not sufficient rights to access this page --></label>
+        <name>You_have_not_sufficient_rights_to_access_this_page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Your are not approved by your manager to login --></label>
+        <name>Your_are_not_approved_by_your_manager_to_login</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Your login attempt has failed --></label>
+        <name>Your_login_attempt_has_failed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Zip/Postal Code --></label>
+        <name>Zip_Postal_Code</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Zip_Postal_Code --></label>
+        <name>Zip_Postal_CodeCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- add --></label>
+        <name>add</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- add --></label>
+        <name>addCMS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- forgotten password on email --></label>
+        <name>forgotten_password_on_email</name>
+    </customLabels>
+    <customTabs>
+        <label><!-- Manage CMS --></label>
+        <name>Manage_CMS</name>
+    </customTabs>
+    <scontrols>
+        <label><!-- EditBlock --></label>
+        <name>EditBlock</name>
+    </scontrols>
+    <scontrols>
+        <label><!-- Edit CMSMenuComponent --></label>
+        <name>Edit_CMSMenuComponent</name>
+    </scontrols>
+    <scontrols>
+        <label><!-- NewBlock --></label>
+        <name>NewBlock</name>
+    </scontrols>
+    <scontrols>
+        <label><!-- New CMSMenuComponent --></label>
+        <name>New_CMSMenuComponent</name>
+    </scontrols>
+</Translations>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CMSProfile</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CMSProfiles</value>
+    </caseValues>
+    <fields>
+        <help><!-- This is the page which can be used to show a message to portal user after registration if he has to wait to get his registration approved. --></help>
+        <label><!-- Approval Message Page --></label>
+        <name>Approval_Message_Page__c</name>
+        <relationshipLabel><!-- CMSProfiles (Approval Message Page) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Please write a visual force page name in this field which contains your CSS for CMS. --></help>
+        <label><!-- CMSCss --></label>
+        <name>CMSCss__c</name>
+    </fields>
+    <fields>
+        <help><!-- This the default home page for this profile. --></help>
+        <label><!-- Default Home Page --></label>
+        <name>Default_Home_Page__c</name>
+        <relationshipLabel><!-- CMSProfiles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Force.com Authorization and Registration --></label>
+        <name>Force_com_Authorization_and_Registration__c</name>
+    </fields>
+    <fields>
+        <label><!-- LinkedInLogin --></label>
+        <name>LinkedInLogin__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profile Name --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this check box if you want approval process on registration for users under this profile.
+If it is true then user can not be activated till an authorized person activate him. --></help>
+        <label><!-- Need Registration Approval --></label>
+        <name>Need_Registration_Approval__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+    </fields>
+    <fields>
+        <help><!-- If this field is checked then permissions for pages and blocks which are used for registration and login will be automatically created. --></help>
+        <label><!-- Portal Enabled --></label>
+        <name>Portal_Enabled__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select account for this profile users. --></help>
+        <label><!-- Profile Account --></label>
+        <name>Profile_Account__c</name>
+        <relationshipLabel><!-- CMSProfiles --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This person is responsible for managing this profile users. He has to approve registered users if approval is needed for this profile. --></help>
+        <label><!-- Profile Manager --></label>
+        <name>Profile_Manager__c</name>
+        <relationshipLabel><!-- CMSProfiles --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Please select a record type for the user who will register under this profile. --></help>
+        <label><!-- User Record Type --></label>
+        <name>User_Record_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field specified whether this profile can be used for user registration or not. --></help>
+        <label><!-- Available For User Registration --></label>
+        <name>User_Registration__c</name>
+    </fields>
+    <layouts>
+        <layout>CMSProfile Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

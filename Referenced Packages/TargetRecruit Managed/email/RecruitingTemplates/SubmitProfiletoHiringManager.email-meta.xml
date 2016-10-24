@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Details of the Candidate when Submitted to Hiring Manager</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Avankia_Letterhead</letterhead>
+    <name>Candidate Submisssion Details</name>
+    <style>formalLetter</style>
+    <subject>Submitting Candidate &apos;{!Job_Applicant__c.Contact_Candidate__c}&apos; for the Job &apos;{!Job_Applicant__c.Job_Title__c}&apos;</subject>
+    <textOnly>Hi {!Job_Applicant__c.Hiring_Manager__c},
+
+  Please review &quot;{!Job_Applicant__c.Contact_Candidate__c}&quot; for position &quot;{!Job_Applicant__c.Job_Title__c}&quot; with &quot;{!Job_Applicant__c.Account_Job__c}&quot;.
+
+ 
+Below are the details for this candidate:
+
+ Bill Rate: {!Job_Applicant__c.Bill_Rates__c}
+
+City and State: {!Job_Applicant__c.City__c},   {!Job_Applicant__c.State__c}
+
+Willing to relocate: {!Job_Applicant__c.Relocation1__c}
+
+Experience: {!Job_Applicant__c.Experience__c}
+
+Travel Percentage: {!Job_Applicant__c.Percentage_of_Travel__c}
+
+Availability: {!Job_Applicant__c.Available_To_Start__c}
+
+Notice required on acceptance: 2 Weeks
+
+ 
+
+Candidate Summary:
+
+ {!Job_Applicant__c.Candidate_Write_Up__c}
+
+ 
+
+Please contact me with any additional questions on this candidate.
+
+ 
+
+Have a great day!
+
+Thanks
+ 
+{!User.LastName} {!User.FirstName}
+{!User.CompanyName}
+{!User.Email}
+{!User.Phone}
+________________________________________________________________
+
+
+{!Job_Applicant__c.Resume__c}
+ 
+SaaS. CRM. Technology. Outsourcing
+Phone: (615)-429-5462   e-mail: reena.gupta@avankia.com</textOnly>
+    <type>html</type>
+</EmailTemplate>

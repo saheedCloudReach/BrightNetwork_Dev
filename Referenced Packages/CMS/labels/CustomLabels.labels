@@ -1,0 +1,991 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Already_a_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Already a User</shortDescription>
+        <value>Already a User?</value>
+    </labels>
+    <labels>
+        <fullName>An_error_has_occured_in_the_application_process</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>An error has occured in the application process.</shortDescription>
+        <value>An error has occured in the application process. The support team has been notified. However we request you to directly contact us and email your resume. We are sorry for the inconvenience caused.</value>
+    </labels>
+    <labels>
+        <fullName>Approval_Message_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Message Page</shortDescription>
+        <value>Approval Message Page can not be blank if Need Registration Approval check box is checked.</value>
+    </labels>
+    <labels>
+        <fullName>Auto_Height_Iframe</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Auto Height Iframe</shortDescription>
+        <value>Auto Height Iframe</value>
+    </labels>
+    <labels>
+        <fullName>Auto_Height_Iframe_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Auto Height Iframe Code</shortDescription>
+        <value>Auto Height Iframe Code</value>
+    </labels>
+    <labels>
+        <fullName>Available_Menus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Available Menus</shortDescription>
+        <value>Available Menus</value>
+    </labels>
+    <labels>
+        <fullName>Back_to_home_page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back to home page</shortDescription>
+        <value>Back to home page</value>
+    </labels>
+    <labels>
+        <fullName>Block_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Block Edit</shortDescription>
+        <value>Block Edit</value>
+    </labels>
+    <labels>
+        <fullName>ByPass_Login_URL_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ByPass Login URL Name</shortDescription>
+        <value>Login to Portal</value>
+    </labels>
+    <labels>
+        <fullName>CMSLayout_Page_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CMSLayout Page Error</shortDescription>
+        <value>CMSLayout Page Error</value>
+    </labels>
+    <labels>
+        <fullName>CMSProfile_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CMSProfile Edit</shortDescription>
+        <value>CMSProfile Edit</value>
+    </labels>
+    <labels>
+        <fullName>CMSSiteLoginController_Page_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CMSSiteLoginController Page Error</shortDescription>
+        <value>CMSSiteLoginController Page Error</value>
+    </labels>
+    <labels>
+        <fullName>CMSSiteRegisterController_Page_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CMSSiteRegisterController Page Error</shortDescription>
+        <value>CMSSiteRegisterController Page Error</value>
+    </labels>
+    <labels>
+        <fullName>CMS_Site_Setup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CMS Site Setup</shortDescription>
+        <value>CMS Site Setup</value>
+    </labels>
+    <labels>
+        <fullName>Cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>CancelCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_Duplicate_Record_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate_Duplicate_Record_Email</shortDescription>
+        <value>User with this Email is already exists</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_Duplicate_Record_Error_Messa</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate_Duplicate_Record_Error_Messa</shortDescription>
+        <value>User is already exists</value>
+    </labels>
+    <labels>
+        <fullName>Captcha_failed_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Captcha_failed_message</shortDescription>
+        <value>Captcha failed</value>
+    </labels>
+    <labels>
+        <fullName>Captcha_is_incorrect</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Captcha is incorrect.</shortDescription>
+        <value>Captcha is incorrect.</value>
+    </labels>
+    <labels>
+        <fullName>City</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>City</shortDescription>
+        <value>City</value>
+    </labels>
+    <labels>
+        <fullName>Combination_of_selected_Section</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Combination of selected Section</shortDescription>
+        <value>Combination of selected Section and Order for this block is matched with another block on this page or with a block which comes on all pages. Please choose different.</value>
+    </labels>
+    <labels>
+        <fullName>Company_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Company Name</shortDescription>
+        <value>Company Name</value>
+    </labels>
+    <labels>
+        <fullName>Configuration_setup_has_been_successfully_completed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Configuration setup has been successfully completed</shortDescription>
+        <value>Configuration setup has been successfully completed.</value>
+    </labels>
+    <labels>
+        <fullName>Configuration_setup_has_been_successfully_completedCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Configuration setup has been successfully completed</shortDescription>
+        <value>Configuration setup has been successfully completed</value>
+    </labels>
+    <labels>
+        <fullName>ConfirmPasswordError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ConfirmPasswordError</shortDescription>
+        <value>Password and Confirm Password does not match.</value>
+    </labels>
+    <labels>
+        <fullName>Confirm_Password</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm Password</shortDescription>
+        <value>Confirm Password</value>
+    </labels>
+    <labels>
+        <fullName>Confirm_Password_is_not</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm Password is not</shortDescription>
+        <value>Confirm Password is not equal to Password.</value>
+    </labels>
+    <labels>
+        <fullName>Contact</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact</shortDescription>
+        <value>Contact</value>
+    </labels>
+    <labels>
+        <fullName>ContactCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact</shortDescription>
+        <value>Contact</value>
+    </labels>
+    <labels>
+        <fullName>Content</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Content</shortDescription>
+        <value>Content</value>
+    </labels>
+    <labels>
+        <fullName>Create_an_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create an Account</shortDescription>
+        <value>Create an Account</value>
+    </labels>
+    <labels>
+        <fullName>Default</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Default</shortDescription>
+        <value>Default</value>
+    </labels>
+    <labels>
+        <fullName>DefaultCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Default</shortDescription>
+        <value>Default</value>
+    </labels>
+    <labels>
+        <fullName>Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>EmailCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>Email_can_not</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email can not</shortDescription>
+        <value>Email can not be blank.</value>
+    </labels>
+    <labels>
+        <fullName>Email_is_required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email is required</shortDescription>
+        <value>Email is required</value>
+    </labels>
+    <labels>
+        <fullName>Error_double_dot</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error:</shortDescription>
+        <value>Error:</value>
+    </labels>
+    <labels>
+        <fullName>ErrorsReceiver</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorsReceiver</shortDescription>
+        <value>tr_support@avankia.com</value>
+    </labels>
+    <labels>
+        <fullName>Existing_Block</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Existing Block</shortDescription>
+        <value>Existing Block</value>
+    </labels>
+    <labels>
+        <fullName>Existing_Block_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Existing Block Name</shortDescription>
+        <value>Existing Block Name</value>
+    </labels>
+    <labels>
+        <fullName>FirstName_can_not</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FirstName can not</shortDescription>
+        <value>FirstName can not be blank.</value>
+    </labels>
+    <labels>
+        <fullName>First_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>First Name</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>First_name_is_required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>First name is required.</shortDescription>
+        <value>First name is required.</value>
+    </labels>
+    <labels>
+        <fullName>Flash</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flash</shortDescription>
+        <value>Flash</value>
+    </labels>
+    <labels>
+        <fullName>Forgot_Password</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Forgot Password</shortDescription>
+        <value>Forgot Password</value>
+    </labels>
+    <labels>
+        <fullName>General_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>General Information</shortDescription>
+        <value>General Information</value>
+    </labels>
+    <labels>
+        <fullName>General_InformationCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>General Information</shortDescription>
+        <value>General Information</value>
+    </labels>
+    <labels>
+        <fullName>Guest</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Guest</shortDescription>
+        <value>Guest</value>
+    </labels>
+    <labels>
+        <fullName>HTML</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HTML</shortDescription>
+        <value>HTML</value>
+    </labels>
+    <labels>
+        <fullName>HTMLCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HTML</shortDescription>
+        <value>HTML</value>
+    </labels>
+    <labels>
+        <fullName>IFRAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IFRAME</shortDescription>
+        <value>IFRAME</value>
+    </labels>
+    <labels>
+        <fullName>If_you_still_cannot_log_in</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>If you still cannot log in</shortDescription>
+        <value>If you still cannot log in, please enter your user name and we will send you an email containing your user name and password.</value>
+    </labels>
+    <labels>
+        <fullName>Indicates_required_fields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Indicates required fields</shortDescription>
+        <value>Indicates required fields</value>
+    </labels>
+    <labels>
+        <fullName>Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Information</shortDescription>
+        <value>Information</value>
+    </labels>
+    <labels>
+        <fullName>Invalid_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Email.</shortDescription>
+        <value>Invalid Email.</value>
+    </labels>
+    <labels>
+        <fullName>Invalid_User_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid User Name.</shortDescription>
+        <value>Invalid User Name.</value>
+    </labels>
+    <labels>
+        <fullName>Keep_in_mind</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Keep in mind</shortDescription>
+        <value>Keep in mind that your username is in the form of an email address (username@company.com), and that your password is case sensitive.</value>
+    </labels>
+    <labels>
+        <fullName>LastName_can_not</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LastName can not</shortDescription>
+        <value>LastName can not be blank.</value>
+    </labels>
+    <labels>
+        <fullName>Last_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last Name</shortDescription>
+        <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>Last_name_is_required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last name is required.</shortDescription>
+        <value>Last name is required.</value>
+    </labels>
+    <labels>
+        <fullName>Login</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Login</shortDescription>
+        <value>Login</value>
+    </labels>
+    <labels>
+        <fullName>Login_or_Register</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Login or Register</shortDescription>
+        <value>Login or Register</value>
+    </labels>
+    <labels>
+        <fullName>Logout</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Logout</shortDescription>
+        <value>Logout</value>
+    </labels>
+    <labels>
+        <fullName>MODULE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MODULE</shortDescription>
+        <value>MODULE</value>
+    </labels>
+    <labels>
+        <fullName>Manage_Blocks</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manage Blocks</shortDescription>
+        <value>Manage Blocks</value>
+    </labels>
+    <labels>
+        <fullName>Manage_CMSProfile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manage CMSProfile</shortDescription>
+        <value>Manage CMSProfile</value>
+    </labels>
+    <labels>
+        <fullName>Manage_CMSSiteSetup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manage CMSSiteSetup</shortDescription>
+        <value>Manage CMSSiteSetup</value>
+    </labels>
+    <labels>
+        <fullName>Manage_Menu_Components</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manage Menu Components</shortDescription>
+        <value>Manage Menu Components</value>
+    </labels>
+    <labels>
+        <fullName>Manage_Menus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manage Menus</shortDescription>
+        <value>Manage Menus</value>
+    </labels>
+    <labels>
+        <fullName>Manage_Pages</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manage Pages</shortDescription>
+        <value>Manage Pages</value>
+    </labels>
+    <labels>
+        <fullName>Manage_Sessions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manage Sessions</shortDescription>
+        <value>Manage Sessions</value>
+    </labels>
+    <labels>
+        <fullName>May_be_CMSDefaultProfile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>May be CMSDefaultProfile</shortDescription>
+        <value>May be CMSDefaultProfile does not exist.Please create it first.</value>
+    </labels>
+    <labels>
+        <fullName>Menu_Component</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Menu Component</shortDescription>
+        <value>Menu Component</value>
+    </labels>
+    <labels>
+        <fullName>Menu_Component_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Menu Component Edit</shortDescription>
+        <value>Menu Component Edit</value>
+    </labels>
+    <labels>
+        <fullName>Menu_Component_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Menu Component Name</shortDescription>
+        <value>Menu Component Name</value>
+    </labels>
+    <labels>
+        <fullName>Menu_Component_Name_is_already_exist</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Menu Component Name is already exist.</shortDescription>
+        <value>Menu Component Name is already exist. Please select another Name.</value>
+    </labels>
+    <labels>
+        <fullName>Menu_Component_Name_is_already_exist_Please_select_another_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Menu Component Name is already exist. Please select another Name</shortDescription>
+        <value>Menu Component Name is already exist. Please select another Name.</value>
+    </labels>
+    <labels>
+        <fullName>Menu_Component_can_not_be_blank</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Menu Component can not be blank</shortDescription>
+        <value>Menu Component can not be blank.</value>
+    </labels>
+    <labels>
+        <fullName>Module_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Module Name</shortDescription>
+        <value>Module Name</value>
+    </labels>
+    <labels>
+        <fullName>New_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New User</shortDescription>
+        <value>New User?</value>
+    </labels>
+    <labels>
+        <fullName>No_Profile_found_Please_contact_your_administrator</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Profile found. Please contact your administrator.</shortDescription>
+        <value>No Profile found. Please contact your administrator.</value>
+    </labels>
+    <labels>
+        <fullName>No_profile_is_assigned_to_this_contact</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No profile is assigned to this contact</shortDescription>
+        <value>No profile is assigned to this contact.</value>
+    </labels>
+    <labels>
+        <fullName>None</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>None</shortDescription>
+        <value>None</value>
+    </labels>
+    <labels>
+        <fullName>NoneCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>None</shortDescription>
+        <value>None</value>
+    </labels>
+    <labels>
+        <fullName>Online</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Online</shortDescription>
+        <value>Online</value>
+    </labels>
+    <labels>
+        <fullName>OnlineCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Online</shortDescription>
+        <value>Online</value>
+    </labels>
+    <labels>
+        <fullName>Password</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Password</shortDescription>
+        <value>Password</value>
+    </labels>
+    <labels>
+        <fullName>PasswordError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PasswordError</shortDescription>
+        <value>Password should be greater than 8 characters.</value>
+    </labels>
+    <labels>
+        <fullName>Password_Change</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Password Change</shortDescription>
+        <value>Password Change</value>
+    </labels>
+    <labels>
+        <fullName>Password_Email_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Password_Email_Error</shortDescription>
+        <value>Sent email with User Name and Password</value>
+    </labels>
+    <labels>
+        <fullName>Password_can_not</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Password can not</shortDescription>
+        <value>Password can not be blank or less than 8 characters.</value>
+    </labels>
+    <labels>
+        <fullName>Password_can_not_be_blank</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Password can not be blank</shortDescription>
+        <value>Password can not be blank.</value>
+    </labels>
+    <labels>
+        <fullName>Password_confirmation_is_required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Password confirmation is required.</shortDescription>
+        <value>Password confirmation is required.</value>
+    </labels>
+    <labels>
+        <fullName>Password_is_required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Password is required.</shortDescription>
+        <value>Password is required.</value>
+    </labels>
+    <labels>
+        <fullName>Phone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>PhoneCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>Please_select</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select</shortDescription>
+        <value>Please select a record type first.</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_or_enter_some_value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select or enter some value</shortDescription>
+        <value>Please select or enter some value for Menu Component or IFrame or Flesh URL or Module Name or Existing Block Name or Auto Height Iframe field.</value>
+    </labels>
+    <labels>
+        <fullName>ProfileUpdatedMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ProfileUpdatedMsg</shortDescription>
+        <value>Your Profile has been successfully updated.</value>
+    </labels>
+    <labels>
+        <fullName>Ramesh</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Ramesh</shortDescription>
+        <value>Ramesh</value>
+    </labels>
+    <labels>
+        <fullName>Register</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Register</shortDescription>
+        <value>Register</value>
+    </labels>
+    <labels>
+        <fullName>Register_As</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Register As</shortDescription>
+        <value>Register As</value>
+    </labels>
+    <labels>
+        <fullName>Remove</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove</shortDescription>
+        <value>Remove</value>
+    </labels>
+    <labels>
+        <fullName>Reset</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reset</shortDescription>
+        <value>Reset</value>
+    </labels>
+    <labels>
+        <fullName>Retry_login</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Retry login</shortDescription>
+        <value>Retry login</value>
+    </labels>
+    <labels>
+        <fullName>Save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>SaveCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>Save_New</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save &amp; New</shortDescription>
+        <value>Save &amp; New</value>
+    </labels>
+    <labels>
+        <fullName>Select</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select</shortDescription>
+        <value>Select</value>
+    </labels>
+    <labels>
+        <fullName>Selected_Menus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Selected Menus</shortDescription>
+        <value>Selected Menus</value>
+    </labels>
+    <labels>
+        <fullName>Send_Logs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Send_Logs</shortDescription>
+        <value>false</value>
+    </labels>
+    <labels>
+        <fullName>SessionTimeout</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SessionTimeout</shortDescription>
+        <value>10</value>
+    </labels>
+    <labels>
+        <fullName>Site_is_temporarily_not_working</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Site is temporarily not working</shortDescription>
+        <value>Site is temporarily not working</value>
+    </labels>
+    <labels>
+        <fullName>State</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>State</shortDescription>
+        <value>State</value>
+    </labels>
+    <labels>
+        <fullName>Submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>SubmitCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Text</shortDescription>
+        <value>Text</value>
+    </labels>
+    <labels>
+        <fullName>Text_Content</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Text Content</shortDescription>
+        <value>Text Content</value>
+    </labels>
+    <labels>
+        <fullName>This_URL_does_not_exist</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>This URL does not exist</shortDescription>
+        <value>This URL does not exist. Please contact your system administrator for further assistance.</value>
+    </labels>
+    <labels>
+        <fullName>To_create_an_account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To create an account</shortDescription>
+        <value>To create an account fill out the information below</value>
+    </labels>
+    <labels>
+        <fullName>Update</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Update</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>Update_Profile_Page_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Update Profile Page Error</shortDescription>
+        <value>Update Profile Page Error</value>
+    </labels>
+    <labels>
+        <fullName>UserName_can_not</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UserName can not</shortDescription>
+        <value>UserName can not be blank.</value>
+    </labels>
+    <labels>
+        <fullName>User_Created</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Created</shortDescription>
+        <value>User Created</value>
+    </labels>
+    <labels>
+        <fullName>User_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Name</shortDescription>
+        <value>User Name</value>
+    </labels>
+    <labels>
+        <fullName>User_Name_in_an_email_format</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Name (in an email format)</shortDescription>
+        <value>User Name (in an email format)</value>
+    </labels>
+    <labels>
+        <fullName>User_Record_Type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Record Type</shortDescription>
+        <value>User Record Type</value>
+    </labels>
+    <labels>
+        <fullName>User_name_is_required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User name is required.</shortDescription>
+        <value>User name is required.</value>
+    </labels>
+    <labels>
+        <fullName>Visualforce_Page_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Visualforce Page Name</shortDescription>
+        <value>Visualforce Page Name</value>
+    </labels>
+    <labels>
+        <fullName>Welcome</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Welcome</shortDescription>
+        <value>Welcome</value>
+    </labels>
+    <labels>
+        <fullName>You_can_not</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You can not</shortDescription>
+        <value>You can not leave blank field &quot;Approval Message Page&quot; when field &quot;Need Registration Approval&quot; is checked.</value>
+    </labels>
+    <labels>
+        <fullName>You_have_not_sufficient_rights_to_access_this_page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You have not sufficient rights to access this page</shortDescription>
+        <value>You have not sufficient rights to access this page. Please contact your administrator.</value>
+    </labels>
+    <labels>
+        <fullName>Your_are_not_approved_by_your_manager_to_login</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Your are not approved by your manager to login</shortDescription>
+        <value>Your are not approved by your manager to login. Please contact the right person in your organisation for getting approval.</value>
+    </labels>
+    <labels>
+        <fullName>Your_login_attempt_has_failed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Your login attempt has failed</shortDescription>
+        <value>Your login attempt has failed. The username or password may be incorrect.</value>
+    </labels>
+    <labels>
+        <fullName>Zip_Postal_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Zip/Postal Code</shortDescription>
+        <value>Zip/Postal Code</value>
+    </labels>
+    <labels>
+        <fullName>Zip_Postal_CodeCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Zip_Postal_Code</shortDescription>
+        <value>Zip_Postal_Code</value>
+    </labels>
+    <labels>
+        <fullName>add</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>add</shortDescription>
+        <value>add</value>
+    </labels>
+    <labels>
+        <fullName>addCMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>add</shortDescription>
+        <value>add</value>
+    </labels>
+    <labels>
+        <fullName>forgotten_password_on_email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>forgotten password on email</shortDescription>
+        <value>An email has been sent to you with 
+your password.</value>
+    </labels>
+</CustomLabels>

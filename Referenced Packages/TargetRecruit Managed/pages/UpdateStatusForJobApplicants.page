@@ -1,0 +1,28 @@
+<apex:page standardController="AVTRRT__Job_Applicant__c" recordSetVar="applicants" extensions="AVTRRT.UpdateStatusForJobApplicants">
+
+<apex:form >
+   <apex:pageMessages />
+   <apex:outputPanel rendered="{!render}">
+   		<apex:pageBlock >
+	       	<apex:pageBlockButtons >
+	           	<apex:commandButton value="{!$Label.avtrrt__Save}" action="{!save}"/>
+	           	<apex:commandButton value="{!$Label.avtrrt__Cancel}" onclick="parent.location.href = '/{!$CurrentPage.parameters.id}';return false;" />
+	       	</apex:pageBlockButtons>
+
+	       	<apex:pageblockSection >
+	           	<apex:inputField value="{!fakeJobApplicant.AVTRRT__Type__c}" />
+	           	<apex:inputField value="{!fakeJobApplicant.AVTRRT__Stage__c}" />
+	           	<apex:inputField value="{!fakeJobApplicant.AVTRRT__Reject_Qualifiers__c}" />
+	        	<apex:inputField value="{!fakeJobApplicant.AVTRRT__Rejection_Notes__c}" />
+	       	</apex:pageblockSection>
+
+	       	<apex:pageBlockTable value="{!selected}" var="a">
+	        	<apex:column value="{!a.Name}" />
+	           	<apex:column value="{!a.AVTRRT__Contact_Candidate__c}" />
+	           	<apex:column value="{!a.AVTRRT__Stage__c}" />
+	   		</apex:pageBlockTable>
+   		</apex:pageBlock>
+	</apex:outputPanel>
+</apex:form>
+
+</apex:page>

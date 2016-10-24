@@ -1,0 +1,4 @@
+<apex:page controller="AVTRRT.XEmbedDocusignController"  action="{!init}" showHeader="false">
+    <apex:iframe id="test" src="{!tokenURL}"/>
+    <apex:messages />
+</apex:page>

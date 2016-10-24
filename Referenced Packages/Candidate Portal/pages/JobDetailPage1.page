@@ -1,0 +1,236 @@
+<apex:page controller="TRGTFCMS.JobDetailViewComponentController1" title="{!$Label.trgtfcms__Job_Detail_Page}"
+		standardstylesheets="false" showHeader="false" sideBar="false" cache="false" action="{!init}"
+		language="{!selectLanguage}">
+<!-- This Component is used to show the job detail view -->
+	<head>
+		<meta name="keywords" content="{!metaKeywords}" id="keywords"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	</head>
+
+	<script type="text/javascript">
+		function redirectSmartphone(url){
+			if (url && url.length > 0 && isSmartphone())
+			window.parent.location = url;
+		}
+		function isSmartphone(){
+			if (detectUagent("android")) return true;
+			else if (detectUagent("blackberry")) return true;
+			else if (detectUagent("iphone")) return true;
+			else if (detectUagent("palm")) return true;
+			else if (detectUagent("ipad")) return true;
+			else if (detectUagent("ipod")) return true;
+			return false;
+		}
+		function detectUagent(name){
+			var uagent = navigator.userAgent.toLowerCase();
+			return (uagent.search(name) > -1);
+		}
+
+		redirectSmartphone("/TRGTFCMS__MobilePortal#jobDetail/{!$CurrentPage.parameters.jobIds}");
+	</script>
+
+	<style>
+		<apex:outputText value="{!cmsCssCustom}" />
+
+		/* default styles for RTAs (see also htmlDetailElem.css) */
+		.sfdc_richtext {
+			color: #000;
+			font-family: 'Arial', 'Helvetica', sans-serif;
+			margin:0px;
+			padding:0px;
+		}
+		.sfdc_richtext body,
+		.sfdc_richtext div,
+		.sfdc_richtext dl,
+		.sfdc_richtext dt,
+		.sfdc_richtext dd,
+		.sfdc_richtext ul,
+		.sfdc_richtext ol,
+		.sfdc_richtext li,
+		.sfdc_richtext h1,
+		.sfdc_richtext h2,
+		.sfdc_richtext h3,
+		.sfdc_richtext h4,
+		.sfdc_richtext h5,
+		.sfdc_richtext h6,
+		.sfdc_richtext pre,
+		.sfdc_richtext form,
+		.sfdc_richtext fieldset,
+		.sfdc_richtext input,
+		.sfdc_richtext textarea,
+		.sfdc_richtext p,
+		.sfdc_richtext blockquote,
+		.sfdc_richtext th,
+		.sfdc_richtext td {
+			margin:0;
+			padding:0;
+		}
+		.sfdc_richtext table {
+			border-collapse:collapse;
+			border-spacing:0;
+		}
+		.sfdc_richtext fieldset,
+		.sfdc_richtext img {
+			border:0;
+		}
+		.sfdc_richtext caption,
+		.sfdc_richtext code,
+		.sfdc_richtext dfn {
+			font-style:normal;
+			font-weight:normal;
+		}
+		.sfdc_richtext em,
+		.sfdc_richtext cite,
+		.sfdc_richtext var,
+		.sfdc_richtext dfn,
+		.sfdc_richtext address {
+			font-style: italic;
+		}
+		.sfdc_richtext strong {
+			font-weight:bold;
+		}
+		.sfdc_richtext ol,
+		.sfdc_richtext ul {
+			list-style:none;
+		}
+		.sfdc_richtext h1,
+		.sfdc_richtext h2,
+		.sfdc_richtext h3,
+		.sfdc_richtext h4,
+		.sfdc_richtext h5,
+		.sfdc_richtext h6 {
+			display:block;
+			font-weight:bold;
+			margin:1em 0;
+		}
+		.sfdc_richtext h1 {font-size:138.5%;}
+		.sfdc_richtext h2 {font-size:123.1%;color:black;}
+		.sfdc_richtext h3 {font-size:108%;}
+		.sfdc_richtext h4 {font-size:100%;}
+		.sfdc_richtext h5 {font-size:92%;}
+		.sfdc_richtext h6 {font-size:84%;}
+
+		.sfdc_richtext q:before,
+		.sfdc_richtext q:after {
+			content:'"';
+		}
+		.sfdc_richtext abbr,
+		.sfdc_richtext acronym {
+			border:0;
+			border-bottom:1px dotted #000;
+			cursor:help;
+		}
+		.sfdc_richtext blockquote,
+		.sfdc_richtext ul,
+		.sfdc_richtext ol,
+		.sfdc_richtext dl {
+			margin:1em;
+			margin-left:40px;
+		}
+		.sfdc_richtext ol li {
+			list-style: decimal outside;
+		}
+		.sfdc_richtext ul li {
+			list-style: disc outside;
+		}
+		.sfdc_richtext dl dd {
+			margin-left:1em;
+		}
+		.sfdc_richtext th,
+		.sfdc_richtext td {
+			border:1px solid #000;
+			padding:.5em;
+		}
+		.sfdc_richtext th {
+			font-weight:bold;
+			text-align:center;
+			font-style:normal;
+		}
+		.sfdc_richtext caption {
+			margin-bottom:.5em;
+			text-align:center;
+		}
+		.sfdc_richtext p,
+		.sfdc_richtext fieldset,
+		.sfdc_richtext table {
+			margin-bottom:1em;
+		}
+		/* end default RTA styles */
+	</style>
+	<apex:pageMessages />
+	<apex:outputPanel rendered="{!errorMsg == false}">
+		<apex:form >
+
+			<apex:pageBlock mode="edit">
+				<apex:pageBlockButtons >
+				<div class="form-submit1">
+						<apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Vendor Profile',true,false)}">
+						<apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" onclick="window.open('{!$Site.CurrentSiteUrl}FCMS__CMSLayout?page=JobApplicationPage&sessionId={!$CurrentPage.parameters.sessionId}&jobSite={!$CurrentPage.parameters.jobSite}&jobIds={!$CurrentPage.parameters.jobIds}&p=Vendor Profile','_parent'); return false" rendered="{!if(applyEnableDisable==true,false,true)}">
+								<input type="button" value="Submit Candidates" />
+							</apex:outputLink>
+						</apex:outputPanel>
+						<apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Candidate',true,false)}">
+							<apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" onclick="window.open('{!$Site.CurrentSiteUrl}FCMS__CMSLayout?page=JobApplicationPage&sessionId={!$CurrentPage.parameters.sessionId}&jobSite={!$CurrentPage.parameters.jobSite}&jobIds={!$CurrentPage.parameters.jobIds}&p=Candidate','_parent'); return false" rendered="{!if(applyEnableDisable==true,false,true)}">
+								<input type="button" value="{!$label.Apply_Now}" />
+							</apex:outputLink>
+						</apex:outputPanel>
+
+						<apex:outputPanel rendered="{!linkedinButton}">
+							<a href="https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id={!linkedInApiKey}&scope=r_emailaddress%20r_basicprofile%20r_fullprofile%20r_contactinfo&state=DCEEFWF45453sdffef424&redirect_uri={!URLENCODE(linkedInRedirectUrl + 'TRGTFCMS__LinkedInApplyToJob?jobId=' + job.Id + '&sessionId=' + sessionId)}" target="_parent">
+								<img src="{!$Resource.ApplyWithLinkedInImg}" style="width: 150px;margin-bottom: -10px;padding-left: 16px;" />
+							</a>
+						</apex:outputPanel>
+
+						<apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" onclick="window.open('{!$Site.CurrentSiteUrl}FCMS__CMSLayout?page=JobListPage&sessionId={!$CurrentPage.parameters.sessionId}&jobSite={!$CurrentPage.parameters.jobSite}&p={!$CurrentPage.parameters.p}','_parent'); return false" rendered="{!if(applyEnableDisable==true,false,true)}">
+							<input type="button" value="{!$Label.Search_for_More_Jobs}" />
+						</apex:outputLink>
+						<div style="text-align:center; font-size:10px">
+							<a href="mailto:?subject={!job.AVTRRT__Job_Title__c}&body=URL to this job{!URLENCODE(':')} {!URLENCODE($CurrentPage.URL)}">{!$Label.Send_to_a_friend}</a> |
+							<a href="http://twitter.com/home?status={!job.AVTRRT__Job_Title__c} link {!URLENCODE($CurrentPage.URL)}" title="{!$Label.Add_to_twitter}"  target="_blank">{!$Label.Add_to_Twitter}</a> |
+							<a href="http://www.facebook.com/sharer.php?u={!URLENCODE($CurrentPage.URL)}&t={!job.AVTRRT__Job_Title__c}" target="blank">{!$Label.Add_to_Facebook}</a> |
+							<a href="http://www.linkedin.com/shareArticle?mini=true&url={!URLENCODE($CurrentPage.URL)}&title={!job.AVTRRT__Job_Title__c}&summary=&source=" target="blank">{!$Label.Add_to_Linked_in}</a>
+						</div>
+					</div>
+				</apex:pageBlockButtons>
+				<apex:pageBlockSection columns="1">
+					<apex:outputPanel rendered="{!applyEnableDisable}" styleClass="messages" layout="block">
+						<div class="warning">
+							<apex:outputText value="{!$Label.trgtfcms__You_have_already_applied_for_this_job}"/>
+						</div>
+					</apex:outputPanel>
+						<div class="content">
+							<div class="job-details-page">
+								<div class="page-title">
+									<h2> {!job.AVTRRT__Job_Title__c}</h2>
+									<div>
+										<p>{!job.AVTRRT__Job_Category__c}</p>
+									</div>
+								</div>
+								<div class="job-description">
+								<apex:outputPanel >
+										<apex:outputField value="{!job.AVTRRT__Job_Description_Rich__c}" />
+									</apex:outputPanel>
+									</div>
+								<div class="job-details-container">
+									<div class="section-header">
+										<h3>{!$Label.trgtfcms__Job_Details}</h3>
+									</div>
+									<div class="job-details-content">
+
+										<div class="row">
+											<div class="job-details-left"><p>{!$Label.trgtfcms__City}</p></div>
+											<div class="job-details-right"><p>{!job.AVTRRT__Job_City__c}</p></div>
+										</div>
+										<div class="row">
+											<div class="job-details-left"><p>{!$Label.trgtfcms__State}</p></div>
+											<div class="job-details-right"><p>{!job.AVTRRT__State__c}</p></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</apex:pageBlockSection>
+			</apex:pageBlock>
+		</apex:form>
+	</apex:outputPanel>
+</apex:page>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_CNTC_FIRST_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>Placement__c.Job__c</field>
+    </columns>
+    <columns>
+        <field>Placement__c.Job_Title__c</field>
+    </columns>
+    <columns>
+        <field>Placement__c.Pay_Type__c</field>
+    </columns>
+    <columns>
+        <field>Placement__c.Bill_Rate__c</field>
+    </columns>
+    <columns>
+        <field>Placement__c.Pay_Rate__c</field>
+    </columns>
+    <description>Placement with Resume Source and Account</description>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_$Contact.Source__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Placement__c.Employer__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Placement with Resume Source</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Placement__c@Placement__c.Contact_Candidate__c</reportType>
+    <scope>user</scope>
+    <showDetails>false</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Placement__c.Date_Accepted__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

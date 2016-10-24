@@ -1,0 +1,703 @@
+<apex:page controller="JobApplicationComponentController1" title="{!$Label.TRGTFCMS__Job_Application_Page}"
+        showHeader="false" sideBar="false" action="{!init}" cache="false" language="{!selectLanguage}" id="page">
+    <head>
+            <meta name="keywords" content="{!metaKeywords}"/>
+    </head>
+
+
+
+    <script type="text/javascript">
+        
+        
+   
+        function redirectSmartphone(url){
+            if (url && url.length > 0 && isSmartphone())
+            window.parent.location = url;
+        }
+        function isSmartphone(){
+            if (detectUagent("android")) return true;
+            else if (detectUagent("blackberry")) return true;
+            else if (detectUagent("iphone")) return true;
+            else if (detectUagent("palm")) return true;
+            else if (detectUagent("ipad")) return true;
+            else if (detectUagent("ipod")) return true;
+            return false;
+        }
+        function detectUagent(name){
+            var uagent = navigator.userAgent.toLowerCase();
+            return (uagent.search(name) > -1);
+        }
+
+        redirectSmartphone("/TRGTFCMS__MobilePortal#jobApply/{!$CurrentPage.parameters.jobIds}");
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script>
+        // jQuery workarounds to make it work.
+        var a = window.parent.location.href ;
+        var j$ = jQuery.noConflict();
+        function fixId(myid) {
+                return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+        }
+
+        // Remoting code
+        Visualforce.remoting.timeout = 120000; // Set timeout at page level
+
+        function Contact() {
+
+            this.Id = null;
+            this.FirstName = null;
+            this.LastName  = null;
+            this.Email = null;
+            this.MailingCity = null;
+            this.MailingState = null;
+            this.MailingPostalCode = null;
+            this.Phone = null;
+            this.Vendor_Notes__c = null;
+            this.MobilePhone = null;
+
+        }
+
+        function Reference() {
+            this.AVTRRT__First_Name__c = null;
+            this.AVTRRT__Last_Name__c = null;
+            this.TRGTFCMS__Organization_Institution__c = null;
+            this.AVTRRT__Email__c = null;
+            this.AVTRRT__Phone__c = null;
+            this.AVTRRT__Notes__c = null;
+        }
+
+        function additionalParameters() {
+            this.jobIds = null;
+            this.jobSite = null;
+            this.page = null;
+            this.profile = null;
+            this.account = null;
+            this.confirmPassword = null;
+            this.realContactId = null;
+        }
+
+        function returnValue() {
+            this.contactId = null;
+            this.jobApplyingListSize = null;
+        }
+
+        function clickSubmit() {
+
+            window.scrollTo(0, 0);parent.scrollTo(0, 0);
+            try {
+                    var contact = new Contact();
+                    var keysForIds = Object.keys(contact);
+                    var apexelements =  j$("[id*='page:Form1:contact_']");
+
+                    //Fetching Contact Object
+                    contact = getElementForContactObject(keysForIds,apexelements,'Contact');
+                    contact.Id = null;
+
+                    var sessionId = j$(fixId("page:Form1:session")).val();
+
+                    var pwd = j$(fixId("page:Form1:contact_FCMS__Password__c")).val();
+                    var confPwd = j$(fixId("page:Form1:confirmPassword")).val();
+
+
+
+                    //Displaying error message for required fields
+                    if(contact.FirstName == '' || contact.LastName == '' || contact.Email == '' || validateEmail(contact.Email)==false ) {
+
+                        error();
+
+                    }
+
+                    else if((j$(fixId("page:Form1:resume")).val() == '') && (sessionId == null || sessionId == '')) {
+
+                        resumeError();
+
+                    }
+
+                    else if((j$(fixId("page:Form1:page")).val() == 'Update Profile') && (pwd != j$(fixId("page:Form1:confirmPassword")).val())) {
+
+                        passwordError();
+
+                    }
+
+                    else if(j$(fixId("page:Form1:page")).val() == 'Update Profile' && pwd.length > 0 && pwd.length < 8) {
+
+                        passwordError();
+                    }
+
+                    else {
+
+                            if((j$(fixId("page:Form1:page")).val() == 'Update Profile') && (j$(fixId("page:Form1:contact_FCMS__Password__c")).val() != null || j$(fixId("page:Form1:contact_FCMS__Password__c")).val() != '')) {
+                                contact.FCMS__Password__c = j$(fixId("page:Form1:contact_FCMS__Password__c")).val();
+
+                            }
+
+
+                            //Fetching References
+                            var refItems = j$('tr.reference-detail-tr').length;
+                            var refList = [];
+                            refList = getList(refItems,'Reference');
+
+
+                            var additionalParam = new additionalParameters();
+
+                            additionalParam.jobIds = j$(fixId("page:Form1:jobIds")).val();
+                            additionalParam.jobSite = j$(fixId("page:Form1:jobSite")).val();
+                            additionalParam.page = j$(fixId("page:Form1:page")).val();
+                            additionalParam.profile = j$(fixId("page:Form1:p")).val();
+                            additionalParam.confirmPassword =  j$(fixId("page:Form1:confirmPassword")).val();
+                            additionalParam.confirmPassword =  j$(fixId("page:Form1:confirmPassword")).val();
+                            additionalParam.confirmPassword =  j$(fixId("page:Form1:realContactId")).val();
+
+                            remoteAction(contact, refList, additionalParam);
+                    }
+                } catch(e) {
+                    alert(e);
+                }
+
+        }
+
+        //Remote Action
+        function remoteAction(contact, refList, additionalParam) {
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.JobApplicationComponentController1.saveNewContact}',
+                contact, refList, additionalParam,
+                handleResult,
+                {escape: true}
+            );
+        }
+
+        //Handle result
+        function handleResult(result, event) {
+
+            if (event.status) {
+
+                returnValue = result;
+                j$(fixId("page:Form1:contactId")).val(result.contactId);
+                j$(fixId("page:Form1:jobApplyingForListSize")).val(result.jobApplyingListSize);
+
+                resend();
+            } else if (event.type === 'exception') {
+
+                j$(fixId("page:form1:excMsg")).val(event.message);
+                displayException();
+
+            } else {
+                alert(event.message+'Unable to proceess please try again');
+
+            }
+
+        }
+
+        // Fetching form elements
+        function getElementForContactObject (array,apexelements,objName) {
+
+            var objWithValue = null;
+
+            if(objName == "Contact"){
+                objWithValue = new Contact();
+                objName = "contact";
+            }
+            else if(objName == "Reference"){
+                objWithValue = new Reference();
+                objName = "Reference";
+            }
+
+            for(i= 0; i < array.length  ; i++) {
+                var element = '';
+                element = "[id*='"+objName+"_" + array[i] + "']";
+                if(apexelements.filter(element).val() != 'undefined') {
+
+                    objWithValue[array[i]] = apexelements.filter(element).val();
+                }else {
+                    objWithValue[array[i]] = null;
+                }
+
+            }
+
+            return objWithValue;
+
+        }
+
+        function getList(count,objName){
+            var objList = [];
+            for(var i=0;i<count;i++){
+                    var obj="";
+                    var objId = "";
+                    if(objName == "Reference"){
+                        obj = new Reference();
+                        objId = 'page:Form1:ReferenceRep:'+i+':Reference_';
+                    }
+                    var KeysForIds = Object.keys(obj);
+                    var elements = j$("[id*='"+objId +"']");
+                    obj = getElementForContactObject(KeysForIds,elements,objName);
+
+                    objList.push(obj);
+            }
+            return objList;
+        }
+
+        function validateEmail(email) {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+
+    </script>
+
+    <style>
+        <apex:outputText value="{!cmsCssCustom}" />
+    </style>
+
+    <style>
+        .field-text1 {
+            width:110px;
+            height:25px;
+            border:1px solid #8ebada;
+            margin:0;
+            padding:0;
+        }
+       .errorM3{display:none;}
+    </style>
+
+    <apex:pageMessages />
+    <center>
+        <!--<apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" onclick="window.open('{!$Site.CurrentSiteUrl}FCMS__CMSLayout?page=JobListPage&sessionId={!$CurrentPage.parameters.sessionId}&jobSite={!$CurrentPage.parameters.jobSite}&p={!$CurrentPage.parameters.p}','_parent'); return false" rendered="{!displayThankYouMessageOnNewPage}">-->
+        <apex:outputLink value="" onclick="window.open('http://www.brightnetwork.co.uk','_parent'); return false" rendered="{!displayThankYouMessageOnNewPage}">
+            <input type="button" value="FINISH" class="btn btn1"/>
+        </apex:outputLink>
+    </center>
+    <apex:form id="Form1">
+
+    <apex:actionFunction action="{!updateWithAttachment}" name="resend" >
+
+    </apex:actionFunction>
+
+    <apex:actionFunction action="{!displayErrorMessage}" name="error" >
+
+    </apex:actionFunction>
+
+    <apex:actionFunction action="{!resumeErrorMessage}" name="resumeError" >
+
+    </apex:actionFunction>
+
+    <apex:actionFunction action="{!displayExcMessage}" name="displayException" >
+
+    </apex:actionFunction>
+
+    <apex:actionFunction action="{!passwordErrorMessage}" name="passwordError" >
+
+    </apex:actionFunction>
+
+    <apex:inputHidden value="{!jobIds}" id="jobIds"/>
+    <apex:inputHidden value="{!jobSite}" id="jobSite"/>
+    <apex:inputHidden value="{!pageParam}" id="page"/>
+    <apex:inputHidden value="{!profile}" id="p"/>
+    <apex:inputHidden value="{!realContactId}" id="realContactId"/>
+    <apex:inputHidden value="{!newContactId}" id="contactId"/>
+    <apex:inputHidden value="{!excMsg}" id="excMsg"/>
+    <apex:inputHidden value="{!jobApplyingForListSize}" id="jobApplyingForListSize"/>
+    <apex:inputHidden value="{!sessionId}" id="session"/>
+
+    <apex:outputPanel rendered="{!if(displayThankYouMessageOnNewPage == true,false,true)}">
+        <table style="width:15%;">
+            <tr>
+                <td>
+                    <div class="content1" style="heigth:5000px">
+                        <div class="profile-information" style="width:440px">
+                            <div class="section-header">
+                                <h3>BRIGHT NETWORK APPLICATION PORTAL</h3>
+                            </div>
+                            <!--<div class="row">
+                                * <I>Indicates required fields</I>
+                            </div>-->
+                            <div class="row">
+                                <apex:outputLabel for="contact_FirstName__c" styleClass="field-label" >{!$Label.TRGTFCMS__First_Name}</apex:outputLabel>
+                                <apex:inputField value="{!contact.FirstName}" styleClass="field-text" id="contact_FirstName" required="true"/>
+                            </div>
+                            <div class="row">
+                                <apex:outputLabel for="contact_LastName" styleClass="field-label">{!$Label.TRGTFCMS__Last_Name}</apex:outputLabel>
+                                <apex:inputField value="{!contact.LastName}" styleClass="field-text" id="contact_LastName" required="true"/>
+                            </div>
+                            <div class="row">
+                                <apex:outputLabel for="contact_Email" styleClass="field-label" >{!$Label.TRGTFCMS__Email}</apex:outputLabel>
+                                <apex:inputField value="{!contact.Email}" styleClass="field-text" id="contact_Email" required="true"/>
+                            </div>
+                            <!--<div class="row">
+                                <apex:outputLabel for="contact_AVTRRTCity" styleClass="field-label" value="{!$Label.TRGTFCMS__City}" />
+                                <apex:inputField value="{!contact.MailingCity}" styleClass="field-text" id="contact_MailingCity" />
+                            </div>
+                            <div class="row">
+                                <apex:outputLabel for="contact_AVTRRTState" styleClass="field-label" value="{!$Label.TRGTFCMS__State}" />
+                                <apex:inputField value="{!contact.MailingState}" styleClass="field-text" id="contact_MailingState"/>
+                            </div>
+                            <div class="row">
+                                <apex:outputLabel for="contact_AVTRRTPostalCode" styleClass="field-label" value="{!$Label.TRGTFCMS__Zip_Postal_Code}" />
+                                <apex:inputField value="{!contact.MailingPostalCode}" styleClass="field-text" id="contact_MailingPostalCode"/>
+                            </div>
+                            <div class="row">
+                                <apex:outputLabel for="contact_AVTRRTPhone" styleClass="field-label" value="{!$Label.TRGTFCMS__Phone}" />
+                                <apex:inputField value="{!contact.Phone}" styleClass="field-text" id="contact_Phone"/>
+                            </div>-->
+                            
+                            <div class="row">
+                                <apex:outputLabel for="contact_MobilePhone" styleClass="field-label" value="Mobile number" />
+                                <apex:inputField value="{!contact.MobilePhone}" styleClass="field-text" id="contact_MobilePhone" required="true"/>
+                            </div>
+                            
+                            <div class="row">
+                                <apex:outputLabel for="contact_University__c" styleClass="field-label" value="University" />
+                                <apex:inputField value="{!contact.University__c}" styleClass="field-text" id="contact_University__c" required="true"/>
+                            </div>
+                            
+                            <div class="row">
+                                <apex:outputLabel for="contact_Degree__c" styleClass="field-label" value="Degree subject" />
+                                <apex:inputField value="{!contact.Degree__c}" styleClass="field-text" id="contact_Degree__c" required="true"/>
+                            </div>
+                            
+                            <div class="row">
+                                <apex:outputLabel for="contact_Graduation_Year__c" styleClass="field-label" value="Graduation year" />
+                                <apex:inputField value="{!contact.Graduation_Year__c}" styleClass="field-text" id="contact_Graduation_Year__c" required="true"/>
+                            </div>
+                            
+                            
+                            <div class="row;width:45px">
+                                <apex:outputLabel for="contact_Predicted_Achieved_Grade__c" styleClass="field-label" value="Predicted/ Achieved grade" />
+                                <apex:inputField value="{!contact.Predicted_Achieved_Grade__c}" styleClass="field-text" id="contact_Predicted_Achieved_Grade__c" required="true"/>
+                            </div>
+                            
+                            <div class="row">
+                                <apex:outputLabel for="contact_Gender__c" styleClass="field-label" value="Gender" />
+                                <apex:inputField value="{!contact.Gender__c}" styleClass="field-text" id="contact_Gender__c" required="true"/>
+                            </div>
+                            
+                            <div class="row">
+                                <apex:outputLabel for="contact_Right_To_Work_In_UK__c" styleClass="field-label" value="Do you have right to work in the UK?" />
+                                <apex:inputField value="{!contact.Right_To_Work_In_UK__c}" styleClass="field-text;height: 25px;" id="contact_Right_To_Work_In_UK__c" required="true"/>
+                            </div>
+                            <div class="row;width:45px">
+                                <apex:outputLabel for="contact_Are_you_already_a_Bright_Network_member__c" styleClass="field-label" value="Are you already a Bright Network member?" />
+                                <apex:inputField value="{!contact.Are_you_already_a_Bright_Network_member__c}" styleClass="field-text" id="contact_Are_you_already_a_Bright_Network_member__c" required="true"/>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <n/>
+                            <n/>
+                            <div class="profile-information" style="width:450px">
+                            <!--<div class="section-header">
+                            <h3>{!$Label.TRGTFCMS__Resume_and_Additional_Documents}</h3>
+                            </div>-->
+
+<!--                        <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Candidate',true,false)}">
+                            <apex:outputPanel rendered="{!resumeRequirement==false}"><span class="required">*</span>{!$Label.TRGTFCMS__Please_upload_your_updated_resume_and_additional_documents}</apex:outputPanel>
+                        </apex:outputPanel>-->
+
+
+
+
+
+                            <div class="row">
+                                <apex:outputLabel styleClass="field-label" style="width:150px;padding:8px">CV upload</apex:outputLabel>
+                                <apex:inputFile value="{!attachment.Body}"
+                                                filename="{!attachment.Name}"
+                                                accept=".doc,.docx,.rtf,.pdf,.html,.txt" id="resume" />
+                            </div>
+
+<!--                            <hr style="margin:0" />-->
+
+                            <!--<div class="row">
+                                <apex:outputLabel styleClass="field-label" style="width:150px;padding:8px" >{!$Label.TRGTFCMS__Additional_Document}</apex:outputLabel>
+                                <apex:inputFile value="{!secondAttachment.Body}"
+                                                filename="{!secondAttachment.Name}"
+                                                accept=".doc,.docx,.rtf,.pdf,.html,.txt" />
+                            </div>
+                            <div class="row">
+                                <apex:outputLabel styleClass="field-label"  style="width:150px;padding:8px">{!$Label.TRGTFCMS__Additional_Document}</apex:outputLabel>
+                                <apex:inputFile value="{!thirdAttachment.Body}"
+                                                filename="{!thirdAttachment.Name}"
+                                                accept=".doc,.docx,.rtf,.pdf,.html,.txt" />
+                            </div>
+
+                            <hr style="margin:0" /> 
+
+                            <apex:outputLabel styleClass="field-label" style="width:150px;padding:8px">{!$Label.TRGTFCMS__Cover_Letter}</apex:outputLabel>
+                            <apex:inputCheckbox value="{!paste}" style="" id="idPaste" title="" onclick="paste();" /><span style="vertical-align: 1px;">{!$Label.TRGTFCMS__Paste}</span>
+                            <apex:inputCheckbox value="{!upload}" id="idUpload" title="" onclick="upload();" /><span style="vertical-align: 1px;">{!$Label.TRGTFCMS__Upload}</span>
+
+
+
+                            <div class="row">
+                                <apex:outputLabel styleClass="field-label" style="width:150px;padding:8px"/>
+                                <apex:inputFile id="idCoverLetterFile" value="{!coverLetterAttachment.Body}"
+                                                filename="{!coverLetterAttachment.Name}"
+                                                accept=".doc,.docx,.rtf,.pdf,.html,.txt" />
+                            </div>
+
+                            <apex:inputField id="idCoverLetterText" value="{!contact.AVTRRT__Cover_Letter__c}"
+                                            styleClass="field-textarea" />-->
+
+                            <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Vendor Profile',true,false)}">
+                                <div class="row">
+                                    <apex:outputLabel for="contact_AVTRRTNote" styleClass="field-label" value="Note" />
+                                    <apex:inputField value="{!contact.TRGTFCMS__Vendor_Notes__c}" style="height: 67px; width: 180px;" styleClass="field-text" id="contact_Vendor_Notes__c"/>
+                                </div>
+                            </apex:outputPanel>
+                        </div>
+
+                        <apex:outputPanel id="thePanel2" rendered="{!if($CurrentPage.parameters.page=='Update Profile',false,true)}" >
+                            <!--<div class="profile-information" style="width:450px"> -->
+                            <div>
+                            <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Candidate',true,false)}">
+                                <apex:outputPanel rendered="{!applyingFor}">
+                                       <!-- <div class="section-header">
+                                            <h3>You are applying for:</h3>
+                                        </div>-->
+                                       <!-- <apex:repeat value="{!jobApplyingForList}" var="job" >
+                                            <div class="row">
+                                                <B>
+                                                <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" target="_blank">
+                                                    <apex:param name="jobIds" value="{!job.Id}"/>
+                                                    <apex:param name="page" value="JobDetailPage" />
+                                                    <apex:param name="sessionId" value="{!$CurrentPage.parameters.sessionId}" />
+                                                    <apex:param name="jobSite" value="{!$CurrentPage.parameters.jobSite}" />
+                                                    <apex:param name="p" value="{!$CurrentPage.parameters.p}" />
+                                                    <apex:outputText value="{!job.AVTRRT__Job_Title__c}" styleClass="selectedJobs"/>
+                                                </apex:outputLink>
+                                                </B>
+                                            </div>
+                                        </apex:repeat>-->
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Vendor Profile',true,false)}">
+                                <apex:outputPanel rendered="{!applyingFor}">
+                                       <!-- <div class="section-header">-->
+                                       <div>
+                                            <h3>{!$Label.TRGTFCMS__You_submitting_candidates_for}</h3>
+                                        </div>
+                                        <apex:repeat value="{!jobApplyingForList}" var="job" >
+                                            <div class="row">
+                                                <B>
+                                                <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" target="_blank">
+                                                    <apex:param name="jobIds" value="{!job.Id}"/>
+                                                    <apex:param name="page" value="JobDetailPage" />
+                                                    <apex:param name="sessionId" value="{!$CurrentPage.parameters.sessionId}" />
+                                                    <apex:param name="jobSite" value="{!$CurrentPage.parameters.jobSite}" />
+                                                    <apex:param name="p" value="{!$CurrentPage.parameters.p}" />
+                                                    <apex:outputText value="{!job.AVTRRT__Job_Title__c}" styleClass="selectedJobs"/>
+                                                </apex:outputLink>
+                                                </B>
+                                            </div>
+                                        </apex:repeat>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+
+                            </div>
+
+                            <div class="profile-information" style="width:450px">
+                            <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Candidate',true,false)}">
+                                <apex:outputPanel rendered="{!appliedFor}">
+                                    <!--<div class="section-header">-->
+                                    <div>
+                                        <h3>You have already applied for</h3>
+                                    </div>
+                                    <apex:repeat value="{!jobAppliedForList}" var="job" >
+                                        <div class="row">
+                                            <B>
+                                            <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" target="_blank">
+                                                <apex:param name="jobIds" value="{!job.Id}"/>
+                                                <apex:param name="page" value="JobDetailPage" />
+                                                <apex:param name="sessionId" value="{!$CurrentPage.parameters.sessionId}" />
+                                                <apex:param name="jobSite" value="{!$CurrentPage.parameters.jobSite}" />
+                                                <apex:param name="p" value="{!$CurrentPage.parameters.p}" />
+                                                <apex:outputText value="{!job.AVTRRT__Job_Title__c}" styleClass="selectedJobs"/>
+                                            </apex:outputLink>
+                                            </B>
+                                        </div>
+                                    </apex:repeat>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+
+                                <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Vendor Profile',true,false)}">
+                                <apex:outputPanel rendered="{!appliedFor}">
+                                    <!--<div class="section-header">-->
+                                    <div>
+                                        <h3>{!$Label.TRGTFCMS__You_submitted_candidates_for}</h3>
+                                    </div>
+                                    <apex:repeat value="{!jobAppliedForList}" var="job" >
+                                        <div class="row">
+                                            <B>
+                                            <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" target="_blank">
+                                                <apex:param name="jobIds" value="{!job.Id}"/>
+                                                <apex:param name="page" value="JobDetailPage" />
+                                                <apex:param name="sessionId" value="{!$CurrentPage.parameters.sessionId}" />
+                                                <apex:param name="jobSite" value="{!$CurrentPage.parameters.jobSite}" />
+                                                <apex:param name="p" value="{!$CurrentPage.parameters.p}" />
+                                                <apex:outputText value="{!job.AVTRRT__Job_Title__c}" styleClass="selectedJobs"/>
+                                            </apex:outputLink>
+                                            </B>
+                                        </div>
+                                    </apex:repeat>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+
+                               <!-- <div class="row">
+                                    <B><apex:outputText value="{!$Label.TRGTFCMS__No_Jobs_are_selected_for_application}" styleClass="" rendered="{!noJobSelected}"/></B>
+                                </div>-->
+                            </div>
+                        </apex:outputPanel>
+
+                        <apex:outputPanel rendered="{! NOT(ForceComAutorization) && IF($CurrentPage.parameters.page=='Update Profile',true,false) }">
+                            <div class="profile-information" style="width:450px">
+                                <!--<div class="section-header">-->
+                                <div>
+                                    <h3>{!$Label.TRGTFCMS__Password_Change}</h3>
+                                </div>
+                                <div class="row">
+                                    <apex:outputLabel for="contact_UserName__c" styleClass="field-label" value="{!$Label.TRGTFCMS__User_Name}" />
+                                    <apex:outputText value="{!contact.FCMS__UserName__c}" styleClass="" id="contact_FCMS__UserName__c" />
+                                </div>
+                                <div class="row">
+                                    <apex:outputLabel for="contact_FCMS__Password__c" styleClass="field-label" value="{!$Label.TRGTFCMS__Password}" />
+                                    <apex:inputSecret value="{!password}" styleClass="field-text" id="contact_FCMS__Password__c" />
+                                </div>
+                                <div class="row">
+                                    <apex:outputLabel for="confirmPassword" styleClass="field-label" value="{!$Label.TRGTFCMS__Confirm_Password}" />
+                                    <apex:inputSecret value="{!confirmPassword}" styleClass="field-text" id="confirmPassword" />
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+
+
+
+                        
+                            <script>
+                                var idPaste = j$(fixId('{!$Component.idPaste}'));
+                                var idUpload = j$(fixId('{!$Component.idUpload}'));
+                                var idCoverLetterFile = j$(fixId('{!$Component.idCoverLetterFile}'));
+                                var idCoverLetterText = j$(fixId('{!$Component.idCoverLetterText}'));
+                            </script>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <apex:outputPanel id="references" rendered="{!ReferencesBlockIsShow}"> <!-- changed by kans 24.2.2012 -->
+            <div class="profile-information" style="width:865px">
+               <!-- <div class="section-header">-->
+               <div>
+                    <h3></h3>
+                </div>
+            </div> <br/> <br/>
+
+       <!--     <div class="section-header">
+                                <h3>{!$Label.TRGTFCMS__References_Header}</h3>
+                            </div>-->
+
+           <!-- <table class="application-ref-table" style="width:95%;">
+
+                <tr>
+                    <td>
+                        <apex:outputLabel for="referebce_Firts_Name" styleClass="field-label" >{!$Label.TRGTFCMS__First_Name}</apex:outputLabel>
+                    </td>
+                    <td>
+                        <apex:outputLabel for="referebce_Last_Name" styleClass="field-label" >{!$Label.TRGTFCMS__Last_Name}</apex:outputLabel>
+                    </td>
+                    <td>
+                        <apex:outputLabel for="referebce_Organization" styleClass="field-label" >{!$Label.TRGTFCMS__Organization}</apex:outputLabel>
+                    </td>
+                    <td>
+                        <apex:outputLabel for="reference_AVTRRT__Email__c" styleClass="field-label" >{!$Label.TRGTFCMS__Email}</apex:outputLabel>
+                    </td>
+                    <td>
+                        <apex:outputLabel for="references1_AVTRRT__Phone__c" styleClass="field-label" >{!$Label.TRGTFCMS__Phone}</apex:outputLabel>
+                    </td>
+                    <td>
+                        <apex:outputLabel for="references1_TRGTFCMS__Reference_Note__c" styleClass="field-label" >{!$Label.TRGTFCMS__References}</apex:outputLabel>
+                    </td>
+
+                </tr>
+
+            <apex:repeat value="{!ReferencesLoginList}"  var="RefCount" id="ReferenceRep" rows="3">
+                <tr class = "reference-detail-tr">
+                    <td>
+                        <apex:inputField value="{!RefCount.AVTRRT__First_Name__c}" styleClass="field-text1" id="Reference_AVTRRT__First_Name__c"  />
+                    </td>
+                    <td>
+                        <apex:inputField value="{!RefCount.AVTRRT__Last_Name__c}" styleClass="field-text1" id="Reference_AVTRRT__Last_Name__c"  />
+                    </td>
+                    <td>
+                        <apex:inputField value="{!RefCount.TRGTFCMS__Organization_Institution__c}" styleClass="field-text1" id="Reference_TRGTFCMS__Organization_Institution__c"   />
+                    </td>
+                    <td>
+                        <apex:inputField value="{!RefCount.AVTRRT__Email__c}" styleClass="field-text1" id="Reference_AVTRRT__Email__c"   />
+                    </td>
+                    <td>
+                        <apex:inputField value="{!RefCount.AVTRRT__Phone__c}" styleClass="field-text1" id="Reference_AVTRRT__Phone__c"   />
+                    </td>
+                    <td>
+                        <apex:inputField value="{!RefCount.AVTRRT__Notes__c}" styleClass="field-text1" id="Reference_AVTRRT__Notes__c"  />
+                    </td>
+                </tr>
+            </apex:repeat>
+
+            </table>-->
+        </apex:outputPanel>
+
+        <table style="width:50%;">
+            <tr>
+                <td class="" style="border:none;">
+                    <div class="form-submit1 table_apply_button application_button">
+                        <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Candidate',true,false)}">
+                            <!--<apex:commandButton onclick="window.scrollTo(0, 0);parent.scrollTo(0, 0);rerenderForm();" action="{!save}" value="{!IF(contact.Id == null, 'Submit', $Label.TRGTFCMS__Update)}" rendered="{!renderApplyButton}" />
+                            <script>
+                            function rerenderForm(){
+                                var joblistpage = j$(fixId('{!$Component.jobListPage}'));
+                                joblistpage.submit();
+                            }
+                            </script>-->
+                            
+                            <apex:commandButton onclick="window.scrollTo(0, 0);parent.scrollTo(0, 0);rerenderForm();" action="{!save}" value="{!IF(displayNextButton == true, 'Next', 'Submit')}" rendered="{!renderApplyButton}" />
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Candidate',true,false)}">
+                            <apex:commandButton onclick="clickSubmit(); return false;"  value="{!IF(contact.Id == null, $Label.TRGTFCMS__Apply, $Label.TRGTFCMS__Update)}" rendered="{!renderAjaxApplyButton}" />
+
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!if($CurrentPage.parameters.p == 'Vendor Profile',true,false)}">
+                            <apex:commandButton onclick="window.scrollTo(0, 0);parent.scrollTo(0, 0);" action="{!save}" value="{!IF(contact.Id == null, $Label.TRGTFCMS__Submit_Candidates, $Label.TRGTFCMS__Update)}" />
+                        </apex:outputPanel>
+                        <apex:commandButton value="{!$Label.TRGTFCMS__Reset}" styleClass="resetbtn" onclick="window.location.href = '{!currentUrlJobApplicationPage}';return false;" />
+
+                    <apex:outputPanel rendered="{!LinkedInButtonBlockIsShow}">
+
+                            <div style="padding-top:5px;">
+                            <a href="https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id={!linkedInApiKey}&scope=r_emailaddress%20r_basicprofile%20r_fullprofile%20r_contactinfo&state=DCEEFWF45453sdffef424&redirect_uri={!URLENCODE(linkedInRedirectUrl + 'TRGTFCMS__LinkedInApplyToJob?jobId=' + linkedInJobIds + '&sessionId=' + sessionId)}" target="_parent">
+                                <img src="{!$Resource.TRGTFCMS__ApplyWithLinkedInImg}" style="width: 150px;margin-bottom: -10px;padding-left: 16px;" />
+                            </a>
+
+
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </apex:outputPanel>
+    </apex:form>
+
+    <script>
+    function paste() {
+        idUpload.attr('checked', !idPaste.is(':checked'));
+        pasteOrUpload();
+    }
+    function upload() {
+        idPaste.attr('checked', !idUpload.is(':checked'));
+        pasteOrUpload();
+    }
+    function pasteOrUpload() {
+        idCoverLetterFile.css('display', idPaste.is(':checked') ? 'none' : 'block');
+        idCoverLetterText.css('display', idPaste.is(':checked') ? 'block' : 'none');
+    }
+    pasteOrUpload();
+    </script>
+</apex:page>

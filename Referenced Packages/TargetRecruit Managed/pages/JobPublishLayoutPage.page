@@ -1,0 +1,36 @@
+<apex:page controller="AVTRRT.JobPublishLayoutController" standardStylesheets="false" showHeader="false">
+
+    <head>
+        <meta name="keywords" content="{!metaKeywords}" id="keywords"/>
+        <c:linkCssComponent css="{!$Resource.AVTRRT__default}" rendered="{!IF(($CurrentPage.parameters.jobSite == 'default'), true, false)}" />
+		<c:linkCssComponent css="{!$Resource.AVTRRT__sales}" rendered="{!IF(($CurrentPage.parameters.jobSite == 'sales'), true, false)}" />
+		<c:linkCssComponent css="{!$Resource.AVTRRT__marketing}" rendered="{!IF(($CurrentPage.parameters.jobSite == 'marketing'), true, false)}" />
+    </head>
+    <body class="default">
+	    <apex:outputPanel styleClass="trPage" layout="block">
+
+	        <!-- Below outputPanel is used for displaying header part for pages. these outputPanels creates divs so use can treat these as divs by formating prospective-->
+	        <apex:outputPanel styleClass="trHeader" layout="block">
+	            <c:HeaderComponent />
+	        </apex:outputPanel>
+
+	        <!-- Below outputPanel can be used to add another header or another section before content component actually now this will create a blank DIV tag so you can add your desired content and adjust this section by using ibtSecondary CSS class properties-->
+	        <apex:outputPanel styleClass="trSecondary" layout="block">
+				<!-- <c:ideaSecondary /> -->
+			</apex:outputPanel>
+	        
+			<!-- Below outputPanel is  -->
+	        <apex:outputPanel styleClass="trPrimary" layout="block">
+	        	<!--<apex:pageMessages id="error" />-->
+	            <apex:insert name="content" />
+	        </apex:outputPanel>
+	    	<br class="clear" />
+	    </apex:outputPanel>
+		<!-- Below are the page bottom and footer sections outputPanel -->
+	    <apex:outputPanel styleClass="trPageBottom" layout="block">&nbsp;</apex:outputPanel>
+	    <apex:outputPanel styleClass="trFooter" layout="block">
+	        <c:FooterComponent />
+	    </apex:outputPanel>
+    </body>
+
+</apex:page>

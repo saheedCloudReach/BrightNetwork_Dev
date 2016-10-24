@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification to Recruiter when Job is closed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Avankia_Letterhead</letterhead>
+    <name>Job Closed (To Recruiter)</name>
+    <style>freeForm</style>
+    <subject>Closed Job - {!Job__c.Name}, {!Job__c.Account_Job__c}, {!Job__c.Job_Title__c}</subject>
+    <textOnly>Dear {!Job__c.Recruiter__c}, 
+
+This position is now closed as a {!Job__c.Stage__c}. Please notify your candidates at your earliest opportunity. 
+
+Thanks,</textOnly>
+    <type>html</type>
+</EmailTemplate>

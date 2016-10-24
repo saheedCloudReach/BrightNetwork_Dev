@@ -1,0 +1,82 @@
+<apex:page controller="AVTRRT.ControllerChecklist" >
+
+<apex:form >
+	<apex:pageMessages ></apex:pageMessages>
+	
+	<apex:pageblock title="{!$Label.avtrrt__Search_Criteria}">
+		<big>{!$Label.Checklist_Category}</big>
+		
+		&nbsp;&nbsp;&nbsp;
+		
+		<apex:selectList size="1" value="{!selectedCategoryName}">
+			<apex:selectOptions value="{!categoryNames}"/>
+		</apex:selectList>
+		
+		&nbsp;
+		
+		<big>{!$Label.Checklist_Name}</big>
+		
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		
+		<apex:inputText id="textbox" value="{!searchText}" size="20" style="height:13px;font-size:11px;" />
+	
+		&nbsp;&nbsp;&nbsp;
+		
+		<apex:commandButton action="{!search}" value="{!$Label.avtrrt__Search}" />
+	</apex:pageBlock>
+	
+	<apex:pageblock >
+	
+		<apex:pageBlockButtons >
+			<apex:commandButton value="{!$Label.avtrrt__Save}" action="{!save}"/>
+			<apex:commandButton value="{!$Label.avtrrt__Save_and_Complete}" action="{!saveAndComplete}"/>
+			<apex:commandButton Value="{!$Label.avtrrt__Cancel}" action="{!cancel}"/>
+		</apex:pageBlockButtons>
+		
+		<apex:pageBlockTable value="{!objectCategoryList}" var="o">
+			<apex:column >
+				<apex:facet name="header">
+					<input type="checkbox" onclick="checkAll(this)" />
+				</apex:facet>
+				<apex:inputCheckbox value="{!o.selected}" id="checkedone" />
+			</apex:column>
+			<apex:column headerValue="{!$Label.avtrrt__Subject}">
+				<apex:inputField value="{!o.checklist.AVTRRT__Subject__c}" required="true"/>
+			</apex:column>
+			<apex:column headerValue="{!$Label.avtrrt__Comments}">
+				<apex:inputText value="{!o.checklist.AVTRRT__Description__c}"/>
+			</apex:column>
+			<apex:column headerValue="{!$Label.avtrrt__AssignedTo}">
+				<apex:inputField value="{!o.task.OwnerId}"/>
+			</apex:column>
+			<apex:column headerValue="{!$Label.avtrrt__Due_Date}">
+				<apex:inputField value="{!o.task.ActivityDate}" />
+			</apex:column>
+			<apex:column headerValue="{!$Label.avtrrt__Name}" rendered="{!objectType == $Label.avtrrt__Contact}">
+				<apex:inputfield value="{!o.task.whoId}"/>
+			</apex:column>
+			<apex:column headerValue="{!$Label.avtrrt__Related_To}" rendered="{!objectType != $Label.avtrrt__Contact}">
+				<apex:inputField value="{!o.task.whatId}" />
+			</apex:column>
+			<apex:column headerValue="{!$Label.avtrrt__Priority}">
+				<apex:inputField value="{!o.task.Priority}" />
+			</apex:column>
+			<apex:column headerValue="{!$Label.avtrrt__Status}">
+				<apex:inputField value="{!o.task.Status}"/>
+			</apex:column>
+		</apex:pageBlockTable>
+	</apex:pageblock>
+</apex:form>
+
+<script>
+	function checkAll(cb) {
+		var inputElem = document.getElementsByTagName("input");
+		
+		for (var i=0; i<inputElem.length; i++) {
+			if (inputElem[i].id.indexOf("checkedone")!=-1) {
+				inputElem[i].checked = cb.checked;
+			}
+		}
+	}
+</script>
+</apex:page>

@@ -1,0 +1,2021 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Job Applicant details are stored in this object.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>AAP_Job_Group__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>AAP Job Group</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AccountManager_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Account Manager Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AccountManager_Mobile__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Account Manager Mobile</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>AccountManager_Phone__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Account Manager Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Account_Job__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>R00N40000001lYZJEA2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Account_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Account Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N40000001lYYgEAM</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Adverse_Impact_Pct__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Adverse Impact Pct</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Applicant_Distance_to_Job__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Applicant Distance to Job</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Application_Information__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Application Information Source</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Agency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Billboards</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>College Recruiting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Direct Recruiting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Diversity Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ex-Employee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Internal Employee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Internet Job Boards</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Internet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Job Fair</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Newspaper</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Print Media</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Users Group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Assigned_Recruiter_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job Recruiter Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Assigned_Recruiter__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job Recruiter</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N40000001lYX8EAM</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Availability_To_Interview__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Availability To Interview</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Available_To_Start__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Available To Start</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Bill_Rates__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Bill Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Billable__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Billable</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Call_em_all_Scheuler_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Call em all Scheuler Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Candidate_Write_Up__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Candidate Write Up</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>City__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>City</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_Candidate__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Candidate</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Job Applicants</relationshipLabel>
+        <relationshipName>R00N40000001lYXmEAM</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Cover_Letter__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Cover Letter</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Desired_Pay_Range_From__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Desired Pay</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>EEO_Job_Category__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>EEO Job Category</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Emails_Sent__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>Contact_Candidate__r.Recent_Template__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Emails Sent</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ethnicity__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Ethnicity</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Experience__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Experience</label>
+        <picklist>
+            <picklistValues>
+                <fullName>01-03 Years</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>04-06 Years</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>07-09 Years</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>10+ Years</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Gender__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Gender</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HTML_Editor_Hidden_Field__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>HTML Editor Hidden Field</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Hiring_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Hiring Manager</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Job Applicants</relationshipLabel>
+        <relationshipName>R00N40000001lYXXEA2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Job_Num__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job Num</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Job_Stage__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job Stage</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Job_Title__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job Title</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Job__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job</label>
+        <referenceTo>Job__c</referenceTo>
+        <relationshipName>Job_Application</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Notice_Required_On_Acceptance__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Notice Required On Acceptance</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_Female_Applicants__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Number of Female Applicants</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Male_Applicants__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Number of Male Applicants</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Minorities__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Number of Minorities</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Non_Minorities__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Number of Non Minorities</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Pay_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Desired Pay Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>W-2 w/benefits</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>W-2 w/o benefits</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Corp to Corp</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Permanent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_of_Travel__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Percentage of Travel</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Hotlist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Worklist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reject</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Questionnaire_Maximum_Score__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Questionnaire Maximum Score</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Questionnaire_Pass_Score__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Questionnaire Pass Score</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Questionnaire_Pass_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Questionnaire Pass Status</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Questionnaire_Result_Score__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Questionnaire Result Score</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Questionnaire_URL__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK($Setup.ConfigSettingsHierarchy__c.Survey_Public_Site_URL__c &amp; &apos;AVTRRT__Survey?id=&apos; &amp; Job__r.Id &amp; &apos;&amp;&apos; &amp; &apos;jaId=&apos; &amp; Id, $Label.avtrrt__Click_here, $Label.avtrrt__blank)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Questionnaire URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Recruiter_Email__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the recruiter assigned to the candidate.</inlineHelpText>
+        <label>Candidate Recruiter Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Recruiter_Mobile__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Candidate Recruiter Mobile</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Recruiter_Phone__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Candidate Recruiter Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Recruiter__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the recruiter assigned to the candidate.</inlineHelpText>
+        <label>Candidate Recruiter</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N40000001lYZVEA2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Reject_Qualifiers__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Disposition Qualifiers</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Did not apply for a particular position</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Did not follow application process</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Withdrew application</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled or failed to show for interview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lacks required VISA/work papers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Did not meet basic requirements</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lacks favorable references</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unfavorable interview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Salary requested is too high</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cannot contact</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not best qualified</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Poor test results</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lacks willingness for required travel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hired</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Internal successful</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Declined position</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Was not considered</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Rejection_Notes__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Disposition Notes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Relocation1__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF( Relocation__c , &quot;Yes&quot;, &quot;No&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Relocation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Relocation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Open For Relocation</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Resume_Received_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Resume Received Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Resume__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Work Details</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>50</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Search_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Search By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>R00N40000001lpNKEAY</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Search_Criteria_Long__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Search Criteria</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Search_Criteria__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Search Criteria old</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Search_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Search Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Search_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Search Name</label>
+        <referenceTo>Search__c</referenceTo>
+        <relationshipLabel>Job Applicants</relationshipLabel>
+        <relationshipName>R00N40000001lqx9EAA</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Show_Interview_URL__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK( $Setup.ConfigSettingsHierarchy__c.InterviewFeedbackSiteURL__c+ &quot;AVTRRT__ShowJobInterviews?Id=&quot;+Id, $Label.avtrrt__Click_here)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Show Feedback URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Special_Instructions__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Special Instructions</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Stage__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New Application</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected following online application</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Telephone interview - to schedule</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Telephone interview - scheduled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Telephone interview - to review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected following telephone interview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Video interview - to invite</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Video interview - invited &amp; awaiting completion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Video interview - to review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected following video interview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assessment centre - to invite</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assessment centre - invited</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assessment centre - confirmed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assessment centre - to review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected following assessment centre</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>F2F interview - to invite</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>F2F interview - invited</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>F2F interview - confirmed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>F2F interview - to review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected following F2F interview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On hold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shortlisted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Offer - Accepted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Offer - Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>State</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Target_Bill__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(Pay_Type__c, &quot;W-2 w/benefits&quot; ), ((Desired_Pay_Range_From__c * 1.4)+((Desired_Pay_Range_From__c * 1.4)*0.30)),  IF(ISPICKVAL(Pay_Type__c, &quot;W-2 w/o benefits&quot;),((Desired_Pay_Range_From__c * 1.3)+((Desired_Pay_Range_From__c * 1.3)*0.30)),  IF(ISPICKVAL(Pay_Type__c, &quot;corp to corp&quot;), ((Desired_Pay_Range_From__c * 1.2)+((Desired_Pay_Range_From__c * 1.2)*0.30)), 0 ) ) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Bill Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Recruiter</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Online</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Auto Match</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Test123</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Veteran_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Veteran Status</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>View_Resume__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/apex/AVTRRT__AttachmentDetails?id=&quot; +  Contact_Candidate__c, IMAGE(&quot;/resource/1330537288000/avtrrt__ChatterIcon&quot;, &quot;View Chatter Resume&quot;), &quot;_blank&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>View Resume</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X_Notes__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Notes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>da_employer_bid_id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>da employer bid id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>isRequired__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>isRequired</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>refreshed__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>refreshed</label>
+        <length>1</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Job Applicant</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Contact_Candidate__c</columns>
+        <columns>Job_Title__c</columns>
+        <columns>Job__c</columns>
+        <columns>Stage__c</columns>
+        <columns>Account_Job__c</columns>
+        <columns>Account_Manager__c</columns>
+        <columns>AccountManager_Email__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>{000}</displayFormat>
+        <label>Job Applicant ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Job Applicants</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>CorporateJobApplicant</fullName>
+        <active>true</active>
+        <label>Corporate Job Applicant</label>
+        <picklistValues>
+            <picklist>Application_Information__c</picklist>
+            <values>
+                <fullName>Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Billboards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>College Recruiting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Recruiting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diversity Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ex-Employee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal Employee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internet Job Boards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Job Fair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Newspaper</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Print Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Users Group</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Experience__c</picklist>
+            <values>
+                <fullName>01-03 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04-06 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07-09 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10%2B Years</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Pay_Type__c</picklist>
+            <values>
+                <fullName>Corp to Corp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permanent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W-2 w%2Fbenefits</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W-2 w%2Fo benefits</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority__c</picklist>
+            <values>
+                <fullName>Hotlist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reject</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Worklist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reject_Qualifiers__c</picklist>
+            <values>
+                <fullName>Cancelled or failed to show for interview</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cannot contact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined position</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Did not apply for a particular position</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Did not follow application process</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Did not meet basic requirements</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hired</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal successful</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lacks favorable references</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lacks required VISA%2Fwork papers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lacks willingness for required travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not best qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poor test results</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salary requested is too high</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unfavorable interview</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Was not considered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Withdrew application</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Stage__c</picklist>
+            <values>
+                <fullName>Assessment centre - confirmed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assessment centre - invited</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assessment centre - to invite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assessment centre - to review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F2F interview - confirmed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F2F interview - invited</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F2F interview - to invite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F2F interview - to review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected following online application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shortlisted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone interview - scheduled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone interview - to review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone interview - to schedule</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Video interview - invited %26 awaiting completion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Video interview - to invite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Video interview - to review</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Auto Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recruiter</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Test123</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>StaffingJobApplicant</fullName>
+        <active>true</active>
+        <label>Staffing Job Applicant</label>
+        <picklistValues>
+            <picklist>Application_Information__c</picklist>
+            <values>
+                <fullName>Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Billboards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>College Recruiting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Recruiting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diversity Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ex-Employee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal Employee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internet Job Boards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Job Fair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Newspaper</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Print Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Users Group</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Experience__c</picklist>
+            <values>
+                <fullName>01-03 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04-06 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07-09 Years</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10%2B Years</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Pay_Type__c</picklist>
+            <values>
+                <fullName>Corp to Corp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permanent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W-2 w%2Fbenefits</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W-2 w%2Fo benefits</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority__c</picklist>
+            <values>
+                <fullName>Hotlist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reject</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Worklist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reject_Qualifiers__c</picklist>
+            <values>
+                <fullName>Cancelled or failed to show for interview</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cannot contact</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined position</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Did not apply for a particular position</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Did not follow application process</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Did not meet basic requirements</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hired</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal successful</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lacks favorable references</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lacks required VISA%2Fwork papers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lacks willingness for required travel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not best qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poor test results</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salary requested is too high</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unfavorable interview</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Was not considered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Withdrew application</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Stage__c</picklist>
+            <values>
+                <fullName>Assessment centre - confirmed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assessment centre - invited</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assessment centre - to invite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assessment centre - to review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F2F interview - confirmed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F2F interview - invited</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F2F interview - to invite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F2F interview - to review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected following online application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shortlisted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone interview - scheduled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone interview - to review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone interview - to schedule</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Video interview - invited %26 awaiting completion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Video interview - to invite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Video interview - to review</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Auto Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recruiter</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Test123</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Contact_Candidate__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Job__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Job_Title__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Stage__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Available_To_Start__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Contact_Candidate__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Job__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Job_Title__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Stage__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Available_To_Start__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Contact_Candidate__c</searchFilterFields>
+        <searchFilterFields>Job__c</searchFilterFields>
+        <searchFilterFields>Job_Title__c</searchFilterFields>
+        <searchFilterFields>Stage__c</searchFilterFields>
+        <searchFilterFields>Available_To_Start__c</searchFilterFields>
+        <searchResultsAdditionalFields>Contact_Candidate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Job__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Job_Title__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Stage__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Available_To_Start__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Account_Job__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Bulk_Email</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Send Email</masterLabel>
+        <openType>sidebar</openType>
+        <page>BulkMailPage</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>Checklist</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Checklist</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/AVTRRT__ChecklistPage?id={!Job_Applicant__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Convert_Job_To_Placement</fullName>
+        <availability>online</availability>
+        <description>Convert Job to Placement</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Convert To Placement</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>document.location.href=&apos;/apex/AVTRRT__ConvertPlacement?id={!Job_Applicant__c.Id}&apos;;</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Copy</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Copy to Job</masterLabel>
+        <openType>noSidebar</openType>
+        <page>CopyJobApplicants</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>Email_Profile_To_Hiring_Manager</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>sControl</linkType>
+        <masterLabel>Email Hiring Manager</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <scontrol>Email_To_Hiring_Manager</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>Generate_Resume</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>sControl</linkType>
+        <masterLabel>Generate Resume</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <scontrol>Generate_Resume</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>Log_a_Call</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Log a Call</masterLabel>
+        <openType>sidebar</openType>
+        <page>LogCall</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>Mass_Delete</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Mass Delete</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&apos;/soap/ajax/24.0/connection.js&apos;)} 
+{!REQUIRESCRIPT(&apos;/soap/ajax/24.0/apex.js&apos;)} 
+
+
+var records = {!GETRECORDIDS($ObjectType.Job_Applicant__c)}; 
+
+if (records[0] == null) { 
+alert(&quot;Please select at least one record.&quot;) } 
+else { 
+
+var errors = []; 
+var result = sforce.connection.deleteIds(records); 
+if (result &amp;&amp; result.length){ 
+var numFailed = 0; 
+var numSucceeded = 0; 
+for (var i = 0; i &lt; result.length; i++){ 
+var res = result[i]; 
+if (res &amp;&amp; res.success == &apos;true&apos;){ 
+numSucceeded++; 
+} else { 
+var es = res.getArray(&quot;errors&quot;); 
+if (es.length &gt; 0) { 
+errors.push(es[0].message); 
+} 
+numFailed++; 
+} 
+} 
+if (numFailed &gt; 0){ 
+alert(&quot;Failed: &quot; + numFailed + &quot;\nSucceeded: &quot; + numSucceeded + &quot; \n Due to: &quot; + errors.join(&quot;\n&quot;)); 
+} else { 
+alert(&quot;Number of records deleted: &quot; + numSucceeded); 
+} 
+} 
+window.location.reload(); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Schedule_Interview</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Schedule Interview</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/AVTRRT__Schedule_Interview?id={!Job_Applicant__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>SendResume</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>SendResume</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <url>{!$SControl.Email_To_Hiring_Manager}&quot;;</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Send_Email</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Submit Candidate</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/avtrrt__RCMail?jobappid={!Job_Applicant__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Show_Interviews</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Show Feedback</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>{!$Setup.ConfigSettingsHierarchy__c.InterviewFeedbackSiteURL__c}AVTRRT__ShowJobInterviews?Id={!Job_Applicant__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Submit_Candidates</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Submit Candidates</masterLabel>
+        <openType>sidebar</openType>
+        <page>RCMail</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>Update_Status</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Update Status</masterLabel>
+        <openType>sidebar</openType>
+        <page>UpdateStatusForJobApplicants</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+</CustomObject>

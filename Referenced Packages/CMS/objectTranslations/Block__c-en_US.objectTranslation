@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Block</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Blocks</value>
+    </caseValues>
+    <fields>
+        <help><!-- This value specify whether this block is ready to use or not. --></help>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- In this field you can provide parameters and their values for this IFRAME src. 
+e.g page=MyHomePage,jobsite=default   or if you want parameters value from parent window then write only name of the parameters. e.g page=,jobsite= --></help>
+        <label><!-- Add Parameters to iframe URL --></label>
+        <name>Add_Parameters_From_Parent_Window__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field value specify whether this block required login or not. --></help>
+        <label><!-- Authentication Required --></label>
+        <name>Authentication_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auto Height Iframe Code --></label>
+        <name>Auto_Height_Iframe_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- If Block type is HTML then content in this field will be printed as the content for this block. --></help>
+        <label><!-- Content --></label>
+        <name>Content__c</name>
+    </fields>
+    <fields>
+        <help><!-- If block type is Existing Block then user has to enter existing block name in this field. --></help>
+        <label><!-- Existing Block Name --></label>
+        <name>Existing_Block_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- The flashvars attribute can be used to import root level variables to the movie. All variables are created before the first frame of the SWF is played. The value should consist of a list of ampersand-separated name-value pairs. --></help>
+        <label><!-- FlashVars --></label>
+        <name>FlashVars__c</name>
+    </fields>
+    <fields>
+        <help><!-- A Boolean value that specifies whether the flash movie plays repeatedly or just once. If set to true, the flash movie plays repeatedly. If not specified, this value defaults to false. --></help>
+        <label><!-- Flash Loop --></label>
+        <name>Flash_Loop__c</name>
+    </fields>
+    <fields>
+        <help><!-- A Boolean value that specifies whether the flash movie automatically begins playing when displayed. If set to true, the flash movie automatically begins playing. If not specified, the value defaults to false. --></help>
+        <label><!-- Flash Play --></label>
+        <name>Flash_Play__c</name>
+    </fields>
+    <fields>
+        <help><!-- Height for this block in pixels or percentage.
+e.g 200px or 50% --></help>
+        <label><!-- Height --></label>
+        <name>Height__c</name>
+    </fields>
+    <fields>
+        <help><!-- Url to display in the IFRAME or Flash. --></help>
+        <label><!-- IFrame or Flesh URL --></label>
+        <name>IFrame_URL__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field contains the name of the menu component. --></help>
+        <label><!-- Menu Component Name --></label>
+        <name>Menu_Component_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Visualforce Page Name. --></help>
+        <label><!-- Module Name --></label>
+        <name>Module_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- CSS class which will override blocks default class. You have to create an entry in the css file with the same name you are providing here. (There is Visualforce page named CMSCssCustom for css file.) --></help>
+        <label><!-- Override Class --></label>
+        <name>Override_Class__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please select the CMS page to show on the block to be shown. --></help>
+        <label><!-- Page --></label>
+        <name>Page__c</name>
+        <relationshipLabel><!-- Blocks --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Select the section of the page where this block will be shown. --></help>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <picklistValues>
+            <masterLabel>content</masterLabel>
+            <translation><!-- content --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>footer</masterLabel>
+            <translation><!-- footer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>header</masterLabel>
+            <translation><!-- header --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>left</masterLabel>
+            <translation><!-- left --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>right</masterLabel>
+            <translation><!-- right --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- TextContent --></label>
+        <name>TextContent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Block Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Auto Height Iframe</masterLabel>
+            <translation><!-- Auto Height Iframe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Existing Block</masterLabel>
+            <translation><!-- Existing Block --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flash</masterLabel>
+            <translation><!-- Flash --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HTML</masterLabel>
+            <translation><!-- HTML --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IFRAME</masterLabel>
+            <translation><!-- IFRAME --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MODULE</masterLabel>
+            <translation><!-- MODULE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Menu Component</masterLabel>
+            <translation><!-- Menu Component --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Text</masterLabel>
+            <translation><!-- Text --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Order for this block in the region. --></help>
+        <label><!-- Order --></label>
+        <name>Weight__c</name>
+    </fields>
+    <fields>
+        <help><!-- Width for this block in pixels or percentage.
+e.g 200px or 50% --></help>
+        <label><!-- Width --></label>
+        <name>Width__c</name>
+    </fields>
+    <layouts>
+        <layout>Block Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- New_Block --></label>
+        <name>New_Block</name>
+    </webLinks>
+</CustomObjectTranslation>

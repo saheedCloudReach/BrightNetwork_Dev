@@ -1,0 +1,21 @@
+<table width="550" cellpadding="5" height="400" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td locked="0" style=" font-family:arial; bLabel:main; color:#000000; font-size:12pt; bEditID:r3st1; background-color:#FFFFFF;" aEditID="c1r1" tEditID="c1r1" >
+<![CDATA[<P>&nbsp;</P>
+<P>Hi,</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>The job details are below.</P>
+<P>&nbsp;</P>
+<P><STRONG>Job Title:</STRONG> {!Job__c.Job_Title__c}</P>
+<P><STRONG>Job Category:</STRONG> {!Job__c.Job_Category__c}</P>
+<P><STRONG>Start Date:</STRONG> {!Job__c.Start_Date__c}</P>
+<P><STRONG>Job Summary:</STRONG> {!Job__c.Job_Summary__c}</P>
+<P><STRONG>Job Description:</STRONG> {!Job__c.Job_Description__c}</P>
+<P><STRONG>Job Term:</STRONG> {!Job__c.Job_Term__c}</P>
+<P><STRONG>Job State:</STRONG> {!Job__c.State__c}</P>
+<P><STRONG>Job City:</STRONG> {!Job__c.Job_City__c}</P>
+<P>&nbsp;</P>
+<P>Thanks</P>]]></td>
+</tr>
+</table>

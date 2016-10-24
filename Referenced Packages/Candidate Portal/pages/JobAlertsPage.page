@@ -1,0 +1,53 @@
+<apex:page controller="TRGTFCMS.JobAlertsPageController" standardstylesheets="false" showHeader="{!portal}" sideBar="{!portal}" cache="false" action="{!init}">
+    <style>
+        <apex:outputText value="{!cmsCssCustom}" />
+    </style>
+<apex:pageMessages />
+    <apex:form >
+        
+         <apex:pageBlock title="">
+         
+         
+         <div class="section-header jobalert-header-section">
+             <p class="jobalert-header-checkbox" style="width:38px;"></p>
+             <h3>Create Job Alert
+            <apex:outputpanel rendered="{!portal}">
+                 for <U> <apex:outputLink id="output" value="{!Url1}"> {!contact.Name}</apex:outputLink> </U>
+            </apex:outputpanel></h3>
+        </div>
+         
+             <apex:pageBlockTable value="{!ApiFieldNamesList}" var="var">  
+                <apex:column >
+                    <apex:pageblockSection >
+                        <apex:inputField value="{!fakeJob[var]}" /> 
+                    </apex:pageblockSection>        
+                </apex:column>
+            </apex:pageBlockTable>
+         </apex:pageBlock>
+         
+         <div class="jobalert-page-button">
+            <apex:commandLink action="{!save}" styleClass="table_apply_button"><input type="button" value="{!$Label.Save_Job_Alert}" /></apex:commandLink>
+            <apex:commandLink action="{!massDel}" styleClass="table_apply_button"><input type="button" value="{!$Label.Delete_Job_Alert}" /></apex:commandLink>
+        </div>
+         
+        <div class="section-header jobalert-header-section">
+             <p class="jobalert-header-checkbox" style="width:38px;"></p>
+             <h3>Saved Job Alerts</h3>
+        </div>
+         
+        <apex:repeat value="{!searchcriteriaList}"  var="v_SC" id="searchcriteriaListRep" rows="{!searchcriteriaList.size}">
+            <table class="jobalert-value-table">
+                <tr>
+                    <td style="width:37px;">
+                      <p class="jobalert-header-checkbox" > <apex:inputCheckbox value="{!v_SC.TRGTFCMS__Deleting_Checkbox__c}" id="withdrawCheckBox"/></p>
+                    </td>
+                    <td>
+                        <div class="row" >
+                            <apex:outputText value="{!v_SC.TRGTFCMS__Search_Criteria__c}" styleClass="field-text"  id="TRGTFCMS__Search_Criteria__c" />
+                        </div>
+                    </td>                                      
+                </tr>
+            </table>
+        </apex:repeat>
+    </apex:form>
+</apex:page>

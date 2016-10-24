@@ -1,0 +1,138 @@
+<apex:page standardController="AVTRRT__CallEmAlls__c" extensions="AVTRRT.CallEmAllController" showHeader="false" sidebar="false">
+	<apex:pageMessages />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script>
+		var j$ = jQuery.noConflict();
+		function fixId(myid) {
+			return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+		}
+	</script>
+	
+	<style >
+		.SmsArea {
+			width: 250px;
+			height: 100px;
+		}
+	</style>
+	
+	<apex:form >
+		<B>{!$Label.CallEmAll_Create_a_Broadcast_Label}</B><br /><br />
+
+		{!$Label.CallEmAll_Message_Type} <br />
+		<apex:inputField value="{!CEM.AVTRRT__Message_Type__c}" id="MessType"  onchange="hideType();"/><br /><br />
+
+		{!$Label.CallEmAll_Name_of_Broadcast} <br />
+		<apex:inputField value="{!CEM.AVTRRT__Broadcast_Name__c}"/><br /><br />
+
+		<apex:outputPanel id="VoicePanel">
+			{!$Label.CallEmAll_Caller_Id} <br />
+			<apex:inputField value="{!CEM.AVTRRT__Caller_ID__c}" id="Caller_ID"/><br /><br />
+
+			{!$Label.CallEmAll_Broadcast_Type} <br />
+			<apex:inputField value="{!CEM.AVTRRT__Broadcast_Type__c}" id="Broadcast_Type"/><br /><br /><br />
+		</apex:outputPanel>
+		
+		<!-- TODO: Type <b> instead of <B> -->
+		<B>{!$Label.When_would_you_like_your_broadcast_to_start_Label}</B><br /><br /> 
+
+		{!$Label.CallEmAll_Send_Immediately}<br /> 
+		<apex:inputField value="{!CEM.Start_Immediately__c }" id="Immediately"  onclick="hide();"/><br />
+
+		<apex:outputPanel id="DateTime">
+			<table>
+				<tr>
+					<td>	
+						{!$Label.avtrrt__CallEmAll_Start_Date}
+					</td>
+					<td>
+						{!$Label.avtrrt__CallEmAll_Start_Time}
+					</td>
+				 </tr>	
+				 <tr>
+				 	<td>	
+						<apex:inputField value="{!CEM.Start_Date__c }" id="Start_Date"/>
+					</td>
+					<td>
+						<apex:inputField value="{!CEM.Start_Time__c }" id="Start_Time"/>
+					</td>
+				 </tr>
+			</table>
+		</apex:outputPanel>
+		<br /><br />  
+
+		<apex:outputPanel id="AudioPanel">
+			{!$Label.CallEmAll_Select_An_Audio_File_Label}<br />  
+
+			<apex:selectList value="{!CEM.AVTRRT__Audio_Files__c}" size="1" id="AudioList"> 
+				<apex:selectOptions value="{!audioOptions}"/>
+			</apex:selectList> &nbsp;&nbsp;&nbsp;
+		</apex:outputPanel>
+
+		<apex:outputPanel id="TextPanel">
+			Enter Your Text Message:<br />	
+			<apex:inputField value="{!CEM.SMS_Text_Message__c }" styleClass="SmsArea" id="TextMessage"/>	
+		</apex:outputPanel>
+
+		<script>
+			var DateTime= j$(fixId('{!$Component.DateTime}'));
+			var imm = j$(fixId('{!$Component.Immediately}'));
+			var sd = j$(fixId('{!$Component.Start_Date}'));
+			var st = j$(fixId('{!$Component.Start_Time}'));
+
+			var VoicePanel = j$(fixId('{!$Component.VoicePanel}'));
+			var MessType = j$(fixId('{!$Component.MessType}'));
+			var Caller_ID = j$(fixId('{!$Component.Caller_ID}'));
+			var Broadcast_Type = j$(fixId('{!$Component.Broadcast_Type}'));
+			var AudioPanel = j$(fixId('{!$Component.AudioPanel}'));
+			var AudioList = j$(fixId('{!$Component.AudioList}'));
+
+			var TextMessage = j$(fixId('{!$Component.TextMessage}'));
+			var TextPanel = j$(fixId('{!$Component.TextPanel}'));
+		</script>
+
+		<apex:commandButton action="{!sendBroadcast}" value="{!$Label.avtrrt__CallEmAll_Send_Broadcast_button}" />
+
+		</apex:form>
+
+		<script>
+			// TODO: Unclear methods' names.
+			hide();
+			hideType();
+			function hide() {
+				if (imm.attr('checked') == true) {
+					DateTime.css('display', 'none');
+					sd.attr('value', '');
+					st.attr('value', '');
+				} else {
+					DateTime.css('display', 'block');
+				}
+			}
+			
+			function hideType() {
+				var textForSms = '{!job.Job_Audio_File_Text__c}';
+				var jobName = '{!job.Name}';
+				var jobTitle = '{!job.Job_Title__c}';
+			
+				if (MessType.attr('value') == 'Text Only') {
+					VoicePanel.css('display', 'none');
+					Caller_ID.attr('value', '');
+					Broadcast_Type.attr('value', '');
+					AudioPanel.css('display', 'none');
+					AudioList.attr('value', '');
+					TextPanel.css('display', 'block');
+					if (textForSms != '') {
+						TextMessage.attr('value', textForSms);
+					}
+				} 
+
+				if (MessType.attr('value') == 'Voice Only') {
+					VoicePanel.css('display', 'block');
+					AudioPanel.css('display', 'block');
+					TextPanel.css('display', 'none');
+					TextMessage.attr('value', '');
+					var test = jobName + ' - ' + jobTitle;
+					AudioList.val('{!job.Call_Em_All_Audio_Id__c}');
+				}
+			}
+		</script>
+</apex:page>

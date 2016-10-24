@@ -1,0 +1,102 @@
+<apex:page controller="TRGTFCMS.ClientJobListController"  showHeader="false" sidebar="false" tabStyle="AVTRRT__Job__c" cache="false" action="{!init}" >
+    <style>
+        <apex:outputText value="{!cmsCssCustom}" />
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script>
+        // jQuery workarounds to make it work.
+        var j$ = jQuery.noConflict();
+        function fixId(myid) {
+                return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+        }
+    </script>
+   <div class="search-page">
+    <apex:pageMessages />
+    <apex:form id="form">
+    <div class="container round-corner">
+        <div class="search-result">
+            <apex:outputPanel >
+            <table class="cmstable" id="table1" cellspacing="0" summary="{!$Label.Search_Result_of_the_jobs}">
+                            <tr >
+                                <td colspan="7">
+                                    <div class="form-submit1"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="col" abbr="Action">&nbsp;{!$Label.Action}</th>
+                                <th scope="col" abbr="Job Title">&nbsp;{!$Label.Job_Title}</th>
+                                <th scope="col" abbr="Start Date">&nbsp;{!$Label.Start_Date}</th>
+                                <th scope="col" abbr="Hiring Manager">&nbsp;{!$Label.Hiring_Manager}</th>
+                                <th scope="col" abbr="Bill rate">&nbsp;{!$Label.Bill_rate}</th>
+                                <th scope="col" abbr="Description">&nbsp;{!$Label.Job_Summary}</th>
+                                <th scope="col" abbr=""></th>
+                            </tr>
+                                 <apex:repeat value="{!jobList}" var="job" id="repeat1">
+                                 <tr>
+                                     <td>
+                                         <apex:commandLink action="{!customEdit}"  value="{!$Label.trgtfcms__Edit}" target="_parent">
+                                             <apex:param name="id" value="{!job.Id}"/>
+                                             <apex:param name="page" value="ClientCreateEditJobPage"/>
+                                         </apex:commandLink>
+                                         &nbsp;|&nbsp;
+                                         
+                                         <apex:commandLink action="{!customDelete}"  value="{!$Label.trgtfcms__Delete}" target="_parent">
+                                             <apex:param name="JobId" value="{!job.Id}"/>
+                                             <apex:param name="page" value="ClientJobListPage"/>
+
+                                         </apex:commandLink>
+                                         
+                                         &nbsp;|&nbsp;
+                                         
+                                         <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" target="_parent">
+                                             <apex:param name="jobId" value="{!job.Id}"/> 
+                                             <apex:param name="page" value="ViewCandidatesPage" />
+                                             <apex:param name="sessionId" value="{!$CurrentPage.parameters.sessionId}" />
+                                             <apex:param name="jobSite" value="{!$CurrentPage.parameters.jobSite}" />
+                                             <apex:param name="p" value="{!$CurrentPage.parameters.p}" />
+                                            View Candidate
+                                         </apex:outputLink>
+                                         
+                                     </td>
+                                     <td>
+                                         <apex:commandLink action="{!customView}" styleClass="jobTitleList" target="_parent">
+                                          <apex:param name="id" value="{!job.Id}"/> 
+                                          <apex:param name="page" value="ClientJobDetailPage"/>   
+                                          {!job.AVTRRT__Job_Title__c}<br/>
+                                         </apex:commandLink>
+                                         
+                                     </td>
+                                        
+                                      <td>
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                            <apex:param value="{!job.AVTRRT__Start_Date__c}" /> 
+                                        </apex:outputText>
+                                      </td>
+                                      <td>
+                                          {!job.AVTRRT__Hiring_Manager__r.Name}
+                                      </td>
+                                      <td>
+                                          {!job.AVTRRT__Bill_Rate_Range__c}
+                                      </td>
+                                      <td colspan="2">
+                                          <p>
+                                          {!job.AVTRRT__Job_Summary__c}
+                                          </p>
+                                      </td>
+                                   </tr>
+                                </apex:repeat>
+                                
+                        </table>
+                                
+                </apex:outputPanel>
+                </div>
+            </div>
+        </apex:form>
+     </div>
+     <script>
+     j$(document).ready(function(){
+        j$("#table1 tr:odd").addClass("odd");
+        j$("#table1 tr:not(.odd)").addClass("even");  
+     });
+     </script>
+</apex:page>

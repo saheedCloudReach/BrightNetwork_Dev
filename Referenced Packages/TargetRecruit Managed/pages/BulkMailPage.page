@@ -1,0 +1,231 @@
+<apex:page standardController="AVTRRT__Job_Applicant__c" extensions="AVTRRT.BulkmailController" recordSetVar="applicants"
+	title="{!$Label.avtrrt__Send_Email}">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script src="/static/022509/js/spch.js"></script>
+	<script>
+
+	var j$ = jQuery.noConflict(); 
+	function fixId(myid) {
+	   return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+	}
+
+	function openRichTextPreview() {
+		var text = trim(FCKeditorAPI.GetInstance(editor.InstanceName).GetXHTML());
+		if(text==''){
+			alert('No data found in Body.');
+		}else{
+			var currPreviewWindow = window.open('Preview.jsp', 'cpw', 'width=450,height=400,scrollbars=yes,toolbar=no,status=no,directories=no,menubar=no,resizable=yes');
+			currPreviewWindow.document.open();
+			currPreviewWindow.document.write('<html><style>p{margin-top:0px; margin-bottom:0px;}</style><body bgcolor="#FFFFFF" marginwidth="2" marginheight="2" style="font-family:Arial;font-size:10pt;color:000000">');
+			currPreviewWindow.document.write(text);
+			currPreviewWindow.document.write('</body></html>');
+			currPreviewWindow.document.close();
+	   }
+	}
+
+	function getControls(sId) {
+		return {frame: document.getElementById(sId + "___Frame"),
+				input: document.getElementById(sId)};
+	}
+	function doRichTextSpell() {
+		var oEditorControls = getControls(editor.InstanceName);
+		oEditorControls.input.value = oEditorControls.frame.contentWindow.FCK.GetXHTML();
+		doSpell({
+				ctrl:editor.InstanceName,
+				lang:'en',
+				title:'Check Spelling',
+				intLang:'en'
+			},
+			'/servlet/SProxyWrapper',
+			document.location.protocol + '//' + 'spell-sjl.salesforce.com/spellcheck',
+			'There is nothing to check',
+			'We are sorry,our spellchecker currently does not support the browser you are using. Please upgrade your browser.'
+		);
+	}
+
+	var suffixUser = ' [User]';
+	var suffixContact = ' [Contact]';
+
+	function moveTo(select, hiddenUsers, hiddenContacts) {
+		j$.each(fromBox[0].options, function() {
+			if (this.selected){
+				var alreadyExists = false;
+				var itemToMove = this;
+
+				j$.each(select[0].options, function() {
+					if (this.value == itemToMove.value)
+						alreadyExists = true;
+				});
+
+				if (!alreadyExists) {
+					var copy = j$(this).clone()[0];
+					copy.text = copy.text + suffix;
+					select.append(copy);
+				}
+			}
+		});
+
+		updateToHidden(select, hiddenUsers, hiddenContacts);
+	}
+
+	function moveFrom(select, hiddenUsers, hiddenContacts) {
+		j$.each(select[0].options, function(index) {
+			if (this.selected){
+				j$(this).remove();
+				moveFrom(select, hiddenUsers, hiddenContacts);
+			}
+		});
+
+		updateToHidden(select, hiddenUsers, hiddenContacts);
+	}
+	function updateToHidden(select, hiddenUsers, hiddenContacts) {
+		hiddenUsers[0].value = '';
+		hiddenContacts[0].value = '';
+
+		j$.each(select[0].options, function(index) {
+			if (this.text.lastIndexOf(suffixUser) > this.text.lastIndexOf(suffixContact))
+				hiddenUsers[0].value += ',' + this.value;
+			else
+				hiddenContacts[0].value += ',' + this.value;
+		});
+
+		if (hiddenUsers[0].value.length > 0)
+			hiddenUsers[0].value = hiddenUsers[0].value.substr(1);
+
+		if (hiddenContacts[0].value.length > 0)
+			hiddenContacts[0].value = hiddenContacts[0].value.substr(1);
+	}
+	function updateFromHidden(select, hiddenUsers, hiddenContacts) {
+		select.empty();
+
+		j$.each(hiddenUsers[0].value.split(","), function(index) {
+			addToSelect(select, this);
+		});
+		j$.each(hiddenContacts[0].value.split(","), function(index) {
+			addToSelect(select, this);
+		});
+	}
+
+	function addToSelect(select, val) {
+		if (val != '')
+			select.append(j$('<option value="' + val + '">' + (getFromSourceSelectByValue(userOptions, val) != null ? (getFromSourceSelectByValue(userOptions, val) + suffixUser) : (getFromSourceSelectByValue(contactOptions, val) + suffixContact)) + '</option>'));
+	}
+	function getFromSourceSelectByValue(select, val) {
+		var retVal = null;
+
+		j$.each(select[0].options, function(index) {
+			if (this.value == val)
+				retVal = this.text;
+		});
+
+		return retVal;
+	}
+
+	function addFile() {
+		var hiddenFileHolder = newFiles.find('div:hidden:first');
+
+		hiddenFileHolder.remove();
+		newFiles.append(hiddenFileHolder);
+
+		hiddenFileHolder.show();
+
+		ensureAddFileLinkState();
+	}
+
+	function removeFile(link) {
+		var fileHolder = link.parent();
+		fileHolder.hide();
+		fileHolder.find(':first-child').val(null);
+		ensureAddFileLinkState();
+	}
+
+	function ensureAddFileLinkState() {
+		if (newFiles.find('div:hidden').size() == 0)
+			addFileLink.hide();
+		else
+			addFileLink.show();
+	}
+
+	</script>
+	
+	<apex:pageMessages />
+
+	<apex:outputPanel rendered="{!jobApplicantsCount != 0}">
+
+		<apex:sectionHeader title="{!$ObjectType.AVTRRT__Job__c.Label}"
+				subtitle="Candidates"
+				description="Candidates: {!selectedJobApps}. Job: {!jobTitle}" />
+
+		<apex:form >
+
+		<apex:pageBlock mode="edit" >
+		
+			<apex:pageBlockButtons >
+				<apex:commandButton value="{!$Label.avtrrt__Send}" action="{!send}" />
+				<apex:commandButton value="{!$Label.avtrrt__Preview}" onclick="openRichTextPreview();return false;" />
+				<apex:commandButton value="{!$Label.avtrrt__Cancel}" onclick="parent.location.href = '/{!jobId}';return false;" />
+			</apex:pageBlockButtons>
+
+			<apex:pageBlockSection columns="1" title="{!$Label.avtrrt__Message}">
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="Folder"></apex:outputLabel>
+					<apex:selectList value="{!folderId}" size="1">
+						<apex:selectOptions value="{!folderOptions}"></apex:selectOptions>
+						<apex:actionSupport event="onchange" action="{!selectFolder}"
+							status="statusLoading" immediate="false" />
+					</apex:selectList>
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$Label.avtrrt__Template}"></apex:outputLabel>
+					<apex:selectList value="{!selectedTemplateId}" size="1">
+						<apex:selectOptions value="{!templateOptions}"></apex:selectOptions>
+						<apex:actionSupport event="onchange" action="{!selectTemplate}"
+							status="statusLoading" immediate="false" />
+					</apex:selectList>
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$Label.avtrrt__Subject}"></apex:outputLabel>
+					<apex:inputText value="{!subject}" style="width:100%" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$Label.avtrrt__Body}"></apex:outputLabel>
+					<apex:inputField value="{!body.AVTRRT__HTML_Editor_Hidden_Field__c}"/>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+			<apex:pageBlockSection columns="1" title="{!$Label.avtrrt__Attachments_20_maximum}" rendered="{!disableAttachments = false}">
+	
+				<apex:outputPanel >
+					<apex:repeat value="{!attachmentsWithCheckbox}" var="attachmentWithCheckbox">
+						<apex:inputCheckbox value="{!attachmentWithCheckbox.isSelected}" id="attJobApp" />
+						<apex:outputLabel styleClass="labelCol first" value="{!attachmentWithCheckbox.attachment.Name}" for="attJobApp" /><br />
+					</apex:repeat>
+				</apex:outputPanel>
+	
+				<apex:outputLabel styleClass="labelCol" value="{!$Label.avtrrt__Type_the_path}" />
+	
+				<apex:outputPanel >
+					<apex:outputPanel id="newFiles">
+						<apex:repeat value="{!newAttachmentList}" var="newAttachment">
+							<div style="display:none">
+								<apex:inputFile value="{!newAttachment.Body}" fileName="{!newAttachment.Name}" />
+								<a class="labelCol" style="padding:0" onclick="removeFile(j$(this)); return false;" href="javascript:">{!$Label.Remove_File}</a>
+							</div>
+						</apex:repeat>
+					</apex:outputPanel>
+	
+					<a id="addFileLink" class="labelCol" style="padding:0" href="javascript:addFile()">{!$Label.Add_File}</a>
+	
+					<script>
+						var newFiles = j$(fixId('{!$Component.newFiles}'));
+						var addFileLink = j$(fixId('addFileLink'));
+					</script>
+				</apex:outputPanel>
+	
+			</apex:pageBlockSection>
+
+		</apex:pageBlock>
+
+		</apex:form>
+	</apex:outputPanel>
+</apex:page>

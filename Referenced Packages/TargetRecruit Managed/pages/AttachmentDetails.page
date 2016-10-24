@@ -1,0 +1,28 @@
+<apex:page standardController="Contact" extensions="AVTRRT.AttachmentDetailsController" sidebar="false" showHeader="false" action="{!init}">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    <script type="text/javascript">
+        var j$ = jQuery.noConflict();
+    </script>
+
+
+    <div id="docPreview" style="height:600px">
+        <apex:outputPanel rendered="{!chatterId != null}">
+            <embed
+                    src="/_swf/121310/sfc/flex/DocViewer.swf"
+                    flashvars="shepherd_prefix=/sfc/servlet.shepherd&v={!chatterId}&mode=chatterfilepreview&in_tests=false"
+                    width="100%" height="100%" align="middle" id="renditionLarge"
+                    quality="high" bgcolor="#f3f3f3" name="renditionLarge"
+                    allowscriptaccess="sameDomain" allowfullscreen="true"
+                    pluginspage="http://www.adobe.com/go/getflashplayer"
+                    wmode="opaque" type="application/x-shockwave-flash" ></embed>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!chatterId == null}">
+            <center><p style="font-family: Tahoma; font-size: 14px; border: 1px solid #5674b9; width: 80%; padding: 5px 5px 5px 5px;">{!$Label.avtrrt__Preview_unavailable}</p></center>
+        </apex:outputPanel>
+
+
+        <apex:relatedList list="OpenActivities" rendered="{!$Setup.ConfigSettingsHierarchy__c.Show_Open_Activities_on_Chatter_Preview__c}" />
+        <apex:relatedList list="ActivityHistories" rendered="{!$Setup.ConfigSettingsHierarchy__c.Show_Activity_History_on_Chatter_Preview__c}" />
+    </div>
+</apex:page>

@@ -1,0 +1,137 @@
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" cache="false">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="robots" content="index, follow" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- CSS styles -->
+		<apex:stylesheet value="{!URLFOR($Resource.TRGTFCMS__JQMobile, 'jquery.mobile-1.3.1.min.css')}"/>
+
+		<!-- JS Libs -->
+		<script src="{!URLFOR($Resource.CPMobile, 'js/jquery-1.9.1.min.js')}"></script>
+
+		<script>
+			$(document).bind("mobileinit", function () {
+				$.mobile.ajaxEnabled = false;
+				$.mobile.linkBindingEnabled = false;
+				$.mobile.hashListeningEnabled = false;
+				$.mobile.pushStateEnabled = false;
+			});
+		</script>
+
+		<script src="{!URLFOR($Resource.JQMobile, 'jquery.mobile-1.3.1.min.js')}"></script>
+		<script src="{!URLFOR($Resource.CPMobile, 'js/underscore-min.js')}"></script>
+		<script src="{!URLFOR($Resource.CPMobile, 'js/backbone-min.js')}"></script>
+		<script src="{!URLFOR($Resource.CPMobile, 'js/knockout-2.2.1.js')}"></script>
+		<script src="{!URLFOR($Resource.CPMobile, 'js/knockback.min.js')}"></script>
+		<script src="{!URLFOR($Resource.CPMobile, 'js/form2js.js')}"></script>
+		<script src="{!URLFOR($Resource.CPMobile, 'js/date.js')}"></script>
+
+		<script>
+			var AppRouterBase = Backbone.Router.extend({
+				loadOrGetFromCache: function (loadFunction) {
+					pageFromCache = $('[hash="' + window.location.hash + '"]')
+					if (pageFromCache.length > 0) {
+						$.mobile.changePage(pageFromCache, {transition: 'none'});
+					} else {
+						loadFunction();
+					}
+				},
+
+				changePage: function (page, options) {
+					page.$el.attr('data-role', 'page');
+
+					if (options != null) {
+						if (options.theme != null) {
+							page.$el.attr('data-theme', options.theme);
+						}
+						if (options.dialog == true) {
+							page.$el.attr('data-role', 'dialog');
+							page.$el.attr('data-close-btn', 'none');
+						}
+					}
+
+					$('body').append(page.$el);
+
+					var changePageOptions = {transition: 'none'};
+					$.mobile.changePage(page.$el, changePageOptions);
+				}
+			});
+
+			PortalView = Backbone.View.extend({
+				initialize: function() {
+					this.render();
+				},
+
+				render: function() {
+
+					var template = _.template($(this.templateSelector).html());
+
+					this.$el.html(template);
+					this.$el.trigger("create");
+
+					this.$el.attr('hash', window.location.hash);
+
+					this.$el.find('[data-rel="back"]').on('click', function(event) {
+						window.history.back();
+						return false;
+					});
+
+					var kbViewModel = (this.options.data instanceof Backbone.Collection)
+						? { items:kb.collectionObservable(this.options.data) }
+						: kb.viewModel(this.options.data);
+
+					ko.applyBindings(kbViewModel, this.el);
+				},
+
+				/*remove: function() {
+					this.$el.remove();
+					this.stopListening();
+					return this;
+				},*/
+			});
+
+			$(function () {
+				appRouter = new AppRouter();
+				Backbone.history.start();
+			});
+
+			function apexInvoke(method, paramList, callback) {
+				var evalBefore =
+					'Visualforce.remoting.Manager.invokeAction(method,';
+				var evalAfter =
+					'function(result, event) {' +
+						'if (event.status) {' +
+							'callback(result);' +
+						'} else if (event.type === \'exception\') {' +
+							'appRouter.navigate(\'errorMessage/\' + event.message, true);' +
+						'}' +
+					'},' +
+					'{escape: false});';
+
+				var evalMiddle = '';
+				for (var i = 0; i < paramList.length; i++) {
+					evalMiddle += 'paramList[' + i + '],';
+				}
+
+				eval(evalBefore + evalMiddle + evalAfter);
+			}
+		</script>
+
+		<c:MobileRouter />
+
+	</head>
+
+	<body>
+		<c:MobileJobList />
+
+		<c:MobileJobDetail />
+
+		<c:MobileJobApply />
+
+		<c:MobileMessage />
+	</body>
+
+</apex:page>

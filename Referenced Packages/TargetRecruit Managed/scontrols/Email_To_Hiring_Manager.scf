@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+ <html> <head> <script src="/soap/ajax/9.0/connection.js" type="text/javascript"></script>
+ <script> 
+var Contact_Id ="";
+
+ var str1 = "Select AVTRRT__Hiring_Manager__c,AVTRRT__Job_Title__c,Name From AVTRRT__Job__c Where Id = '{!Job_Applicant__c.JobId__c}'"; //Changed by Amrender
+ var queryResult = sforce.connection.query(str1);
+
+ if (queryResult.size > 0)
+ {
+   var records = queryResult.getArray("records");
+   Contact_Id = records[0].AVTRRT__Hiring_Manager__c;
+   var Job_Name = records[0].AVTRRT__Job_Title__c;
+
+   str1 = "Select Name,Email From Contact Where Id = '" + Contact_Id+ "'"
+   queryResult = sforce.connection.query(str1);
+   if (queryResult.size >0)
+   {
+     records = queryResult.getArray("records");
+     var Contact_Name = records[0].Name;
+     var Contact_Email = records[0].Email;
+    // document.getElementById('to_address').value = Contact_Email;
+
+     str1 = "Select AVTRRT__Resume__c From Contact Where Id = '{!Job_Applicant__c.Contact_CandidateId__c}'" ; //Changed by Amrender
+     var queryResult1 = sforce.connection.query(str1);
+     if (queryResult1.size > 0)
+     {
+       var records = queryResult1.getArray("records");
+       var Contact_Resume = records[0].AVTRRT__Resume__c;
+      // document.getElementById('email_body').value = Contact_Resume;
+     }
+     //document.getElementById('email_subject').value = "Job Title : "+Job_Name 
+     //document.getElementById('email_body').value = Contact_Resume
+   }
+ }
+
+
+        //var user = sforce.connection.getUserInfo().userEmail;
+        //document.getElementById('reply_to').value = user;
+
+  </script> 
+  
+ </head> 
+<body >
+ <table width="600" border="0" cellspacing="1" cellpadding="1">
+   <tr>
+     <td>
+<script>
+try{
+	var id ='{!Job_Applicant__c.Id}';
+	var tabId = id.substring(0,3);
+	var candId = "{!Job_Applicant__c.Contact_Candidate__c}";
+	//alert("/email/author/emailauthor.jsp?retURL=%2F"+id+"&p3_mlktp="+tabId+"&p3_lkid="+id+"&p3_lktp="+tabId+"&p2_lkid="+Contact_Id+"&p2_lktp=003&p6=Submitting Candidate "+candId+" for Job "+Job_Name);
+	this.location.href="/email/author/emailauthor.jsp?retURL=%2F"+id+"&p3_mlktp="+tabId+"&p3_lkid="+id+"&p3_lktp="+tabId+"&p2_lkid="+Contact_Id+"&p2_lktp=003&p6=Submitting Candidate "+candId+" for Job "+Job_Name;
+}catch(error){
+	alert(error);
+}	
+</script>
+
+</td>
+   </tr>
+ </table>
+
+ </body> 
+  </html>

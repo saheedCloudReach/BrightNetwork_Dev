@@ -1,0 +1,18 @@
+<apex:page controller="FCMS.SelectlanguageController" action="{!init}" ><!--  language="{!selectLanguage}"-->
+	<apex:form >
+		<!-- apex:outputPanel id="refreshBlock">
+			<script>
+				if ('{!display}' == 'true') {
+					parent.location.reload();
+				}
+			</script>
+
+			<div align="right">
+				<apex:selectList value="{!selectLanguage}" size="1">
+					<apex:SelectOptions value="{!languages}" />
+					<apex:actionSupport event="onchange" action="{!changeLanguage}" reRender="refreshBlock"/>
+				</apex:selectList>
+			</div>
+		</apex:outputPanel -->
+	</apex:form>
+</apex:page>

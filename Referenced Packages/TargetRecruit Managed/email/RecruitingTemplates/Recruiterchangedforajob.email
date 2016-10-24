@@ -1,0 +1,10 @@
+<table cellpadding="5" width="550" height="400" cellspacing="5" border="0" >
+<tr height="400" valign="top" >
+<td locked="0" style=" font-family:arial; bLabel:main; color:#000000; font-size:12pt; bEditID:r3st1; background-color:#FFFFFF;" aEditID="c1r1" tEditID="c1r1" >
+<![CDATA[<P>Dear {!Job__c.Recruiter__c},</P>
+<P>&nbsp;</P>
+<P>You have been assigned for the job "{!Job__c.Job_Title__c}"&nbsp;with job&nbsp;num "{!Job__c.Name}" and the account is "{!Job__c.Account_Job__c}"</P>
+<P>&nbsp;</P>
+<P>Happy Hunting! <BR><BR>Thanks,</P>]]></td>
+</tr>
+</table>

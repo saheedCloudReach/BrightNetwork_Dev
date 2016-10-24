@@ -1,0 +1,65 @@
+<apex:page controller="FCMS.CMSTabsPageController" >
+	<p>
+	<apex:form >
+		<table >
+			<tr>
+				<td>
+				<apex:image value="{!$Resource.FCMS__icon_cms}" width="30" height="30" />
+				</td>
+				<td style="vertical-align:middle">
+				<apex:commandLink action="{!cmsSiteSetupTab}" value="{!$Label.fcms__Manage_CMSSiteSetup}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<apex:image value="{!$Resource.FCMS__icon_cms}" width="30" height="30" />
+				</td>
+				<td style="vertical-align:middle">
+				<apex:commandLink action="{!cmsProfileTab}" value="{!$Label.fcms__Manage_CMSProfile}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<apex:image value="{!$Resource.FCMS__icon_cms}" width="30" height="30" />
+				</td>
+				<td style="vertical-align:middle">
+				<apex:commandLink action="{!pageTab}" value="{!$Label.fcms__Manage_Pages}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<apex:image value="{!$Resource.FCMS__icon_cms}" width="30" height="30" />
+				</td>
+				<td style="vertical-align:middle">
+				<apex:commandLink action="{!menuTab}" value="{!$Label.fcms__Manage_Menus}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<apex:image value="{!$Resource.FCMS__icon_cms}" width="30" height="30" />
+				</td>
+				<td style="vertical-align:middle">
+				<apex:commandLink action="{!blockTab}" value="{!$Label.fcms__Manage_Blocks}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<apex:image value="{!$Resource.FCMS__icon_cms}" width="30" height="30" />
+				</td>
+				<td style="vertical-align:middle">
+				<apex:commandLink action="{!menuComponentTab}" value="{!$Label.fcms__Manage_Menu_Components}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<apex:image value="{!$Resource.FCMS__icon_cms}" width="30" height="30" />
+				</td>
+				<td style="vertical-align:middle">
+				<apex:commandLink action="{!sessionTab}" value="{!$Label.fcms__Manage_Sessions}" />
+				</td>
+			</tr>
+		</table>
+
+	</apex:form>
+	</p>
+</apex:page>

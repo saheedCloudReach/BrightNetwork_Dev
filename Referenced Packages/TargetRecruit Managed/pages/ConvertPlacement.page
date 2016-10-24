@@ -1,0 +1,48 @@
+<apex:page standardController="AVTRRT__Job_Applicant__c" extensions="AVTRRT.ConvertToPlacement" action="{!init}">
+    <!--style type="text/css">
+    	.message {
+    		font-family: Tahoma;
+    	}
+    </style-->
+    <body>
+    <apex:pageMessages id="error" escape="false"/>
+    	<apex:outputPanel rendered="{!isPlacementExists == true}">
+    		<a href="/{!jobApplicantId}" style="font-family: Tahoma;">{!$Label.avtrrt__Back_to_Job_Applicant}</a>
+    	</apex:outputPanel>
+        <apex:form id="theForm">
+            <apex:pageBlock title="{!$Label.avtrrt__Convert_Placement}" rendered="{!checkJobExistence}">
+            	<apex:pageBlockSection >
+	            	<apex:outputText value="{!$Label.avtrrt__Job_Field_Job_Applicant}" style="color:red"/>
+					<apex:outputLink value="/{!AVTRRT__Job_Applicant__c.id}" style="color:blue">
+					{!$Label.avtrrt__Back_to_Job_Applicant}
+					</apex:outputLink>
+				</apex:pageBlockSection>
+            </apex:pageBlock>
+            <apex:pageBlock title="{!$Label.avtrrt__Convert_Placement}" rendered="{!checkCandidateExistence}">
+            	<apex:pageBlockSection >
+	            	<apex:outputText value="{!$Label.avtrrt__Candidate_Field_Job_Applicant}" style="color:red"/>
+					<apex:outputLink value="/{!AVTRRT__Job_Applicant__c.id}" style="color:blue">
+					{!$Label.avtrrt__Back_to_Job_Applicant}
+					</apex:outputLink>
+				</apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:form>
+    </body>
+    <!--
+    <script>
+        function convertPlacement(){
+            //check whether placement has been exist for this applicant or not.
+            if({!checkJobExistence} == false && {!checkCandidateExistence} == false){
+	            if({!isPlacementExists}){
+	                alert("This Job applicant is already converted into a placement");
+	                parent.location.href = '/{!jobApplicant.Id}';
+	            }
+	            else{
+	                convertPlacement1();
+	            }
+            }
+        }
+        convertPlacement();
+    </script>
+    -->
+</apex:page>

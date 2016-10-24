@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CustomSettingsComponent</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CustomSettingsComponent</value>
+    </caseValues>
+    <fields>
+        <label><!-- Candidate Duplicate Record Email --></label>
+        <name>Candidate_Duplicate_Record_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Candidate Duplicate Record Error Message --></label>
+        <name>Candidate_Duplicate_Record_Error_Messa__c</name>
+    </fields>
+    <fields>
+        <label><!-- Captcha Enable --></label>
+        <name>Captcha_Enable__c</name>
+    </fields>
+    <fields>
+        <label><!-- Captcha failed message --></label>
+        <name>Captcha_failed_message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Confirm Password Error --></label>
+        <name>ConfirmPasswordError__c</name>
+    </fields>
+    <fields>
+        <label><!-- ErrorsReceiver --></label>
+        <name>ErrorsReceiver__c</name>
+    </fields>
+    <fields>
+        <label><!-- LinkedIn Client Id --></label>
+        <name>LinkedIn_Client_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- LinkedIn Client Secret --></label>
+        <name>LinkedIn_Client_Secret__c</name>
+    </fields>
+    <fields>
+        <label><!-- LinkedIn Redirect Uri --></label>
+        <name>LinkedIn_Redirect_Uri__c</name>
+    </fields>
+    <fields>
+        <label><!-- Password Error --></label>
+        <name>PasswordError__c</name>
+    </fields>
+    <fields>
+        <label><!-- Password Email Error --></label>
+        <name>Password_Email_Error__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profile Updated Message --></label>
+        <name>ProfileUpdatedMsg__c</name>
+    </fields>
+    <fields>
+        <label><!-- Send Logs --></label>
+        <name>Send_Logs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Session Timeout --></label>
+        <name>SessionTimeout__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

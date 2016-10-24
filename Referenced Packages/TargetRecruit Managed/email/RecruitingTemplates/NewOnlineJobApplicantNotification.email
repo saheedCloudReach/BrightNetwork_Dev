@@ -1,0 +1,7 @@
+Dear {!Job_Applicant__c.Assigned_Recruiter__c},
+
+A new candidate {!Job_Applicant__c.Contact_Candidate__c} has applied for the job {!Job_Applicant__c.Job__c}.
+
+Please qualify the candidate.
+
+Thanks

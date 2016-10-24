@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPageWebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Parse Resume</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <url>http://dbsync.avankia.com:9090/importresume/rpd.m?config={!SUBSTITUTE(TRIM(LOWER($Organization.Name)), &quot; &quot;, &quot;&quot;)}&amp;sessionId={!$Api.Session_ID}&amp;orgId={!$Organization.Id}{!$ObjectType.Config__c}&amp;sfURL={!$Api.Partner_Server_URL_150}&amp;ownerId={!$User.Id}</url>
+</CustomPageWebLink>

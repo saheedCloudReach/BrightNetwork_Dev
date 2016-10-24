@@ -1,0 +1,18 @@
+Dear all:
+
+Congrats to Recruiter: {!Placement__c.Recruiter__c} and {!Placement__c.Account_Manager__c}
+ 
+
+ 
+{!Placement__c.Contact_Candidate__c}
+
+Placed with {!Placement__c.Employer__c}
+
+Start Date: {!Placement__c.Start_Date__c}
+
+Recruiter: {!Placement__c.Recruiter__c}
+
+Account Manager: {!Placement__c.Account_Manager__c}
+
+
+Thanks.

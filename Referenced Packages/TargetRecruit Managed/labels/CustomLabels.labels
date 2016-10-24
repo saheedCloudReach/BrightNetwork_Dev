@@ -1,0 +1,3162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>AND</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AND</shortDescription>
+        <value>AND</value>
+    </labels>
+    <labels>
+        <fullName>AVTRRT_Stage_c_Closed_Won</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage__c=Hired</shortDescription>
+        <value>Stage__c=Hired</value>
+    </labels>
+    <labels>
+        <fullName>AVTRRT_Stage_c_Interviewing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage__c=Interviewing</shortDescription>
+        <value>Stage__c=Interviewing</value>
+    </labels>
+    <labels>
+        <fullName>AVTRRT_Type_c_Recruiter_AVTRRT_Stage_c</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Type__c=Recruiter;Stage__c=</shortDescription>
+        <value>Type__c=Recruiter;Stage__c=</value>
+    </labels>
+    <labels>
+        <fullName>Aborted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Aborted</shortDescription>
+        <value>Aborted</value>
+    </labels>
+    <labels>
+        <fullName>Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
+        <fullName>ActOnPleaseSelectCandidate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ActOnPleaseSelectCandidate</shortDescription>
+        <value>Please Select Candidate</value>
+    </labels>
+    <labels>
+        <fullName>Action</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Action</shortDescription>
+        <value>Action</value>
+    </labels>
+    <labels>
+        <fullName>Add</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add</shortDescription>
+        <value>Add</value>
+    </labels>
+    <labels>
+        <fullName>Add_File</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add File</shortDescription>
+        <value>Add File</value>
+    </labels>
+    <labels>
+        <fullName>Add_New_Reference</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add New Reference</shortDescription>
+        <value>Add New Reference</value>
+    </labels>
+    <labels>
+        <fullName>Add_Resume_Close_Button_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add Resume Close Button Label</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>Add_Resume_From_Contact_Page_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add Resume From Contact Page Label</shortDescription>
+        <value>Add Resume From Contact/Candidate Record</value>
+    </labels>
+    <labels>
+        <fullName>Add_Resume_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add Resume Label</shortDescription>
+        <value>Add Resume</value>
+    </labels>
+    <labels>
+        <fullName>Add_Resume_Processing_Info</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add_Resume_Processing_Info</shortDescription>
+        <value>Updating Record</value>
+    </labels>
+    <labels>
+        <fullName>Add_Tags</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Tags</shortDescription>
+        <value>Add Tags</value>
+    </labels>
+    <labels>
+        <fullName>Add_resume_From_Contact_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add resume From Contact Label</shortDescription>
+        <value>Please select a Resume</value>
+    </labels>
+    <labels>
+        <fullName>Add_to_Short_List</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add to Short List</shortDescription>
+        <value>Add to Short List</value>
+    </labels>
+    <labels>
+        <fullName>Add_to_existing_values</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add to existing values</shortDescription>
+        <value>Add to existing values</value>
+    </labels>
+    <labels>
+        <fullName>Adding_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Adding text</shortDescription>
+        <value>By adding text here you can easily tag the candidates so you can quickly find them at a later date.</value>
+    </labels>
+    <labels>
+        <fullName>Additional_Criteria</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Additional Criteria</shortDescription>
+        <value>Additional Criteria</value>
+    </labels>
+    <labels>
+        <fullName>Additional_Search_Criteria</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Additional Search Criteria</shortDescription>
+        <value>Additional Search Criteria</value>
+    </labels>
+    <labels>
+        <fullName>Advanced_Filter_Conditions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Filter Conditions</shortDescription>
+        <value>Advanced Filter Conditions</value>
+    </labels>
+    <labels>
+        <fullName>Advanced_Options</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Advanced Options...</shortDescription>
+        <value>Advanced Options...</value>
+    </labels>
+    <labels>
+        <fullName>All_Co_Workers_in_Company</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>All Co-Workers in Company</shortDescription>
+        <value>All Co-Workers in Company</value>
+    </labels>
+    <labels>
+        <fullName>All_task_s_have_been_created_successfully</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>All task(s) have been created successfully</shortDescription>
+        <value>All task(s) have been created successfully.</value>
+    </labels>
+    <labels>
+        <fullName>Answers_to_question</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Answers to question</shortDescription>
+        <value>Answers to question...</value>
+    </labels>
+    <labels>
+        <fullName>Are_you_sure_you_want_to_delete_this_question</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Are you sure you want to delete this question?</shortDescription>
+        <value>Are you sure you want to delete this question?</value>
+    </labels>
+    <labels>
+        <fullName>Arrow_Left</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Arrow Left</shortDescription>
+        <value>&lt;-</value>
+    </labels>
+    <labels>
+        <fullName>Arrow_Right</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Arrow Right</shortDescription>
+        <value>-&gt;</value>
+    </labels>
+    <labels>
+        <fullName>Assessment_Status_Update</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Assessment Status Update</shortDescription>
+        <value>Completed</value>
+    </labels>
+    <labels>
+        <fullName>AssignedTo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AssignedTo</shortDescription>
+        <value>AssignedTo</value>
+    </labels>
+    <labels>
+        <fullName>Attach_File</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attach File</shortDescription>
+        <value>Attach File</value>
+    </labels>
+    <labels>
+        <fullName>Attachment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attachment</shortDescription>
+        <value>Attachment</value>
+    </labels>
+    <labels>
+        <fullName>Attachment_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attachment Details</shortDescription>
+        <value>Attachment Details</value>
+    </labels>
+    <labels>
+        <fullName>Attachments_20_maximum</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attachments (20 maximum)</shortDescription>
+        <value>Attachments (20 maximum)</value>
+    </labels>
+    <labels>
+        <fullName>Automotive</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Automotive</shortDescription>
+        <value>Automotive</value>
+    </labels>
+    <labels>
+        <fullName>Available_Date_Column</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Available Date Column</shortDescription>
+        <value>Available &lt;br/&gt; Date</value>
+    </labels>
+    <labels>
+        <fullName>Avankia</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Avankia</shortDescription>
+        <value>Avankia</value>
+    </labels>
+    <labels>
+        <fullName>BCC</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BCC</shortDescription>
+        <value>BCC</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Button</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check  Button</shortDescription>
+        <value>YES</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Cancel_Button</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Cancel Button</shortDescription>
+        <value>NO</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Close_Button</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Close Button</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure</shortDescription>
+        <value>Background Check Failed Due to ::</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_Birthdate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check  Failure Birthdate</shortDescription>
+        <value>Please Enter the Birthdate before  sending the Request</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_City</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure City</shortDescription>
+        <value>Please Enter City in Educational History Before Send the Request</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_City_EmploymentHistory</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure City EmploymentHistory</shortDescription>
+        <value>Please Enter City In Employment History Before Send the Request</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_DriverState_Contact</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure DriverState Contact</shortDescription>
+        <value>Please Enter DriverLicenceState in Contact Before Sending  the Request</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_Driver_License_contact</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure Driver License contact</shortDescription>
+        <value>Please Enter Driver License Number in contact Object Before send the Request</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_Enddate_EmploymentHistory</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure  Enddate EmploymentHistory</shortDescription>
+        <value>Please Enter the EndDate MMDDYYYY  or MMYYYY Format in Employment History Before Sending the Request.</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_Organization_Name_EmploymentHistory</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure Organization Name EmploymentHistory</shortDescription>
+        <value>Please Enter the Organization Name in Employment History Before Send the Request.</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_Phone</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure Phone</shortDescription>
+        <value>Please Enter Phone Number in Contact Object Before you send the Request</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_SSN</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure SSN</shortDescription>
+        <value>Please Enter the SSN Number Before  you send the Request</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_School_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure School Name</shortDescription>
+        <value>Please Enter the School Name in Educational Object Before Send Request</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_Startdate_EmploymentHistory</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure Startdate EmploymentHistory</shortDescription>
+        <value>Please Enter the  StartDate  in MMDDYYYY or MMYYYY  Format   in Employment History  Before Sending the Request.</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_State</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure State</shortDescription>
+        <value>Please Enter State in Educational History Before Send  the Request</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_State_EmploymentHistory</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure State EmploymentHistory</shortDescription>
+        <value>Please Enter State In Employment History Before send Request</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Failure_firstName</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Failure firstName</shortDescription>
+        <value>Please Enter the Firstname Before sending the Request</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Response_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Response Label</shortDescription>
+        <value>Background Check Response</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Screening_Driver_s_License_Motor_Vehicle_Record</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Screening Driver’s License/Motor Vehicle Record</shortDescription>
+        <value>Driver’s License/Motor Vehicle Record</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Screening_Education_Verification</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Screening Education Verification</shortDescription>
+        <value>Education Verification</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Screening_Employment_Verification</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Screening Employment Verification</shortDescription>
+        <value>Employment Verification</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Screening_Personal_or_Professional_Reference</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Screening Personal or Professional Reference</shortDescription>
+        <value>Personal or Professional Reference</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Screening_Selection</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Screening Selection</shortDescription>
+        <value>Please select the background check process that you would like to initiate</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Send_Request_Button</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Send Request Button</shortDescription>
+        <value>Send Request</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Send_Request_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Send Request Label</shortDescription>
+        <value>Are You Sure want to Send Background Check Request?</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Status_Update</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Status Update</shortDescription>
+        <value>Completed</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Subject_Completed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Subject Completed</shortDescription>
+        <value>Completed</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Subject_Created</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back Ground Check Subject Created</shortDescription>
+        <value>Pending</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_Check_Success</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Success</shortDescription>
+        <value>Request Successful</value>
+    </labels>
+    <labels>
+        <fullName>Back_Ground_check_Configuration</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back Ground Check Configuration</shortDescription>
+        <value>Back Ground Check Configuration Missing</value>
+    </labels>
+    <labels>
+        <fullName>Back_to_Job_Applicant</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back to Job Applicant</shortDescription>
+        <value>Back to Job Applicant</value>
+    </labels>
+    <labels>
+        <fullName>Behaviour_of_Clone_with_Job_Applicants_button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Behaviour of &quot;Clone with Job Applicants&quot; button</shortDescription>
+        <value>Behavior of &quot;Clone with Job Applicants&quot; button will be unexpected. If you want this button work properly then please disable the &quot;Enable creation Job Applicants&quot; custom setting. If you want to continue please click on Continue button.</value>
+    </labels>
+    <labels>
+        <fullName>Body</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Body</shortDescription>
+        <value>Body</value>
+    </labels>
+    <labels>
+        <fullName>Bottom</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Bottom</shortDescription>
+        <value>Bottom</value>
+    </labels>
+    <labels>
+        <fullName>CANDIDATE_POOL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CANDIDATE POOL</shortDescription>
+        <value>CANDIDATE POOL</value>
+    </labels>
+    <labels>
+        <fullName>CC</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CC</shortDescription>
+        <value>CC</value>
+    </labels>
+    <labels>
+        <fullName>Call</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Call</shortDescription>
+        <value>Call</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Broadcast_Type</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Broadcast Type</shortDescription>
+        <value>Broadcast Type</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Caller_Id</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Caller Id</shortDescription>
+        <value>Caller Id</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Candidate_List_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Candidate List Label</shortDescription>
+        <value>Candidate List</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Continue_button</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Continue button</shortDescription>
+        <value>Continue</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Create_a_Broadcast_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Create a Broadcast Label</shortDescription>
+        <value>Create a Broadcast</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Error_message</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Error Message</shortDescription>
+        <value>There is an issue occurred while Broadcast sending:</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Message_Type</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Message Type</shortDescription>
+        <value>Message Type</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Name_of_Broadcast</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Name of Broadcast</shortDescription>
+        <value>Name this Broadcast</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Select_An_Audio_File_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Select An Audio File Label</shortDescription>
+        <value>Select An Audio File</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Send_Broadcast_button</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Send Broadcast button</shortDescription>
+        <value>Send Broadcast</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Send_Immediately</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Send Immediately?</shortDescription>
+        <value>Send Immediately?</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Start_Date</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Start Date</shortDescription>
+        <value>Start Date</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Start_Time</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Start Time</shortDescription>
+        <value>Start Time</value>
+    </labels>
+    <labels>
+        <fullName>CallEmAll_Success_Message</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll Success Message</shortDescription>
+        <value>Your Broadcast has been sent</value>
+    </labels>
+    <labels>
+        <fullName>Can_t_find_template_0_in</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Can&apos;t find template from &apos;Job Notification Template Name&apos; config setting.</shortDescription>
+        <value>Can&apos;t find template from &apos;Job Notification Template Name&apos; config setting.</value>
+    </labels>
+    <labels>
+        <fullName>Cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>Candidate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate</shortDescription>
+        <value>Candidate</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_Field_Job_Applicant</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate Field. Job Applicant</shortDescription>
+        <value>Candidate field is empty for this Job Applicant.Please choose a Candidate first.</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_Info</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate Info</shortDescription>
+        <value>Candidate Information</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_List</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate List</shortDescription>
+        <value>Candidate List</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_N</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate N</shortDescription>
+        <value>Candidate #</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate Name</shortDescription>
+        <value>Candidate Name</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_Number</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate Number</shortDescription>
+        <value>#</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_Short_List</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate Short List</shortDescription>
+        <value>Candidate Short List</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_Tags</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate Tags</shortDescription>
+        <value>Candidate Tags</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_does_not_have_any_interviews</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate does not have any interviews</shortDescription>
+        <value>Candidate does not have any interviews</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_is_already_exists</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate &apos;{0}&apos; is already exists. You can\&apos;\&apos;t insert this candidate. Exi</shortDescription>
+        <value>Candidate &apos;&apos;{0}&apos;&apos; is already exists. You can&apos;t insert this candidate. Existing candidate Id is &apos;{1}&apos;</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_is_already_exists_update</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate &apos;{0}&apos; is already exists. You can\&apos;\&apos;t update this candidate. Exi</shortDescription>
+        <value>Candidate &apos;&apos;{0}&apos;&apos; is already exists. You can&apos;t update this candidate. Existing candidate Id is &apos;{1}&apos;</value>
+    </labels>
+    <labels>
+        <fullName>Candidate_search_generation_started_It_will_be_finished_after_some_time</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidate search generation started. It will be finished after some time.</shortDescription>
+        <value>Candidate search generation started. It will be finished after some time.</value>
+    </labels>
+    <labels>
+        <fullName>Candidates_update_started_It_will_be_finished_after_some_time</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Candidates update started... It will be finished after some time.</shortDescription>
+        <value>Candidates update started... It will be finished after some time.</value>
+    </labels>
+    <labels>
+        <fullName>Cant_getting_information_from_Config</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Can&apos;t getting information from Config</shortDescription>
+        <value>There is no Job Search Criteria setup in the config object. Please add search criteria to match the candidates with the jobs.</value>
+    </labels>
+    <labels>
+        <fullName>Checklist_Category</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Checklist Category</shortDescription>
+        <value>Checklist Category</value>
+    </labels>
+    <labels>
+        <fullName>Checklist_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Checklist Name</shortDescription>
+        <value>Checklist Name</value>
+    </labels>
+    <labels>
+        <fullName>Clear_Advanced_Options</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clear Advanced Options</shortDescription>
+        <value>Clear Advanced Options</value>
+    </labels>
+    <labels>
+        <fullName>Click_here</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Click here</shortDescription>
+        <value>Click here</value>
+    </labels>
+    <labels>
+        <fullName>Click_the_Setup_button_to_configure_double_dot</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Click the Setup button to configure:</shortDescription>
+        <value>Click the Setup button to configure:</value>
+    </labels>
+    <labels>
+        <fullName>Clone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Clone</shortDescription>
+        <value>Clone</value>
+    </labels>
+    <labels>
+        <fullName>Close_Job_on_Placement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close Job on Placement</shortDescription>
+        <value>Close Job on Placement</value>
+    </labels>
+    <labels>
+        <fullName>Closed_Won</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hired</shortDescription>
+        <value>Hired</value>
+    </labels>
+    <labels>
+        <fullName>Comments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Comments</shortDescription>
+        <value>Comments</value>
+    </labels>
+    <labels>
+        <fullName>Competency_Details_Criteria</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Competency Details Criteria</shortDescription>
+        <value>Competency Details Criteria</value>
+    </labels>
+    <labels>
+        <fullName>Competency_Details_field_was_not_found</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Competency Details field was not found</shortDescription>
+        <value>Field &apos;&apos;{0}&apos;&apos; of Competency Details object has not been found in custom settings.</value>
+    </labels>
+    <labels>
+        <fullName>Completed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Completed</shortDescription>
+        <value>Completed</value>
+    </labels>
+    <labels>
+        <fullName>Config</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Config</shortDescription>
+        <value>Config</value>
+    </labels>
+    <labels>
+        <fullName>Configuration_Setup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Configuration Setup</shortDescription>
+        <value>Configuration Setup</value>
+    </labels>
+    <labels>
+        <fullName>Configuration_setup_has_been_successfully_completed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Configuration setup has been successfully completed.</shortDescription>
+        <value>Configuration setup has been successfully completed.</value>
+    </labels>
+    <labels>
+        <fullName>Contact</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact</shortDescription>
+        <value>Contact</value>
+    </labels>
+    <labels>
+        <fullName>Contacts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contacts</shortDescription>
+        <value>Contacts</value>
+    </labels>
+    <labels>
+        <fullName>Contains</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contains</shortDescription>
+        <value>Contains</value>
+    </labels>
+    <labels>
+        <fullName>ContentPost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ContentPost</shortDescription>
+        <value>ContentPost</value>
+    </labels>
+    <labels>
+        <fullName>Convert_Placement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Convert Placement</shortDescription>
+        <value>Convert Placement</value>
+    </labels>
+    <labels>
+        <fullName>Copy</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Copy</shortDescription>
+        <value>Copy</value>
+    </labels>
+    <labels>
+        <fullName>Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>Cover_Attachments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cover Attachments</shortDescription>
+        <value>Cover Attachments</value>
+    </labels>
+    <labels>
+        <fullName>Cover_Letter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cover Letter</shortDescription>
+        <value>Cover Letter</value>
+    </labels>
+    <labels>
+        <fullName>Create_Candidate_Searches_for_Open_Jobs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create Candidate Searches for Open Jobs</shortDescription>
+        <value>Create Candidate Searches for Open Jobs</value>
+    </labels>
+    <labels>
+        <fullName>Create_Job_Applicant_s</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create Job Applicant(s)</shortDescription>
+        <value>Create Job Applicant(s)</value>
+    </labels>
+    <labels>
+        <fullName>Created_By</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Created By</shortDescription>
+        <value>Created By</value>
+    </labels>
+    <labels>
+        <fullName>Creation_has_been_completed_with_warnings</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Creation has been completed with warnings</shortDescription>
+        <value>Creation has been completed with warnings.</value>
+    </labels>
+    <labels>
+        <fullName>Creation_has_been_successfully_completed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Creation has been successfully completed.</shortDescription>
+        <value>Creation has been successfully completed.</value>
+    </labels>
+    <labels>
+        <fullName>Custom_Search_Provide</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Custom Search Provide</shortDescription>
+        <value>b. To perform a custom search provide the keywords separated by &apos; OR &apos;.</value>
+    </labels>
+    <labels>
+        <fullName>Default</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Default</shortDescription>
+        <value>Default</value>
+    </labels>
+    <labels>
+        <fullName>Del</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Del</shortDescription>
+        <value>Del</value>
+    </labels>
+    <labels>
+        <fullName>Description_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Description Information</shortDescription>
+        <value>Description Information</value>
+    </labels>
+    <labels>
+        <fullName>Desired_Pay_Type_Column</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Desired Pay Type Column</shortDescription>
+        <value>Desired &lt;br/&gt; Pay Type</value>
+    </labels>
+    <labels>
+        <fullName>Does_Not_Contain</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Does Not Contain</shortDescription>
+        <value>Does Not Contain</value>
+    </labels>
+    <labels>
+        <fullName>Down</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Down</shortDescription>
+        <value>Down</value>
+    </labels>
+    <labels>
+        <fullName>Drag_and_Drop_to_Reorder</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Drag and Drop to Reorder</shortDescription>
+        <value>Drag and Drop to Reorder</value>
+    </labels>
+    <labels>
+        <fullName>Due_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Due Date</shortDescription>
+        <value>Due Date</value>
+    </labels>
+    <labels>
+        <fullName>Duplicates_Detection_Rule</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Duplicates Detection Rule</shortDescription>
+        <value>Duplicates Detection Rule</value>
+    </labels>
+    <labels>
+        <fullName>ETC_Source_Value_From_Contact_record_Resume_Page</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ETC Source Value From Contact record Resume Page</shortDescription>
+        <value>Internal Contact Update</value>
+    </labels>
+    <labels>
+        <fullName>Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>Education_Criteria</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Education Criteria</shortDescription>
+        <value>Education Criteria</value>
+    </labels>
+    <labels>
+        <fullName>Education_field_was_not_found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Education field was not found</shortDescription>
+        <value>Field &apos;&apos;{0}&apos;&apos; of Education object has not been found in custom settings.</value>
+    </labels>
+    <labels>
+        <fullName>Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>Email_Source_Column</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Source Column</shortDescription>
+        <value>Email &lt;br/&gt; Source</value>
+    </labels>
+    <labels>
+        <fullName>Email_double_dot</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email:</shortDescription>
+        <value>Email:</value>
+    </labels>
+    <labels>
+        <fullName>Employment_Criteria</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Employment Criteria</shortDescription>
+        <value>Employment Criteria</value>
+    </labels>
+    <labels>
+        <fullName>Employment_field_was_not_found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Employment field was not found</shortDescription>
+        <value>Field &apos;&apos;{0}&apos;&apos; of Employment object has not been found in custom settings.</value>
+    </labels>
+    <labels>
+        <fullName>End_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>End Date</shortDescription>
+        <value>End Date</value>
+    </labels>
+    <labels>
+        <fullName>Equals</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Equals</shortDescription>
+        <value>Equals</value>
+    </labels>
+    <labels>
+        <fullName>Error_creating_task_s</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error creating task(s)</shortDescription>
+        <value>Error creating / updating task(s).</value>
+    </labels>
+    <labels>
+        <fullName>Exp_Start_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Exp. Start Date</shortDescription>
+        <value>Exp. Start Date</value>
+    </labels>
+    <labels>
+        <fullName>Expected_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Expected Page</shortDescription>
+        <value>Expected Page</value>
+    </labels>
+    <labels>
+        <fullName>Failed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Failed</shortDescription>
+        <value>Failed</value>
+    </labels>
+    <labels>
+        <fullName>Field</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Field</shortDescription>
+        <value>Field</value>
+    </labels>
+    <labels>
+        <fullName>Field_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Field Name</shortDescription>
+        <value>Field Name</value>
+    </labels>
+    <labels>
+        <fullName>Field_Operator</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Field Operator</shortDescription>
+        <value>Field Operator</value>
+    </labels>
+    <labels>
+        <fullName>Filter_By_Fields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter By Fields</shortDescription>
+        <value>Filter By Fields</value>
+    </labels>
+    <labels>
+        <fullName>Filter_Fields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter Fields</shortDescription>
+        <value>Filter Fields</value>
+    </labels>
+    <labels>
+        <fullName>For_the_selected_fields_the_priority_should_be_a_number</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>For the selected fields, the priority should be a number.</shortDescription>
+        <value>For the selected fields, the priority should be a number.</value>
+    </labels>
+    <labels>
+        <fullName>Free_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Free Text</shortDescription>
+        <value>Free Text</value>
+    </labels>
+    <labels>
+        <fullName>General_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>General Information</shortDescription>
+        <value>General Information</value>
+    </labels>
+    <labels>
+        <fullName>Go</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Go</shortDescription>
+        <value>Go</value>
+    </labels>
+    <labels>
+        <fullName>Greater</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Greater</shortDescription>
+        <value>Greater</value>
+    </labels>
+    <labels>
+        <fullName>Greater_Or_Equal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Greater Or Equal</shortDescription>
+        <value>Greater Or Equal</value>
+    </labels>
+    <labels>
+        <fullName>Greater_Than_Equals</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Greater Than Equals</shortDescription>
+        <value>Greater Than Equals</value>
+    </labels>
+    <labels>
+        <fullName>HTML</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HTML</shortDescription>
+        <value>HTML</value>
+    </labels>
+    <labels>
+        <fullName>Hiring_Manager</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hiring Manager</shortDescription>
+        <value>Hiring Manager</value>
+    </labels>
+    <labels>
+        <fullName>ImportResume</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ImportResume</shortDescription>
+        <value>ImportResume</value>
+    </labels>
+    <labels>
+        <fullName>Inactive</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Inactive</shortDescription>
+        <value>Inactive</value>
+    </labels>
+    <labels>
+        <fullName>Instructions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Instructions</shortDescription>
+        <value>Instructions</value>
+    </labels>
+    <labels>
+        <fullName>Integrations_Setup</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Integrations Setup</shortDescription>
+        <value>Integrations Setup :</value>
+    </labels>
+    <labels>
+        <fullName>Interview</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Interview</shortDescription>
+        <value>Interview</value>
+    </labels>
+    <labels>
+        <fullName>Interview_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Interview Date</shortDescription>
+        <value>Interview Date</value>
+    </labels>
+    <labels>
+        <fullName>Interview_Feedback</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Interview Feedback</shortDescription>
+        <value>Interview Feedback</value>
+    </labels>
+    <labels>
+        <fullName>Interview_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Interview Information</shortDescription>
+        <value>Interview Information</value>
+    </labels>
+    <labels>
+        <fullName>Interview_Subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Interview Subject</shortDescription>
+        <value>Interview Scheduled for {0} with {1} for {2}</value>
+    </labels>
+    <labels>
+        <fullName>Interview_for</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Interview for</shortDescription>
+        <value>Interview for</value>
+    </labels>
+    <labels>
+        <fullName>Interviewing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Interviewing</shortDescription>
+        <value>Interviewing</value>
+    </labels>
+    <labels>
+        <fullName>Interviewing_Person</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Interviewing Person</shortDescription>
+        <value>Interviewing Person</value>
+    </labels>
+    <labels>
+        <fullName>Is_an_answer_for_the_quesiton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Is an answer for the quesiton</shortDescription>
+        <value>Is an answer for the quesiton required?(default is true)</value>
+    </labels>
+    <labels>
+        <fullName>Jego_C_Javate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Jego C. Javate</shortDescription>
+        <value>Jego C. Javate</value>
+    </labels>
+    <labels>
+        <fullName>Job</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job</shortDescription>
+        <value>Job</value>
+    </labels>
+    <labels>
+        <fullName>Job_Applicant</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Applicant</shortDescription>
+        <value>Job Applicant</value>
+    </labels>
+    <labels>
+        <fullName>Job_Applicant_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Applicant Name</shortDescription>
+        <value>Job Applicant Name</value>
+    </labels>
+    <labels>
+        <fullName>Job_Applicant_s_are_not_selected_Please_check_URL_parameters</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Applicant(s) are not selected. Please, check URL parameters.</shortDescription>
+        <value>Job Applicant(s) are not selected. Please, check URL parameters.</value>
+    </labels>
+    <labels>
+        <fullName>Job_Applicants</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Applicants</shortDescription>
+        <value>Job Applicants</value>
+    </labels>
+    <labels>
+        <fullName>Job_Applicants_was_successfully_copied</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Applicants was successfully copied</shortDescription>
+        <value>Job Applicants was successfully copied</value>
+    </labels>
+    <labels>
+        <fullName>Job_Detail_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Detail Page</shortDescription>
+        <value>Job Detail Page</value>
+    </labels>
+    <labels>
+        <fullName>Job_Field</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Field</shortDescription>
+        <value>Job Field</value>
+    </labels>
+    <labels>
+        <fullName>Job_Field_Job_Applicant</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Field. Job Applicant</shortDescription>
+        <value>Job field is empty for this Job Applicant.Please choose a job first.</value>
+    </labels>
+    <labels>
+        <fullName>Job_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Information</shortDescription>
+        <value>Job Information</value>
+    </labels>
+    <labels>
+        <fullName>Job_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Location</shortDescription>
+        <value>Job Location</value>
+    </labels>
+    <labels>
+        <fullName>Job_Notification_Template_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Notification Template Name</shortDescription>
+        <value>Job Notification Template Name</value>
+    </labels>
+    <labels>
+        <fullName>Job_Notification_to_Vendors</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Notification to Vendors</shortDescription>
+        <value>Job Notification to Vendors</value>
+    </labels>
+    <labels>
+        <fullName>Job_Num</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Num</shortDescription>
+        <value>Job Num</value>
+    </labels>
+    <labels>
+        <fullName>Job_Selected</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Job Selected</shortDescription>
+        <value>Job Selected:-</value>
+    </labels>
+    <labels>
+        <fullName>Job_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job Title</shortDescription>
+        <value>Job Title</value>
+    </labels>
+    <labels>
+        <fullName>Job_applicant_for_the_candidate_0_is_exists</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Job applicant for the candidate {0} is exists.</shortDescription>
+        <value>Job applicant for the candidate {0} is exists.</value>
+    </labels>
+    <labels>
+        <fullName>Jobs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Jobs</shortDescription>
+        <value>Jobs</value>
+    </labels>
+    <labels>
+        <fullName>Jobs_List</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Jobs List</shortDescription>
+        <value>Jobs List</value>
+    </labels>
+    <labels>
+        <fullName>Jobs_update_started_It_will_be_finished_after_some_time</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Jobs update started... It will be finished after some time.</shortDescription>
+        <value>Jobs update started... It will be finished after some time.</value>
+    </labels>
+    <labels>
+        <fullName>Keyword_Count</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Keyword Count</shortDescription>
+        <value>Keyword Count</value>
+    </labels>
+    <labels>
+        <fullName>Keywords</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Keywords</shortDescription>
+        <value>Keywords</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_AddQuestion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Question</shortDescription>
+        <value>Add Question</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_PleaseEnterTheList</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please enter the list</shortDescription>
+        <value>Please enter the list of answers/responses in the field below. Each value should be separated by a new line.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Question</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Question</shortDescription>
+        <value>Question</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required</shortDescription>
+        <value>required</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_RequiredQuestion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required Question</shortDescription>
+        <value>Required Question</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SELECTTYPE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>--SELECT--</shortDescription>
+        <value>--SELECT--</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SaveOrder</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save Order</shortDescription>
+        <value>Save Order</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SelectQuestionType</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Question Type</shortDescription>
+        <value>Select Question Type</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SubmitSurvey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit Survey</shortDescription>
+        <value>Submit Questionnaire</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Survey_Submitted_Thank_you</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Your survey has been submitted. Thank you for taking our survey.</shortDescription>
+        <value>Your questionnaire has been submitted.</value>
+    </labels>
+    <labels>
+        <fullName>Last_Modified</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last Modified</shortDescription>
+        <value>Last Modified</value>
+    </labels>
+    <labels>
+        <fullName>Learn_php_and_java_and_responsys</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Learn php and java and responsys</shortDescription>
+        <value>Learn php and java and responsys</value>
+    </labels>
+    <labels>
+        <fullName>Less_Or_Equal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Less Or Equal</shortDescription>
+        <value>Less Or Equal</value>
+    </labels>
+    <labels>
+        <fullName>Less_Than</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Less Than</shortDescription>
+        <value>Less Than</value>
+    </labels>
+    <labels>
+        <fullName>Less_Than_Equals</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Less Than Equals</shortDescription>
+        <value>Less Than Equals</value>
+    </labels>
+    <labels>
+        <fullName>Loading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loading...</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>Loading_please_wait</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loading, please wait...</shortDescription>
+        <value>Loading, please wait...</value>
+    </labels>
+    <labels>
+        <fullName>Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Location</shortDescription>
+        <value>Location</value>
+    </labels>
+    <labels>
+        <fullName>Mass_Activity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Mass Activity</shortDescription>
+        <value>Mass Activity</value>
+    </labels>
+    <labels>
+        <fullName>Mass_Follow_Up</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Mass Follow-Up</shortDescription>
+        <value>Mass Follow-Up</value>
+    </labels>
+    <labels>
+        <fullName>Mass_Update</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Mass Update</shortDescription>
+        <value>Mass Update</value>
+    </labels>
+    <labels>
+        <fullName>Mass_Update_Saved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Mass Update Saved</shortDescription>
+        <value>All changes are saved</value>
+    </labels>
+    <labels>
+        <fullName>Maximum_5_keywords</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Maximum 5 keywords</shortDescription>
+        <value>c. Maximum of 5 keywords are allowed in the search.</value>
+    </labels>
+    <labels>
+        <fullName>Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Message</shortDescription>
+        <value>Message</value>
+    </labels>
+    <labels>
+        <fullName>Multi_Select_Vertical</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Multi-Select--Vertical</shortDescription>
+        <value>Multi-Select--Vertical</value>
+    </labels>
+    <labels>
+        <fullName>Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>New</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New</shortDescription>
+        <value>New</value>
+    </labels>
+    <labels>
+        <fullName>New_Application</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New Application</shortDescription>
+        <value>New Application</value>
+    </labels>
+    <labels>
+        <fullName>New_Note</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New Note</shortDescription>
+        <value>New Note</value>
+    </labels>
+    <labels>
+        <fullName>New_tag_double_dot</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New tag:</shortDescription>
+        <value>New tag:</value>
+    </labels>
+    <labels>
+        <fullName>Next</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>No_Job_Applicant_record_has_been_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Job Applicant record has been selected</shortDescription>
+        <value>No Job Applicant record has been selected</value>
+    </labels>
+    <labels>
+        <fullName>None</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>None</shortDescription>
+        <value>None</value>
+    </labels>
+    <labels>
+        <fullName>Normal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Normal</shortDescription>
+        <value>Normal</value>
+    </labels>
+    <labels>
+        <fullName>Not_Cover_Attachments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Cover Attachments</shortDescription>
+        <value>Not Cover Attachments</value>
+    </labels>
+    <labels>
+        <fullName>Not_Equals</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Equals</shortDescription>
+        <value>Not Equals</value>
+    </labels>
+    <labels>
+        <fullName>Not_Started</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Started</shortDescription>
+        <value>Not Started</value>
+    </labels>
+    <labels>
+        <fullName>Not_specified_fields_Please_check_Custom_Settings</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not specified fields. Please, check Custom Settings.</shortDescription>
+        <value>Not specified fields. Please, check Custom Settings.</value>
+    </labels>
+    <labels>
+        <fullName>Note</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Note</shortDescription>
+        <value>Note</value>
+    </labels>
+    <labels>
+        <fullName>Note_double_dot</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Note :</shortDescription>
+        <value>Note :</value>
+    </labels>
+    <labels>
+        <fullName>Notes_Attachments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notes &amp; Attachments</shortDescription>
+        <value>Notes &amp; Attachments</value>
+    </labels>
+    <labels>
+        <fullName>Notification_has_been_successfully_completed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notification has been successfully completed.</shortDescription>
+        <value>Notification has been successfully completed.</value>
+    </labels>
+    <labels>
+        <fullName>Notified</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notified</shortDescription>
+        <value>Notified</value>
+    </labels>
+    <labels>
+        <fullName>Notify_Job_To_Candidate_s</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notify Job To Candidate(s)</shortDescription>
+        <value>Notify Job To Candidate(s)</value>
+    </labels>
+    <labels>
+        <fullName>Notify_Job_To_Candidates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Notify Job To Candidates</shortDescription>
+        <value>Notify Job To Candidates</value>
+    </labels>
+    <labels>
+        <fullName>Online</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Online</shortDescription>
+        <value>Online</value>
+    </labels>
+    <labels>
+        <fullName>Order</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order</shortDescription>
+        <value>Order</value>
+    </labels>
+    <labels>
+        <fullName>Other_Short_list_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Other Short list Name</shortDescription>
+        <value>Other Short list Name</value>
+    </labels>
+    <labels>
+        <fullName>Overall_Feedback</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Overall Feedback</shortDescription>
+        <value>Overall Feedback</value>
+    </labels>
+    <labels>
+        <fullName>Override_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Override Page</shortDescription>
+        <value>Override Page</value>
+    </labels>
+    <labels>
+        <fullName>Page_N</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Page #</shortDescription>
+        <value>Page #</value>
+    </labels>
+    <labels>
+        <fullName>Permanent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Permanent</shortDescription>
+        <value>Permanent</value>
+    </labels>
+    <labels>
+        <fullName>Personal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Personal</shortDescription>
+        <value>Personal</value>
+    </labels>
+    <labels>
+        <fullName>Personal_Tags_double_dot</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Personal Tags:</shortDescription>
+        <value>Personal Tags:</value>
+    </labels>
+    <labels>
+        <fullName>Phone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>Php_and_sql_and_html_or_java_and_responsys_and_not_unix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>(Php and sql) and (html or java) and responsys and not unix</shortDescription>
+        <value>(Php and sql) and (html or java) and responsys and not unix</value>
+    </labels>
+    <labels>
+        <fullName>Placement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Placement</shortDescription>
+        <value>Placement</value>
+    </labels>
+    <labels>
+        <fullName>Placement_Feedback</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Placement Feedback</shortDescription>
+        <value>Placement Feedback</value>
+    </labels>
+    <labels>
+        <fullName>Placement_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Placement ID</shortDescription>
+        <value>Placement ID</value>
+    </labels>
+    <labels>
+        <fullName>Please_check_URL_parameters</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please, check URL parameters.</shortDescription>
+        <value>Please, check URL parameters.</value>
+    </labels>
+    <labels>
+        <fullName>Please_check_the_select_boxes_for_the_fields_you_want_to_save_the_updated_values</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please check the select boxes for the fields you want to save the updated values</shortDescription>
+        <value>Please check the select boxes for the fields you want to save the updated values.</value>
+    </labels>
+    <labels>
+        <fullName>Please_delete_interview_multi_user_event_first</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please delete interview multi-user event first</shortDescription>
+        <value>Please delete interview multi-user event first</value>
+    </labels>
+    <labels>
+        <fullName>Please_enter_keywords_for_the_Search_Criteria</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please enter keywords for the Search Criteria.</shortDescription>
+        <value>Please enter keywords for the Search Criteria.</value>
+    </labels>
+    <labels>
+        <fullName>Please_fill_email_body</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please fill email body.</shortDescription>
+        <value>Please fill email body.</value>
+    </labels>
+    <labels>
+        <fullName>Please_fill_email_subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please fill email subject.</shortDescription>
+        <value>Please fill email subject.</value>
+    </labels>
+    <labels>
+        <fullName>Please_fill_in_the_Stage_field_for_your_Job_Applicant</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please fill in the &quot;Stage&quot; field for your Job Applicant</shortDescription>
+        <value>Please fill in the &quot;Stage&quot; field for your Job Applicant</value>
+    </labels>
+    <labels>
+        <fullName>Please_fill_out_all_required_fields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please fill out all required fields</shortDescription>
+        <value>Please fill out all required fields</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_Job</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please, select Job</shortDescription>
+        <value>Please, select Job</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_at_least_one_job_applicant</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select at least one job applicant.</shortDescription>
+        <value>Please select at least one job applicant with email address.</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_at_least_one_row</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please, select at least one row</shortDescription>
+        <value>Please, select at least one row</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_atleat_one_Recipients</fullName>
+        <language>es</language>
+        <protected>false</protected>
+        <shortDescription>Please select at least one recipient.</shortDescription>
+        <value>Please select at least one recipient.</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_filter_criteria</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select filter criteria</shortDescription>
+        <value>Please select filter criteria</value>
+    </labels>
+    <labels>
+        <fullName>Preview</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Preview</shortDescription>
+        <value>Preview</value>
+    </labels>
+    <labels>
+        <fullName>Preview_unavailable</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Preview unavailable</shortDescription>
+        <value>Preview unavailable</value>
+    </labels>
+    <labels>
+        <fullName>Previous</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Previous</shortDescription>
+        <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>Priority</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Priority</shortDescription>
+        <value>Priority</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Button_ADD</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Button ADD</shortDescription>
+        <value>Add to List</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Button_Cancel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Button Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Button_GO</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Button GO</shortDescription>
+        <value>Go</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Button_Reset</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Button Reset</shortDescription>
+        <value>Reset</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Button_Send_assesment</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Button Send assesment</shortDescription>
+        <value>Send Assessments</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Candidate_Detail</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Candidate Detail</shortDescription>
+        <value>Candidate Details</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Caregiver</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Caregiver</shortDescription>
+        <value>Caregiver id created</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Caregiver_Inactive</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Caregiver Inactive</shortDescription>
+        <value>The caregiver id is inactive</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Choose_Assessment_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Choose Assessment Label</shortDescription>
+        <value>Choose Assessment Type</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Company_Setting_Updated_Successfully</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Company Setting Updated Successfully</shortDescription>
+        <value>Company Settings has been Updated to Prophecy</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Create_Caregiverid</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Create Caregiverid</shortDescription>
+        <value>Please create a caregiver id</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Createcaregiverid_Button</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Createcaregiverid Button</shortDescription>
+        <value>Go Back to Contact</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Disabled</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Disabled</shortDescription>
+        <value>Prophecy is Disabled Please contact the Administrator</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Email</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Email</shortDescription>
+        <value>Email of the candidate is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Email_Firstname</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Email Firstname</shortDescription>
+        <value>Email and Firstname of the candidate are mandatory</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Firstname</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Firstname</shortDescription>
+        <value>First name of the candidate is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Select_Record</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Select Record</shortDescription>
+        <value>Select Atleast One Record</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Send_Assessments</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Send Assessments</shortDescription>
+        <value>Send Assessments</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_Send_More_Assessments</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy Send More Assessments</shortDescription>
+        <value>Send More Assessments</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_caregiver_Fail</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy caregiver  Fail</shortDescription>
+        <value>The caregiver in wrong .Create a new caregiver</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_caregiver_id_is_Inactive</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy caregiver id is Inactive</shortDescription>
+        <value>Caregiver is inactive and is activated now</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_caregiver_is_Active</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy caregiver is Active</shortDescription>
+        <value>Caregiver id exists and is active</value>
+    </labels>
+    <labels>
+        <fullName>Prophecy_go_back_to_contacts</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prophecy go back to contacts</shortDescription>
+        <value>Go Back to Contact</value>
+    </labels>
+    <labels>
+        <fullName>Public</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Public</shortDescription>
+        <value>Public</value>
+    </labels>
+    <labels>
+        <fullName>Public_Tags_double_dot</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Public Tags:</shortDescription>
+        <value>Public Tags:</value>
+    </labels>
+    <labels>
+        <fullName>Radius</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Radius</shortDescription>
+        <value>Radius</value>
+    </labels>
+    <labels>
+        <fullName>Recipients</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Recipients</shortDescription>
+        <value>Recipients</value>
+    </labels>
+    <labels>
+        <fullName>Recommended_Hire</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Recommended Hire</shortDescription>
+        <value>Recommended Hire</value>
+    </labels>
+    <labels>
+        <fullName>Record_Type_for_field_Candidate_in_Job_Applicant_should_be_Candidate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Record Type for field Candidate in Job Applicant should be Candidate</shortDescription>
+        <value>Record Type for field Candidate in Job Applicant should be Candidate</value>
+    </labels>
+    <labels>
+        <fullName>Records_per_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Records per Page</shortDescription>
+        <value>Records per Page</value>
+    </labels>
+    <labels>
+        <fullName>Recruiter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Recruiter</shortDescription>
+        <value>Recruiter</value>
+    </labels>
+    <labels>
+        <fullName>Reference</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reference</shortDescription>
+        <value>Reference</value>
+    </labels>
+    <labels>
+        <fullName>Reference_Submission_Form</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reference Submission Form</shortDescription>
+        <value>Reference Submission Form</value>
+    </labels>
+    <labels>
+        <fullName>Reference_s_was_successfully_saved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reference(s) was successfully saved.</shortDescription>
+        <value>Reference(s) was successfully saved.</value>
+    </labels>
+    <labels>
+        <fullName>Related_To</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Related To</shortDescription>
+        <value>Related To</value>
+    </labels>
+    <labels>
+        <fullName>Remove_File</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove File</shortDescription>
+        <value>Remove File</value>
+    </labels>
+    <labels>
+        <fullName>Resume</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Resume</shortDescription>
+        <value>Resume</value>
+    </labels>
+    <labels>
+        <fullName>Resume_Pool</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Resume Pool</shortDescription>
+        <value>Resume Pool</value>
+    </labels>
+    <labels>
+        <fullName>Save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>Save_and_Complete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save and Complete</shortDescription>
+        <value>Save and Complete</value>
+    </labels>
+    <labels>
+        <fullName>Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>Search_Count</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Count</shortDescription>
+        <value>Search Count</value>
+    </labels>
+    <labels>
+        <fullName>Search_Criteria</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Criteria</shortDescription>
+        <value>Search Criteria</value>
+    </labels>
+    <labels>
+        <fullName>Search_Display_Columns</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Display Columns</shortDescription>
+        <value>Search Display Columns</value>
+    </labels>
+    <labels>
+        <fullName>Search_Hint</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Hint</shortDescription>
+        <value>• Use operators such as AND, OR, and AND NOT to refine your search.&lt;br /&gt;
+• Put quotation marks around multiple keywords to perform an exact phrase match, for example, &quot;call john smith&quot;.&lt;br /&gt;
+• Add an asterisk to the end of your keyword to search for items that start with the word, for example, acme*.</value>
+    </labels>
+    <labels>
+        <fullName>Search_Info</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Info</shortDescription>
+        <value>Search Information</value>
+    </labels>
+    <labels>
+        <fullName>Search_Result</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Result</shortDescription>
+        <value>Search Result</value>
+    </labels>
+    <labels>
+        <fullName>Search_Result_100</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Result 100</shortDescription>
+        <value>a. &quot;All&quot; Search Result will provide max of 100 results.</value>
+    </labels>
+    <labels>
+        <fullName>Search_Results</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search Results</shortDescription>
+        <value>Search Results</value>
+    </labels>
+    <labels>
+        <fullName>Search_double_dot</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search :</shortDescription>
+        <value>Search :</value>
+    </labels>
+    <labels>
+        <fullName>Searching</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Searching...</shortDescription>
+        <value>Searching...</value>
+    </labels>
+    <labels>
+        <fullName>Select_Display_Columns</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Display Columns</shortDescription>
+        <value>Select Display Columns</value>
+    </labels>
+    <labels>
+        <fullName>Select_Filter_Fields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Filter Fields</shortDescription>
+        <value>Select Filter Fields</value>
+    </labels>
+    <labels>
+        <fullName>Select_Resume_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Select Resume Label</shortDescription>
+        <value>Select Resume :</value>
+    </labels>
+    <labels>
+        <fullName>Select_Search_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Search Name</shortDescription>
+        <value>Select Search Name</value>
+    </labels>
+    <labels>
+        <fullName>Select_item_s</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select item(s)</shortDescription>
+        <value>Select item(s)</value>
+    </labels>
+    <labels>
+        <fullName>Selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Selected</shortDescription>
+        <value>Selected</value>
+    </labels>
+    <labels>
+        <fullName>Selected_Job_Apps_Without_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Selected Job Apps Without Email</shortDescription>
+        <value>Some of selected applicants do not have email address and they will not receive an email.</value>
+    </labels>
+    <labels>
+        <fullName>Send</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Send</shortDescription>
+        <value>Send</value>
+    </labels>
+    <labels>
+        <fullName>Send_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Send Email</shortDescription>
+        <value>Send Email</value>
+    </labels>
+    <labels>
+        <fullName>Set_Last_Candidate_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Set Last Candidate Id</shortDescription>
+        <value>Set Last Candidate Id</value>
+    </labels>
+    <labels>
+        <fullName>Set_location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Set location</shortDescription>
+        <value>Set location</value>
+    </labels>
+    <labels>
+        <fullName>Setup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Setup</shortDescription>
+        <value>Setup</value>
+    </labels>
+    <labels>
+        <fullName>Short_Listed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Short Listed</shortDescription>
+        <value>Short Listed</value>
+    </labels>
+    <labels>
+        <fullName>ShowInterview</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ShowInterview</shortDescription>
+        <value>ShowInterview</value>
+    </labels>
+    <labels>
+        <fullName>Show_Candidate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Show Candidate</shortDescription>
+        <value>Show Candidate</value>
+    </labels>
+    <labels>
+        <fullName>Show_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Show Page</shortDescription>
+        <value>Show Page</value>
+    </labels>
+    <labels>
+        <fullName>Single_Select_Horizontal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Single Select--Horizontal</shortDescription>
+        <value>Single Select--Horizontal</value>
+    </labels>
+    <labels>
+        <fullName>Single_Select_Vertical</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Single Select--Vertical</shortDescription>
+        <value>Single Select--Vertical</value>
+    </labels>
+    <labels>
+        <fullName>Skills_Matched</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Skills Matched</shortDescription>
+        <value>Skills Matched</value>
+    </labels>
+    <labels>
+        <fullName>Skills_Matched_Column</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Skills Matched Column</shortDescription>
+        <value>Skills &lt;br/&gt; Matched</value>
+    </labels>
+    <labels>
+        <fullName>Skillset</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Skillset</shortDescription>
+        <value>Skillset</value>
+    </labels>
+    <labels>
+        <fullName>Sorry_Job_Applicant_for_this_candidate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sorry! Job Applicant for this candidate</shortDescription>
+        <value>Sorry! Job Applicant for this candidate</value>
+    </labels>
+    <labels>
+        <fullName>Sr_software</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sr. software</shortDescription>
+        <value>Sr. software</value>
+    </labels>
+    <labels>
+        <fullName>Standard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Standard</shortDescription>
+        <value>Standard</value>
+    </labels>
+    <labels>
+        <fullName>Standard_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Standard User</shortDescription>
+        <value>Standard User</value>
+    </labels>
+    <labels>
+        <fullName>Start_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Start Date</shortDescription>
+        <value>Start Date</value>
+    </labels>
+    <labels>
+        <fullName>Starts_With</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Starts With</shortDescription>
+        <value>Starts With</value>
+    </labels>
+    <labels>
+        <fullName>Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>Subject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Subject</shortDescription>
+        <value>Subject</value>
+    </labels>
+    <labels>
+        <fullName>Submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>Submit_Candidates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit Candidates</shortDescription>
+        <value>Submit Candidates</value>
+    </labels>
+    <labels>
+        <fullName>Submitted_to_Account_Manager</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submitted to Account Manager</shortDescription>
+        <value>Submitted to Account Manager</value>
+    </labels>
+    <labels>
+        <fullName>Submitted_to_Client</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submitted to Client</shortDescription>
+        <value>Submitted to Client</value>
+    </labels>
+    <labels>
+        <fullName>Submitted_to_Hiring_Manager</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submitted to Hiring Manager</shortDescription>
+        <value>Submitted to Hiring Manager</value>
+    </labels>
+    <labels>
+        <fullName>Subquestion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Subquestion</shortDescription>
+        <value>Subquestion</value>
+    </labels>
+    <labels>
+        <fullName>Successful</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Successful</shortDescription>
+        <value>Successful</value>
+    </labels>
+    <labels>
+        <fullName>Successfully_Notified_Job_to_Candidate_s</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Successfully Notified Job to Candidate(s).</shortDescription>
+        <value>Successfully Notified Job to Candidate(s).</value>
+    </labels>
+    <labels>
+        <fullName>TO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TO</shortDescription>
+        <value>TO</value>
+    </labels>
+    <labels>
+        <fullName>Tags_already_in_use_double_dot</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Tags already in use:</shortDescription>
+        <value>Tags already in use:</value>
+    </labels>
+    <labels>
+        <fullName>Tags_can_only_contain</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Tags can only contain</shortDescription>
+        <value>Tags can only contain letters, numbers, spaces, dashes, and underscores, and must contain at least one letter or number.</value>
+    </labels>
+    <labels>
+        <fullName>TargetRecruit_Deployment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TargetRecruit Deployment</shortDescription>
+        <value>TargetRecruit Deployment</value>
+    </labels>
+    <labels>
+        <fullName>Target_Recruit_Setup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Target Recruit Setup</shortDescription>
+        <value>Target Recruit Setup</value>
+    </labels>
+    <labels>
+        <fullName>Task_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Task Information</shortDescription>
+        <value>Task Information</value>
+    </labels>
+    <labels>
+        <fullName>Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Template</shortDescription>
+        <value>Template</value>
+    </labels>
+    <labels>
+        <fullName>Test_Jego_C_Javate_parts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Test Jego C. Javate parts</shortDescription>
+        <value>Test Jego C. Javate parts</value>
+    </labels>
+    <labels>
+        <fullName>Text_Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Text Search</shortDescription>
+        <value>Text Search</value>
+    </labels>
+    <labels>
+        <fullName>The_batch_Apex_job_processed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The batch Apex job processed</shortDescription>
+        <value>The batch Apex job processed</value>
+    </labels>
+    <labels>
+        <fullName>The_interview_have_to_have_a_job</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The interview have to have a job</shortDescription>
+        <value>The interview have to have a job</value>
+    </labels>
+    <labels>
+        <fullName>The_name_cannot_exceed_80_characters</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The name cannot exceed 80 characters</shortDescription>
+        <value>The name cannot exceed 80 characters</value>
+    </labels>
+    <labels>
+        <fullName>The_question_you_would_like_asked</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The question you would like asked</shortDescription>
+        <value>The question you would like asked</value>
+    </labels>
+    <labels>
+        <fullName>The_survey_has_been_updated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The survey has been updated</shortDescription>
+        <value>The survey has been updated.</value>
+    </labels>
+    <labels>
+        <fullName>There_is_no_application_found_for_any_Job_for_you</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>There is no application found for any Job for you.</shortDescription>
+        <value>There is no application found for any Job for you.</value>
+    </labels>
+    <labels>
+        <fullName>This_Job_applicant_is_already_converted_into_a_placement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>This Job applicant is already converted into a placement</shortDescription>
+        <value>This Job applicant is already converted into a placement</value>
+    </labels>
+    <labels>
+        <fullName>This_functionality_is_not_enabled_for_you_Please_contact_Target_Recruit_support</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>This functionality is not enabled for you.Please contact Target Recruit support</shortDescription>
+        <value>This functionality is not enabled for you. Please contact Target Recruit support @ support@targetrecruit.net for additional help.</value>
+    </labels>
+    <labels>
+        <fullName>Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Title</shortDescription>
+        <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>Top</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Top</shortDescription>
+        <value>Top</value>
+    </labels>
+    <labels>
+        <fullName>Total_count</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total count</shortDescription>
+        <value>Total count</value>
+    </labels>
+    <labels>
+        <fullName>Type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>Type_the_path</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Type the path</shortDescription>
+        <value>Type the path of the file or click the Browse button to find the file.</value>
+    </labels>
+    <labels>
+        <fullName>Up</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Up</shortDescription>
+        <value>Up</value>
+    </labels>
+    <labels>
+        <fullName>Update_Candidates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Update Candidates</shortDescription>
+        <value>Update Candidates</value>
+    </labels>
+    <labels>
+        <fullName>Update_Contacts_Batch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Update Contacts Batch</shortDescription>
+        <value>Update Contacts Batch</value>
+    </labels>
+    <labels>
+        <fullName>Update_If_Duplicates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Update If Duplicates</shortDescription>
+        <value>Update If Duplicates</value>
+    </labels>
+    <labels>
+        <fullName>Update_Jobs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Update Jobs</shortDescription>
+        <value>Update Jobs</value>
+    </labels>
+    <labels>
+        <fullName>Update_Jobs_Batch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Update Jobs Batch</shortDescription>
+        <value>Update Jobs Batch</value>
+    </labels>
+    <labels>
+        <fullName>Update_Prophecy_Company_Settings</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Update Prophecy Company Settings</shortDescription>
+        <value>Update Prophecy Company Settings</value>
+    </labels>
+    <labels>
+        <fullName>Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Value</shortDescription>
+        <value>Value</value>
+    </labels>
+    <labels>
+        <fullName>View</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View</shortDescription>
+        <value>View</value>
+    </labels>
+    <labels>
+        <fullName>View_All</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View All</shortDescription>
+        <value>View All</value>
+    </labels>
+    <labels>
+        <fullName>View_All_Notes_Attachments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View All Notes &amp; Attachments</shortDescription>
+        <value>View All Notes &amp; Attachments</value>
+    </labels>
+    <labels>
+        <fullName>View_Candidates_Attachment_Resume</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View Candidates Attachment Resume</shortDescription>
+        <value>View Resume file</value>
+    </labels>
+    <labels>
+        <fullName>View_Candidates_Text_Resume</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View Candidates Text Resume</shortDescription>
+        <value>View Candidate</value>
+    </labels>
+    <labels>
+        <fullName>When_would_you_like_your_broadcast_to_start_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CallEmAll When would you like your broadcast to start? Label</shortDescription>
+        <value>When would you like your broadcast to start?</value>
+    </labels>
+    <labels>
+        <fullName>Work_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Work Details</shortDescription>
+        <value>Work Details</value>
+    </labels>
+    <labels>
+        <fullName>You_can_select_20_attachments_maximum</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You can select 20 attachments maximum.</shortDescription>
+        <value>You can select 20 attachments maximum.</value>
+    </labels>
+    <labels>
+        <fullName>Your_Interview_feedback_has_been_Saved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Your Interview feedback has been Saved</shortDescription>
+        <value>Your Interview feedback has been Saved</value>
+    </labels>
+    <labels>
+        <fullName>Your_Interview_feedback_has_been_Submitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Your Interview feedback has been Submitted</shortDescription>
+        <value>Your Interview feedback has been Submitted</value>
+    </labels>
+    <labels>
+        <fullName>Your_Placement_feedback_has_been_saved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Your Placement feedback has been saved</shortDescription>
+        <value>Your Placement feedback has been saved</value>
+    </labels>
+    <labels>
+        <fullName>Your_Placement_feedback_has_been_submitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Your Placement feedback has been saved</shortDescription>
+        <value>Your Placement feedback has been submitted</value>
+    </labels>
+    <labels>
+        <fullName>Zip_Code_is_not_available</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Zip Code is not available</shortDescription>
+        <value>Zip Code is not available</value>
+    </labels>
+    <labels>
+        <fullName>Zip_Postal_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Zip/Postal Code</shortDescription>
+        <value>Zip/Postal Code</value>
+    </labels>
+    <labels>
+        <fullName>and_Job_already_exists</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>and Job already exists.</shortDescription>
+        <value>and Job already exists.</value>
+    </labels>
+    <labels>
+        <fullName>blank</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>blank</shortDescription>
+        <value>blank</value>
+    </labels>
+    <labels>
+        <fullName>candidates_with</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>candidates with</shortDescription>
+        <value>candidates with</value>
+    </labels>
+    <labels>
+        <fullName>daxtraparsemapping</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>daxtraparsemapping</shortDescription>
+        <value>daxtraparsemapping</value>
+    </labels>
+    <labels>
+        <fullName>educationalparsemapping</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>educationalparsemapping</shortDescription>
+        <value>educationalparsemapping</value>
+    </labels>
+    <labels>
+        <fullName>employmentparsemapping</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>employmentparsemapping</shortDescription>
+        <value>employmentparsemapping</value>
+    </labels>
+    <labels>
+        <fullName>failures</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>failures.</shortDescription>
+        <value>failures.</value>
+    </labels>
+    <labels>
+        <fullName>id_parameter_not_found_or_empty_Please_check_URL_parameter_s</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>&quot;id&quot; parameter not found or empty. Please, check URL parameter(s).</shortDescription>
+        <value>&quot;id&quot; parameter not found or empty. Please, check URL parameter(s).</value>
+    </labels>
+    <labels>
+        <fullName>is_not_filterable</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>is not filterable.</shortDescription>
+        <value>is not filterable.</value>
+    </labels>
+    <labels>
+        <fullName>jobs_with</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>jobs with</shortDescription>
+        <value>jobs with</value>
+    </labels>
+    <labels>
+        <fullName>minus_none_minus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>--None--</shortDescription>
+        <value>--None--</value>
+    </labels>
+    <labels>
+        <fullName>out_of</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>out of</shortDescription>
+        <value>out of</value>
+    </labels>
+    <labels>
+        <fullName>prophecy_sent_assessments</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>prophecy sent assessments</shortDescription>
+        <value>Successfully Sent Assessments</value>
+    </labels>
+    <labels>
+        <fullName>prophecygetassessments_Assesmentname</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>prophecygetassessments Assesmentname</shortDescription>
+        <value>Assessment Name</value>
+    </labels>
+    <labels>
+        <fullName>prophecygetassessments_Assessment_Type</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>prophecygetassessments Assessment Type</shortDescription>
+        <value>Assessment Type</value>
+    </labels>
+    <labels>
+        <fullName>prophecygetassessments_Cost_Points</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>prophecygetassessments Cost Points</shortDescription>
+        <value>Cost Points</value>
+    </labels>
+    <labels>
+        <fullName>prophecygetassessments_Email</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>prophecygetassessments Email</shortDescription>
+        <value>Email:</value>
+    </labels>
+    <labels>
+        <fullName>prophecygetassessments_Mobile</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>prophecygetassessments Mobile</shortDescription>
+        <value>Mobile:</value>
+    </labels>
+    <labels>
+        <fullName>prophecygetassessments_Number_Of_Questions</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>prophecygetassessments Number Of Questions</shortDescription>
+        <value>Number Of Questions</value>
+    </labels>
+    <labels>
+        <fullName>prophecygetassessments_Phone</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>prophecygetassessments Phone</shortDescription>
+        <value>Phone:</value>
+    </labels>
+    <labels>
+        <fullName>prophecygetassessments_Select</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>prophecygetassessments Select</shortDescription>
+        <value>Select</value>
+    </labels>
+    <labels>
+        <fullName>prophecygetassessments_Time_Limit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>prophecygetassessments Time Limit</shortDescription>
+        <value>Time Limit</value>
+    </labels>
+    <labels>
+        <fullName>prophecygetassessments_contactname</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>prophecygetassessments contactname</shortDescription>
+        <value>Name:</value>
+    </labels>
+    <labels>
+        <fullName>resumeparse</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>resumeparse</shortDescription>
+        <value>resumeparse</value>
+    </labels>
+    <labels>
+        <fullName>skillsparsemapping</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>skillsparsemapping</shortDescription>
+        <value>skillsparsemapping</value>
+    </labels>
+    <labels>
+        <fullName>with</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>with</shortDescription>
+        <value>with</value>
+    </labels>
+</CustomLabels>

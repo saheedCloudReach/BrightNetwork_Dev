@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <webLinks>
+        <fullName>Add_to_Program</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Add to Automation Program</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!requireScript(&quot;/soap/ajax/26.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/v2/Scripts/EmailMarketing_v3.js&apos;)}
+
+//check that this entity is not in suppressions list:
+var suppressions = sforce.connection.query(&quot;Select Id from ddm__dmsfc_EmailSupressedContact__c where Name = &apos;{!Lead.Email}&apos;&quot;);
+
+var model = {
+    SessionId : &quot;{!HTMLENCODE($Api.Session_ID)}&quot;,
+    PartnerUrl:&quot;{!HTMLENCODE($Api.Partner_Server_URL_140)}&quot;,
+    SfOrganisationId:&quot;{!HTMLENCODE($Organization.Id)}&quot;,
+    FirstName:&quot;{!HTMLENCODE(Lead.FirstName)}&quot;,
+    LastName:&quot;{!HTMLENCODE(Lead.LastName)}&quot;,
+    ContactEmail:&quot;{!HTMLENCODE(Lead.Email)}&quot;,
+    Type: &quot;Lead&quot;,
+    EntityId: &quot;{!Lead.Id}&quot;,
+    HasOptedOutOfEmail : &quot;{!Lead.HasOptedOutOfEmail}&quot; === &quot;1&quot;,
+    IsSuppressed : suppressions.size &gt; 0
+};
+
+AddToProgram(model);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Lead_Engagement_Overview</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Engagement Timeline</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/v2/Scripts/EmailMarketing_v3.js&apos;)}
+
+OpenVisualForceModal({
+  href : &quot;{!URLFOR(&quot;/apex/ddm__lead_engagement&quot;)}?id={!Lead.Id}&quot;
+});</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Social_Profiles_Lead</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Social Profiles</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;https://sf.crmconnector.net/v2/Scripts/EmailMarketing_v3.js&apos;)}
+
+OpenSocialProfiles({
+  Email:&quot;{!HTMLENCODE(Lead.Email)}&quot;,
+  OrganisationId:&quot;{!HTMLENCODE($Organization.Id)}&quot;,
+  SessionId : &quot;{!HTMLENCODE($Api.Session_ID)}&quot;,
+  PartnerUrl:&quot;{!HTMLENCODE($Api.Partner_Server_URL_140)}&quot;
+});</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,23 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<P><SPAN style="FONT-WEIGHT: bold">Hello {!Contact.FirstName}</SPAN>,</P>
+<P>&nbsp;</P>
+<P>We have found you to be a good fit for one of our job openings shown below:</P>
+<P>&nbsp;</P>
+<P><STRONG>Location:&nbsp; </STRONG>{!Job__c.Street_Address__c},{!Job__c.Job_City__c}, {!Job__c.State__c},{!Job__c.Job_Postal_Code__c} </P>
+<P>{!Job__c.Country_Locale__c}</P>
+<P><BR><STRONG></STRONG></P>
+<P><STRONG>Expected Start Date:&nbsp; </STRONG>{!Job__c.Start_Date__c}</P><STRONG></STRONG>
+<P><STRONG><BR></STRONG></P>
+<P><STRONG>Job Summary:</STRONG></P>
+<P><STRONG></STRONG>{!Job__c.Job_Summary__c}</P>
+<P>&nbsp;</P>&nbsp; 
+<P>Please feel free to contact us at your earliest convenience.</P>
+<P>&nbsp;</P>
+<P>Thanks,</P>
+<P>{!User.Name}</P>
+<P>{!User.Phone}<BR></P>
+<P>{!User.Email}<BR></P>]]></td>
+</tr>
+</table>

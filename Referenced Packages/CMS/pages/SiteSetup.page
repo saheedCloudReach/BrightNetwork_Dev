@@ -1,0 +1,8 @@
+<apex:page controller="FCMS.SiteSetupController">	
+	<apex:pageBlock title="{!$Label.fcms__CMS_Site_Setup}">
+		<apex:pageMessages />
+		<apex:form >
+			<apex:commandButton action="{!setup}" value="Setup" />
+		</apex:form>
+	</apex:pageBlock>
+</apex:page>

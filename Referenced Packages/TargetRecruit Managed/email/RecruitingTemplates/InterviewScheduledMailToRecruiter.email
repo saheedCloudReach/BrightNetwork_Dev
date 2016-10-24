@@ -1,0 +1,19 @@
+<table width="550" cellpadding="5" height="400" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td locked="0" style=" font-family:arial; bLabel:main; color:#000000; font-size:12pt; bEditID:r3st1; background-color:#FFFFFF;" aEditID="c1r1" tEditID="c1r1" >
+<![CDATA[<P>Dear {!Interview__c.Hiring_Manager__c},</P>
+<P>&nbsp;</P>
+<P>Interview for the Job&nbsp; '{!Interview__c.Job_Name__c}' is been scheduled&nbsp;at&nbsp;<STRONG> </STRONG>{!Interview__c.Start_Date__c} over {!Interview__c.Type_Of_Interview__c}. </P>
+<P>&nbsp;</P>
+<P>Candidate '{!Interview__c.Contact_Candidate__c}' can be reached at, email address '{!Interview__c.Candidate_Email__c}' &nbsp;or Phone '{!Interview__c.Candidate_Phone__c}'</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>Please contact us back, incase of any clarifications.</P>
+<P>Thanking You,</P>
+<P>{!Interview__c.OwnerFullName}</P>
+<P>{!Interview__c.OwnerTitle}</P>
+<P>{!Interview__c.OwnerPhone}</P>
+<P>{!Interview__c.OwnerEmail}</P>
+<P>&nbsp;</P>]]></td>
+</tr>
+</table>

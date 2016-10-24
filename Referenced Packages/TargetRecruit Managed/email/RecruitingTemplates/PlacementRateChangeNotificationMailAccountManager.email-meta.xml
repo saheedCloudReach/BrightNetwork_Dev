@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification for Placement Rate Change (To Account Manager)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Avankia_Letterhead</letterhead>
+    <name>Placement Rate Change (To Account Manager)</name>
+    <style>freeForm</style>
+    <subject>Placement Rate Change Notification</subject>
+    <textOnly>Dear  {!Placement__c.Account_Manager__c},
+ 
+There has been a rate change for the placement of Job &quot;{!Placement__c.Job_Title__c}&quot;. 
+ 
+The new rate updated is &quot;{!Placement__c.00N40000001K6wR}&quot;.
+ 
+Thanking You,{!Placement__c.OwnerFullName} 
+{!Placement__c.OwnerTitle}
+{!Placement__c.OwnerPhone}
+{!Placement__c.OwnerEmail}</textOnly>
+    <type>html</type>
+</EmailTemplate>

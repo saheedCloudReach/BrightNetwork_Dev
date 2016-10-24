@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FIRST_NAME</field>
+    </columns>
+    <columns>
+        <field>LAST_NAME</field>
+    </columns>
+    <columns>
+        <field>Contact.Available_To_Start__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Education_CandidateProf__c</field>
+    </columns>
+    <columns>
+        <field>Contact.Experience__c</field>
+    </columns>
+    <columns>
+        <field>Contact.General_Job_Category_Sought__c</field>
+    </columns>
+    <columns>
+        <field>Contact.AutoPopulate_Skillset__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Contact.AutoPopulate_Skillset__c</column>
+            <operator>contains</operator>
+            <value>.NET</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>My Active .Net Candidates</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>ContactList</reportType>
+    <scope>my</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Contact.Available_To_Start__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

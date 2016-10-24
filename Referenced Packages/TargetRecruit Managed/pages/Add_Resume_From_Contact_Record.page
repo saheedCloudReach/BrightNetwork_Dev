@@ -1,0 +1,21 @@
+<apex:page sidebar="false" standardController="Contact" tabStyle="Contact" extensions="AVTRRT.AddResumeFromContactContoller">
+	<apex:pageBlock title="{!$Label.avtrrt__Add_Resume_From_Contact_Page_Label}">
+		<apex:pageMessages >
+		</apex:pageMessages>
+		
+		<apex:pageBlockSection title="{!$Label.avtrrt__Add_Resume_Label}" collapsible="false">            
+			<apex:form >                                       
+				<p>
+					{!$Label.avtrrt__Select_Resume_Label}
+					<apex:inputFile value="{!attachment.body}" filename="{!attachment.name}"/>
+				</p>
+				<br></br> <br></br> 
+				<div style="position:relative;left:120px;">             
+					<apex:commandButton value="{!$Label.avtrrt__Add_Resume_Label}" id="EtcAttachAdd" action="{!save_attachment}" />
+					&nbsp;&nbsp;
+					<apex:commandButton value="{!$Label.avtrrt__Add_Resume_Close_Button_Label}" onclick="window.top.close();" />  
+				</div>          
+			</apex:form>  
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+</apex:page>

@@ -1,0 +1,6 @@
+<apex:page tabStyle="Contact" sidebar="false" standardController="Contact">
+	<c:WorkDetailsComponent namespace="AVTRRT" />
+
+	<apex:relatedList list="OpenActivities" rendered="{!$Setup.ConfigSettingsHierarchy__c.Show_Open_Activities_on_Text_Preview__c}" />
+	<apex:relatedList list="ActivityHistories" rendered="{!$Setup.ConfigSettingsHierarchy__c.Show_Activity_History_on_Text_Preview__c}" />
+</apex:page>

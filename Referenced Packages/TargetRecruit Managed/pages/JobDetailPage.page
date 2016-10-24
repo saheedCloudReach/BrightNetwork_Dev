@@ -1,0 +1,16 @@
+<apex:page standardController="AVTRRT__Job__c" showHeader="false" sideBar="false" cache="false">
+<script></script>
+  <apex:outputPanel >
+ <apex:form >
+	<apex:pageBlock >
+		<apex:pageBlockSection columns="1" title="{!$Label.avtrrt__Job_Detail_Page}" > 
+			 <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Job_Title__c}"/>	
+			 <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Job_Category__c}"/>	
+			 <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Start_Date__c}"/>	
+			 <apex:outputField value="{!AVTRRT__Job__c.AVTRRT__Job_City__c}"/>	
+			 <apex:inputTextArea value="{!AVTRRT__Job__c.AVTRRT__Job_Description__c}" cols="100" rows="20" readonly="true"/>		
+		     </apex:pageBlockSection>
+	     </apex:pageBlock>
+    </apex:form>
+    </apex:outputPanel>
+</apex:page>

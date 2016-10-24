@@ -1,0 +1,92 @@
+<apex:page standardController="ddm__dmsfc_Form__c" >
+    <style>
+        table.detailList { width: 60% !important }
+        .bPageBlock .pbTitle { width: 50% }
+        .bPageBlock .detailList .labelCol { 
+            text-align : left; width:250px !important;
+            display:inline-block;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <apex:form > 
+        <apex:pageBlock title="Editing Form : {!ddm__dmsfc_Form__c.name}" mode="edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Save"/>
+                <apex:commandButton action="{!cancel}" immediate="true" value="Cancel"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Data Options" columns="2">
+            
+                <apex:inputCheckbox id="cb_SyncForm" value="{!ddm__dmsfc_Form__c.ddm__SyncSurvey__c}"/>
+                <apex:inputHidden />
+                        
+                <apex:inputCheckbox id="cb_SyncResponses" value="{!ddm__dmsfc_Form__c.ddm__SyncResponses__c}"/>
+                <apex:inputHidden html-class="hdnDate"
+                    html-data-checked="{!ddm__dmsfc_Form__c.ddm__SyncResponses__c}"
+                    value="{!ddm__dmsfc_Form__c.ddm__LastSynchronised__c}" />
+                                         
+                <script>
+                
+                    (function(){
+                        var cbSyncForm = document.getElementById("{!$Component.cb_SyncForm}");
+                        var cbSyncResponses = document.getElementById("{!$Component.cb_SyncResponses}");
+                        
+                        enableSyncResponses();
+                        cbSyncForm.onclick = enableSyncResponses;
+                        
+                        function enableSyncResponses(){
+                            if(cbSyncForm.checked) {
+                                cbSyncResponses.disabled = false;
+                            } else {
+                                cbSyncResponses.checked = false;
+                                cbSyncResponses.disabled = true;
+                            }
+                        }
+                    })();
+                
+                    (function($){
+                        
+                        $('.hdnDate').each(function(){
+                            formatDate($(this));
+                        });
+                        
+                        $('input[type=checkbox]').change(syncOptionChanged)
+                        
+                        function syncOptionChanged(){
+                            var $cb = $(this),
+                                $container = $cb.closest('tr')
+                                $hdnDate = $('.hdnDate', $container),                
+                                wasChecked = $hdnDate.data('checked');
+                            
+                                
+                            if(!wasChecked && $cb.prop('checked')){
+                                $hdnDate.val('');
+                            } else {
+                                $hdnDate.val($hdnDate.data('value'));
+                            }
+                        }
+                        
+                        function formatDate($dtField) {
+                            var newDate = "";               
+                            if($dtField.val() !== ""){
+                                var date = new Date($dtField.val());
+                                newDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() +
+                                     " " + date.getHours() + ":" + date.getMinutes();
+                                $dtField.val(newDate);
+                            }                           
+                            $dtField.data('value', newDate);
+                        }
+                        
+                        
+                    })(jQuery);
+                </script>
+                
+            </apex:pageBlockSection>
+            
+            
+            
+        </apex:pageBlock>
+    </apex:form>
+
+    
+
+</apex:page>

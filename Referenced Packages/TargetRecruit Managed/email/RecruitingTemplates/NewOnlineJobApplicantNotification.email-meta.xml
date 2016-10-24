@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification to Recruiter when a candidate applies online</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>New Online Job Applicant</name>
+    <style>none</style>
+    <subject>{!Job_Applicant__c.Contact_Candidate__c} has applied to {!Job__c.Job_Title__c}</subject>
+    <type>text</type>
+</EmailTemplate>

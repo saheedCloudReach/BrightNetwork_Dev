@@ -1,0 +1,15 @@
+<apex:page controller="TRGTFCMS.CandidateDetailPageController" standardstylesheets="true" showHeader="false" sideBar="false" cache="false" tabStyle="Contact" action="{!init}">
+    <apex:form >
+        <apex:pageBlock title="{!$Label.trgtfcms__Candidate}">
+            
+            <apex:pageBlockSection id="pageBlockSection1" title="{!$Label.trgtfcms__Information}">
+                <apex:outputField value="{!contact.Name}"/>
+                <apex:outputField value="{!contact.Title}"/>
+                <apex:outputField value="{!contact.MobilePhone}"/>
+                <apex:outputField value="{!contact.AVTRRT__Resume__c}"/>
+                
+            </apex:pageBlockSection>
+          
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

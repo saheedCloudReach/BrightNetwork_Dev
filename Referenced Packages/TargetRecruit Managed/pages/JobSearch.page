@@ -1,0 +1,198 @@
+<apex:page controller="AVTRRT.JobSearchController" >
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" />
+	<script type="text/javascript" src="{!URLFOR($Resource.blockQuery)}" />
+	<apex:includeScript value="{!URLFOR($Resource.AVTRRT__MultiSelect, 'multiSelect.js')}" />
+
+	<link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" />
+
+	<script type="text/javascript">
+		var j$ = jQuery.noConflict();
+
+		function fixId(myid) {
+		    return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+		}
+	</script>
+
+	<apex:form >
+		<apex:pageMessages id="pageMessages"/>
+
+		<div class="block">
+		 	<apex:actionStatus id="status"
+      				onstart="j$('#dialogSearching').dialog({modal:false, resizable:false, width:180, open:function(event, ui) { j$('#dialogSearching').css('height','44px').css('min-height','44px'); j$('div.block').block({message: null}); j$('#dialogSearching').siblings('.ui-dialog-titlebar').hide(); } })"
+	        		onstop="j$('#dialogSearching').dialog('close');window.location='#sectionResult';j$('div.block').unblock();" />
+	    	<div id="dialogSearching" style="display:none;">
+		        <apex:image id="searchImage" url="{!$Resource.AVTRRT__loading}" style="float: left;"/>
+		        <div style="float: left; padding: 15px 5px 5px 15px;">Searching...</div>
+		    </div>
+
+			<apex:outputPanel id="ResultBlock">
+			    <apex:pageBlock >
+			        <div style="padding:5px 0; font-family: Tahoma;">
+			            Page #:&nbsp;{!pageNumber}&nbsp;out of&nbsp;{!totalPageNumber}&nbsp;&nbsp;&nbsp;&nbsp;
+			            <apex:commandButton style="font-family: Tahoma;" value="Previous" action="{!previousBtnClick}" disabled="{!previousButtonDisabled}" reRender="ResultBlock" status="status" />
+
+			            <apex:repeat value="{!pageNumbers}" var="number">
+			                &nbsp;&nbsp;
+			                <apex:commandLink action="{!numberBtnClick}" value="{!number}" reRender="ResultBlock" status="status" id="pager_pageNumber">
+			                    <apex:param value="{!number}" name="number" assignTo="{!pageNumber}" ></apex:param>
+			                </apex:commandLink>
+			                <script type="text/javascript">
+								var pager_pageNumber = j$(fixId('{!$Component.pager_pageNumber}'));
+								var v_selectedPageNumber = '{!PageNumber}';
+
+								if (pager_pageNumber.html() == v_selectedPageNumber) {
+									pager_pageNumber.css('font-weight', 'bold');
+									pager_pageNumber.css('color', '#e80000');
+								}
+							</script>
+			            </apex:repeat>
+			            &nbsp;&nbsp;
+
+			            <apex:commandButton style="font-family: Tahoma;" value="Next" action="{!nextBtnClick}" disabled="{!nextButtonDisabled}" reRender="ResultBlock" status="status" />
+			            &nbsp;&nbsp;
+
+			            Show Page:&nbsp;
+			            <apex:selectList value="{!selectedPage}" size="1">
+			                <apex:selectOptions value="{!pages}"></apex:selectoptions>
+			                <apex:actionSupport event="onchange" action="{!pageChanged}" reRender="ResultBlock" status="status" />
+			            </apex:selectList>&nbsp;&nbsp;
+			            Records per Page:&nbsp;
+			            <apex:selectList value="{!selectedPageSize}" size="1">
+			                <apex:selectOptions value="{!pageSizes}"></apex:selectoptions>
+			                <apex:actionSupport event="onchange" action="{!pageSizeChanged}" reRender="ResultBlock" status="status" />
+			            </apex:selectList>
+			            &nbsp;&nbsp;
+			            <u><apex:outputLabel value="Total count: {!recordCount}" style="font-family: Tahoma; font-weight: bold;" /></u>
+			        </div>
+
+			        <apex:pageBlockTable value="{!pageMetaRecords}" var="item" id="multiSelector">
+			            <apex:column width="10" style="vertical-align:top" >
+			                <apex:facet name="header">
+			                    <apex:inputCheckbox onclick="selectAll(this, multiSelector.id, '{!$Component.selectedRecords}')" />
+			                </apex:facet>
+			                <apex:inputCheckbox title="{!item.id}" value="{!item.selected}" id="checkedone" onclick="updateSelectedCount(multiSelector.id, '{!$Component.selectedRecords}')" />
+			            </apex:column>
+			            <apex:column style="vertical-align:top">
+			                <apex:facet name="header">
+			                	<apex:outputPanel >
+				                    <apex:commandLink rendered="{!isSortableCol0}" action="{!Sort}" value="{!colName0} {!IF(sortExpression==col0,IF(sortDirection='ASC','▲','▼'),'')}" reRender="ResultBlock" status="status">
+				                        <apex:param value="{!col0}" name="column" assignTo="{!sortExpression}" ></apex:param>
+				                    </apex:commandLink>
+				                   	<apex:outputLabel value="{!colName0}" rendered="{!isSortableCol0 != true}" />
+			                   	</apex:outputPanel>
+			                </apex:facet>
+			                <apex:outputLink value="/{!item.id}" target="_blank">
+			                    <apex:outputText style="font-family: Tahoma" value="{!item.val0}" escape="false" />
+			                </apex:outputLink>
+			            </apex:column>
+			            <apex:column style="vertical-align:top" rendered="{!colName1!=null}">
+			                <apex:facet name="header">
+			                	<apex:outputPanel >
+				                    <apex:commandLink rendered="{!isSortableCol1}" action="{!Sort}" value="{!colName1} {!IF(sortExpression==col1,IF(sortDirection='ASC','▲','▼'),'')}" reRender="ResultBlock" status="status">
+				                        <apex:param value="{!col1}" name="column" assignTo="{!sortExpression}" ></apex:param>
+				                    </apex:commandLink>
+			                    	<apex:outputLabel value="{!colName1}" rendered="{!isSortableCol1 != true}" />
+			                    </apex:outputPanel>
+			                </apex:facet>
+			                <apex:outputText style="font-family: Tahoma" value="{!item.val1}" escape="false" />
+			            </apex:column>
+			            <apex:column style="vertical-align:top" rendered="{!colName2!=null}">
+			                <apex:facet name="header">
+			                	<apex:outputPanel >
+				                    <apex:commandLink rendered="{!isSortableCol2}" action="{!Sort}" value="{!colName2} {!IF(sortExpression==col2,IF(sortDirection='ASC','▲','▼'),'')}" reRender="ResultBlock" status="status">
+				                        <apex:param value="{!col2}" name="column" assignTo="{!sortExpression}" ></apex:param>
+				                    </apex:commandLink>
+			                    	<apex:outputLabel value="{!colName2}" rendered="{!isSortableCol2 != true}" />
+			                    </apex:outputPanel>
+			                </apex:facet>
+			                <apex:outputText style="font-family: Tahoma" value="{!item.val2}" escape="false" />
+			            </apex:column>
+			            <apex:column style="vertical-align:top" rendered="{!colName3!=null}">
+			                <apex:facet name="header">
+			                	<apex:outputPanel >
+				                    <apex:commandLink rendered="{!isSortableCol3}" action="{!Sort}" value="{!colName3} {!IF(sortExpression==col3,IF(sortDirection='ASC','▲','▼'),'')}" reRender="ResultBlock" status="status">
+				                        <apex:param value="{!col3}" name="column" assignTo="{!sortExpression}" ></apex:param>
+				                    </apex:commandLink>
+				                	<apex:outputLabel value="{!colName3}" rendered="{!isSortableCol3 != true}" />
+				                </apex:outputPanel>
+			                </apex:facet>
+			                <apex:outputText style="font-family: Tahoma" value="{!item.val3}" escape="false" />
+			            </apex:column>
+			            <apex:column style="vertical-align:top" rendered="{!colName4!=null}">
+			                <apex:facet name="header">
+			                	<apex:outputPanel >
+				                    <apex:commandLink rendered="{!isSortableCol4}" action="{!Sort}" value="{!colName4} {!IF(sortExpression==col4,IF(sortDirection='ASC','▲','▼'),'')}" reRender="ResultBlock" status="status">
+				                        <apex:param value="{!col4}" name="column" assignTo="{!sortExpression}" ></apex:param>
+				                    </apex:commandLink>
+			                   		<apex:outputLabel value="{!colName4}" rendered="{!isSortableCol4 != true}" />
+				                </apex:outputPanel>
+			                </apex:facet>
+			                <apex:outputText style="font-family: Tahoma" value="{!item.val4}" escape="false" />
+			            </apex:column>
+			            <apex:column style="vertical-align:top" rendered="{!colName5!=null}">
+			                <apex:facet name="header">
+			                	<apex:outputPanel >
+				                    <apex:commandLink rendered="{!isSortableCol5}" action="{!Sort}" value="{!colName5} {!IF(sortExpression==col5,IF(sortDirection='ASC','▲','▼'),'')}" reRender="ResultBlock" status="status">
+				                        <apex:param value="{!col5}" name="column" assignTo="{!sortExpression}" ></apex:param>
+				                    </apex:commandLink>
+			                   		<apex:outputLabel value="{!colName5}" rendered="{!isSortableCol5 != true}" />
+				                </apex:outputPanel>
+			                </apex:facet>
+			                <apex:outputText style="font-family: Tahoma" value="{!item.val5}" escape="false" />
+			            </apex:column>
+			            <apex:column style="vertical-align:top" rendered="{!colName6!=null}">
+			                <apex:facet name="header">
+			                	<apex:outputPanel >
+				                    <apex:commandLink rendered="{!isSortableCol6}" action="{!Sort}" value="{!colName6} {!IF(sortExpression==col6,IF(sortDirection='ASC','▲','▼'),'')}" reRender="ResultBlock" status="status">
+				                        <apex:param value="{!col6}" name="column" assignTo="{!sortExpression}" ></apex:param>
+				                    </apex:commandLink>
+			                   		<apex:outputLabel value="{!colName6}" rendered="{!isSortableCol6 != true}" />
+				                </apex:outputPanel>
+			                </apex:facet>
+			                <apex:outputText style="font-family: Tahoma" value="{!item.val6}" escape="false" />
+			            </apex:column>
+			            <apex:column style="vertical-align:top" rendered="{!colName7!=null}">
+			                <apex:facet name="header">
+			                	<apex:outputPanel >
+				                    <apex:commandLink rendered="{!isSortableCol7}" action="{!Sort}" value="{!colName7} {!IF(sortExpression==col7,IF(sortDirection='ASC','▲','▼'),'')}" reRender="ResultBlock" status="status">
+				                        <apex:param value="{!col7}" name="column" assignTo="{!sortExpression}" ></apex:param>
+				                    </apex:commandLink>
+			                   		<apex:outputLabel value="{!colName7}" rendered="{!isSortableCol7 != true}" />
+				                </apex:outputPanel>
+			                </apex:facet>
+			                <apex:outputText style="font-family: Tahoma" value="{!item.val7}" escape="false" />
+			            </apex:column>
+			            <apex:column style="vertical-align:top" rendered="{!colName8!=null}">
+			                <apex:facet name="header">
+			                	<apex:outputPanel >
+				                    <apex:commandLink rendered="{!isSortableCol8}" action="{!Sort}" value="{!colName8} {!IF(sortExpression==col8,IF(sortDirection='ASC','▲','▼'),'')}" reRender="ResultBlock" status="status">
+				                        <apex:param value="{!col8}" name="column" assignTo="{!sortExpression}" ></apex:param>
+				                    </apex:commandLink>
+			                   		<apex:outputLabel value="{!colName8}" rendered="{!isSortableCol8 != true}" />
+				                </apex:outputPanel>
+			                </apex:facet>
+			                <apex:outputText style="font-family: Tahoma" value="{!item.val8}" escape="false" />
+			            </apex:column>
+			            <apex:column style="vertical-align:top" rendered="{!colName9!=null}">
+			                <apex:facet name="header">
+			                	<apex:outputPanel >
+				                    <apex:commandLink rendered="{!isSortableCol9}" action="{!Sort}" value="{!colName9} {!IF(sortExpression==col9,IF(sortDirection='ASC','▲','▼'),'')}" reRender="ResultBlock" status="status">
+				                        <apex:param value="{!col9}" name="column" assignTo="{!sortExpression}" ></apex:param>
+				                    </apex:commandLink>
+			                   		<apex:outputLabel value="{!colName9}" rendered="{!isSortableCol9 != true}" />
+				                </apex:outputPanel>
+			                </apex:facet>
+			                <apex:outputText style="font-family: Tahoma" value="{!item.val9}" escape="false" />
+			            </apex:column>
+			        </apex:pageBlockTable>
+			        <script>
+			            var multiSelector = j$(fixId('{!$Component.multiSelector}'))[0];
+			        </script>
+			        <br />
+			        <apex:outputText style="font-family: Tahoma;" id="selectedRecords" value="Selected: 0" />
+			    </apex:pageBlock>
+		    </apex:outputPanel>
+		</div>
+	</apex:form>
+</apex:page>

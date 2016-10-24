@@ -1,0 +1,636 @@
+<apex:page standardController="JOBBS__Job_Board_Search__c" extensions="JOBBS.JobBoardSearchControllerNew" sidebar="false" title="Job Boards Search" >
+
+	<script
+			src="https://ajax.googleapis.com/ajax/libs/prototype/1.6.1.0/prototype.js"
+			type="text/javascript" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+	
+	<style type="text/css">
+		{!interfaceResponse.libs.css}
+	</style>
+	<script>		
+		{!interfaceResponse.libs.jb_params}		
+	</script>	
+	<script>
+		{!interfaceResponse.libs.prototype}
+	</script>
+	<script>
+		{!interfaceResponse.libs.effects}
+	</script>
+	<script>
+		{!interfaceResponse.libs.controls}
+	</script>
+	
+	<style>
+		table.jb_params input, table.jb_params select, table.jb_params table.tab_tab td {
+			font-size: 13px;
+		}
+	</style>
+
+	<script type="text/javascript" src="{!URLFOR($Resource.blockQuery)}"></script>
+
+	<script src="/soap/ajax/18.0/connection.js" type="text/javascript"></script>
+	<script src="/soap/ajax/18.0/apex.js" type="text/javascript"></script>
+
+	<style type="text/css">
+		.link {
+			font-family: "MS Reference Sans Serif";
+			padding: 5px 5px 5px 5px;
+			border: 1px solid #d9d9d9;
+			background: White;
+			-moz-border-radius: 3px;
+			-webkit-border-radius: 3px;
+		}
+
+		.link:hover {
+			color: #5b6899;
+			cursor: pointer;
+			border: 1px solid #acacac;
+			background: #f8f8f8;
+			text-decoration: none;
+		}
+		
+		.linkedInAuthdialogPopup{
+			
+		    width: auto  !important;
+		    height: auto !important;
+		}
+	</style>
+
+
+<script type="text/javascript">
+
+var j$ = jQuery.noConflict();
+
+ 
+
+function fixId(myid) {
+	return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+}
+
+function mycancel() {
+	window.parent.location = '{!URLFOR($Action.Job_Board_Search__c.Tab, $ObjectType.Job_Board_Search__c)}';
+}
+
+function ClickSave() {
+
+}
+
+function ClickRealSave() {
+	var searchNameValue = searchName.value;
+	j$('#dialog').dialog({modal:true}, {resizable:false}, {width:240}, {height:120}, {autoOpen:false});
+	j$('#dialog').dialog('close');
+	searchNameHidden.value = searchNameValue;
+	j$(saveBtn).click();
+}
+
+function ClickRealClone() {
+	var searchNameValue = searchName.value;
+	j$('#dialog').dialog({modal:true}, {resizable:false}, {width:240}, {height:120}, {autoOpen:false});
+	j$('#dialog').dialog('close');
+	searchNameHidden.value = searchNameValue;
+	j$(cloneBtn).click();
+}
+
+function enterToSave(ev) {
+	if (window.event && window.event.keyCode == 13 || ev.which == 13) {
+		ClickRealSave();
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function enterToClone(ev) {
+	if (window.event && window.event.keyCode == 13 || ev.which == 13) {
+		ClickRealClone();
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function enterToSearch(ev) {
+	if (window.event && window.event.keyCode == 13 || ev.which == 13) {
+		j$(searchBtn).click();
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function changeCheckboxesState() {
+	profileCheckboxes = j$('.profileCheckbox');
+	allProfilesCheckbox = j$('.allProfilesCheckbox');
+
+	if (allProfilesCheckbox.attr('checked') == 'checked') {
+		profileCheckboxes.each(function(index) {
+			j$(this).attr('checked', 'checked');
+		});
+	}
+	else {
+		profileCheckboxes.each(function(index) {
+			j$(this).removeAttr('checked');
+		});
+	}
+}
+
+function runSearchAndTryResults() {
+	var attempsCount = j$('.attempts').val();
+	
+	var attempsCountInt = parseInt(attempsCount);
+	
+	if (isNaN(attempsCountInt)) {
+		attempsCountInt = 0;
+	}
+	
+	if (attempsCountInt < 1000) {
+		attempsCountInt++;
+		j$('.attempts').val(attempsCountInt);
+
+		runSearch();
+	}
+	 else {
+		j$('#dialogSearching').dialog('close');
+		window.location='#sectionResult';
+		j$('div.block1').unblock();
+
+		j$('.attempts').val('');
+	}
+}
+
+function runImportAndTryResults() {
+	var attempsCount = j$('.attempts').val();
+	
+	var attempsCountInt = parseInt(attempsCount);
+	
+	if (isNaN(attempsCountInt)) {
+		attempsCountInt = 0;
+	}
+	
+	if (attempsCountInt < 1000) {
+		
+		attempsCountInt++;
+		j$('.attempts').val(attempsCountInt);
+
+		runImport();
+	} else {
+
+		j$('#dialogImporting').dialog('close');
+		window.location='#sectionResult';
+		j$('div.block1').unblock();
+
+		j$('.attempts').val('');
+	}
+}
+
+function getCheckedCount() {
+	v_checkBoxes = j$('.profileCheckbox');
+
+	var v_checkedCount = 0;
+
+	v_checkBoxes.each(function(index) {
+		var v_isChecked = j$(this).attr('checked');
+
+		if (v_isChecked) { v_checkedCount++; }
+	});
+
+	return v_checkedCount;
+}
+
+function checkImportedAndShowConfirmDialog() {
+	v_checkBoxes = j$('.profileCheckbox:checked');
+	var v_importedCount = 0;
+	var v_notImportedCount = 0;
+
+	v_checkBoxes.each(function(index) {
+		var v_isImported = j$(this).siblings().children('.isImported');
+
+		if (v_isImported != undefined) {
+			if (v_isImported.attr('value') == 'true') {
+				v_importedCount++;
+			}
+			if (v_isImported.attr('value') == 'false') {
+				v_notImportedCount++;
+			}
+		}
+	});
+
+	if (v_importedCount > 0) {
+		j$("#importConfirm").dialog({
+				width: 400,
+				height: 220,
+				resizable: false,
+				draggable: true,
+				modal : true,
+				overlay: { backgroundColor: '#000', opacity: 0.5 },
+				open:function(event, ui) {
+					j$('#importConfirm').siblings('.ui-dialog-titlebar').hide();
+				}
+		});
+		j$("#importConfirm").dialog("option", "height", 220);
+	} else {
+		if (v_notImportedCount > 0) {
+			runImportAndTryResults();
+		} else {
+			alert('Please, select atleast one candidate.');
+		}
+	}
+}
+
+function createJobApplicants() {
+	var v_applyJob = j$(jobList).val();
+
+	if (v_applyJob != '') {
+		j$(isImport).val(false);
+		checkImportedAndShowConfirmDialog();
+	} else {
+		alert('Please, select job.');
+	}
+}
+
+function setParameters() {
+	var elements = j$('select').filter(function() {
+		return this.id.match(/jb_.+/);
+	});
+	var hidden = j$('input').filter(function () {		
+		return this.id.match(/.*multiSelectParameters/);
+	}).get(0);
+	
+	hidden.value = '';
+	elements.each(function(index, element) {
+		var $element = j$(element);
+		hidden.value += element.id + '=' + $element.val() + '&';
+	});
+	
+	if (hidden.value.length > 2)
+		hidden.value = hidden.value.substring(0, hidden.value.length - 1);
+
+}
+
+function callLinkedInFunction(authenticationCodeId){
+	var authenticationCode = document.getElementById(authenticationCodeId).value;
+	j$('#linkedInAuthdialog').dialog({modal:true}, {resizable:false}, {width:240}, {height:120}, {autoOpen:false});
+	//j$('#linkedInAuthdialog').dialog('close');
+	callLinkedIn(authenticationCode);
+	
+	j$("#linkedInAuthdialog").dialog("close");
+	j$(".ui-dialog-content").dialog("close");
+	runSearch();
+	
+}
+
+</script>
+
+<div class="block1">
+	<apex:form >
+		<apex:pageBlock title="{!searchObj.Name}" >
+			<apex:pageBlockButtons >
+				<apex:commandButton value="Search" onclick="setParameters(); runSearchAndTryResults(); return false;" />
+				<apex:actionFunction name="runSearch" action="{!search}"
+						rerender="pages,resultBlock,linkedInAuthBlock" status="searching"/>
+						
+				<apex:actionfunction action="{!addLinkedlnCode}" name="callLinkedIn" rerender="resultBlock"  status="searching">
+					<apex:param assignTo="{!linkedlnCode}" name="linkedlnCode" value=""/>
+				</apex:actionfunction>
+
+				<apex:commandButton value="Cancel" id="cancelButton" onclick="mycancel(); return false;" />
+
+				<apex:commandButton value="Save"
+						onclick="j$('#dialog').dialog({modal:true}, {resizable:false}, {width:240}, {height:120});return false;"
+						style="display:{!IF(searchObj.Id==null, 'inline', 'none')}" />
+				<apex:commandButton value="Save"
+						onclick="setParameters();" action="{!save}" id="saveButton"
+						style="display:{!IF(searchObj.Id!=null, 'inline', 'none')}" />
+
+				<apex:commandButton value="Clone"
+						onclick="j$('#dialog').dialog({modal:true}, {resizable:false}, {width:240}, {height:120});return false;"
+						style="display:{!IF(searchObj.Id!=null, 'inline', 'none')}" />
+				<apex:commandButton value="Clone"
+						onclick="setParameters();" action="{!cloneSearch}" id="cloneButton"
+						style="display:none" />
+
+				<apex:actionFunction name="runImport" action="{!import}"
+						rerender="resultBlock" status="importing"/>
+
+				<apex:inputHidden value="{!searchObj.Name}" id="searchNameHidden" />
+				
+				<div id="dialog" style="display: none" title="Select Search Name">
+					<apex:outputLabel value="Name  " />
+					<apex:inputText id="searchName"
+						onkeypress="{!IF(searchObj.Id==null, 'return enterToSave(event);',
+						'return enterToClone(event);')}" value="{!searchObj.Name}" /><br />
+					<br />
+					<apex:commandButton value="Save" onclick="ClickRealSave();"
+						style="display:{!IF(searchObj.Id==null, 'inline', 'none')}" />
+					<apex:commandButton value="Clone" onclick="ClickRealClone()"
+						style="display:{!IF(searchObj.Id!=null, 'inline', 'none')}" />
+				</div>
+				
+				
+				
+				<script type="text/javascript">
+					var saveBtn = j$(fixId('{!$Component.saveButton}'))[0];
+					var cloneBtn = j$(fixId('{!$Component.cloneButton}'))[0];
+					var searchBtn = j$(fixId('{!$Component.searchButton}'))[0];
+					var searchNameHidden = j$(fixId('{!$Component.searchNameHidden}'))[0];
+					var searchName = j$(fixId('{!$Component.searchName}'))[0];
+				</script>
+			</apex:pageBlockButtons>
+
+			<apex:pageBlockSection columns="1" title="Text Search">
+				<apex:outputPanel >
+					<div style="float: left">Keywords*&nbsp; <apex:inputText value="{!searchObj.JOBBS__Keywords__c}"
+						id="keywords" style="width:400px" onkeypress="return enterToSearch(event)" />
+					<span class="searchInfoElement">
+					<div onmouseover="addMouseOver(this)" onfocus="addMouseOver(this)"
+						class="mouseOverInfoOuter"><img class="infoIcon"
+						src="/s.gif" />
+					<div style="display: none; opacity: 0;" class="mouseOverInfo">
+					<span class="searchHints"> • Use operators such as AND, OR,
+					and AND NOT to refine your search.<br />
+					• Put quotation marks around multiple keywords to perform an exact
+					phrase match, for example, "call john smith".<br />
+					• Add an asterisk to the end of your keyword to search for items
+					that start with the word, for example, acme*. </span></div>
+					</div>
+					</span></div>
+				</apex:outputPanel>
+				 
+			</apex:pageBlockSection>
+
+			<script>
+				<apex:outputText value="{!interfaceResponse.js}" escape="false" />
+			</script>
+			
+			<apex:pageBlockSection columns="1" title="Job Board" id="jobBoardList">
+				<apex:outputText value="{!interfaceResponse.html}" escape="false" />
+			</apex:pageBlockSection>
+
+			<apex:outputText value="{!loadJavascript}" escape="false" />
+			
+			<apex:repeat value="{!parametersMap}" var="paramName" >
+				<script>
+					
+					if (j$('[name={!paramName}]').is('select[multiple]')) {
+						j$('[name={!paramName}]').val([]);
+						var values = '{!parametersMap[paramName]}'.split(',');
+						j$.each(values, function(index, value) {
+							j$('[name={!paramName}]').find('option[value=' + value + ']').attr('selected', true);
+						});
+					} else {
+						j$('[name={!paramName}]').val('{!parametersMap[paramName]}');
+						/* Code Added by pandeiswari to fix Case # :00024228 (3)
+						j$('[name={!paramName}]').change();*/
+					}
+				</script>
+			</apex:repeat>
+			
+			<apex:inputHidden id="multiSelectParameters" value="{!multiSelectParameters}" />
+		</apex:pageBlock>
+
+		<a name="sectionResult"></a>
+
+		<apex:outputPanel id="resultBlock">
+
+		<apex:outputPanel id="linkedInAuthBlock" rendered="{!linkedlnVerification}">
+
+			 <script type="text/javascript">
+				j$(function(){
+					j$('#linkedInAuthdialog').dialog({modal:true}, {resizable:true}, {width:300}, {height:120});return false;
+				
+				});
+				
+			</script>	
+			<div id="linkedInAuthdialog" style="display: none" title="LinkedIn Authentication" class="linkedInAuthdialogPopup">
+					<apex:outputLabel value="Please enter LinkedIn Verification Code received in email" />
+					
+					<!-- <div style="background-image:url('data:image/jpeg;base64,{!linkdInCaptcha}')"/> {!linkdInCaptcha}-- -->
+					
+					 <!-- <apex:image value="data:image/jpeg;base64,{!linkdInCaptcha}" /> --> 
+					
+					<apex:inputText id="authenticationCodeId" styleClass="authenticationCodeClass" value="{!linkedlnCode}" /><br />
+					<br />
+										
+					<apex:commandButton value="Send" onclick="javascript:callLinkedInFunction('{!$Component.authenticationCodeId}'); return false;" rerender="pages,resultBlock,linkedInAuthBlock"/>
+					<!-- <apex:commandButton value="Cancel"  action="{!cancelLinkedInAuth}" rerender="pages,resultBlock,linkedInAuthBlock"/> -->
+				</div>	
+		</apex:outputPanel>
+			<apex:inputText style="display:none" styleClass="attempts" value="{!attemptsCount}" />
+			<apex:inputText style="display:none" value="{!isImport}" id="isImport" />
+
+			<script type="text/javascript">
+				var isImport = j$(fixId('{!$Component.isImport}'))[0];
+			</script>
+
+			<apex:pageMessages id="messagesBox" />
+
+			<apex:pageBlock rendered="{!showResultBlock}">
+				<apex:outputPanel >
+					<apex:outputText value="Recruiter:" style="font-family: Tahoma; " />&nbsp;
+					<apex:selectList id="recruiterList" value="{!recruiter}" size="1" style="width: 300px; font-family: Tahoma;">
+						<apex:selectOptions value="{!recruiterSelectOptionList}" />
+						<apex:actionSupport event="onchange" rerender="jobList" status="paging" />
+					</apex:selectList>&nbsp;&nbsp;&nbsp;
+					<apex:outputText value="Job List:" style="font-family: Tahoma; " />&nbsp;
+					<apex:selectList id="jobList" value="{!applyJobNum}" size="1" style="width: 300px; font-family: Tahoma;">
+						<apex:selectOptions value="{!jobSelectOptionList}" />
+					</apex:selectList>
+					<script type="text/javascript">
+						var jobList = j$(fixId('{!$Component.jobList}'))[0];
+					</script>
+					<br />
+					<apex:commandButton value="Create Job Applicants" onclick="createJobApplicants(); return false;" />
+					<apex:commandButton value="Import" onclick="j$(isImport).val(true); checkImportedAndShowConfirmDialog(); return false;" />
+				</apex:outputPanel>
+				<hr />
+
+				<apex:outputpanel id="pages" style="font-family: Tahoma;">
+			Page #:&nbsp;{!PageNumber}&nbsp;out
+			of&nbsp;{!totalPageNumber}&nbsp;&nbsp;&nbsp;&nbsp; <apex:commandButton value="Previous" action="{!previousBtnClick}"
+						disabled="{!previousButtonDisabled}" reRender="opp_table,pages"
+						status="paging" />
+					<apex:repeat value="{!pageNumbers}" var="number">
+				&nbsp;&nbsp;
+				<apex:commandLink value="{!number}"
+							reRender="opp_table,pages" status="paging">
+							<apex:param value="{!number}" name="number"
+								assignTo="{!pageNumber}"></apex:param>
+						</apex:commandLink>
+					</apex:repeat> &nbsp;&nbsp; <apex:commandButton value="Next"
+						action="{!nextBtnClick}" disabled="{!nextButtonDisabled}"
+						reRender="opp_table,pages" status="paging" /> &nbsp;&nbsp; Show
+			Page:&nbsp; <apex:selectList value="{!pageNumber}" size="1">
+						<apex:selectOptions value="{!pageNumbersForSelect}">
+							</apex:selectoptions>
+							<apex:actionSupport event="onchange" reRender="opp_table,pages" status="paging" />
+					</apex:selectList>&nbsp;&nbsp; Records per Page:&nbsp; <apex:selectList value="{!pageSize}" size="1">
+						<apex:selectOptions value="{!pageSizes}">
+							</apex:selectoptions>
+							<apex:actionSupport event="onchange" reRender="opp_table, pages" status="paging" />
+					</apex:selectList>&nbsp;&nbsp;
+					<apex:outputLabel value="Total Count: {!recordsCount}" style="font-family: Tahoma; font-size: 11px; font-weight: bold; text-decoration: underline;" />
+				</apex:outputpanel>
+
+				<apex:pageBlockTable value="{!pageCandidatesList}" var="can"
+					id="opp_table">
+					<apex:column headerValue="Select">
+						<apex:facet name="header">
+							<apex:inputCheckbox styleClass="allProfilesCheckbox" onchange="changeCheckboxesState()" />
+						</apex:facet>
+						<apex:inputCheckbox selected="{!can.selected}"
+							rendered="{!can.render}" styleClass="profileCheckbox" />
+						<apex:outputPanel rendered="{!can.isImported == true}">
+							<input type="hidden" class="isImported" value="true" readonly="readonly" />
+						</apex:outputPanel>
+						<apex:outputPanel rendered="{!can.isImported == false}">
+							<input type="hidden" class="isImported" value="false" readonly="readonly" />
+						</apex:outputPanel>
+					</apex:column>
+					<apex:column headerValue="Imported Date">
+						<apex:outputPanel rendered="{!can.isImported}">
+							<apex:outputLink value="/{!can.candidateId}" target="_blank">
+								<apex:outputText value="{!can.importDate}" style="font-family: Tahoma;" />
+							</apex:outputLink>
+						</apex:outputPanel>
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandLink action="{!sort}" value="Firstname{!IF(sortExpression=='Firstname',IF(sortDirection='ASC','▼','▲'),'')}" reRender="resultBlock">
+								<apex:param value="Firstname" name="column" assignTo="{!sortExpression}" ></apex:param>
+							</apex:commandLink>
+						</apex:facet>
+						<apex:outputTEXT value="{!can.fname}" style="font-weight:bold" />
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandLink action="{!sort}" value="Lastname{!IF(sortExpression=='Lastname',IF(sortDirection='ASC','▼','▲'),'')}" reRender="resultBlock">
+								<apex:param value="Lastname" name="column" assignTo="{!sortExpression}" ></apex:param>
+							</apex:commandLink>
+						</apex:facet>
+						<apex:outputTEXT value="{!can.lname}" style="font-weight:bold" />
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandLink action="{!sort}" value="Source{!IF(sortExpression=='Source',IF(sortDirection='ASC','▼','▲'),'')}" reRender="resultBlock">
+								<apex:param value="Source" name="column" assignTo="{!sortExpression}" ></apex:param>
+							</apex:commandLink>
+						</apex:facet>
+						<apex:outputTEXT value="{!can.Source}" style="font-weight:bold" />
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandLink action="{!sort}" value="Score{!IF(sortExpression=='Score',IF(sortDirection='ASC','▼','▲'),'')}" reRender="resultBlock">
+								<apex:param value="Score" name="column" assignTo="{!sortExpression}" ></apex:param>
+							</apex:commandLink>
+						</apex:facet>
+						<apex:outputTEXT value="{!can.Score}" style="font-weight:bold" />
+					</apex:column>
+					<apex:column >
+						<apex:facet name="header">
+							<apex:commandLink action="{!sort}" value="Location{!IF(sortExpression=='Location',IF(sortDirection='ASC','▼','▲'),'')}" reRender="resultBlock">
+								<apex:param value="Location" name="column" assignTo="{!sortExpression}" ></apex:param>
+							</apex:commandLink>
+						</apex:facet>
+						<apex:outputTEXT value="{!can.location}" style="font-weight:bold" />
+					</apex:column>
+					<apex:column width="450px">
+						<apex:facet name="header">
+							<apex:commandLink action="{!sort}" value="Additional information{!IF(sortExpression=='Additional information',IF(sortDirection='ASC','▼','▲'),'')}" reRender="resultBlock">
+								<apex:param value="Additional Information" name="column" assignTo="{!sortExpression}" ></apex:param>
+							</apex:commandLink>
+						</apex:facet>
+						<apex:outputText value="{!can.addInfo}" escape="false" style="font-weight: bold;" />
+					</apex:column>
+					<apex:column width="180px">
+						<apex:facet name="header">
+							<apex:commandLink action="{!sort}" value="Update{!IF(sortExpression=='Update',IF(sortDirection='ASC','▼','▲'),'')}" reRender="resultBlock">
+								<apex:param value="Update" name="column" assignTo="{!sortExpression}" ></apex:param>
+							</apex:commandLink>
+						</apex:facet>
+						<apex:outputText value="{!can.upd}" style="font-weight: bold;" />
+					</apex:column>
+
+					<apex:column headerValue="Profile">
+
+						<apex:outputLink value="{!can.profilelink}" target="_blank"> Profile</apex:outputLink>
+
+					</apex:column>
+
+					<!-- <apex:column headerValue="Resume">
+						<apex:commandLink value="Resume" action="{!getResume}"
+							target="_blank">
+							<apex:param assignTo="{!ProfileId }" name="ProfileId "
+								value="{!can.ProfileId}" />
+						</apex:commandLink>
+					</apex:column> -->
+				</apex:pageBlockTable>
+
+			</apex:pageBlock>
+		</apex:outputPanel>
+
+		<apex:actionStatus id="searching"
+				onstart="if (j$('#dialogSearching').dialog('isOpen') != true) { j$('#dialogSearching').dialog({modal:true, resizable:false, width:180, open:function(event, ui) { j$('#dialogSearching').css('height','44px').css('min-height','44px'); j$('div.block1').block({message: null});  j$('#dialogSearching').siblings('.ui-dialog-titlebar').hide(); } } ) }"
+				onstop="runSearchAndTryResults();" />
+		<div id="dialogSearching" style="display:none;">
+			<apex:image id="searchImage" url="{!$Resource.JOBBS__loading}" style="float: left;"/>
+			<div style="float: left; padding: 15px 5px 5px 15px;">Searching...</div>
+		</div>
+
+		<apex:actionStatus id="paging"
+				onstart="j$('#dialogSearching').dialog({modal:false, resizable:false, width:180, open:function(event, ui) { j$('#dialogSearching').css('height','44px').css('min-height','44px'); j$('div.block1').block({message: null});  j$('#dialogSearching').siblings('.ui-dialog-titlebar').hide(); } })"
+				onstop="j$('#dialogSearching').dialog('close');window.location='#sectionResult'; j$('div.block1').unblock()" />
+
+		<apex:actionStatus id="importing"
+				onstart="if (j$('#dialogImporting').dialog('isOpen') != true) { j$('#dialogImporting').dialog({modal:true, resizable:false, width:180, open:function(event, ui) { j$('#dialogImporting').css('height','44px').css('min-height','44px'); j$('div.block1').block({message: null}); j$('#dialogImporting').siblings('.ui-dialog-titlebar').hide(); } } ) }"
+				onstop="runImportAndTryResults();" />
+		<div id="dialogImporting" style="display:none">
+			<apex:image id="importImage" url="{!$Resource.JOBBS__loading}" style="float: left;"/>
+			<div style="float: left; padding: 15px 5px 5px 15px;">Importing...</div>
+		</div>
+
+		<div id="importConfirm" title="Import" style="display: none;">
+			<br /><h3 style="font-family: Tahoma; font-size: 14px; font-weight: normal; color: #5664ee; padding-left: 5px;">Please, confirm the import</h3>
+			<div style="font-family: 'MS Reference Sans Serif'; border: 1px solid #ffcb80; background: #ffffe6; min-height: 108px; margin-top: 10px; overflow: auto; height: 108px; padding: 5px 5px 5px 5px;">
+				<apex:outputText escape="false">You choose the candidates that have been imported previously. Do you want to import them again?</apex:outputText>
+			</div>
+			<div style="position: relative; float: right; right: 0px; top: 20px; padding-bottom: 15px; padding-left: 10px;">
+				<a class="link" onclick="j$('#importConfirm').dialog('close');">No, thanks</a>
+			</div>
+			<div style="position: relative; float: right; right: 0px; top: 20px; padding-bottom: 15px;">
+				<a class="link" onclick="j$('#importConfirm').dialog('close'); runImportAndTryResults(); return false;">Yes, import candidates</a>
+			</div>
+		</div>
+
+		<style type="text/css">
+			.jb_params TH, .jb_params TD {padding-left:10px; padding-right:10px}
+			.jb_params .spacer {padding-top:5px; padding-bottom:5px}
+		</style>
+	</apex:form>
+</div>
+
+	<apex:outputPanel rendered="{!searchObj.Id != null}">
+		<script>
+			setParameters();
+			runSearchAndTryResults();
+			
+			
+		</script>
+	</apex:outputPanel>
+	<script>
+		j$(document).ready(function(){				
+				j$("#jb_dce_other_max_results option[value='1000']").remove();
+				j$("#jb_mnx_other_pagesize option[value='1000']").remove();
+				j$("#jb_dce_other_max_results").append("<option value=\'600\'>600</option>");
+				j$("#jb_dce_other_max_results").append("<option value=\'700\'>700</option>");
+				j$("#jb_mnx_other_pagesize").append("<option value=\'600\'>600</option>");
+				j$("#jb_mnx_other_pagesize").append("<option value=\'700\'>700</option>");
+				j$("#jb_mnx_other_pagesize").append("<option value=\'800\'>800</option>");
+				
+				 
+			});
+	</script>
+</apex:page>

@@ -1,0 +1,122 @@
+<apex:page controller="TRGTFCMS.CandidateListController" showHeader="false" cache="false" action="{!init}">
+<style>
+    <apex:outputText value="{!cmsCssCustom}" />
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script>
+        // jQuery workarounds to make it work.
+        var j$ = jQuery.noConflict();
+        function fixId(myid) {
+                return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+        }
+    </script>
+<apex:pageMessages />
+    
+<apex:form >
+        <div class="search-page candiadtelist">
+            <div class="container round-corner" style="float:left;">
+                <div class="page-title">
+                    <h4>
+                     {!$Label.trgtfcms__Thank_you_message_for_Candidate_Search}
+                    </h4>
+                </div>
+                <div class="search-form">
+                    <div class="keywords">
+                        <apex:outputLabel styleClass="field-label" for="search-keywords" value="{!$Label.trgtfcms__Keywords_double_dot}" />
+                        <apex:inputText value="{!keywords}" styleClass="field-keywords" style="width:700px;" id="search-keywords"/>
+                    </div>
+                    
+                    <div class="coloumn-one">
+                         <div class="experience">
+                            <label class="field-label" for="experience">{!$Label.trgtfcms__Work_status}</label>
+                            <apex:inputField value="{!fakeCandidate.AVTRRT__Work_Status__c}" styleClass="field-text"/>
+                        </div>   
+                    </div>
+                    <div class="coloumn-two">
+                        
+                    </div>
+                    <div class="coloumn-three">
+                        <div class="experience">
+                            <label class="field-label" for="job-term">{!$Label.trgtfcms__City}</label>
+                            <apex:inputField value="{!fakeCandidate.AVTRRT__City__c}" styleClass="field-text"/>   
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+    
+            <div class="form-submit1 table_apply_button" style="float: left; width: 95%;">
+                <apex:commandButton action="{!search}" value="{!$Label.trgtfcms__Search_Candidates}"/>
+                <apex:commandButton onclick="window.location.href = '{!resetURL}';return false;" value="{!$Label.trgtfcms__Reset}" />
+            </div>
+        </div>
+
+        <div class="search-result">
+            <apex:outputPanel rendered="{!showResult}">
+                <table class="cmstable" cellspacing="0" summary="{!$Label.Search_Result_of_Candidates}" id="table1">
+                    <tr style="background:none;">
+                        <td colspan="8">
+                        <div class="form-submit1 table_apply_button">   
+                            <apex:outputPanel rendered="{!isShowRequestInformationButton}">
+                                <apex:commandLink action="{!requestInformation}" ><input type="button" value="{!$label.Request_More_Information}" /></apex:commandLink>
+                                <input type="reset" />
+                            </apex:outputPanel>
+                            </div>
+                        </td>
+                    </tr>
+            <tr>
+             <th scope="col" abbr="Job Title"><apex:outputPanel rendered="{!isShowRequestInformationButton}"><input type="checkbox" name="checkAllAuto" id="checkAllAuto"/></apex:outputPanel></th>
+            <th scope="col" abbr="Job Title">{!$Label.Name}</th>
+            <th scope="col" abbr="Job Title">{!$Label.Skill_set}</th>
+            <th scope="col" abbr="Description">{!$Label.City}</th>
+            <th scope="col" abbr="Description">{!$Label.State}</th>
+            <th scope="col" abbr="Description">{!$Label.Desired_salary}</th>
+            <th scope="col" abbr="Description">{!$Label.Work_status}</th>
+            </tr>
+                    <apex:repeat value="{!candidatesSearchList}" var="candidate">
+                    
+                    <tr >
+                       <td style="width:10px !important;"> <apex:outputPanel rendered="{!isShowRequestInformationButton}"><apex:inputCheckBox value="{!candidate.checkBox}" styleclass="linkCheckBox" id="checkBox" /></apex:outputPanel></td>
+                    <td>
+                        <apex:outputLink value="/apex/FCMS__CMSLayout" styleClass="jobTitleList" target="_blank">
+                        <apex:param name="candidateId" value="{!candidate.contactRecord.Id}"/>
+                        <apex:param name="page" value="CandidateDetailPage" />
+                        <apex:param name="sessionId" value="{!$CurrentPage.parameters.sessionId}" />
+                        <apex:param name="p" value="{!if($CurrentPage.parameters.p==null,'',$CurrentPage.parameters.p)}" />
+                        {!candidate.contactRecord.Name}<br/>
+                        </apex:outputLink>
+                    </td>
+                 
+                    <td> <p> {!candidate.contactRecord.AVTRRT__AutoPopulate_Skillset__c} </p> </td>
+                    <td> <p> {!candidate.contactRecord.AVTRRT__City__c} </p> </td>
+                    <td> <p> {!candidate.contactRecord.AVTRRT__State__c} </p> </td>
+                    <td> <p> {!candidate.contactRecord.AVTRRT__Desired_Pay_Range_From__c}</p> </td>
+                    <td> <p>{!candidate.contactRecord.AVTRRT__Work_Status__c}</p> </td>
+                </tr>  
+                    
+                    
+                </apex:repeat>
+                     <tr  style="background:none;">
+                        <td colspan="8">
+                        <div class="form-submit1 table_apply_button">
+                            <apex:outputPanel rendered="{!isShowRequestInformationButton}">
+                                <apex:commandLink action="{!requestInformation}"><input type="button" value="{!$label.Request_More_Information}" /></apex:commandLink>
+                                <input type="reset" />
+                            </apex:outputPanel>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+         <script>
+                j$('#checkAllAuto').click(function(){
+                   j$("INPUT[type='checkbox']").attr('checked', j$('#checkAllAuto').is(':checked'));
+                });
+                j$(document).ready(function(){
+               j$("#table1 tr:odd").addClass("odd");
+                j$("#table1 tr:not(.odd)").addClass("even");  
+            });
+                </script>
+            </apex:outputPanel>
+        </div>
+    </apex:form>
+</apex:page>

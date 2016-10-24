@@ -1,0 +1,70 @@
+<apex:page standardcontroller="contact" extensions="AVTRRT.ProphecyCaregiver" action="{!createcaregiverid}" sidebar="true" showHeader="true">
+<apex:form >
+  
+    <apex:outputPanel rendered="{!IF((v_ProphacyEnableCustomSettings.AVTRRT__Enable_Prophecy__c ==false),true,false)}">
+    <h1>
+    <font color = 'red'>
+     {!$Label.Prophecy_Disabled}<br/> <br/> 
+    </font>
+   </h1>
+   <apex:commandButton value="{!$Label.avtrrt__Prophecy_Createcaregiverid_Button}" action="{!cancel}"/>
+  </apex:outputPanel>
+  
+  
+ <apex:outputPanel rendered="{!IF((v_ContactSobj.email==null&&v_ContactSobj.firstname==null&&v_ProphacyEnableCustomSettings.AVTRRT__Enable_Prophecy__c ==true),true,false)}">
+  <h1>
+ <font color = 'red'>
+    {!$Label.Prophecy_Email_Firstname}<br/> <br/> 
+  </font>
+   </h1>
+   <apex:commandButton value="{!$Label.avtrrt__Prophecy_Createcaregiverid_Button}" action="{!cancel}"/>
+  </apex:outputPanel>
+  
+  
+  <apex:outputPanel rendered="{!IF((v_ContactSobj.email==null&&v_ContactSobj.firstname!=null),true,false)}">
+  <h1>
+  <font color = 'red'>
+     {!$Label.Prophecy_Email}<br/> <br/> 
+  </font>
+   </h1>
+   <apex:commandButton value="{!$Label.avtrrt__Prophecy_Createcaregiverid_Button}" action="{!cancel}"/>
+  </apex:outputPanel>
+  
+  <apex:outputPanel rendered="{!IF((v_ContactSobj.firstname==null&&v_ContactSobj.email!=null),true,false)}">
+  <h1>
+   <font color = 'red'>
+    {!$Label.Prophecy_Firstname}<br/> <br/> 
+   </font>
+   </h1>
+   <apex:commandButton value="{!$Label.avtrrt__Prophecy_Createcaregiverid_Button}" action="{!cancel}"/>
+  </apex:outputPanel>
+  
+  <apex:outputPanel rendered="{!IF((GetCountValueFromSearchCaregiverResponse=='0'),true,false)}">
+  <h1>
+  <font color = 'red'>
+    {!$Label.Prophecy_Caregiver}<br/> <br/> 
+  </font>
+   </h1>
+   <apex:commandButton value="{!$Label.avtrrt__Prophecy_Createcaregiverid_Button}" action="{!cancel}"/>
+  </apex:outputPanel>
+  
+  <apex:outputPanel rendered="{!IF((GetIsActiveValueFromSearchCaregiverResponse=='true'),true,false)}">
+  <h1>
+ <font color = 'red'>
+   {!$Label.Prophecy_caregiver_is_Active}<br/> <br/> 
+  </font>
+   </h1>
+   <apex:commandButton value="{!$Label.avtrrt__Prophecy_Createcaregiverid_Button}" action="{!cancel}"/>
+   </apex:outputPanel>
+   
+   <apex:outputPanel rendered="{!IF((GetIsActiveValueFromSearchCaregiverResponse=='false'),true,false)}">
+   <h1>
+   <font color = 'red'>
+    {!$Label.Prophecy_caregiver_id_is_Inactive}<br/> <br/> 
+   </font>
+   </h1>
+   <apex:commandButton value="{!$Label.avtrrt__Prophecy_Createcaregiverid_Button}" action="{!cancel}"/>
+   </apex:outputPanel>
+   
+  </apex:form>
+</apex:page>

@@ -1,0 +1,17 @@
+<apex:page standardController="ddm__dmsfc_Email_Account__c" >
+    <style>
+        .bPageBlock .pbTitle { width: 50% }
+        .bPageBlock .labelCol { text-align : left }
+    </style>
+    <apex:form >
+        <apex:pageBlock mode="edit" title="Editing Email Account : {!ddm__dmsfc_Email_Account__c.Name}">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Save"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="1">
+                <apex:inputText label="Email Account Name" value="{!ddm__dmsfc_Email_Account__c.Name}" />
+                <apex:outputText label="Owner" value="{!ddm__dmsfc_Email_Account__c.Owner.Name}" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

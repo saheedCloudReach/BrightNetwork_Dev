@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html> <head> <script src="/soap/ajax/9.0/connection.js" type="text/javascript"></script>
+
+<script>
+/*try{
+
+
+var Id = '{!Job_Applicant__c.Id}';
+var stage = '{!Job_Applicant__c.Stage__c}';
+
+//var str1 = "Select (select subject, status from ActivityHistories) From AVTRRT__Job_Applicant__c Where Id = '" + Id +"'";
+//alert("Select subject,status from task where whatid like '" + Id +"%'");
+var str1 = "Select subject,status from task where whatid = '" + Id +"'";
+var queryResult = sforce.connection.query(str1);
+//alert(queryResult.size);
+if (queryResult.size > 0)
+{
+
+var r = queryResult.getArray("records");
+//alert(r);
+
+//for(var i1=0;i1<_records.length;i1++)
+//{
+for(var t=0;t<r.length;t++){
+var temp = new Array();
+temp = r[t].Subject.split(':');
+//alert(r[t].Subject +":::::::"+ temp[0]+":::::::"+r[t].Subject.indexOf("Email:"));
+if(temp.length>0 && temp[0]=='Email' && r[t].Subject.indexOf("Email:")==0){
+
+// alert(temp[0]);
+// alert(r[t].Status);
+if(r[t].Status == 'Completed' && (stage== 'New Application' || stage== 'Submitted to Account Manager')){
+//alert("A");
+try {
+// change the Stage status to Submitted to Client.
+var jobApplicant = new sforce.SObject("AVTRRT__Job_Applicant__c");
+jobApplicant.set("Id",'{!Job_Applicant__c.Id}');
+jobApplicant.set("AVTRRT__Stage__c","Submitted to Client");
+var jaStatus = sforce.connection.update([jobApplicant]);
+newloc = "/"+Id;
+window.parent.location.href = newloc;
+}catch (er){
+alert("Error:"+er);
+}
+
+
+
+}
+}
+}
+}
+//}
+} catch (erx){
+alert("Error:"+erx);
+}*/
+</script>
+</html>

@@ -1,0 +1,136 @@
+<apex:page controller="BCST.CreateIdibuAccountController" showHeader="true" standardStylesheets="true">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.blockQuery)}"></script>
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    
+	<style type="text/css">
+		.mainTitle{
+			font-family: Tahoma !important;
+			font-size: 14px !important;
+			width: 200px;
+		}
+		
+		.divButton{
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		.requiredMark{
+			border-right:3px solid #d72122; 
+			padding-right:5px;
+			
+		}
+	</style>
+	<apex:form >
+		<!--  
+		<apex:actionStatus id="wait"
+	            onstart="j$('#dialogWait').dialog({modal:false, resizable:false, width:180, open:function(event, ui) { j$('#dialogWait').css('height','44px').css('min-height','44px'); j$('div.block').block({message: null}); j$('#dialogWait').siblings('.ui-dialog-titlebar').hide(); } })"
+	            onstop="j$('#dialogWait').dialog('close'); j$('div.block').unblock();" />
+	    <div id="dialogWait" style="display:none;">
+	        <apex:image id="searchImage" url="{!$Resource.loading}" style="float: left;"/>
+	        <div style="float: left; padding: 15px 5px 5px 15px;">Wait...</div>
+	    </div>
+	    -->
+		<div class = "block">
+			  <!--<apex:pageMessages />-->
+				<apex:pageBlock title="{!$Label.bcst__User_Info_PageBlock_Title}">
+					<apex:outputPanel id="buttonsPanel">
+						<apex:pageMessages />
+						
+						<center><apex:commandButton value="{!$Label.bcst__Idibu_CrateAcc_Button_Label}" action="{!CreateAccount}" rerender="buttonsPanel" status="loadingStatus"/></center>
+						<span style="font-family: Tahoma; font-size: 12px; color: #ff5a5a;">
+							<apex:actionStatus id="loadingStatus" startText="{!$Label.bcst__Process_Wait_Message}" />
+							<!--<apex:actionStatus id="wait"
+					            onstart="j$('#dialogWait').dialog({modal:false, resizable:false, width:180, open:function(event, ui) { j$('#dialogWait').css('height','44px').css('min-height','44px'); j$('div.block').block({message: null}); j$('#dialogWait').siblings('.ui-dialog-titlebar').hide(); } })"
+					            onstop="j$('#dialogWait').dialog('close'); j$('div.block').unblock();" />
+						    <div id="dialogWait" style="display:none;">
+						        <apex:image id="searchImage" url="{!$Resource.loading}" style="float: left;"/>
+						        <div style="float: left; padding: 15px 5px 5px 15px;">Wait...</div>
+						    </div>-->
+						</span>
+					</apex:outputPanel>
+					
+        			
+					<apex:pageBlockSection columns="2" >
+						
+						
+						<apex:pageBlockSectionItem >
+							<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;" styleClass="field-label" for="fName" value="{!$Label.bcst__IdibuUser_First_Name}" />
+							<apex:inputText styleClass="mainTitle" id="fName" value="{!firstName}"/>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem >
+							<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;" styleClass="field-label" for="lName" value="{!$Label.bcst__IdibuUser_Last_Name}" />
+			                <apex:inputText styleClass="mainTitle" id="lName" value="{!lastName}"/>
+						</apex:pageBlockSectionItem>
+						
+						<apex:pageBlockSectionItem >
+							<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;"  styleClass="field-label" for="emailId" value="{!$Label.bcst__IdibuUser_Email}" />
+			                <apex:inputText styleClass="mainTitle" id="emailId" value="{!email}"/>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem >
+							<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;"  styleClass="field-label" for="phoneId" value="{!$Label.bcst__IdibuUser_Phone}" />
+	               			<apex:inputText styleClass="mainTitle" id="phoneId" value="{!phoneNum}"/>
+						</apex:pageBlockSectionItem>
+						<apex:pageBlockSectionItem >
+								<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;"  styleClass="field-label" for="cName" value="{!$Label.bcst__IdibuUser_Company_Name}" />
+								
+				                <apex:inputText styleClass="mainTitle" id="cName" value="{!companyName}"/>
+						</apex:pageBlockSectionItem>
+					</apex:pageBlockSection>
+				</apex:pageBlock>
+		
+		<apex:pageBlock title="{!$Label.bcst__Login_PageBlock_Title}" rendered="{!NOT(isIdibuAccountExist)}">
+			<apex:pageBlockSection columns="2" >
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;"  styleClass="field-label" for="uName" value="{!$Label.bcst__IdibuUser_Name}" />
+	                <apex:inputText styleClass="mainTitle" id="uName" value="{!userName}"/>
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;"  styleClass="field-label" for="pWord" value="{!$Label.bcst__IdibuUser_Password}" />
+              			<apex:inputText styleClass="mainTitle" id="pWord" value="{!password}"/>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+		<apex:pageBlock title="{!$Label.bcst__Address_PageBlock_Title}"  rendered="{!isIdibuAccountExist}">
+					<apex:pageBlockSection columns="2" >
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;"  styleClass="field-label" for="userId" value="{!$Label.bcst__IdibuUser}" />
+						<apex:inputField styleClass="mainTitle" id="userId" value="{!jobBroadcastingSettingList[0].SetupOwnerId}"/>
+					</apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;"  styleClass="field-label" for="wwwId" value="{!$Label.bcst__IdibuUser_EndURL}" />
+						<apex:inputText styleClass="mainTitle" id="wwwId" value="{!www}"/>
+					</apex:pageBlockSectionItem>
+					
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;"  styleClass="field-label" for="addressId" value="{!$Label.bcst__IdibuUser_Address}" />
+						<apex:inputText styleClass="mainTitle" id="addressId" value="{!address}"/>
+					</apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;"  styleClass="field-label" for="addressLine1Id" value="{!$Label.bcst__IdibuUser_Address_Line1}" />
+		                <apex:inputText styleClass="mainTitle" id="addressLine1Id" value="{!addressLine1}"/>
+					</apex:pageBlockSectionItem>
+					
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;"  styleClass="field-label" for="addressLine2Id" value="{!$Label.bcst__IdibuUser_Address_Line2}" />
+		                <apex:inputText styleClass="mainTitle" id="addressLine2Id" value="{!addressLine2}"/>
+					</apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;"  styleClass="field-label" for="addressLine3" value="{!$Label.bcst__IdibuUser_Address_Line3}" />
+               			<apex:inputText styleClass="mainTitle" id="addressLine3" value="{!addressLine3}"/>
+					</apex:pageBlockSectionItem>
+					
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;"  styleClass="field-label" for="countryId" value="{!$Label.bcst__IdibuUser_Country}" />
+		                <apex:inputText styleClass="mainTitle" id="countryId" value="{!country}"/>
+					</apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel style="border-right:3px solid #d72122; padding-right:5px; padding-bottom:5px; margin-right: -10%;"  styleClass="field-label" for="postcodeId" value="{!$Label.bcst__IdibuUser_PostCode}" />
+               			<apex:inputText styleClass="mainTitle" id="postcodeId" value="{!postcode}"/>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</div>
+	</apex:form>
+	
+</apex:page>

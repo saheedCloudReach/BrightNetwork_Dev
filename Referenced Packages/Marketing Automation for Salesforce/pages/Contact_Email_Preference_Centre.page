@@ -1,0 +1,102 @@
+<apex:page StandardController="Contact" extensions="ddm.EmailPreferenceCentreController">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <style>
+        #scroller { overflow:auto; margin-top:10px }
+        #scroller > table { margin-bottom:10px }
+        #scroller > table:last-child { margin-bottom:0px }
+        #public-pref-centre { float:right }
+    </style>
+    <apex:form >
+   
+        <apex:pageBlock >
+        
+            <apex:commandButton onclick="btn=this;btn.value='Saving...';"
+                oncomplete="btn.value='Update Preferences';" id="btnUpdatePreferences"
+                action="{!Save}" value="Update Preferences"  />
+            
+            <a style="display:none" id="public-pref-centre" target="_blank" 
+                href="https://pc1.samplecompany.net/EmailPreferenceCentre/?EntityType=Contact&Email={!Contact.Email}">
+                   Public Preference Centre
+            </a>
+            
+            <div id="scroller">
+                <apex:repeat value="{!Groups}" var="group">
+                    <h2>{!group.SubscriptionGroup.Name}</h2> - {!group.SubscriptionGroup.ddm__Description__c}
+            
+                    <apex:pageBlockTable value="{!group.SubscriptionOptions}" var="so">
+                        <apex:column width="3%" headerValue="">
+                            <apex:inputCheckbox value="{!so.IsSelected}" styleClass="optin-checkbox" />                            
+                        </apex:column>
+                        <apex:column width="15%" headerValue="Preference">
+                            <apex:selectList size="1" value="{!so.Status}" multiselect="false" styleClass="optin-select">
+                                <apex:selectOption itemValue="No Preference" itemLabel="No Preference" />
+                                <apex:selectOption itemValue="Opt In" itemLabel="Opt In" />
+                                <apex:selectOption itemValue="Opt Out" itemLabel="Opt Out" />
+                            </apex:selectList>
+                        </apex:column>                        
+                        <apex:column width="20%" headerValue="Subscription Option" value="{!so.Option.Name}" />
+                        <apex:column width="60%" value="{!so.Option.ddm__Description__c}" />
+                    </apex:pageBlockTable>           
+                </apex:repeat>
+            </div>    
+            
+           
+            
+        </apex:pageBlock>
+        
+        
+        
+    </apex:form>
+    
+    <script>
+
+        (function($){     
+            //set scroll height to 60px less than containing window:
+                
+            setScrollHeight();
+            $(window).resize(setScrollHeight);
+        
+            $('.optin-checkbox').change(changeStatus);
+            $('.optin-select').change(changeChecked);
+            $('.headerRow th:first-child').append('<input type="checkbox" class="toggle-group" title="Select Group" />');
+            $('.toggle-group').change(groupChanged);
+            
+            function setScrollHeight(){
+                var windowHeight = $(window).height();
+                if(windowHeight > 0)
+                    $('#scroller').height(windowHeight - 70);            
+            }
+            
+            function changeStatus(){
+                var $cb = $(this), $tr = $cb.closest('tr');
+                $('.optin-select', $tr).val($cb.prop('checked') ? "Opt In" : "Opt Out");
+                isGroupChecked($cb);
+            }
+            
+            function changeChecked(){
+                var $select = $(this), $tr = $select.closest('tr');
+                $('.optin-checkbox', $tr).prop('checked', $select.val() === "Opt In");
+                isGroupChecked($select);
+            }
+            
+            function groupChanged(){
+                var $group = $(this), $table = $group.closest('table'), checked = $group.prop('checked');
+                $('.optin-checkbox', $table).prop('checked', checked );
+                $('.optin-select', $table).val(checked ? "Opt In" : "Opt Out");
+            }
+            
+            function isGroupChecked(element){
+                var $table = element.closest('table'),
+                    $tbody = $('tbody', $table),
+                    $thead = $('thead', $table),
+                    checkCount = $('input[type=checkbox]:checked', $tbody).length,
+                    possible = $('input[type=checkbox]', $tbody).length;
+                
+                $('input[type=checkbox]', $thead).prop('checked', checkCount === possible);                
+            }
+            
+        })(jQuery);
+        
+    </script>
+    
+</apex:page>

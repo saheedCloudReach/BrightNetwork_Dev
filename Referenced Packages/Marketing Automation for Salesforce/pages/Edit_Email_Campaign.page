@@ -1,0 +1,117 @@
+<apex:page standardController="ddm__dmsfc_EmailCampaign__c" >
+    <style>
+        table.detailList { width: 60% !important }
+        .bPageBlock .pbTitle { width: 50% }
+        .bPageBlock .detailList .labelCol { 
+            text-align : left; width:250px !important;
+            display:inline-block;
+        }
+        #warning_message { 
+            padding: 10px; background: #FFE4B3; border: 1px solid orange; border-radius: 4px;
+            margin:10px; width:50%;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+    <apex:form > 
+
+        <apex:pageBlock title="Editing Email Campaign : {!ddm__dmsfc_EmailCampaign__c.name}" mode="edit">
+            <apex:pageMessages />
+
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Save"/>
+                <apex:commandButton action="{!cancel}" immediate="true" value="Cancel"/>
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection title="Data Options" columns="2">
+            
+
+                <apex:inputCheckbox value="{!ddm__dmsfc_EmailCampaign__c.ddm__SyncCampaign__c}"/>
+                <apex:inputHidden html-class="hdnDate"
+                    html-data-checked="{!ddm__dmsfc_EmailCampaign__c.ddm__SyncCampaign__c}"
+                    value="{!ddm__dmsfc_EmailCampaign__c.ddm__LastSynced__c}" />
+                
+                <apex:inputCheckbox value="{!ddm__dmsfc_EmailCampaign__c.ddm__SynchClicks__c}"/>
+                <apex:inputHidden html-class="hdnDate"
+                    html-data-checked="{!ddm__dmsfc_EmailCampaign__c.ddm__SynchClicks__c}"
+                    value="{!ddm__dmsfc_EmailCampaign__c.ddm__LastSync_Clicks__c}" />
+                
+                <apex:inputCheckbox value="{!ddm__dmsfc_EmailCampaign__c.ddm__SyncSends__c}"/>
+                <apex:inputHidden html-class="hdnDate"
+                    html-data-checked="{!ddm__dmsfc_EmailCampaign__c.ddm__SyncSends__c}"
+                    value="{!ddm__dmsfc_EmailCampaign__c.ddm__LastSync_Sends__c}" />
+
+                <apex:inputCheckbox value="{!ddm__dmsfc_EmailCampaign__c.ddm__SyncROI__c}"/>
+                <apex:inputHidden html-class="hdnDate"
+                    html-data-checked="{!ddm__dmsfc_EmailCampaign__c.ddm__SyncROI__c}"
+                    value="{!ddm__dmsfc_EmailCampaign__c.ddm__LastSync_ROI__c}" />
+                                            
+                <apex:inputCheckbox value="{!ddm__dmsfc_EmailCampaign__c.ddm__SyncPageViews__c}"/>
+                <apex:inputHidden html-class="hdnDate"
+                    html-data-checked="{!ddm__dmsfc_EmailCampaign__c.ddm__SyncPageViews__c}"
+                    value="{!ddm__dmsfc_EmailCampaign__c.ddm__LastSync_PageView__c}" />
+                
+                <apex:inputCheckbox value="{!ddm__dmsfc_EmailCampaign__c.ddm__SyncBookmarks__c}"/>            
+                <apex:inputHidden html-class="hdnDate"
+                    html-data-checked="{!ddm__dmsfc_EmailCampaign__c.ddm__SyncBookmarks__c}"
+                    value="{!ddm__dmsfc_EmailCampaign__c.ddm__LastSync_Bookmarks__c}"  />
+                    
+                <apex:inputCheckbox onclick="warning.style.display = (this.checked) ? 'block' : 'none';" 
+                    value="{!ddm__dmsfc_EmailCampaign__c.ddm__UpdateMembershipResponses__c}" />
+                    
+            </apex:pageBlockSection>
+            
+            <div id="warning_message">
+                <h3>Important Note</H3>
+                <p>You have activated ‘Allow Campaign Membership Update’ for this  Email Campaign.</p>
+                <p>This will update the campaign membership status of Contacts or Leads within any Salesforce campaign that has been linked to this Email Campaign.</p>
+                <p>By default the required status values will be created automatically within each of your linked Salesforce campaigns, so no manual intervention is required.</p>
+                <p>To change this default behaviour or change the default status values please do so from within the global settings area.</p>
+            </div>
+        </apex:pageBlock>
+    </apex:form>
+
+    <script>
+        
+        var warning = document.getElementById("warning_message");
+        var startValue = '{!ddm__dmsfc_EmailCampaign__c.ddm__UpdateMembershipResponses__c}' == 'true';
+        warning.style.display = startValue ? "block" : "none"; 
+        
+        (function($){
+            
+            $('.hdnDate').each(function(){
+                formatDate($(this));
+            });
+            
+            $('input[type=checkbox]').change(syncOptionChanged)
+            
+            function syncOptionChanged(){
+                var $cb = $(this),
+                    $container = $cb.closest('tr')
+                    $hdnDate = $('.hdnDate', $container),                
+                    wasChecked = $hdnDate.data('checked');
+                
+                    
+                if(!wasChecked && $cb.prop('checked')){
+                    $hdnDate.val('');
+                } else {
+                    $hdnDate.val($hdnDate.data('value'));
+                }
+            }
+            
+            function formatDate($dtField) {
+                var newDate = "";               
+                if($dtField.val() !== ""){
+                    var date = new Date($dtField.val());
+                    newDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() +
+                         " " + date.getHours() + ":" + date.getMinutes();
+                    $dtField.val(newDate);
+                }                           
+                $dtField.data('value', newDate);
+            }
+            
+        })(jQuery);
+    </script>
+    
+    
+</apex:page>

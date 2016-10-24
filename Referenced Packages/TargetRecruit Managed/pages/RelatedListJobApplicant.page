@@ -1,0 +1,5 @@
+<apex:page standardController="AVTRRT__Job__c" >
+    <c:RelatedListComponent parentType="{!$ObjectType.AVTRRT__Job__c.name}" 
+    		relatedListType="{!$ObjectType.AVTRRT__Job_Applicant__c.name}"
+    		relatedListParentLookup="{!$ObjectType.AVTRRT__Job_Applicant__c.Fields.AVTRRT__Job__c.name}" />
+</apex:page>

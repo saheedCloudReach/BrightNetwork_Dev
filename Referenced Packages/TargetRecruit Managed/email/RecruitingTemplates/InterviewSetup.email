@@ -1,0 +1,15 @@
+Hello {!Interview__c.Assigned_Recruiter__c} ,
+
+A new interview has been set up for 
+Account - {!Interview__c.Account_X__c} 
+
+Interviewing person - {!
+Interview__c.Hiring_Manager__c}
+
+Candidate -  {!Interview__c.Contact_Candidate__c}
+
+Date and Time - {!Interview__c.Start_Date__c}
+
+Type of Interview - {!Interview__c.Type_Of_Interview__c}
+
+Thanks

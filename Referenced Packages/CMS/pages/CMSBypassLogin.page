@@ -1,0 +1,10 @@
+<!-- 
+/**
+* @author Shashish kumar
+* @date 12/12/2013
+* @description Visualforce page is used for ByPassing login functionality of Register user. 
+*/
+ -->
+
+<apex:page Controller="FCMS.CMSByPassLoginController" action="{!login}">
+</apex:page>

@@ -1,0 +1,10 @@
+<table width="550" cellpadding="5" height="400" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td locked="0" style=" font-family:arial; bLabel:main; color:#000000; font-size:12pt; bEditID:r3st1; background-color:#FFFFFF;" aEditID="c1r1" tEditID="c1r1" >
+<![CDATA[<P class=MsoNormal style="MARGIN: 0in 0in 10pt"><FONT face=Calibri>Dear {!Job_Applicant__c.Assigned_Recruiter__c},</FONT></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 10pt"><FONT face=Calibri>{!Job_Applicant__c.Contact_Candidate__c} has just applied online to position&nbsp;{!Job_Applicant__c.Job__c} with {!Job_Applicant__c.Account_Job__c} for a {!Job_Applicant__c.Job_Title__c}.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN></FONT></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 10pt"><FONT face=Calibri>Please review the candidate’s qualifications and follow-up with a call.</FONT></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 10pt"><?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /><o:p><FONT face=Calibri>Click <A href="http://na2.salesforce.com/{!Job_Applicant__c.Id}">here</A> to view the job applicant record details.</FONT></o:p></P>
+<P class=MsoNormal style="MARGIN: 0in 0in 10pt"><FONT face=Calibri>Happy Hunting!</FONT></P>]]></td>
+</tr>
+</table>

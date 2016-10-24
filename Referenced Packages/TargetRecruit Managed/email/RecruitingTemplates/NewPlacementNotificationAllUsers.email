@@ -1,0 +1,7 @@
+<table width="550" cellpadding="5" height="400" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td locked="0" style=" font-family:arial; bLabel:main; color:#000000; font-size:12pt; bEditID:r3st1; background-color:#FFFFFF;" aEditID="c1r1" tEditID="c1r1" >
+<![CDATA[<P>Dear all: <BR><BR>Congrats to Recruiter: {!Placement__c.Recruiter__c} and {!Placement__c.Account_Manager__c} <BR><BR><BR><BR>{!Placement__c.Contact_Candidate__c} <BR><BR>Placed with {!Placement__c.Employer__c} <BR><BR>Start Date: {!Placement__c.Start_Date__c} <BR><BR>Recruiter: {!Placement__c.Recruiter__c} <BR><BR>Account Manager: {!Placement__c.Account_Manager__c} <BR><BR><BR>Thanks,</P>
+<P>&nbsp;</P>]]></td>
+</tr>
+</table>

@@ -1,0 +1,73 @@
+<apex:page standardController="contact" extensions="AVTRRT.ProphecySendAssessments">
+  <apex:form >
+  
+  <apex:outputPanel rendered="{!IF(( v_ProphacyEnableCustomSettings.AVTRRT__Enable_Prophecy__c ==false),true,false)}">
+   <h1>
+      <font color = 'red'>
+       {!$Label.Prophecy_Disabled}<br/> <br/> 
+      </font>
+   </h1>
+   <apex:commandButton value=" {!$Label.avtrrt__Prophecy_go_back_to_contacts}" action="{!cancel}"/>
+  </apex:outputPanel>
+  
+  <apex:outputPanel rendered="{!IF((AssessmentCount=='0'),true,false)}">
+  <h1>
+     <font color = 'red'>
+      {!$Label.Prophecy_caregiver_Fail}<br/> <br/> 
+     </font>
+   </h1>
+   <apex:commandButton value=" {!$Label.avtrrt__Prophecy_go_back_to_contacts}" action="{!cancel}"/>
+  </apex:outputPanel>
+  
+  <apex:outputPanel rendered="{!IF((v_ContactSobj.AVTRRT__Prophecy_Caregiver_ID__c==null),true,false)}">
+  <h1>
+     <font color = 'red'>
+      {!$Label.Prophecy_Create_Caregiverid}<br/> <br/> 
+     </font>
+  </h1>
+  <apex:commandButton value=" {!$Label.avtrrt__Prophecy_go_back_to_contacts}" action="{!cancel}"/>
+  </apex:outputPanel>
+  
+   <apex:outputPanel rendered="{!IF((AssessmentIsActive=='false'),true,false)}">
+   <h1>
+     <font color = 'red'>
+      {!$Label.Prophecy_Caregiver_Inactive}<br/> <br/> 
+     </font>
+   </h1>
+  <apex:commandButton value=" {!$Label.avtrrt__Prophecy_go_back_to_contacts}" action="{!cancel}"/>
+  </apex:outputPanel>
+  
+  <apex:outputPanel rendered="{!IF((AssessmentIsActive=='true'),true,false)}" >
+    <apex:pageBlock title="{!$Label.avtrrt__prophecy_sent_assessments}" >
+    <apex:pageBlockButtons >
+    <apex:commandButton value=" {!$Label.avtrrt__Prophecy_go_back_to_contacts}" action="{!cancel}"/>
+    <apex:commandButton value=" {!$Label.avtrrt__Prophecy_Send_More_Assessments}" action="{!back}"/>
+    </apex:pageBlockButtons>
+
+  <apex:pageBlockTable value="{!ListOfAllAssessmentsSentToProphecy}" var="a" >
+       <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Assesmentname}">
+       <!-- This is our selected Boolean property in our wrapper class -->
+         <apex:outputtext value="{!a.name}" />
+       </apex:column>
+       <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Assessment_Type}">
+       <!-- This is our selected Boolean property in our wrapper class -->
+         <apex:outputtext value="{!a.type}"/>
+       </apex:column>
+       <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Cost_Points}">
+       <!-- This is our selected Boolean property in our wrapper class -->
+         <apex:outputtext value="{!a.CostPoints }"/>
+       </apex:column>
+       <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Number_Of_Questions}">
+       <!-- This is our selected Boolean property in our wrapper class -->
+         <apex:outputtext value="{!a.NumberOfQuestions }"/>
+       </apex:column>
+       <apex:column headerValue="{!$Label.avtrrt__prophecygetassessments_Time_Limit}">
+       <!-- This is our selected Boolean property in our wrapper class -->
+         <apex:outputtext value="{!a.TimeLimit }"/>
+       </apex:column>
+  </apex:pageBlockTable>
+  
+ </apex:pageBlock> 
+ </apex:outputPanel>
+</apex:form>
+</apex:page>

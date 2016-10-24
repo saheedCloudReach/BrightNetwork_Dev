@@ -1,0 +1,39 @@
+<apex:page controller="AVTRRT.ShowInterviews"  title="{!$Label.avtrrt__ShowInterview}" showHeader="false" sideBar="false" 
+        cache="false" tabStyle="AVTRRT__Search__c" >
+<apex:outputPanel >
+    <apex:form >
+        <apex:pageMessages />
+        
+        <apex:repeat value="{!countInterviews}" var="Interview" id="repeat">
+            <apex:pageBlock >
+                <apex:pageBlockSection columns="1" title="{!$Label.avtrrt__Interview_Information}" >
+                    <apex:pageblockSectionItem >
+                        <apex:outputText >{!$Label.avtrrt__Name}</apex:outputText>
+                        <apex:outputField value="{!Interview.Contact_Candidate__r.Name}"/>
+                    </apex:pageblockSectionItem>
+                    <apex:pageblockSectionItem >
+                        <apex:outputText >{!$Label.avtrrt__Interviewing_Person}</apex:outputText>
+                        <apex:outputField value="{!Interview.Hiring_Manager__r.Name}"/> 
+                    </apex:pageblockSectionItem>
+                    <apex:pageblockSectionItem >
+                        <apex:outputText >{!$Label.avtrrt__Interview_Date}</apex:outputText>
+                        <apex:outputField value="{!Interview.AVTRRT__Start_Date__c}"/> 
+                    </apex:pageblockSectionItem>
+                    <apex:pageblockSectionItem >
+                        <apex:outputText >{!$Label.avtrrt__Recommended_Hire}</apex:outputText>
+                        <apex:outputField value="{!Interview.AVTRRT__Recommended_Hire__c}"/> 
+                    </apex:pageblockSectionItem>
+                    <apex:pageblockSectionItem >
+                        <apex:outputText >{!$Label.avtrrt__Overall_Feedback}</apex:outputText>
+                        <apex:outputField value="{!Interview.AVTRRT__Overall_Feedback__c}"/> 
+                    </apex:pageblockSectionItem>
+                    <apex:pageblockSectionItem >
+                        <apex:outputText >{!$Label.avtrrt__Interview_Feedback}</apex:outputText>
+                        <apex:outputField value="{!Interview.AVTRRT__Interview_Feedback__c}"/> 
+                    </apex:pageblockSectionItem>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:repeat>
+    </apex:form>
+</apex:outputPanel>
+</apex:page>
